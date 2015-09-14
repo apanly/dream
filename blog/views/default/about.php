@@ -2,7 +2,7 @@
     <article class="post page">
 
     <header class="post-head">
-        <h1 class="post-title">郭大帅哥 资深拍黄片</h1>
+        <h1 class="post-title">郭大帅哥 PHP，Python 工程师</h1>
     </header>
 
     <section class="post-content">

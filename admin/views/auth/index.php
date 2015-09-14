@@ -22,7 +22,7 @@ use admin\components\StaticService;
     <div class="avtar">
         <img src="<?=StaticService::buildStaticUrl("images/login/avatar.png");?>"/>
     </div>
-    <input type="text" class="text" name="mobile" placeholder="请输入手机号码" >
+    <input type="text" class="text" name="mobile" placeholder="请输入手机号码" autocomplete="off" >
     <div class="key"><input type="password" name="passwd" placeholder="请输入密码"></div>
     <div class="signin"><input type="submit" value="登录" class="login"></div>
 </div>

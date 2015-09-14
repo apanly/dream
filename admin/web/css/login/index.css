@@ -351,6 +351,9 @@ label.lbl-3 {
 	}
 }
 
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    border: 1px solid #CCC!important;
 }
