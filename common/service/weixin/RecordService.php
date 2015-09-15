@@ -30,6 +30,9 @@ class RecordService {
             case "shortvideo":
                 $content = trim($data->ThumbMediaId);
                 break;
+            case "event":
+                $content = trim($data->Event);
+                break;
             default:
                 $content = trim($data->Content);
                 break;
