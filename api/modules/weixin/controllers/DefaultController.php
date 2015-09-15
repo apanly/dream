@@ -127,7 +127,7 @@ EOT;
             $list[] = [
                 "title" => $_item['title'],
                 "description" => $_item['title'],
-                "picurl" => "",
+                "picurl" => "http://upload.news.cecb2b.com/2014/0617/1402976933303.jpg",
                 "url" => "http://www.vincentguo.cn/default/".$_item['id']
             ];
         }
