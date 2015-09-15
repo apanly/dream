@@ -30,33 +30,22 @@ class DefaultController extends  BaseController {
                     $res = $this->parseEvent($postObj);
                     break;
             }
-            if($res['type'] == "text"){
-                return $this->textTpl($fromUsername,$toUsername,$res['data']);
+            switch($res['type']){
+                case "rich":
+                    return $this->richTpl($fromUsername,$toUsername,$res['data']);
+                    break;
+                default:
+                    return $this->textTpl($fromUsername,$toUsername,$res['data']);
             }
         }
         return "消息接口";
-
     }
 
     private function parseText($dataObj){
-        $resType = "text";
-        $resData = $this->help();
         $keyword = trim($dataObj->Content);
-        if($keyword == "hot"){
-            $hots = Posts::find()
-                ->where(['status' => 1])
-                ->orderBy("comment_count desc")
-                ->limit(3)
-                ->all();
-        }else if($keyword == "new"){
-            $news = Posts::find()
-                ->where(['status' => 1])
-                ->orderBy("id desc")
-                ->limit(3)
-                ->all();
-        }
-        return ['type'=>$resType,'data'=>$resData];
+        return $this->getDataByKeyword($keyword);
     }
+
     private function parseEvent($dataObj){
         $resType = "text";
         $resData = $this->help();
@@ -92,6 +81,75 @@ class DefaultController extends  BaseController {
         return sprintf($textTpl, $fromUsername, $toUsername, time(), "text", $data);
     }
 
+    private function richTpl($fromUsername,$toUsername,$data){
+        $tpl = <<<EOT
+<xml>
+<ToUserName><![CDATA[%s]]></ToUserName>
+<FromUserName><![CDATA[%s]]></FromUserName>
+<CreateTime>%s</CreateTime>
+<MsgType><![CDATA[news]]></MsgType>
+%s
+</xml>
+EOT;
+        return sprintf($tpl, $fromUsername, $toUsername, time(), $data);
+
+    }
+
+    private function getDataByKeyword($keyword){
+        switch($keyword){
+            case "hot":
+                $type = "rich";
+                $ret = Posts::find()->where(['status' => 1])->orderBy("comment_count desc")
+                    ->limit(3)->all();
+                break;
+            case "new":
+                $type = "rich";
+                $ret = Posts::find() ->where(['status' => 1])->orderBy("id desc")
+                    ->limit(3)->all();
+                break;
+            case "book":
+                $type = "rich";
+                $ret = [];
+                break;
+            default:
+                $type = "text";
+                $ret = [];
+        }
+
+        $data = $ret?$this->formatRichData($ret,$keyword):$this->help();
+
+        return ['type' => $type,"data" => $data];
+    }
+
+    private function formatRichData($data,$type){
+        $list = [];
+        foreach($data as $_item){
+            $list[] = [
+                "title" => $_item['title'],
+                "description" => $_item['title'],
+                "picurl" => "",
+                "url" => "http://www.vincentguo.cn/default/".$_item['id']
+            ];
+        }
+        $article_count = count( $list );
+        $article_content = "";
+        foreach($list as $_item){
+            $article_content .= "
+<item>
+<Title><![CDATA[{$_item['title']}]]></Title>
+<Description><![CDATA[{$_item['description']}]]></Description>
+<PicUrl><![CDATA[{$_item['picurl']}]]></PicUrl>
+<Url><![CDATA[{$_item['url']}]]></Url>
+</item>";
+        }
+
+        $article_body = "<ArticleCount>%s</ArticleCount>
+<Articles>
+%s
+</Articles>";
+        return sprintf($article_body,$article_count,$article_content);
+
+    }
 
     private function help(){
         return '您好，抱歉暂时没有搜索到相关内容';
