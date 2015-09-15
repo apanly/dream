@@ -4,6 +4,7 @@ namespace api\modules\weixin\controllers;
 
 use api\modules\weixin\controllers\common\BaseController;
 use common\models\posts\Posts;
+use common\service\weixin\RecordService;
 
 class DefaultController extends  BaseController {
     public function actionIndex(){
@@ -16,7 +17,7 @@ class DefaultController extends  BaseController {
         }
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
         if($postStr){
-            $this->recode_log($postStr);
+            RecordService::add($postStr);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $msgType = trim($postObj->MsgType);
             $fromUsername = $postObj->FromUserName;
