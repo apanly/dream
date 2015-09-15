@@ -123,11 +123,12 @@ EOT;
 
     private function formatRichData($data,$type){
         $list = [];
+        $domain_static = \Yii::$app->params['domains']['static'];
         foreach($data as $_item){
             $list[] = [
                 "title" => $_item['title'],
                 "description" => $_item['title'],
-                "picurl" => "http://upload.news.cecb2b.com/2014/0617/1402976933303.jpg",
+                "picurl" => "{$domain_static}/wx/".mt_rand(1,7).".jpg",
                 "url" => "http://www.vincentguo.cn/default/".$_item['id']
             ];
         }
