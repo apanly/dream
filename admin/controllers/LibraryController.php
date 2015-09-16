@@ -96,6 +96,7 @@ class LibraryController extends BaseController
 
     public function actionOps($id){
         $id = intval($id);
+        $act = trim( $this->post("act","online") );
         if( !$id ){
             return $this->renderJSON([],"操作的图书可能不是你的吧!!",-1);
         }
@@ -105,11 +106,16 @@ class LibraryController extends BaseController
             return $this->renderJSON([],"操作的图书可能不是你的吧!!",-1);
         }
 
-        if(!$book_info['status']){
-            return $this->renderJSON([],"操作的图书状态不对!!",-1);
+        if( $act == "del" ){
+            if(!$book_info['status']){
+                return $this->renderJSON([],"操作的图书状态不对!!",-1);
+            }
+
+            $book_info->status = 0;
+        }else{
+            $book_info->status = 1;
         }
 
-        $book_info->status = 0;
         $book_info->updated_time = date("Y-m-d H:i:s");
         $book_info->update(0);
         return $this->renderJSON([],"操作成功!!");

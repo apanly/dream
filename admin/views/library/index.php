@@ -44,7 +44,11 @@ StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AppAsset:
                                                     详情
                                                 </a>
                                                 <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm delete" data="<?=$_item['id'];?>">
-                                                    <span class="fa fa-times"></span>隐藏
+                                                    <span class="fa fa-times"></span>下架
+                                                </a>
+                                            <?php else:?>
+                                                <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm online" data="<?=$_item['id'];?>">
+                                                    <span class="fa fa-history"></span>上架
                                                 </a>
                                             <?php endif;?>
                                         </td>
