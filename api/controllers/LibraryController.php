@@ -3,11 +3,9 @@
 namespace api\controllers;
 
 use api\controllers\common\AuthController;
-use common\components\Httplib;
+use common\components\HttpLib;
 use common\models\library\Book;
 use Yii;
-
-
 
 class LibraryController extends AuthController{
 
