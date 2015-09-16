@@ -71,4 +71,17 @@ class AuthController extends Controller
         return Yii::$app->request->get($key, $default);
     }
 
+    public function recode($msg){
+        $time = microtime(true);
+        $log = new FileTarget();
+        $log->logFile = Yii::$app->getRuntimePath() . '/logs/err.log';
+        $log->messages[] = [
+            $msg . " [url:{$_SERVER['REQUEST_URI']}][post:".http_build_query($_POST)."]",
+            1,
+            'application',
+            $time
+        ];
+        $log->export();
+    }
+
 }

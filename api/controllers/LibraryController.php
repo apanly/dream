@@ -15,7 +15,7 @@ class LibraryController extends AuthController{
         $type = trim($this->post("type","EAN_13"));
         $code = trim($this->post("isbn"));
         $date_now = date("Y-m-d H:i:s");
-
+        $this->recode("test");
         if(!$type || !$code){
             return $this->renderJSON([],"请输入参数type 和 isbn",-1);
         }
