@@ -8,7 +8,7 @@
     <div class="widget">
         <h4 class="title">关于</h4>
         <div class="content community">
-            <a href="/default/about">郭大帅哥，php 开发工程师，资深拍黄片，...</a>
+            <a href="/default/about">郭大帅哥，php 开发工程师，...</a>
         </div>
     </div>
 
