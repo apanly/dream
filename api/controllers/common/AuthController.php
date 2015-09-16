@@ -1,6 +1,7 @@
 <?php
 namespace api\controllers\common;
 
+use yii\log\FileTarget;
 use yii\web\Controller;
 use Yii;
 
@@ -73,6 +74,7 @@ class AuthController extends Controller
 
     public function recode($msg){
         $time = microtime(true);
+        
         $log = new FileTarget();
         $log->logFile = Yii::$app->getRuntimePath() . '/logs/err.log';
         $log->messages[] = [
