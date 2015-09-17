@@ -4,6 +4,7 @@ namespace api\modules\weixin\controllers;
 
 use api\modules\weixin\controllers\common\BaseController;
 use common\models\posts\Posts;
+use common\models\search\IndexSearch;
 use common\service\weixin\RecordService;
 
 class DefaultController extends  BaseController {
@@ -98,40 +99,34 @@ EOT;
     }
 
     private function getDataByKeyword($keyword){
-        switch($keyword){
-            case "hot":
-                $type = "rich";
-                $ret = Posts::find()->where(['status' => 1])->orderBy("comment_count desc")
-                    ->limit(3)->all();
-                break;
-            case "new":
-                $type = "rich";
-                $ret = Posts::find() ->where(['status' => 1])->orderBy("id desc")
-                    ->limit(3)->all();
-                break;
-            case "book":
-                $type = "rich";
-                $ret = [];
-                break;
-            default:
-                $type = "text";
-                $ret = [];
-        }
 
-        $data = $ret?$this->formatRichData($ret,$keyword):$this->help();
-
-        return ['type' => $type,"data" => $data];
+        $search_key =  ['LIKE' ,'search_key','%'.strtr($keyword,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false];
+        $ret = IndexSearch::find()->where($search_key)->orderBy("id desc")->limit(3)->all();
+        $data = $ret?$this->formatRichData($ret):$this->help();
+        $type = $ret?"rich":"text";
+        return ['type' => $type ,"data" => $data];
     }
 
-    private function formatRichData($data,$type){
+    private function formatRichData($data){
         $list = [];
         $domain_static = \Yii::$app->params['domains']['static'];
         foreach($data as $_item){
+            $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
+            if( $_item['image'] ){
+                $tmp_image = $_item['image'];
+            }
+
+            if( $_item['post_id'] ){
+                $tmp_url = "http://www.vincentguo.cn/default/".$_item['post_id'];
+            }else{
+                $tmp_url = "http://www.vincentguo.cn/library/detail/".$_item['book_id'];
+            }
+
             $list[] = [
                 "title" => $_item['title'],
-                "description" => $_item['title'],
-                "picurl" => "{$domain_static}/wx/".mt_rand(1,7).".jpg",
-                "url" => "http://www.vincentguo.cn/default/".$_item['id']
+                "description" => $_item['description'],
+                "picurl" => $tmp_image,
+                "url" => $tmp_url
             ];
         }
         $article_count = count( $list );
