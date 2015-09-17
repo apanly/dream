@@ -38,7 +38,7 @@ class SearchController extends Blog{
                     "book_id" => $_book_info['id'],
                     "post_id" => 0,
                     "search_key" => $tmp_search_key,
-                    "image" => $_book_info['image_url']
+                    "image" => $_book_info['origin_image_url']
                 ];
             }
         }
