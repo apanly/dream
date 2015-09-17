@@ -63,8 +63,9 @@ class SearchController extends Blog{
                     $model_index_search->created_time = $date_now;
                 }
 
+                $tmp_description = str_replace("&nbsp;"," ",$_item['description']);
                 $model_index_search->title = $_item['title'];
-                $model_index_search->description = $_item['description'];
+                $model_index_search->description = $tmp_description;
                 $model_index_search->book_id = $_item['book_id'];
                 $model_index_search->post_id = $_item['post_id'];
                 $model_index_search->search_key = $_item['search_key'];
