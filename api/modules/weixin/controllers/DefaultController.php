@@ -150,17 +150,23 @@ EOT;
     }
 
     private function help(){
-        return '郭大帅哥没有找到你想要的东西（：
-        试试hadoop,mysql等等，
-        也可以直接去我的网站 www.vincentguo.cn';
+        $resData = <<<EOT
+郭大帅哥没有找到你想要的东西（：
+试试hadoop,mysql等等，
+ 也可以直接去我的网站 www.vincentguo.cn
+EOT;
+        return $resData;
     }
 
     /**
      * 关注默认提示
      */
     private function subscribeTips(){
-        $resData = "感谢您关注郭大帅哥的公众号
-        输入关键字,郭大帅哥会回复你的！！";
+
+        $resData = <<<EOT
+感谢您关注郭大帅哥的公众号
+输入关键字,郭大帅哥会回复你的！！
+EOT;
         return $resData;
     }
 
