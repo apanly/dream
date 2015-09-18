@@ -1,5 +1,16 @@
 <aside class="col-md-4 sidebar">
     <div class="widget">
+        <h4 class="title">搜索</h4>
+        <div class="content search">
+            <div class="input-group">
+                <input type="text" class="form-control" id="kw"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default do-search" type="button" style="padding: 6px 12px;">搜索</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="widget">
         <h4 class="title">标签云</h4>
         <div class="content tag-cloud">
         </div>

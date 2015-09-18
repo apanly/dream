@@ -15,7 +15,7 @@ class DataHelper {
         {
             $_ids[] = $_row[$id_column];
         }
-        $rel_data = $relate_model::findAll([$pk_column => $_ids]);
+        $rel_data = $relate_model::findAll([$pk_column => array_unique($_ids)]);
         foreach($rel_data as $_rel)
         {
             $map_item = [];

@@ -8,27 +8,12 @@
     <section class="post-content">
         <blockquote>
             <p>
-                作为一个技术人员，当然希望建立一个自己的小平台了。此平台主要用户记录工作笔记和生活。
+                作为一个技术人员，当然希望建立一个自己的小小王国。此平台主要用户记录工作笔记和生活。
             </p>
         </blockquote>
-
-        <p>
-            <div class="row">
-                <div class="col-xs-6 col-md-3">
-                    <img src="/images/about/3.jpg">
-                </div>
-                <div class="col-xs-6 col-md-3">
-                    <img src="/images/about/1.jpg">
-                </div>
-                <div class="col-xs-6 col-md-3">
-                    <img src="/images/about/2.jpg">
-                </div>
-            </div>
-        </p>
-
         <ul>
             <li>姓名：郭威</li>
-            <li>坐标：上海</li>
+            <li>坐标：上海&bull;徐汇区&bull;田林</li>
             <li>工作经历：
                 <ul>
                     <li> 2010年10月 ~ 2011年06月  上海奥智 PHP开发</li>
@@ -53,6 +38,9 @@
                 </ul>
             </li>
         </ul>
+        <div class="row">
+            <img src="/images/about/awesome.jpg">
+        </div>
     </section>
 
     </article>

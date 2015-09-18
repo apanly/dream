@@ -38,3 +38,4 @@ composer.lock
 # vim swp file
 *.swp
 tags
+static/web/life/*

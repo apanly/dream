@@ -6,7 +6,16 @@ var public_ops = {
         this.eventBind();
     },
     eventBind:function(){
+        var that = this;
+        $(".sidebar .do-search").click(function(){
+            that.search();
+        });
 
+        $(".sidebar #kw").keydown(function(e){
+            if(e.keyCode==13){
+                that.search();
+            }
+        });
     },
     initTags:function(){
         var that = this;
@@ -26,7 +35,7 @@ var public_ops = {
     formatTags:function(items){
         var html_tags = "";
         for(var idx in items){
-            html_tags += '<a href="/search/tag?kw='+items[idx]+'">'+items[idx]+'</a>';
+            html_tags += '<a href="/search/do?kw='+items[idx]+'">'+items[idx]+'</a>';
         }
         $(".tag-cloud").each(function(){
             $(this).html(html_tags);
@@ -57,6 +66,15 @@ var public_ops = {
             news_html_blog += '<div class="recent-single-post"><a href="'+items_news[idx]['url']+'"  class="post-title">'+items_news[idx]['title']+'</a></div>';
         }
         $($(".recent-post").get(1)).html(news_html_blog);
+    },
+    search:function(){
+        var kw = $.trim( $(".sidebar #kw").val() );
+        if( kw.length < 1){
+            $(".sidebar #kw").focus();
+            alert("郭大帅哥提醒您\r\n请输入搜索关键字!!");
+            return;
+        }
+        window.location.href = "/search/do?kw=" + kw;
     }
 };
 $(document).ready(function(){

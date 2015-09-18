@@ -19,7 +19,7 @@ class DefaultController extends BaseController
         }
 
         $data = [];
-        $pagesize = 20;
+        $pagesize = 5;
         $offset = ($p -1 ) * $pagesize;
 
 
