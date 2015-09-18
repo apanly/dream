@@ -157,12 +157,7 @@ EOT;
      * 关注默认提示
      */
     private function subscribeTips(){
-        $resData = "感谢您关注郭大帅哥的公众号
-请输入以下命令：
-hot -> 查看热门博文
-new -> 查看最新博文
-book -> 查看图书馆
-";
+        $resData = "感谢您关注郭大帅哥的公众号";
         return $resData;
     }
 
