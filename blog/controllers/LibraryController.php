@@ -47,7 +47,7 @@ class LibraryController extends BaseController{
                     'id' => $_book['id'],
                     'short_title' => $tmp_title,
                     "title" => DataHelper::encode($_book['subtitle']),
-                    'author' => $tmp_author,
+                    'author' => $tmp_author?$tmp_author:"&nbsp;",
                     'imager_url' => $_book['origin_image_url']
                 ];
             }
