@@ -12,6 +12,7 @@ class SearchController extends Blog{
     public function actionBuild(){
         $batch_data = [];
         $date_now = date("Y-m-d H:i:s");
+        $this->echoLog("=========start build({$date_now})==========");
         /*build blog*/
         $post_list = Posts::find()->where(['status' => 1])->orderBy("id asc")->all();
         if($post_list){
