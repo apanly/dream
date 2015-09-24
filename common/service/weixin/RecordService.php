@@ -3,6 +3,7 @@ namespace common\service\weixin;
 
 
 use common\models\weixin\WxHistory;
+use common\service\SpiderService;
 
 class RecordService {
 
@@ -47,5 +48,8 @@ class RecordService {
         $model_wx_history->created_time = $date_now;
         $model_wx_history->save(0);
 
+        if( filter_var($content, FILTER_VALIDATE_URL) !== FALSE ){
+            SpiderService::add($content);
+        }
     }
 } 
