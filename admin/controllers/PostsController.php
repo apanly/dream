@@ -159,6 +159,7 @@ class PostsController extends BaseController
 
     public function actionOps($id){
         $id = intval($id);
+        $act = trim($this->post("act","online"));
         if( !$id ){
             return $this->renderJSON([],"操作的博文可能不是你的吧!!",-1);
         }
@@ -168,12 +169,12 @@ class PostsController extends BaseController
             return $this->renderJSON([],"操作的博文可能不是你的吧!!",-1);
         }
 
-        if(!$post_info['status']){
-            return $this->renderJSON([],"操作的博文状态不对!!",-1);
+        if($act == "del" ){
+            $post_info->status = 0;
+        }else{
+            $post_info->status = 1;
         }
 
-        PostsTags::deleteAll(["posts_id" => $id]);
-        $post_info->status = 0;
         $post_info->updated_time = date("Y-m-d H:i:s");
         $post_info->update(0);
         return $this->renderJSON([],"操作成功!!");

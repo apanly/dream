@@ -28,7 +28,7 @@ use \yii\helpers\Url;
         <div class="pull-left tag-list">
             <i class="fa fa-folder-open-o"></i>
             <?php foreach($_item['tags'] as $_tag):?>
-                <a href="/search/tag?kw=<?=$_tag;?>"><?=$_tag;?></a>
+                <a href="/search/do?kw=<?=$_tag;?>"><?=$_tag;?></a>
             <?php endforeach;?>
         </div>
         <div class="pull-right share">

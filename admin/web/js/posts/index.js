@@ -24,6 +24,23 @@ var posts_index_ops = {
                 });
             });
         });
+        $(".online").each(function(){
+            $(this).click(function(){
+                var post_id = $(this).attr("data");
+                $.ajax({
+                    url:'/posts/ops/' + post_id,
+                    type:'POST',
+                    data:{'act':'online'},
+                    dataType:'json',
+                    success:function(res){
+                        alert(res.msg);
+                        if(res.code == 200){
+                            window.location.href = window.location.href;
+                        }
+                    }
+                });
+            });
+        });
     }
 };
 

@@ -48,6 +48,10 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                                 <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm delete" data="<?=$_item['id'];?>">
                                     <span class="fa fa-times"></span>隐藏
                                 </a>
+                                <?php else:?>
+                                    <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm online" data="<?=$_item['id'];?>">
+                                        <span class="fa fa-history"></span>展示
+                                    </a>
                                 <?php endif;?>
                             </td>
                         </tr>

@@ -21,7 +21,7 @@ use  \common\components\DataHelper;
             <div class="pull-left tag-list">
                 <i class="fa fa-folder-open-o"></i>
                 <?php foreach($info['tags'] as $_tag):?>
-                    <a href="/search/tag?kw=<?=$_tag;?>"><?=$_tag;?></a>
+                    <a href="/search/do?kw=<?=$_tag;?>"><?=$_tag;?></a>
                 <?php endforeach;?>
             </div>
         </footer>
