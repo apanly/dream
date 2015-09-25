@@ -1,7 +1,7 @@
 <?php
 namespace common\components;
 
-class Httplib {
+class HttpLib {
     // user-agent
     const HTTPLIB_USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0.2) Gecko/20100101 Firefox/6.0.2';
     // begin time
@@ -13,6 +13,11 @@ class Httplib {
      * @param string $url
      * @param array $args
      * @return array|bool|mixed|void
+     * [
+     *  headers => [],
+     *  body => "",
+     *  response
+     * ]
      */
     public function get($url,$args=array()) {
         $defaults = array(
@@ -106,7 +111,7 @@ class Httplib {
         if ( !isset($r['headers']['Accept']) && !isset($r['headers']['accept']) )
             $r['headers']['Accept'] = '*/*';
 
-        if ( !isset($r['headers']['Accept-Language']) && !isset($r['headers']['accept-language']) && $_SERVER['HTTP_ACCEPT_LANGUAGE'])
+        if ( !isset($r['headers']['Accept-Language']) && !isset($r['headers']['accept-language']) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) )
             $r['headers']['Accept-Language'] = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 
         if ( !isset($r['headers']['Accept-Charset']) && !isset($r['headers']['accept-charset']) )

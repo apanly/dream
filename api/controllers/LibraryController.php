@@ -59,7 +59,7 @@ class LibraryController extends AuthController{
     private function doubanApi($isbn,$type='EAN_13'){
         $ret = [];
         $uri="https://api.douban.com/v2/book/isbn/:{$isbn}";
-        $http = new Httplib();
+        $http = new HttpLib();
         $http_res = $http->get($uri);
         $data=$http_res['body'];
         $data=json_decode($data,true);
