@@ -165,19 +165,41 @@ class PostsController extends BaseController
         }
         $post_info = Posts::findOne(["id" => $id,'uid' => $this->current_user->uid]);
 
-        if( !$post_info){
+        if( !$post_info ){
             return $this->renderJSON([],"操作的博文可能不是你的吧!!",-1);
         }
 
         if($act == "del" ){
             $post_info->status = 0;
+            PostsTags::deleteAll(["posts_id" => $id]);
         }else{
             $post_info->status = 1;
+            $this->buildTags($id);
         }
 
         $post_info->updated_time = date("Y-m-d H:i:s");
         $post_info->update(0);
         return $this->renderJSON([],"操作成功!!");
+    }
+
+    private function buildTags($post_id){
+        $post_info = Posts::findOne(['id' => $post_id]);
+        if( !$post_info ){
+            return ;
+        }
+
+        $tags_arr = $post_info['tags']?implode(",",$post_info['tags']):[];
+
+        foreach($tags_arr as $_tag){
+            $has_in = PostsTags::findOne(['posts_id' => $post_id,"tag" => $_tag]);
+            if($has_in){
+                continue;
+            }
+            $model_posts_tag = new PostsTags();
+            $model_posts_tag->posts_id = $post_id;
+            $model_posts_tag->tag = $_tag;
+            $model_posts_tag->save(0);
+        }
     }
 
 }
