@@ -7330,3 +7330,9 @@ li.ext_zip {
 .x-navigation-minimized .xn-logo{
 display:none;
 }
+
+.note-alarm {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}

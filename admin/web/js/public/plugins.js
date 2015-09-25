@@ -21,7 +21,11 @@ $(function() {
                 ["insert", ["link", "picture", "video", "hr"]],
                 ['view', ['fullscreen', "codeview"]],
                 ['help', ['help']] //no help butt
-            ]
+            ],
+            onImageUpload: function(files, editor, $editable) {
+                //console.log('image upload:', files, editor, $editable);
+                sendFile(files[0],editor,$editable);
+            }
         });
     }
 

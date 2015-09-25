@@ -1,4 +1,22 @@
 ;
+
+function sendFile(file, editor, $editable){
+
+    data = new FormData();
+    data.append("file", file);//You can append as many data as you want. Check mozilla docs for this
+    $.ajax({
+        data: data,
+        type: "POST",
+        url: '/upload/post',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(url) {
+            $('#summernote').summernote('editor.insertImage', url);
+        }
+    });
+}
+
 var posts_add_ops = {
     init: function () {
         this.initPlugins();

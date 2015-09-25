@@ -142,18 +142,7 @@ class PostsController extends BaseController
         $model_posts->save(0);
 
         $post_id = $model_posts->id;
-        if($post_id && $tags_arr){
-            foreach($tags_arr as $_tag){
-                $has_in = PostsTags::findOne(['posts_id' => $post_id,"tag" => $_tag]);
-                if($has_in){
-                    continue;
-                }
-                $model_posts_tag = new PostsTags();
-                $model_posts_tag->posts_id = $post_id;
-                $model_posts_tag->tag = $_tag;
-                $model_posts_tag->save(0);
-            }
-        }
+        $this->buildTags($post_id);
         return $this->renderJSON([],"博文发布成功");
     }
 
