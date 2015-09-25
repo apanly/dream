@@ -188,7 +188,7 @@ class PostsController extends BaseController
             return ;
         }
 
-        $tags_arr = $post_info['tags']?implode(",",$post_info['tags']):[];
+        $tags_arr = $post_info['tags']?explode(",",$post_info['tags']):[];
 
         foreach($tags_arr as $_tag){
             $has_in = PostsTags::findOne(['posts_id' => $post_id,"tag" => $_tag]);
