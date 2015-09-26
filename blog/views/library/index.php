@@ -3,6 +3,9 @@ use \yii\helpers\Url;
 ?>
 <main class="col-md-12 main-content">
     <article class="post page">
+        <div class="row" style="text-align: center;margin-bottom: 5px;">
+            <h3>读书好 -- 重新认识自己</h3>
+        </div>
         <?php if($data):?>
         <div class="row">
             <?php foreach($data as $_item):?>

@@ -11,8 +11,14 @@ function sendFile(file, editor, $editable){
         cache: false,
         contentType: false,
         processData: false,
-        success: function(url) {
-            $('#summernote').summernote('editor.insertImage', url);
+        dataType:'json',
+        success: function(res) {
+            if(res.code == 200){
+                editor.insertImage($editable,res.data.url,res.data.filename);
+            }else{
+                alert(res.msg);
+            }
+
         }
     });
 }

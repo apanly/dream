@@ -39,3 +39,4 @@ composer.lock
 *.swp
 tags
 static/web/life/*
+static/web/uploads/*
