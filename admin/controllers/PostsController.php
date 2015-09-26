@@ -4,6 +4,7 @@ namespace admin\controllers;
 
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
+use common\components\phpanalysis\FenCiService;
 use common\models\posts\Posts;
 use common\models\posts\PostsTags;
 use common\service\Constant;
@@ -146,6 +147,11 @@ class PostsController extends BaseController
         return $this->renderJSON([],"博文发布成功");
     }
 
+    public function actionGet_tags(){
+        $content = trim($this->post("content"));
+        $tags = FenCiService::getTags($content);
+        return $this->renderJSON($tags);
+    }
     public function actionOps($id){
         $id = intval($id);
         $act = trim($this->post("act","online"));

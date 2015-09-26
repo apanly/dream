@@ -3,6 +3,7 @@
 namespace admin\controllers;
 
 use admin\controllers\common\BaseController;
+use common\components\phpanalysis\FenCiService;
 use common\models\library\Book;
 use common\models\posts\Posts;
 use Yii;
@@ -11,6 +12,7 @@ use Yii;
 class DefaultController extends BaseController
 {
     public function actionIndex(){
+
         $data = [
             "posts" => [],
             "library" => []

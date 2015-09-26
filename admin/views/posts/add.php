@@ -35,8 +35,11 @@ StaticService::includeAppJsStatic("/js/posts/add.js",\admin\assets\AppAsset::cla
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-1 col-xs-12 control-label">标签</label>
-                                    <div class="col-md-11 col-xs-12">
+                                    <div class="col-md-10 col-xs-12">
                                         <input type="text" class="form-control" name="tags" value="<?=$info?$info['tags']:'';?>"/>
+                                    </div>
+                                    <div class="col-md-1 col-xs-12">
+                                        <a class="get_tags" href="javascript:void(0);">获取tags</a>
                                     </div>
                                 </div>
                             </div>

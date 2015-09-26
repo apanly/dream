@@ -37,6 +37,23 @@ var posts_add_ops = {
             that.dataSubmit();
             return false;
         });
+        $(".get_tags").click(function(){
+            var content  = $.trim( $("#post_add_edit .summernote").code() );
+            $.ajax({
+                url:'/posts/get_tags',
+                data:{content:content},
+                type:'POST',
+                dataType:'json',
+                success:function(res){
+                    if(res.code == 200){
+                        for( var idx in res.data){
+                            $("#post_add_edit input[name=tags]").addTag(res.data[idx]);
+                        }
+                    }
+
+                }
+            });
+        });
     },
     inputCheck:function(){
         var title = $.trim( $("#post_add_edit input[name=title]").val() );
