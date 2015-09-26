@@ -184,7 +184,8 @@ class PhpAnalysis
         {
             $rs = true;
             if( preg_match("/^utf/", $source_charset) ) {
-                $this->sourceString = iconv('utf-8', UCS2, $source);
+                //$this->sourceString = iconv('utf-8', UCS2, $source);
+                $this->sourceString = mb_convert_encoding($source, UCS2, 'utf-8');
             }
             else if( preg_match("/^gb/", $source_charset) ) {
                 $this->sourceString = iconv('utf-8', UCS2, iconv('gb18030', 'utf-8', $source));
