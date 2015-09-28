@@ -36,7 +36,9 @@ class UploadController extends BaseController
             mkdir($upload_dir);
         }
 
-        $upload_file_path = $upload_dir.date("YmdHis")."_".$filename;
+        $tmp_file_extend = explode(".", $filename);
+
+        $upload_file_path = $upload_dir.date("YmdHis")."_".md5($filename).".".end($tmp_file_extend);
         $hash_key = md5( file_get_contents($_FILES['file']['tmp_name']) );
         if(!move_uploaded_file($_FILES['file']['tmp_name'],$upload_file_path) ){
             return $this->renderJSON([],"上传失败！！系统繁忙请稍后再试!",-1);
