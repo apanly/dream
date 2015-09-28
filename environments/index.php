@@ -29,47 +29,45 @@ return [
     'Development' => [
         'path' => 'dev',
         'setWritable' => [
+            'admin/runtime',
+            'admin/web/assets',
             'api/runtime',
             'api/web/assets',
-            'backend/runtime',
-            'backend/web/assets',
-            'wap/runtime',
-            'wap/web/assets',
-            'crm/runtime',
-            'crm/web/assets',
-            'manager/runtime',
-            'manager/web/assets'
+            'console/runtime',
+            'console/web/assets',
+            'blog/runtime',
+            'blog/web/assets',
+            'static/web/uploads'
         ],
         'setExecutable' => [
             'yii',
         ],
         'setCookieValidationKey' => [
             'api/config/main-local.php',
-            'api/config/main-local.php',
-            'backend/config/main-local.php',
-            'backend/config/main-local.php',
+            'admin/config/main-local.php',
+            'blog/config/main-local.php',
         ],
     ],
     'Production' => [
         'path' => 'prod',
         'setWritable' => [
+            'admin/runtime',
+            'admin/web/assets',
             'api/runtime',
             'api/web/assets',
-            'backend/runtime',
-            'backend/web/assets',
-            'wap/runtime',
-            'wap/web/assets',
-            'crm/runtime',
-            'crm/web/assets',
-            'manager/runtime',
-            'manager/web/assets'
+            'console/runtime',
+            'console/web/assets',
+            'blog/runtime',
+            'blog/web/assets',
+            'static/web/uploads'
         ],
         'setExecutable' => [
             'yii',
         ],
         'setCookieValidationKey' => [
             'api/config/main-local.php',
-            'backend/config/main-local.php',
+            'admin/config/main-local.php',
+            'blog/config/main-local.php',
         ],
     ],
 ];
