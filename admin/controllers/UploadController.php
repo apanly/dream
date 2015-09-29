@@ -12,7 +12,6 @@ class UploadController extends BaseController
 
     private $allow_file_type = ["image/jpg","image/gif","image/bmp","image/jpeg","image/png"];//设置允许上传文件的类型
 
-
     public function actionPost(){
         if ($_FILES["file"]["error"] > 0){
             return $this->renderJSON([],"上传失败!error:". $_FILES["file"]["error"],-1);
@@ -55,10 +54,5 @@ class UploadController extends BaseController
             ]
         );
     }
-
-    public function actionTest(){
-
-    }
-
 
 }

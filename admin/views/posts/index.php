@@ -40,11 +40,12 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                             <td>
                                 <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span></td>
                             <td>
-                                <?php if($_item['status']):?>
+
                                 <a href="<?=$_item['edit_url'];?>" class="btn btn-default btn-rounded btn-sm">
                                     <span class="fa fa-pencil"></span>
                                     编辑
                                 </a>
+                                <?php if($_item['status']):?>
                                 <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm delete" data="<?=$_item['id'];?>">
                                     <span class="fa fa-times"></span>隐藏
                                 </a>

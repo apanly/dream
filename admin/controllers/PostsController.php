@@ -122,6 +122,7 @@ class PostsController extends BaseController
         }else{
             $model_posts = new Posts();
             $model_posts->uid = $uid;
+            $model_posts->status = 1;
             $model_posts->created_time = $date_now;
         }
         $tags_arr = [];
@@ -138,7 +139,6 @@ class PostsController extends BaseController
         $model_posts->content = $content;
         $model_posts->type = $type;
         $model_posts->tags = $tags_arr?implode(",",$tags_arr):"";
-        $model_posts->status = 1;
         $model_posts->updated_time = $date_now;
         $model_posts->save(0);
 
