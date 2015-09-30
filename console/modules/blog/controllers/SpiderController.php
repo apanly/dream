@@ -116,7 +116,7 @@ class SpiderController extends Blog{
         $model_post->updated_time = date("Y-m-d H:i:s");
         $model_post->created_time = $model_post->updated_time;
         if( $model_post->save(0) ){
-            BlogService::buildTags($model_post->id);
+            //BlogService::buildTags($model_post->id);//隐藏的不需要tag
             return $model_post->id;
         }
         return false;
