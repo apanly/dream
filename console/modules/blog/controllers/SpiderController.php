@@ -28,19 +28,23 @@ class SpiderController extends Blog{
         }
 
         $route_mapping = SpiderService::$allow_hosts;
+        $date_now = date("Y-m-d H:i:s");
 
         foreach( $queue_list as $_info ){
-            $this->echoLog("-------queue_id:{$_info['id']}----------");
+
             $_info->status = -1;
             $_info->update(0);
 
             $tmp_url_info = parse_url($_info['url']);
             $tmp_host = $tmp_url_info['host'];
             if( !isset( $route_mapping[ $tmp_host ] ) ){
+                $this->echoLog("-------queue_id:{$_info['id']},date:{$date_now},not allow host url:{$_info['url']}----------");
                 $_info->status = 0;
                 $_info->update(0);
                 continue;
             }
+
+            $this->echoLog("-------queue_id:{$_info['id']},date:{$date_now},url:{$_info['url']}----------");
 
             $tmp_action = $route_mapping[ $tmp_host ];
             $ret = call_user_func_array([$this,"crawl_{$tmp_action}"],[ $_info['url'] ]);
