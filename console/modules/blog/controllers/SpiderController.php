@@ -16,6 +16,8 @@ class SpiderController extends Blog{
 
     public function actionRobot(){
 
+        $date_now = date("Y-m-d H:i:s");
+
         $queue_list = SpiderQueue::find()
             ->where(['status' => -2])
             ->orderBy("id asc")
@@ -23,12 +25,12 @@ class SpiderController extends Blog{
             ->all();
 
         if( !$queue_list ){
-            $this->echoLog("no data");
+            $this->echoLog("{$date_now} -- no data");
             return;
         }
 
         $route_mapping = SpiderService::$allow_hosts;
-        $date_now = date("Y-m-d H:i:s");
+
 
         foreach( $queue_list as $_info ){
 
