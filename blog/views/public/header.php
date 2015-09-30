@@ -25,6 +25,7 @@
                         <li <?php if($menu == "blog"):?> class="nav-current" <?php endif;?>><a href="/">文章</a></li>
                         <li <?php if($menu == "library"):?> class="nav-current" <?php endif;?>><a href="/library/index">图书馆</a></li>
                         <!--<li role="presentation"><a href="/default/media">多媒体</a></li>-->
+                        <li <?php if($menu == "donation"):?> class="nav-current" <?php endif;?> role="presentation"><a href="/default/donation">赞助</a></li>
                         <li <?php if($menu == "about"):?> class="nav-current" <?php endif;?> role="presentation"><a href="/default/about">关于</a></li>
                     </ul>
                 </div>

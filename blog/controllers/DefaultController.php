@@ -106,4 +106,9 @@ class DefaultController extends BaseController
         return $this->render("about");
     }
 
+    public function actionDonation(){
+        $this->setTitle("赞助 -- 有钱任性");
+        return $this->render("donation");
+    }
+
 }
