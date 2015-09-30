@@ -7,12 +7,23 @@ use common\models\search\SpiderQueue;
 
 class SpiderService {
 
+    public static $allow_hosts = [
+        "mp.weixin.qq.com" => 'mp'
+    ];
+
     public static function add($url){
         $ret = [
             'code' => 200,
             'data' => []
         ];
-        $has_in = SpiderQueue::findOne(['hash_url' => $url]);
+
+        $tmp_url_info = parse_url($url);
+        $tmp_host = $tmp_url_info['host'];
+        if( !isset( self::$allow_hosts[ $tmp_host ] ) ){
+            return $ret;
+        }
+
+        $has_in = SpiderQueue::findOne(['hash_url' => md5($url) ]);
         if($has_in){
             $ret['data'] = $has_in;
             return $ret;

@@ -2,6 +2,7 @@
 
 namespace admin\controllers;
 
+use admin\components\BlogService;
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\components\phpanalysis\FenCiService;
@@ -143,7 +144,7 @@ class PostsController extends BaseController
         $model_posts->save(0);
 
         $post_id = $model_posts->id;
-        $this->buildTags($post_id);
+        BlogService::buildTags($post_id);
         return $this->renderJSON([],"博文发布成功");
     }
 
@@ -169,7 +170,7 @@ class PostsController extends BaseController
             PostsTags::deleteAll(["posts_id" => $id]);
         }else{
             $post_info->status = 1;
-            $this->buildTags($id);
+            BlogService::buildTags($id);
         }
 
         $post_info->updated_time = date("Y-m-d H:i:s");

@@ -16,6 +16,11 @@ var public_ops = {
             return;
         }
 
+        if( pathname.indexOf("/douban") >= 0 ){
+            $(".x-navigation .menu_doubanmz").addClass("active");
+            return;
+        }
+
 
         $(".x-navigation .menu_" + default_menu).addClass("active");
     }
