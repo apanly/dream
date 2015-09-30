@@ -108,7 +108,8 @@ class SpiderController extends Blog{
         $model_post = new Posts();
         $model_post->uid = 0;
         $model_post->title = $title;
-        $model_post->type = 0;//先审核后在展示
+        $model_post->type = 1;
+        $model_post->status = 0;//先审核后在展示
         $model_post->content = $content;
         $tags = FenCiService::getTags($content);
         $model_post->tags = implode(",",$tags);
