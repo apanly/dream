@@ -22,6 +22,16 @@
                     <li> 2015年04月 ~ 至今        燃科技  PHP开发</li>
                 </ul>
             </li>
+            <li>
+                项目:
+                <ul>
+                    <li>自己写的php MVC框架：https://github.com/apanly/phpframe-simple</li>
+                    <li>java版server：https://github.com/apanly/vserver</li>
+                    <li>autohome:https://github.com/apanly/autohome</li>
+                    <li>CMDB项目</li>
+                    <li>Job调度管理平台</li>
+                </ul>
+            </li>
         </ul>
         <hr>
         <ul>
