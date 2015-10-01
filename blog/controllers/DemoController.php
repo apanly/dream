@@ -8,6 +8,7 @@ use common\models\user\User;
 use common\service\CacheService;
 use dosamigos\qrcode\lib\Enum;
 use dosamigos\qrcode\QrCode;
+use \yii\caching\FileCache;
 use Yii;
 
 
@@ -19,7 +20,7 @@ class DemoController extends BaseController
         if( !$key ){
             $flag = true;
         }else{
-            $cache_status = CacheService::get($key);
+            $cache_status = $this->getCache($key);
             if( !$cache_status || ( $cache_status != -1 ) ){
                 $flag = true;
             }
@@ -29,7 +30,7 @@ class DemoController extends BaseController
             $key = $this->getKey();
             $cache_time = 5 * 60;
             $this->setCookie("qrcode",$key,$cache_time);
-            CacheService::set($key,-1,$cache_time);//-1 表示没登陆
+            $this->setCache($key,-1,$cache_time);//-1 表示没登陆
         }
 
         return $this->render("scan");
@@ -50,12 +51,12 @@ class DemoController extends BaseController
             return $this->renderJSON([],"扫描登录失败!",-1);
         }
 
-        $cache_status = CacheService::get($key);
+        $cache_status = $this->getCache($key);
         if( !$cache_status || ( $cache_status != -1 ) ){
             return $this->renderJSON([],"扫描登录失败!",-1);
         }
 
-        CacheService::set($key,1);//表示登录成功
+        $this->setCache($key,1);//表示登录成功
 
         return $this->renderJSON([],"",200);
     }
@@ -66,11 +67,11 @@ class DemoController extends BaseController
             return $this->renderJSON([],"扫描登录失败!{$key}",-1);
         }
 
-        if( !CacheService::exists($key) ){
+        if( !$this->existCache($key) ){
             return $this->renderJSON([],"刷新页面!",201);
         }
 
-        $cache_status = CacheService::get($key);
+        $cache_status = $this->getCache($key);
 
         if( $cache_status <  1 ){
             return $this->renderJSON([],"还没有登录!",-1);
@@ -87,6 +88,44 @@ class DemoController extends BaseController
     private function getKey(){
         $key = base64_encode( md5( microtime(true).$this->getUniqueId()) );
         return mb_substr($key,-8);
+    }
+
+    private function setCache($key,$value,$expire = 0){
+        $cache = new FileCache();
+        if( $this->existCache($key) ){
+            $jsonData = @json_decode($cache[$key],true);
+            $cache[$key] = json_encode(['expire_time'=> $jsonData['expire_time'],'value'=> $value]);
+        }else{
+            $cache[$key] = json_encode(['expire_time'=> time() + $expire,'value'=> $value]);
+        }
+
+    }
+
+    private function getCache($key){
+        $cache = new FileCache();
+        $data = $cache[$key];
+        if( !$data ){
+            return false;
+        }
+
+        $jsonData = @json_decode($data,true);
+
+        if($jsonData['expire_time'] < time()){
+            $cache->delete($key);
+            return false;
+        }
+
+        return $jsonData['value'];
+
+    }
+
+    private function existCache($key){
+        $cache = new FileCache();
+        $data = $cache[$key];
+        if( !$data ){
+            return false;
+        }
+        return true;
     }
 
 }
