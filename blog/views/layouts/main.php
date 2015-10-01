@@ -17,6 +17,7 @@ AppAsset::register($this);
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="google-site-verification" content="c_1LAxAX-8MMoXntjVS1kCu5JnGhVIlcgLT6idZpgq4" />
     <?php $this->head() ?>
     <?php $this->beginBody() ?>
     <script>
