@@ -1,9 +1,11 @@
 <?php
 use  \common\components\DataHelper;
+use \blog\components\StaticService;
+StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964",\blog\assets\AppAsset::className());
+?>
 ?>
 <main class="col-md-8 main-content">
     <article  class="post tag-zhuti tag-static-page tag-customize-page">
-
         <header class="post-head">
             <h1 class="post-title"><?=$info['title'];?></h1>
             <section class="post-meta">
@@ -12,10 +14,23 @@ use  \common\components\DataHelper;
             </section>
         </header>
 
-
         <section class="post-content">
             <p><?=$info['content'];?></p>
         </section>
+        <!-- JiaThis Button BEGIN -->
+        <div class="jiathis_style_32x32 clearfix">
+            <a class="jiathis_button_qzone"></a>
+            <a class="jiathis_button_tsina"></a>
+            <a class="jiathis_button_tqq"></a>
+            <a class="jiathis_button_weixin"></a>
+            <a class="jiathis_button_renren"></a>
+            <a href="http://www.jiathis.com/share?uid=900964" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+            <a class="jiathis_counter_style"></a>
+        </div>
+        <script type="text/javascript">
+            var jiathis_config = {data_track_clickback:'true'};
+        </script>
+        <!-- JiaThis Button END -->
         <?php if($info['tags']):?>
         <footer class="post-footer clearfix">
             <div class="pull-left tag-list">

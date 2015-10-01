@@ -13,11 +13,10 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <meta name="description" content="郭大帅哥的梦平台，一个有梦的php开发工程师"/>
     <meta name="keywords" content="郭大帅哥的梦平台，一个有梦的php开发工程师">
-
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="/favicon.ico">
-    <meta name="google-site-verification" content="c_1LAxAX-8MMoXntjVS1kCu5JnGhVIlcgLT6idZpgq4" />
+
     <?php $this->head() ?>
     <?php $this->beginBody() ?>
     <script>

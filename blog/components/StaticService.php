@@ -1,5 +1,5 @@
 <?php
-namespace admin\components;
+namespace blog\components;
 use Yii;
 
 class StaticService {
