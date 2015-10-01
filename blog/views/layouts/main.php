@@ -15,7 +15,7 @@ AppAsset::register($this);
     <meta name="keywords" content="郭大帅哥的梦平台，一个有梦的php开发工程师">
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/images/icon.png">
 
     <?php $this->head() ?>
     <?php $this->beginBody() ?>

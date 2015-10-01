@@ -102,12 +102,33 @@ class BaseController extends Controller
     }
 
 
+
     public function getMenu(){
         $url = \Yii::$app->request->url;
         if(strpos($url, '/about') !== false) return 'about';
         if(strpos($url, '/donation') !== false) return 'donation';
         if(strpos($url, '/library') !== false) return 'library';
         return "blog";
+    }
+
+    protected function setCookie($name,$value,$expire = 0){
+        $cookies = Yii::$app->response->cookies;
+        $cookies->add(new \yii\web\Cookie([
+            'name' => $name,
+            'value' => $value,
+            'expire' => $expire? ( time() + $expire ):$expire
+        ]));
+    }
+
+    protected  function getCookie($name,$default_val=''){
+        $cookies = Yii::$app->request->cookies;
+        return $cookies->getValue($name, $default_val);
+    }
+
+
+    protected function removeCookie($name){
+        $cookies = Yii::$app->response->cookies;
+        $cookies->remove($name);
     }
 
 
