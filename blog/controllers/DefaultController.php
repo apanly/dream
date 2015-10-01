@@ -73,6 +73,8 @@ class DefaultController extends BaseController
         if(!$post_info){
             return $this->goHome();
         }
+
+        $this->setTitle( $post_info['title']." - 郭大帅哥的博客");
         $author = Yii::$app->params['author'];
         $tags = explode(",",$post_info['tags']);
         $data = [
