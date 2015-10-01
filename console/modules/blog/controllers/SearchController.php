@@ -78,4 +78,29 @@ class SearchController extends Blog{
 
     }
 
+    public function actionBaidu(){
+        $post_list = Posts::find()->where(['status' => 1])->orderBy("id asc")->all();
+        if( !$post_list ){
+            return $this->echoLog("no data for submit");
+        }
+
+        $urls = [];
+
+        foreach( $post_list as $_post_info ){
+            $urls[] = 'http://www.vincentguo.cn/default/'.$_post_info['id'];
+        }
+
+        $api = 'http://data.zz.baidu.com/urls?site=www.vincentguo.cn&token=Vtgp7UWu3EB7EQVt';
+        $ch = curl_init();
+        $options =  array(
+            CURLOPT_URL => $api,
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS => implode("\n", $urls),
+            CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+        );
+        curl_setopt_array($ch, $options);
+        $result = curl_exec($ch);
+        print_r($result);
+    }
 }
