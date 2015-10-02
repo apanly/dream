@@ -3,7 +3,6 @@
 namespace api\modules\weixin\controllers;
 
 use api\modules\weixin\controllers\common\BaseController;
-use common\models\posts\Posts;
 use common\models\search\IndexSearch;
 use common\service\weixin\RecordService;
 
@@ -28,6 +27,11 @@ class DefaultController extends  BaseController {
             switch($msgType){
                 case "text":
                     $res = $this->parseText($postObj);
+                    break;
+                case "image":
+                case "voice":
+                case "video":
+                    $res = ['type'=>"text",'data'=>$this->richMediaTips()];
                     break;
                 case "event":
                     $res = $this->parseEvent($postObj);
@@ -170,5 +174,12 @@ EOT;
         return $resData;
     }
 
+    private function richMediaTips(){
+        $resData = <<<EOT
+郭大帅哥收到您提供的多媒体信息
+审核通过之后就会在博客展示！！
+EOT;
+        return $resData;
+    }
 
 } 

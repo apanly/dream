@@ -11,6 +11,11 @@ var public_ops = {
             return;
         }
 
+        if( pathname.indexOf("/richmedia") >= 0 ){
+            $(".x-navigation .menu_richmedia").addClass("active");
+            return;
+        }
+
         if( pathname.indexOf("/library") >= 0 ){
             $(".x-navigation .menu_library").addClass("active");
             return;
