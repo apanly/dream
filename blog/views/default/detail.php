@@ -3,7 +3,6 @@ use  \common\components\DataHelper;
 use \blog\components\StaticService;
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964",\blog\assets\AppAsset::className());
 ?>
-?>
 <main class="col-md-8 main-content">
     <article  class="post tag-zhuti tag-static-page tag-customize-page">
         <header class="post-head">
