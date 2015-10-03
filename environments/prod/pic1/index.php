@@ -14,6 +14,15 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
     if( $w <=0 && $h <= 0){
         notFound();
     }
+    session_start();//读取session
+    $etag = substr( md5($filename),0,8);
+    if($_SERVER['HTTP_IF_NONE_MATCH']== $etag){
+        header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
+        exit();
+    }else{
+        header('Etag:'.$etag);
+    };
+
     $path = "/data/www/pic1{$filename}";
 
     list($o_w, $o_h) = getimagesize($path);
@@ -32,13 +41,7 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
     $image=imagecreatetruecolor($w, $h);
     imagecopyresampled($image, $src, 0, 0, 0, 0, $w, $h, $o_w, $o_h);
 
-    $etag = substr( md5($filename),0,8);
-    if($_SERVER['HTTP_IF_NONE_MATCH']== $etag){
-        header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
-        exit();
-    }else{
-        header('Etag:'.$etag);
-    };
+
 
     header('content-type:image/jpg');
     imagejpeg($image,null,100);
