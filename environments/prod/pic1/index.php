@@ -14,14 +14,14 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
     if( $w <=0 && $h <= 0){
         notFound();
     }
-    session_start();//读取session
-    $etag = substr( md5($filename),0,8);
-    if($_SERVER['HTTP_IF_NONE_MATCH']== $etag){
-        header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
-        exit();
-    }else{
-        header('Etag:'.$etag);
-    };
+//    session_start();//读取session
+//    $etag = substr( md5($filename),0,8);
+//    if($_SERVER['HTTP_IF_NONE_MATCH']== $etag){
+//        header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
+//        exit();
+//    }else{
+//        header('Etag:'.$etag);
+//    };
 
     $path = "/data/www/pic1{$filename}";
 
@@ -40,9 +40,14 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
     $src=imagecreatefromjpeg($path);
     $image=imagecreatetruecolor($w, $h);
     imagecopyresampled($image, $src, 0, 0, 0, 0, $w, $h, $o_w, $o_h);
-
-
-
+    //定义一个合理缓存时间。合理值屈居于页面本身、访问者的数量和页面的更新频率，此处为3600秒(1小时)。
+    $time = 30 * 24 * 60 * 60;
+    //发送Last-Modified头标，设置文档的最后的更新日期。
+    header ("Last-Modified: " .gmdate("D, d M Y H:i:s", time() )." GMT");
+    //发送Expires头标，设置当前缓存的文档过期时间，GMT格式。
+    header ("Expires: " .gmdate("D, d M Y H:i:s", time()+$time )." GMT");
+    //发送Cache_Control头标，设置xx秒以后文档过时,可以代替Expires，如果同时出现，max-age优先。
+    header ("Cache-Control: max-age=$time");
     header('content-type:image/jpg');
     imagejpeg($image,null,100);
     imagedestroy($image);
