@@ -5,6 +5,7 @@ namespace console\modules\blog\controllers;
 use common\models\posts\RichMedia;
 use common\models\weixin\WxHistory;
 use console\modules\blog\Blog;
+use common\service\weixin\Wechat;
 use Yii;
 
 class Rich_mediaController extends Blog{
@@ -98,9 +99,9 @@ class Rich_mediaController extends Blog{
 
         $file_name = "{$folder_name}/{$hash_url}.{$file_type}";
 
-
-
         file_put_contents($upload_dir_pic1.$file_name,$data);
+
+        $exif_info = @exif_read_data($upload_dir_pic1.$file_name,0,true);
 
         $model_rich_media = new RichMedia();
         $model_rich_media->type = $type;
@@ -108,11 +109,18 @@ class Rich_mediaController extends Blog{
         $model_rich_media->hash_url = $hash_url;
         $model_rich_media->thumb_url = $thumb_url;
         $model_rich_media->status = 0;
+        $model_rich_media->exif = json_encode($exif_info);
         $model_rich_media->updated_time = $date_now;
         $model_rich_media->created_time = $date_now;
         $model_rich_media->save(0);
         return true;
     }
 
-
+    private function test(){
+        $option = [
+            "account" => "1586538192@qq.com",
+            "password" => "xxx"
+        ];
+        $wechat = new Wechat( $option );
+    }
 }

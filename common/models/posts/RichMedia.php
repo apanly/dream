@@ -42,11 +42,12 @@ class RichMedia extends \yii\db\ActiveRecord
     {
         return [
             [['status'], 'integer'],
+            [['exif'], 'required'],
+            [['exif'], 'string'],
             [['updated_time', 'created_time'], 'safe'],
             [['type'], 'string', 'max' => 10],
             [['src_url', 'thumb_url'], 'string', 'max' => 500],
-            [['hash_url'], 'string', 'max' => 32],
-            [['exif'], 'string', 'max' => 600]
+            [['hash_url'], 'string', 'max' => 32]
         ];
     }
 

@@ -108,6 +108,7 @@ class BaseController extends Controller
         if(strpos($url, '/about') !== false) return 'about';
         if(strpos($url, '/donation') !== false) return 'donation';
         if(strpos($url, '/library') !== false) return 'library';
+        if(strpos($url, '/richmedia') !== false) return 'richmedia';
         return "blog";
     }
 
