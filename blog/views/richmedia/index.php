@@ -17,11 +17,11 @@ StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/jquery.blueimp-
 ?>
 <main class="col-md-12 main-content">
     <?php if ($data): ?>
-        <div class="row allery" id="links">
+        <div class="row">
             <?php foreach ($data as $_item): ?>
                 <div class="col-sm-6 col-md-3">
-                    <a href="<?= $_item['src_url']; ?>" class="thumbnail" data-gallery>
-                        <img src="<?= $_item['src_url']; ?>" style="height: 200px; width: 100%; display: block;">
+                    <a href="<?= $_item['src_url']; ?>?format=/w/600" class="thumbnail" data-gallery>
+                        <img src="<?= $_item['src_url']; ?>?format=/h/200" style="height: 200px; width: 100%; display: block;">
                     </a>
                 </div>
             <?php endforeach; ?>
