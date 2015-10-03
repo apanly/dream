@@ -24,7 +24,7 @@ class RichmediaController extends BaseController
         $data = [];
         $pagesize = 20;
 
-        $query = RichMedia::find();
+        $query = RichMedia::find()->where(['status' => [0,1] ]);
         $total_count = $query->count();
         $offset = ($p - 1) * $pagesize;
         $rich_list = $query->orderBy("id desc")
@@ -76,8 +76,10 @@ class RichmediaController extends BaseController
 
         if($act == "del" ){
             $richmedia_info->status = 0;
-        }else{
+        }else if($act == "online"){
             $richmedia_info->status = 1;
+        }else{//goaway
+            $richmedia_info->status = -1;
         }
 
         $richmedia_info->updated_time = date("Y-m-d H:i:s");

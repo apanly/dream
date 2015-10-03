@@ -1,6 +1,16 @@
 <?php
-use \yii\helpers\Url;
 use \admin\components\StaticService;
+StaticService::includeAppCssStatic("/js/jquery/blueimp-gallery/css/blueimp-gallery.css", \admin\assets\AppAsset::className());
+StaticService::includeAppCssStatic("/js/jquery/blueimp-gallery/css/blueimp-gallery-indicator.css", \admin\assets\AppAsset::className());
+StaticService::includeAppCssStatic("/js/jquery/blueimp-gallery/css/blueimp-gallery-video.css", \admin\assets\AppAsset::className());
+
+StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-helper.js", \admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery.js", \admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery-fullscreen.js", \admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery-indicator.js", \admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery-video.js", \admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery-vimeo.js", \admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/jquery.blueimp-gallery.js", \admin\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/richmedia/index.js",\admin\assets\AppAsset::className());
 ?>
 <div class="page-content-wrap">
@@ -31,7 +41,9 @@ StaticService::includeAppJsStatic("/js/richmedia/index.js",\admin\assets\AppAsse
                         <tr id="trow_1">
                             <td class="text-center"><?=$_item['idx'];?></td>
                             <td>
-                                <img src="<?=$_item['src_url'];?>" width="100"/>
+                                <a href="<?=$_item['src_url'];?>?format=/w/600" data-gallery="">
+                                <img src="<?=$_item['src_url'];?>?format=/w/100"/>
+                                </a>
                             </td>
                             <td><?=$_item['created'];?></td>
                             <td>
@@ -46,11 +58,25 @@ StaticService::includeAppJsStatic("/js/richmedia/index.js",\admin\assets\AppAsse
                                         <span class="fa fa-history"></span>展示
                                     </a>
                                 <?php endif;?>
+                                <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm goaway" data="<?=$_item['id'];?>">
+                                    <span class="fa fa-times"></span>雪藏
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach;?>
                         </tbody>
                     </table>
+                        <!-- BLUEIMP GALLERY -->
+                        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                            <div class="slides"></div>
+                            <h3 class="title"></h3>
+                            <a class="prev">‹</a>
+                            <a class="next">›</a>
+                            <a class="close">×</a>
+                            <a class="play-pause"></a>
+                            <ol class="indicator"></ol>
+                        </div>
+                        <!-- END BLUEIMP GALLERY -->
                     <?php endif;?>
                     <?php if($page_info['total_page']):?>
                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
