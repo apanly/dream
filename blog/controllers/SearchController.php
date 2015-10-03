@@ -23,7 +23,8 @@ class SearchController extends BaseController{
         if( !$kw ){
             return $this->redirect("/");
         }
-        $pagesize = 5;
+        $this->setTitle($kw." - 郭大帅哥的博客");
+        $pagesize = 10;
         $offset = ($p -1 ) * $pagesize;
 
         $search_key =  ['LIKE' ,'search_key','%'.strtr($kw,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false];
