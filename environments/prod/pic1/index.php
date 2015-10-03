@@ -15,13 +15,13 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
         notFound();
     }
 //    session_start();//读取session
-//    $etag = substr( md5($filename),0,8);
-//    if($_SERVER['HTTP_IF_NONE_MATCH']== $etag){
-//        header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
-//        exit();
-//    }else{
-//        header('Etag:'.$etag);
-//    };
+    $etag = substr( md5($filename),0,8);
+    if($_SERVER['HTTP_IF_NONE_MATCH'] == $etag){
+        header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
+        exit();
+    }else{
+        header('Etag:'.$etag);
+    };
 
     $modified_time = $_SERVER['HTTP_IF_MODIFIED_SINCE'];
     //定义一个合理缓存时间。合理值屈居于页面本身、访问者的数量和页面的更新频率，此处为3600秒(1小时)。
