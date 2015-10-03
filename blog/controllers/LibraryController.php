@@ -66,7 +66,7 @@ class LibraryController extends BaseController{
     }
 
     public function actionDetail($id){
-        $this->setTitle("郭大帅哥的图书馆");
+
         $id = intval($id);
         if(!$id){
             return $this->goLibraryHome();
@@ -75,6 +75,9 @@ class LibraryController extends BaseController{
         if(!$book_info){
             return $this->goLibraryHome();
         }
+
+        $this->setTitle($book_info['subtitle']." - 郭大帅哥的图书馆");
+
         $data = [];
         $author = json_decode($book_info['creator'],true);
         $data['name'] = DataHelper::encode($book_info['name']);
