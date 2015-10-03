@@ -15,7 +15,7 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
         notFound();
     }
 //    session_start();//读取session
-    $etag = substr( md5($filename),0,8);
+    $etag = 'W/'.substr( md5($filename),0,8);
     if($_SERVER['HTTP_IF_NONE_MATCH'] == $etag){
         header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
         exit();
