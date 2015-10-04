@@ -20,9 +20,15 @@ StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/jquery.blueimp-
         <div class="row">
             <?php foreach ($data as $_item): ?>
                 <div class="col-sm-6 col-md-3">
+                <?php if($_item['type'] == "image"):?>
                     <a href="<?= $_item['src_url']; ?>?format=/w/600" class="thumbnail" data-gallery>
                         <img src="<?= $_item['src_url']; ?>?format=/h/200" style="height: 200px; width: 100%; display: block;">
                     </a>
+                <?php else:?>
+                    <video class="vbox" poster="<?=$_item['thumb_url'];?>"  controls="controls" preload="auto" height="200px">
+                        <source src="<?=$_item['src_url'];?>" type="video/mp4">
+                    </video>
+                <?php endif;?>
                 </div>
             <?php endforeach; ?>
         </div>

@@ -47,6 +47,7 @@
         index       index.php;
 
         location / {
+            expires 30d;
             try_files $uri $uri/ /index.php?$args;
         }
 
