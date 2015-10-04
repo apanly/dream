@@ -39,8 +39,7 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
     header ("Cache-Control: max-age=$time");
 
     $path = "/data/www/pic1{$filename}";
-
-    list($o_w, $o_h) = getimagesize($path);
+    list($o_w, $o_h, $type) = getimagesize($path);
 
     if( $h <= 0 ){
         $w = ( $o_w > $w)?$w:$o_w;
@@ -52,12 +51,38 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
         $w = ceil( $o_w * $h / $o_h );
     }
 
-    $src=imagecreatefromjpeg($path);
+    switch($type){
+        case 1:
+            $src=imagecreatefromgif($path);
+            break;
+        case 2:
+            $src=imagecreatefromjpeg($path);
+            break;
+        case 3:
+            $src=imagecreatefrompng($path);
+            break;
+    }
+
+    if( !$src ){
+        notFound();
+    }
+
     $image=imagecreatetruecolor($w, $h);
     imagecopyresampled($image, $src, 0, 0, 0, 0, $w, $h, $o_w, $o_h);
-
-    header('content-type:image/jpg');
-    imagejpeg($image,null,100);
+    switch($type) {
+        case 1:
+            header('content-type:image/gif');
+            imagegif($image);
+            break;
+        case 2:
+            header('content-type:image/jpg');
+            imagejpeg($image, null, 100);
+            break;
+        case 3:
+            header('content-type:image/png');
+            imagepng($image, null, 9);
+            break;
+    }
     imagedestroy($image);
     exit();
 }

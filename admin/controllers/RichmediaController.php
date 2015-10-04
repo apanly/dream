@@ -47,6 +47,8 @@ class RichmediaController extends BaseController
                     'idx' =>  $idx,
                     'id' => $_rich_info['id'],
                     'src_url' => $domains['pic1'].$_rich_info['src_url'],
+                    'thumb_url' => $_rich_info['thumb_url']?$_rich_info['thumb_url']:$domains['static']."/wx/video_cover.jpg",
+                    'type' => $_rich_info['type'],
                     'status' => $_rich_info['status'],
                     'status_info' => $this->status_desc[$_rich_info['status']],
                     'created' => $_rich_info['created_time'],
