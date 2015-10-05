@@ -2,7 +2,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <img src="/images/banner.png">
+            <img src="/images/xiuxing.png" title="上善若水，人生就是修行"/>
+        </div>
+        <div class="col-sm-12">
+            <img src="/images/banner.png" title="人类进化不易">
         </div>
     </div>
 </div>
