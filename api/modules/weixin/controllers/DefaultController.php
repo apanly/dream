@@ -50,6 +50,10 @@ class DefaultController extends  BaseController {
 
     private function parseText($dataObj){
         $keyword = trim($dataObj->Content);
+        if( filter_var($keyword, FILTER_VALIDATE_URL) !== FALSE ){
+            return ['type'=> "text",'data'=> $this->urlTips() ];
+        }
+
         return $this->getDataByKeyword($keyword);
     }
 
@@ -178,6 +182,14 @@ EOT;
         $resData = <<<EOT
 郭大帅哥收到您提供的多媒体信息
 审核通过之后就会在博客展示！！
+EOT;
+        return $resData;
+    }
+
+    private function urlTips(){
+        $resData = <<<EOT
+郭大帅哥收到您提供的链接
+系统会自己抓取内容,审核之后就会展示！！
 EOT;
         return $resData;
     }
