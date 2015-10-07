@@ -93,6 +93,25 @@ class SpiderController extends Blog{
         return $ret;
     }
 
+    private function crawl_jianshu($url){
+        $ret = [];
+        $content = $this->getContentByUrl($url);
+        if(!$content){
+            return $ret;
+        }
+        $reg_rule = "/<div\s*class=\"show-content\">(.*?)<\/div>\s*<\/div>/is";
+        preg_match($reg_rule,$content,$matches);
+        if( $matches && $matches[1] ){
+            $ret['content'] = trim( $matches[1] );
+        }
+        $reg_rule = "/<h1\s*class=\"title\">(.*?)<\/h1>/is";
+        preg_match($reg_rule,$content,$matches);
+        if( $matches && $matches[1] ){
+            $ret['title'] = trim( $matches[1] );
+        }
+
+        return $ret;
+    }
 
     private function getContentByUrl($url){
         $target = new HttpLib();

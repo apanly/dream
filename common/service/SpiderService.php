@@ -8,7 +8,8 @@ use common\models\search\SpiderQueue;
 class SpiderService {
 
     public static $allow_hosts = [
-        "mp.weixin.qq.com" => 'mp'
+        "mp.weixin.qq.com" => 'mp',
+        "www.jianshu.com" => "jianshu"
     ];
 
     public static function add($url){
