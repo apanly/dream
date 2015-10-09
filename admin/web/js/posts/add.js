@@ -14,7 +14,7 @@ function sendFile(file, editor, $editable){
         dataType:'json',
         success: function(res) {
             if(res.code == 200){
-                editor.insertImage($editable,res.data.url,res.data.filename);
+                editor.insertImage($editable,res.data.url+"?format=/w/300",res.data.filename);
             }else{
                 alert(res.msg);
             }

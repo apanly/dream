@@ -85,6 +85,10 @@ class UploadController extends AuthController
 
         $exif_info = @exif_read_data($upload_dir_pic1.$file_name,0,true);
 
+        if (isset($exif['Orientation']) && $exif['Orientation'] == 6) {
+            //旋转imagerotate($img,-90,0);
+        }
+
         $model_rich_media = new RichMedia();
         $model_rich_media->type = $db_type;
         $model_rich_media->src_url = "/{$file_name}";
