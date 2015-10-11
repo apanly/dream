@@ -13,6 +13,8 @@ use Yii;
  * @property string $src_url
  * @property string $hash_url
  * @property string $thumb_url
+ * @property string $gps
+ * @property string $tiff
  * @property integer $status
  * @property string $exif
  * @property string $description
@@ -43,9 +45,9 @@ class RichMedia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['gps', 'tiff', 'exif'], 'required'],
+            [['gps', 'tiff', 'exif'], 'string'],
             [['status'], 'integer'],
-            [['exif'], 'required'],
-            [['exif'], 'string'],
             [['updated_time', 'created_time'], 'safe'],
             [['title'], 'string', 'max' => 200],
             [['type'], 'string', 'max' => 10],
@@ -67,6 +69,8 @@ class RichMedia extends \yii\db\ActiveRecord
             'src_url' => 'Src Url',
             'hash_url' => 'Hash Url',
             'thumb_url' => 'Thumb Url',
+            'gps' => 'Gps',
+            'tiff' => 'Tiff',
             'status' => 'Status',
             'exif' => 'Exif',
             'description' => 'Description',

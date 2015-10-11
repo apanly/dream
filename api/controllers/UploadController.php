@@ -89,11 +89,17 @@ class UploadController extends AuthController
             //旋转imagerotate($img,-90,0);
         }
 
+        $gps = trim( $this->post("gps", ""));
+        $tiff = trim( $this->post("tiff", ""));
+
+
         $model_rich_media = new RichMedia();
         $model_rich_media->type = $db_type;
         $model_rich_media->src_url = "/{$file_name}";
         $model_rich_media->hash_url = $hash_url;
         $model_rich_media->thumb_url = "";
+        $model_rich_media->gps = $gps;
+        $model_rich_media->tiff = $tiff;
         $model_rich_media->status = 0;
         $model_rich_media->exif = json_encode($exif_info);
         $model_rich_media->updated_time = $date_now;
