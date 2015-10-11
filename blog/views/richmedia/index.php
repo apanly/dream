@@ -27,6 +27,7 @@ StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/jquery.blueimp-
                 <?php else:?>
                     <video poster="<?=$_item['thumb_url'];?>"  controls="controls" preload="auto" style="height: 200px; width: 100%; display: block;">
                         <source src="<?=$_item['src_url'];?>" type="video/mp4">
+                        <p>&nbsp;</p>
                     </video>
                 <?php endif;?>
                 </div>
