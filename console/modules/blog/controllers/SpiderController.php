@@ -77,8 +77,9 @@ class SpiderController extends Blog{
             return $ret;
         }
 
-        $reg_rule = "/<div\s*class=\"rich_media_content\"\s*id=\"js_content\">(.*?)<\/div>\s*<script/is";
+        $reg_rule = "/<div\s*class=\"rich_media_content\s*\"\s*id=\"js_content\">(.*?)<\/div>\s*<script/is";
         preg_match($reg_rule,$content,$matches);
+
         if( $matches && $matches[1] ){
             $ret['content'] = trim( $matches[1] );
             //$ret['content'] = str_replace("data-src","src",$ret['content']);//微信图片不能盗用
