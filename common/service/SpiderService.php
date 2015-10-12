@@ -9,7 +9,8 @@ class SpiderService {
 
     public static $allow_hosts = [
         "mp.weixin.qq.com" => 'mp',
-        "www.jianshu.com" => "jianshu"
+        "www.jianshu.com" => "jianshu",
+        "blog.devtang.com" => "devtang"
     ];
 
     public static function add($url){
@@ -41,4 +42,7 @@ class SpiderService {
         return $ret;
     }
 
+    public static function getDomain( $search_key ){
+        return array_search($search_key,self::$allow_hosts);
+    }
 } 

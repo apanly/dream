@@ -7,8 +7,10 @@ use common\components\HttpLib;
 use common\components\phpanalysis\FenCiService;
 use common\models\posts\Posts;
 use common\models\search\SpiderQueue;
+use common\service\ImagesService;
 use common\service\SpiderService;
 use console\modules\blog\Blog;
+use \Yii;
 
 class SpiderController extends Blog{
 
@@ -114,6 +116,43 @@ class SpiderController extends Blog{
         return $ret;
     }
 
+    private function crawl_devtang($url){
+        $ret = [];
+        $content = $this->getContentByUrl($url);
+        if(!$content){
+            return $ret;
+        }
+        $reg_rule = "/<div\s*class=\"entry-content\">(.*?)<\/div>\s*<footer>/is";
+        preg_match($reg_rule,$content,$matches);
+        if( $matches && $matches[1] ){
+            $ret['content'] = trim( $matches[1] );
+        }
+
+        /*替换img*/
+        if( $ret['content'] ){
+            preg_match_all('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i',$ret['content'],$match_img);
+            if( $match_img && count($match_img) == 3 ){
+                foreach( $match_img[2] as $_img_src){
+                    if( !preg_match("/^http/",$_img_src) ){
+                        $tmp_down_url = "http://".SpiderService::getDomain("devtang").$_img_src;
+                    }else{
+                        $tmp_down_url = $_img_src;
+                    }
+                    $full_img_url = $this->downImg($tmp_down_url)."?format=/w/300";
+                    $ret['content'] = str_replace($_img_src,$full_img_url,$ret['content']);
+                }
+            }
+        }
+
+        $reg_rule = "/<h1\s*class=\"entry-title\">(.*?)<\/h1>/is";
+        preg_match($reg_rule,$content,$matches);
+        if( $matches && $matches[1] ){
+            $ret['title'] = trim( $matches[1] );
+        }
+
+        return $ret;
+    }
+
     private function getContentByUrl($url){
         $target = new HttpLib();
         $ret = $target->get($url);
@@ -146,6 +185,36 @@ class SpiderController extends Blog{
             return $model_post->id;
         }
         return false;
+    }
+
+    private function downImg($src_url){
+        $date_now = date("Y-m-d H:i:s");
+        $data = file_get_contents($src_url);
+        if( !$data ){
+            return false;
+        }
+
+        $upload_dir_pic1 = Yii::$app->params['upload']['pic1'];
+        $tmp_file_extend = explode(".", $src_url);
+        $file_type = end($tmp_file_extend);
+
+        $folder_name = date("Ymd",strtotime($date_now));
+        $hash_key = md5( $data );
+        $upload_dir = $upload_dir_pic1.$folder_name;
+        if( !file_exists($upload_dir) ){
+            mkdir($upload_dir);
+        }
+
+        $file_name = "{$folder_name}/{$hash_key}.{$file_type}";
+        $domains = Yii::$app->params['domains'];
+        $url = $domains['pic1']."/{$file_name}";
+
+        if( !file_exists( $upload_dir_pic1.$file_name )){
+            file_put_contents($upload_dir_pic1.$file_name,$data);
+            ImagesService::add($hash_key,$hash_key,"/".$file_name,"");
+        }
+
+        return $url;
     }
 
 }
