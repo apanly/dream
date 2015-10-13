@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "wx_history".
  *
  * @property integer $id
+ * @property string $source
  * @property string $from_openid
  * @property string $to_openid
  * @property string $type
@@ -42,6 +43,7 @@ class WxHistory extends \yii\db\ActiveRecord
             [['text'], 'required'],
             [['text'], 'string'],
             [['created_time'], 'safe'],
+            [['source'], 'string', 'max' => 30],
             [['from_openid', 'to_openid'], 'string', 'max' => 64],
             [['type'], 'string', 'max' => 20],
             [['content'], 'string', 'max' => 500]
@@ -55,6 +57,7 @@ class WxHistory extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'source' => 'Source',
             'from_openid' => 'From Openid',
             'to_openid' => 'To Openid',
             'type' => 'Type',

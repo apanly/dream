@@ -7,7 +7,7 @@ use common\service\SpiderService;
 
 class RecordService {
 
-    public static function add($xml){
+    public static function add($xml,$source = "" ){
 
         $data = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
         $type = trim($data->MsgType);
@@ -45,6 +45,7 @@ class RecordService {
         $model_wx_history->type = $type;
         $model_wx_history->content = $content;
         $model_wx_history->text = $xml;
+        $model_wx_history->source = $source;
         $model_wx_history->created_time = $date_now;
         $model_wx_history->save(0);
 

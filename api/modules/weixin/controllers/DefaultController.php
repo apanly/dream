@@ -20,7 +20,7 @@ class DefaultController extends  BaseController {
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
         if($postStr){
             $this->recode_log($postStr);
-            RecordService::add($postStr);
+            RecordService::add( $postStr,$this->getSource() );
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $msgType = trim($postObj->MsgType);
             $fromUsername = $postObj->FromUserName;
