@@ -155,6 +155,9 @@ EOT;
             $domain_blog = \Yii::$app->params['domains']['blog'];
             foreach($post_list as $_item){
                 $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
+                if( $_item['image_url'] ){
+                    $tmp_image = $_item['image_url'];
+                }
                 $list[] = [
                     "title" => $_item['title'],
                     "description" => $_item['title'],
