@@ -64,7 +64,7 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "关于",
-                            "key"  => "{$domain_blog}/default/about?from={$from}"
+                            "url"  => "{$domain_blog}/default/about?from={$from}"
                         ],
                         [
                             "type" => "view",
