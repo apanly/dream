@@ -13,7 +13,9 @@ use Yii;
  * @property integer $type
  * @property string $content
  * @property string $tags
+ * @property string $image_url
  * @property integer $status
+ * @property integer $comment_count
  * @property string $updated_time
  * @property string $created_time
  */
@@ -41,11 +43,12 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['uid', 'type', 'status'], 'integer'],
+            [['uid', 'type', 'status', 'comment_count'], 'integer'],
             [['content'], 'required'],
             [['content'], 'string'],
             [['updated_time', 'created_time'], 'safe'],
-            [['title', 'tags'], 'string', 'max' => 250]
+            [['title', 'tags'], 'string', 'max' => 250],
+            [['image_url'], 'string', 'max' => 256]
         ];
     }
 
@@ -61,7 +64,9 @@ class Posts extends \yii\db\ActiveRecord
             'type' => 'Type',
             'content' => 'Content',
             'tags' => 'Tags',
+            'image_url' => 'Image Url',
             'status' => 'Status',
+            'comment_count' => 'Comment Count',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];

@@ -136,6 +136,11 @@ class PostsController extends BaseController
             }
         }
 
+        preg_match('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i',$content,$match_img);
+        if( $match_img && count($match_img) == 3 ){
+            $model_posts->image_url = $match_img[2];
+        }
+
         $model_posts->title = $title;
         $model_posts->content = $content;
         $model_posts->type = $type;
