@@ -13,9 +13,16 @@ return [
         "link" => "/default/about"
     ],
     'weixin' => [
-        'appid' => 'wx1b2fea3cb08d02ee',
-        'appsec' => 'xxx',
-        'token' => 'xx'
+        'mystarzone' => [
+            'appid' => 'wx1b2fea3cb08d02ee',
+            'appsecret' => 'xxx',
+            'apptoken' => 'xxx'
+        ],
+        'imguowei_888' => [
+            'appid' => 'wx936957aebefb4e76',
+            'appsecret' => 'xxx',
+            'apptoken' => 'xxx'
+        ]
     ],
     'upload' => [
         "pic1" => "/data/www/pic1/"

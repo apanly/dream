@@ -86,8 +86,8 @@ class WxrequestController extends BaseController{
         $weixin_params = Yii::$app->params['weixin'];
         $from = parent::getSource();
         self::$appid = $weixin_params[$from]['appid'];
-        self::$appsecret = $weixin_params[$from]['appkey'];
-        self::$appsecret = $weixin_params[$from]['apptoken'];
+        self::$appsecret = $weixin_params[$from]['appsecret'];
+        self::$apptoken = $weixin_params[$from]['apptoken'];
     }
 
 
