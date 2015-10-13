@@ -226,11 +226,18 @@ EOT;
      * 关注默认提示
      */
     private function subscribeTips(){
-
-        $resData = <<<EOT
+        $from = $this->getSource();
+        if($from == "imguowei_888" ){
+            $resData = <<<EOT
+感谢您关注郭大帅哥的故事，除了菜单还可以输入关键字，郭大帅哥会回复你的！！
+EOT;
+        }else{
+            $resData = <<<EOT
 感谢您关注郭大帅哥的公众号
 输入关键字,郭大帅哥会回复你的！！
 EOT;
+        }
+
         return $resData;
     }
 
