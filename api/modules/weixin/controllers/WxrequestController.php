@@ -63,7 +63,7 @@ class WxrequestController extends BaseController{
         }
         if ($force) {
 
-            $path = 'token?grant_type=client_credential&appid='.self::getAppId().'&secret='.self::getAppSec();
+            $path = 'token?grant_type=client_credential&appid='.self::getAppId().'&secret='.self::getAppSecret();
             $res = self::send($path);
 
             $resData = json_decode($res,true);
