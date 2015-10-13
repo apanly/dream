@@ -7,6 +7,11 @@ use \yii\caching\FileCache;
 use Yii;
 class WxrequestController extends BaseController{
 
+    private  static $apptoken = "";
+    private  static $appid = "";
+    private  static $appsecret = "";
+
+
     private static $url = "https://api.weixin.qq.com/cgi-bin/";
 
     public static function send($path,$data=[],$method = "GET"){
@@ -23,15 +28,19 @@ class WxrequestController extends BaseController{
     }
 
     public static function getAppId(){
-        return Yii::$app->params['weixin']['appid'];
+        self::setParams();
+        return self::$appid;
     }
 
-    public static function getAppSec(){
-        return Yii::$app->params['weixin']['appsec'];
+    public static function getAppSecret(){
+        self::setParams();
+        return self::$appsecret;
     }
 
-    public static function getToken(){
-        return Yii::$app->params['weixin']['token'];
+
+    public static function getAppToken(){
+        self::setParams();
+        return self::$apptoken;
     }
 
     public static function getAccessToken($force = false){
@@ -70,6 +79,15 @@ class WxrequestController extends BaseController{
         }
 
         return $access_token;
+    }
+
+
+    public static function setParams(){
+        $weixin_params = Yii::$app->params['weixin'];
+        $from = parent::getSource();
+        self::$appid = $weixin_params[$from]['appid'];
+        self::$appsecret = $weixin_params[$from]['appkey'];
+        self::$appsecret = $weixin_params[$from]['apptoken'];
     }
 
 
