@@ -3,6 +3,8 @@
 namespace api\modules\weixin\controllers;
 
 use api\modules\weixin\controllers\common\BaseController;
+use common\models\library\Book;
+use common\models\posts\Posts;
 use common\models\search\IndexSearch;
 use common\service\weixin\RecordService;
 
@@ -68,11 +70,11 @@ class DefaultController extends  BaseController {
             case "CLICK":
                 $eventKey = trim($dataObj->EventKey);
                 switch($eventKey){
-                    case "hot":
-                        $resData = "MD不能升级就没有自定义菜单";
+                    case "blog_new":
+                        return  $this->getLastestBlog();
                         break;
-                    case "new":
-                        $resData = "MD不能升级就没有自定义菜单";
+                    case "book_hot":
+                        return $this->getHotBook();
                         break;
                 }
                 break;
@@ -109,34 +111,88 @@ EOT;
     private function getDataByKeyword($keyword){
 
         $search_key =  ['LIKE' ,'search_key','%'.strtr($keyword,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false];
-        $ret = IndexSearch::find()->where($search_key)->orderBy("id desc")->limit(3)->all();
-        $data = $ret?$this->formatRichData($ret):$this->help();
-        $type = $ret?"rich":"text";
+        $mixed_list = IndexSearch::find()->where($search_key)->orderBy("id desc")->limit(5)->all();
+        $list = [];
+        if( $mixed_list ){
+            $domain_static = \Yii::$app->params['domains']['static'];
+            $domain_blog = \Yii::$app->params['domains']['static'];
+            foreach($mixed_list as $_item){
+                $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
+                if( $_item['image'] ){
+                    $tmp_image = $_item['image'];
+                }
+
+                if( $_item['post_id'] ){
+                    $tmp_url = "{$domain_blog}/default/".$_item['post_id'];
+                }else{
+                    $tmp_url = "{$domain_blog}/library/detail/".$_item['book_id'];
+                }
+
+                $list[] = [
+                    "title" => $_item['title'],
+                    "description" => $_item['description'],
+                    "picurl" => $tmp_image,
+                    "url" => $tmp_url
+                ];
+            }
+        }
+
+        $data = $list?$this->getRichXml($list):$this->help();
+        $type = $list?"rich":"text";
         return ['type' => $type ,"data" => $data];
     }
 
-    private function formatRichData($data){
+    private function getLastestBlog(){
+        $post_list = Posts::find()
+            ->where([ 'status' => 1 ])
+            ->orderBy("updated_time desc")
+            ->limit(5)
+            ->all();
+
         $list = [];
-        $domain_static = \Yii::$app->params['domains']['static'];
-        foreach($data as $_item){
-            $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
-            if( $_item['image'] ){
-                $tmp_image = $_item['image'];
+        if( $post_list ){
+            $domain_static = \Yii::$app->params['domains']['static'];
+            $domain_blog = \Yii::$app->params['domains']['static'];
+            foreach($post_list as $_item){
+                $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
+                $list[] = [
+                    "title" => $_item['title'],
+                    "description" => $_item['title'],
+                    "picurl" => $tmp_image,
+                    "url" => "{$domain_blog}/default/".$_item['id']
+                ];
             }
-
-            if( $_item['post_id'] ){
-                $tmp_url = "http://www.vincentguo.cn/default/".$_item['post_id'];
-            }else{
-                $tmp_url = "http://www.vincentguo.cn/library/detail/".$_item['book_id'];
-            }
-
-            $list[] = [
-                "title" => $_item['title'],
-                "description" => $_item['description'],
-                "picurl" => $tmp_image,
-                "url" => $tmp_url
-            ];
         }
+        $data = $list?$this->getRichXml($list):$this->help();
+        $type = $list?"rich":"text";
+        return ['type' => $type ,"data" => $data];
+    }
+
+    private function getHotBook(){
+        $book_list = Book::find()
+            ->where([ 'status' => 1 ])
+            ->orderBy("id desc")
+            ->limit(5)
+            ->all();
+
+        $list = [];
+        if( $book_list ){
+            $domain_blog = \Yii::$app->params['domains']['static'];
+            foreach($book_list as $_item){
+                $list[] = [
+                    "title" => $_item['subtitle'],
+                    "description" => $_item['subtitle'],
+                    "picurl" => $_item['origin_image_url'],
+                    "url" => "{$domain_blog}/library/detail/".$_item['id']
+                ];
+            }
+        }
+        $data = $list?$this->getRichXml($list):$this->help();
+        $type = $list?"rich":"text";
+        return ['type' => $type ,"data" => $data];
+    }
+
+    private function getRichXml($list){
         $article_count = count( $list );
         $article_content = "";
         foreach($list as $_item){
@@ -154,8 +210,8 @@ EOT;
 %s
 </Articles>";
         return sprintf($article_body,$article_count,$article_content);
-
     }
+
 
     private function help(){
         $resData = <<<EOT
