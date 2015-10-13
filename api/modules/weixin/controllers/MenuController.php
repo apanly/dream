@@ -38,7 +38,7 @@ class MenuController extends BaseController{
                     ]
                 ],
                 [
-                    "name"       => "图书馆",
+                    "name"       => "生活",
                     "sub_button" => [
                         [
                             "type" => "click",
@@ -51,7 +51,7 @@ class MenuController extends BaseController{
                             "url"  => "{$domain_blog}/library/index?from={$from}"
                         ],
                         [
-                            "name" => "生活",
+                            "name" => "富媒体",
                             "type" => "view",
                             "url"  => "{$domain_blog}/richmedia/index?from={$from}"
                         ]
