@@ -33,7 +33,7 @@ class MenuController extends BaseController{
                         [
                             "name" => "文章列表",
                             "type" => "view",
-                            "url"  => "{$domain_blog}/from={$from}"
+                            "url"  => "{$domain_blog}/?from={$from}"
                         ]
                     ]
                 ],
