@@ -41,7 +41,7 @@
                 郭大帅哥的微信
                 <ul>
                     <li>
-                        <img title="郭大帅哥的微信" src="/images/qrcode.jpg">
+                        <img title="郭大帅哥的微信" src="/images/qrcode.jpg?version=20151013">
                     </li>
                 </ul>
             </li>
@@ -49,21 +49,17 @@
                 郭大帅哥的故事（服务号）
                 <ul>
                     <li>
-                        <img title="郭大帅哥的故事:imguowei_888" src="/images/imguowei_888.jpg">
+                        <img title="郭大帅哥的故事:imguowei_888" src="/images/imguowei_888.jpg?version=20151013">
                     </li>
                 </ul>
             </li>
             <li>
                 狂神星域（订阅号）
                 <ul>
-                    <li><img title="狂神星域:mystarzone" src="/images/wechat.jpg"></li>
+                    <li><img title="狂神星域:mystarzone" src="/images/wechat.jpg?version=20151013"></li>
                 </ul>
             </li>
         </ul>
-        <div class="row">
-            <img src="/images/about/awesome.jpg">
-        </div>
     </section>
-
     </article>
 </main>
