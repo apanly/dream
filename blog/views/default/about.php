@@ -37,14 +37,26 @@
         <ul>
             <li>Github：<a href="https://github.com/apanly">https://github.com/apanly</a></li>
             <li>Email：<a href="mailto:apanly@163.com">apanly@163.com</a></li>
-            <li>郭大帅哥的微信
+            <li>
+                郭大帅哥的微信
                 <ul>
-                    <li><img src="/images/qrcode.jpg" width="300px" height="300px;"></li>
+                    <li>
+                        <img title="郭大帅哥的微信" src="/images/qrcode.jpg">
+                    </li>
                 </ul>
             </li>
-            <li>狂神星域公众号
+            <li>
+                郭大帅哥的故事（服务号）
                 <ul>
-                    <li><img src="/images/wechat.jpg" width="300px" height="300px;"></li>
+                    <li>
+                        <img title="郭大帅哥的故事:imguowei_888" src="/images/imguowei_888.jpg">
+                    </li>
+                </ul>
+            </li>
+            <li>
+                狂神星域（订阅号）
+                <ul>
+                    <li><img title="狂神星域:mystarzone" src="/images/wechat.jpg"></li>
                 </ul>
             </li>
         </ul>

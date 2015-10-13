@@ -32,7 +32,7 @@
                 >https://github.com/apanly</a>
         </p>
         <div class="content download">
-            <img src="/images/qrcode.jpg" width="300px" height="300px;"/>
+            <img title="郭大帅哥的微信" src="/images/qrcode.jpg"/>
         </div>
     </div>
     <!-- end widget -->
