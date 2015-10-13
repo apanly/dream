@@ -115,7 +115,7 @@ EOT;
         $list = [];
         if( $mixed_list ){
             $domain_static = \Yii::$app->params['domains']['static'];
-            $domain_blog = \Yii::$app->params['domains']['static'];
+            $domain_blog = \Yii::$app->params['domains']['blog'];
             foreach($mixed_list as $_item){
                 $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
                 if( $_item['image'] ){
@@ -130,7 +130,7 @@ EOT;
 
                 $list[] = [
                     "title" => $_item['title'],
-                    "description" => $_item['description'],
+                    "description" => $_item['title'],
                     "picurl" => $tmp_image,
                     "url" => $tmp_url
                 ];
@@ -152,7 +152,7 @@ EOT;
         $list = [];
         if( $post_list ){
             $domain_static = \Yii::$app->params['domains']['static'];
-            $domain_blog = \Yii::$app->params['domains']['static'];
+            $domain_blog = \Yii::$app->params['domains']['blog'];
             foreach($post_list as $_item){
                 $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
                 $list[] = [
@@ -177,7 +177,7 @@ EOT;
 
         $list = [];
         if( $book_list ){
-            $domain_blog = \Yii::$app->params['domains']['static'];
+            $domain_blog = \Yii::$app->params['domains']['blog'];
             foreach($book_list as $_item){
                 $list[] = [
                     "title" => $_item['subtitle'],
