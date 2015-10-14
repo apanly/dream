@@ -15,6 +15,7 @@ use Yii;
  * @property string $thumb_url
  * @property string $gps
  * @property string $tiff
+ * @property string $address
  * @property integer $status
  * @property string $exif
  * @property string $description
@@ -53,6 +54,7 @@ class RichMedia extends \yii\db\ActiveRecord
             [['type'], 'string', 'max' => 10],
             [['src_url', 'thumb_url'], 'string', 'max' => 500],
             [['hash_url'], 'string', 'max' => 32],
+            [['address'], 'string', 'max' => 100],
             [['description'], 'string', 'max' => 1000]
         ];
     }
@@ -71,6 +73,7 @@ class RichMedia extends \yii\db\ActiveRecord
             'thumb_url' => 'Thumb Url',
             'gps' => 'Gps',
             'tiff' => 'Tiff',
+            'address' => 'Address',
             'status' => 'Status',
             'exif' => 'Exif',
             'description' => 'Description',
