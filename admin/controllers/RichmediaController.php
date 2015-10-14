@@ -49,6 +49,7 @@ class RichmediaController extends BaseController
                     'src_url' => $domains['pic1'].$_rich_info['src_url'],
                     'thumb_url' => $_rich_info['thumb_url']?$_rich_info['thumb_url']:$domains['static']."/wx/video_cover.jpg",
                     'type' => $_rich_info['type'],
+                    'address' => $_rich_info['address'],
                     'status' => $_rich_info['status'],
                     'status_info' => $this->status_desc[$_rich_info['status']],
                     'created' => $_rich_info['created_time'],
@@ -87,6 +88,27 @@ class RichmediaController extends BaseController
         $richmedia_info->updated_time = date("Y-m-d H:i:s");
         $richmedia_info->update(0);
         return $this->renderJSON([],"操作成功!!");
+    }
+
+    public function actionEdit($id){
+        $id = intval($id);
+        $address = trim( $this->post("address","") );
+        if( !$id ){
+            return $this->renderJSON([],"操作的多媒体可能不是你的吧!!",-1);
+        }
+
+        if( mb_strlen($address,"utf-8") < 1 ){
+            return $this->renderJSON([],"地址不能为空!!",-1);
+        }
+
+        $richmedia_info = RichMedia::findOne(["id" => $id]);
+
+        if( !$richmedia_info ){
+            return $this->renderJSON([],"操作的多媒体可能不是你的吧!!",-1);
+        }
+        $richmedia_info->address = $address;
+        $richmedia_info->update(0);
+        return $this->renderJSON([],"操作成功！！");
     }
 
 }
