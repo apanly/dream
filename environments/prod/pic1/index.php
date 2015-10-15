@@ -5,6 +5,16 @@ function notFound(){
     exit;
 }
 
+function setHeader($mod_time,$expired_time = 315360000){
+    //发送Last-Modified头标，设置文档的最后的更新日期。
+    header ("Last-Modified: " .gmdate("D, d M Y H:i:s", $mod_time )." GMT");
+    //发送Expires头标，设置当前缓存的文档过期时间，GMT格式。
+    header ("Expires: " .gmdate("D, d M Y H:i:s", $mod_time + $expired_time )." GMT");
+    //发送Cache_Control头标，设置xx秒以后文档过时,可以代替Expires，如果同时出现，max-age优先。
+    header ("Cache-Control: max-age={$expired_time}");
+}
+
+
 /**
  * resizeimage
  * 缩放图片，节省资源
@@ -15,30 +25,30 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
         notFound();
     }
 //    session_start();//读取session
-    //$etag = 'W/'.substr( md5($filename),0,8);
-//    $etag = substr( md5($filename),0,8)."-176";
+//    $etag = substr( md5($filename),0,8);
 //    if($_SERVER['HTTP_IF_NONE_MATCH'] == $etag){
 //        header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
 //        exit();
 //    }else{
 //        header('Etag:'.$etag);
 //    };
+    
+    $etag = 'W/'.substr( md5($filename),0,8);
+    header('Etag:'.$etag);
 
     $modified_time = $_SERVER['HTTP_IF_MODIFIED_SINCE'];
-    $time = 30 * 24 * 60 * 60;//定义一个合理缓存时间。合理值屈居于页面本身、访问者的数量和页面的更新频率，。
+    $time = 315360000;//10年缓存时间
     if (strtotime($modified_time) + $time > time()) {
         header('HTTP/1.1 304 Not Modified'); //返回304，告诉浏览器调用缓存
+        setHeader( strtotime($modified_time) );//设置缓存
         exit();
     }
 
-    //发送Last-Modified头标，设置文档的最后的更新日期。
-    header ("Last-Modified: " .gmdate("D, d M Y H:i:s", time() )." GMT");
-    //发送Expires头标，设置当前缓存的文档过期时间，GMT格式。
-    header ("Expires: " .gmdate("D, d M Y H:i:s", time()+$time )." GMT");
-    //发送Cache_Control头标，设置xx秒以后文档过时,可以代替Expires，如果同时出现，max-age优先。
-    header ("Cache-Control: max-age=$time");
-
     $path = "/data/www/pic1{$filename}";
+    if( !file_exists($path) ){
+        notFound();
+    }
+
     list($o_w, $o_h, $type) = getimagesize($path);
 
     if( $h <= 0 ){
@@ -67,8 +77,12 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
         notFound();
     }
 
+    setHeader( time() );//设置缓存
+
     $image=imagecreatetruecolor($w, $h);
     imagecopyresampled($image, $src, 0, 0, 0, 0, $w, $h, $o_w, $o_h);
+
+
     switch($type) {
         case 1:
             header('content-type:image/gif');
