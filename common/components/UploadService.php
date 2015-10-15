@@ -58,7 +58,7 @@ class UploadService extends  BaseService{
         $upload_file_name = "{$folder_name}/{$hash_key}.".$file_type;
 
         if( is_uploaded_file($filepath) ){
-            if(!move_uploaded_file($_FILES['file']['tmp_name'],$upload_dir_pic.$upload_file_name) ){
+            if(!move_uploaded_file($filepath,$upload_dir_pic.$upload_file_name) ){
                 return self::_err("上传失败！！系统繁忙请稍后再试!");
             }
         }else{
