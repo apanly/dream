@@ -5,6 +5,7 @@ namespace console\modules\blog\controllers;
 use admin\components\BlogService;
 use common\components\HttpLib;
 use common\components\phpanalysis\FenCiService;
+use common\components\UploadService;
 use common\models\posts\Posts;
 use common\models\search\SpiderQueue;
 use common\service\ImagesService;
@@ -188,33 +189,8 @@ class SpiderController extends Blog{
     }
 
     private function downImg($src_url){
-        $date_now = date("Y-m-d H:i:s");
-        $data = file_get_contents($src_url);
-        if( !$data ){
-            return false;
-        }
-
-        $upload_dir_pic1 = Yii::$app->params['upload']['pic1'];
-        $tmp_file_extend = explode(".", $src_url);
-        $file_type = end($tmp_file_extend);
-
-        $folder_name = date("Ymd",strtotime($date_now));
-        $hash_key = md5( $data );
-        $upload_dir = $upload_dir_pic1.$folder_name;
-        if( !file_exists($upload_dir) ){
-            mkdir($upload_dir);
-        }
-
-        $file_name = "{$folder_name}/{$hash_key}.{$file_type}";
-        $domains = Yii::$app->params['domains'];
-        $url = $domains['pic1']."/{$file_name}";
-
-        if( !file_exists( $upload_dir_pic1.$file_name )){
-            file_put_contents($upload_dir_pic1.$file_name,$data);
-            ImagesService::add($hash_key,$hash_key,"/".$file_name,"");
-        }
-
-        return $url;
+        $ret = UploadService::uploadByUrl($src_url);
+        return $ret?$ret['url']:false;
     }
 
 }

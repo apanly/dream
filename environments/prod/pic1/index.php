@@ -112,5 +112,8 @@ function getFormat($format){
 
 $filename = $_GET['filename'];
 $format = $_GET['format'];
+if( !$filename || !$format ){
+    echo "params filename  and  format must be assigned";exit();
+}
 $ret = getFormat( $format );
 resizeimage($filename,$ret['w'],$ret['h']);

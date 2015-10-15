@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use common\components\UploadService;
 use common\models\posts\RichMedia;
 use Yii;
 use api\controllers\common\AuthController;
@@ -56,46 +57,30 @@ class UploadController extends AuthController
             return $this->renderJSON([],"上传成功!");
         }
 
-        $upload_dir_pic1 = Yii::$app->params['upload']['pic1'];
-        $file_type = "jpeg";
-        $db_type = "image";
-        switch($type){
-            case "image/gif":
-                $file_type = "gif";
-                break;
-            case "image/png":
-                $file_type = "png";
-                break;
-            case "video/mp4":
-                $file_type = "mp4";
-                $db_type = "video";
+
+        $ret_upload = UploadService::uploadByFile( $file_target['name'],$file_target['tmp_name'],$hash_url);
+        if( !$ret_upload ){
+            return $this->renderJSON([],UploadService::getLastErrorMsg(),-1);
         }
 
-        $date_now = date("Y-m-d H:i:s");
-        $folder_name = date("Ymd",strtotime($date_now));
-        $upload_dir = $upload_dir_pic1.$folder_name;
-        if( !file_exists($upload_dir) ){
-            mkdir($upload_dir);
-        }
-        $file_name = "{$folder_name}/{$hash_url}.{$file_type}";
-
-        if(!move_uploaded_file($file_target['tmp_name'],$upload_dir_pic1.$file_name) ){
-            return $this->renderJSON([],"上传失败！！系统繁忙请稍后再试!",-1);
-        }
-
-        $exif_info = @exif_read_data($upload_dir_pic1.$file_name,0,true);
+        $exif_info = @exif_read_data($ret_upload['path'],0,true);
 
         if (isset($exif['Orientation']) && $exif['Orientation'] == 6) {
             //旋转imagerotate($img,-90,0);
         }
 
+        $date_now = date("Y-m-d H:i:s");
         $gps = trim( $this->post("gps", ""));
         $tiff = trim( $this->post("tiff", ""));
+        $db_type = "image";
+        if( $type == "video/mp4" ){
+            $db_type = "video";
+        }
 
 
         $model_rich_media = new RichMedia();
         $model_rich_media->type = $db_type;
-        $model_rich_media->src_url = "/{$file_name}";
+        $model_rich_media->src_url = $ret_upload['uri'];
         $model_rich_media->hash_url = $hash_url;
         $model_rich_media->thumb_url = "";
         $model_rich_media->gps = $gps;
