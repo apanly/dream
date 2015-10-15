@@ -106,7 +106,7 @@ var posts_add_ops = {
             success:function(res){
                 alert(res.msg);
                 if(res.code == 200){
-                    window.location.href = "/posts/index";
+                    window.location.href = window.location.href;
                 }
             }
         });

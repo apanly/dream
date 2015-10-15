@@ -32,7 +32,7 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
 //    }else{
 //        header('Etag:'.$etag);
 //    };
-    
+
     $etag = 'W/'.substr( md5($filename),0,8);
     header('Etag:'.$etag);
 
