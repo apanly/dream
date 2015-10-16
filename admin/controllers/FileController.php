@@ -52,4 +52,10 @@ class FileController extends BaseController
         ]);
     }
 
+    public function actionAdd(){
+        $request = Yii::$app->request;
+        if( $request->isGet ){
+            return $this->render("add");
+        }
+    }
 }
