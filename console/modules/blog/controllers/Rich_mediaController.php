@@ -8,7 +8,6 @@ use common\models\weixin\WxHistory;
 use console\modules\blog\Blog;
 use common\service\weixin\Wechat;
 use Yii;
-use yii\helpers\VarDumper;
 
 class Rich_mediaController extends Blog{
     private $cur_path = "/data/logs/cur/rich_media.log";
