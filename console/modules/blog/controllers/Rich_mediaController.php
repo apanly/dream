@@ -2,11 +2,13 @@
 
 namespace console\modules\blog\controllers;
 
+use common\components\UploadService;
 use common\models\posts\RichMedia;
 use common\models\weixin\WxHistory;
 use console\modules\blog\Blog;
 use common\service\weixin\Wechat;
 use Yii;
+use yii\helpers\VarDumper;
 
 class Rich_mediaController extends Blog{
     private $cur_path = "/data/logs/cur/rich_media.log";
@@ -33,6 +35,8 @@ class Rich_mediaController extends Blog{
             $thumb_url = "";
             $src_url = "";
             $type = $_rich_info['type'];
+            //$this->setCurId($this->cur_path,$_rich_info['id']);
+            //只处理图片
             switch( $type ){
                 case "image":
                     $src_url = $_rich_info["content"];
@@ -46,9 +50,7 @@ class Rich_mediaController extends Blog{
             if( !$src_url ){
                 continue;
             }
-
             $this->saveRichMedia($type,$src_url,$thumb_url);
-            $this->setCurId($this->cur_path,$_rich_info['id']);
         }
     }
 
@@ -76,11 +78,11 @@ class Rich_mediaController extends Blog{
         $date_now = date("Y-m-d H:i:s");
 
         $data = file_get_contents($src_url);
+
         if( !$data ){
             return false;
         }
 
-        $upload_dir_pic1 = Yii::$app->params['upload']['pic1'];
         $file_type = "jpeg";
         switch($type){
             case "voice":
@@ -90,22 +92,20 @@ class Rich_mediaController extends Blog{
                 $file_type = "mp4";
                 break;
         }
+        $filename = md5($data).".{$file_type}";
+        $filepath = "/tmp/{$filename}";
+        file_put_contents($filepath,$data);
 
-        $folder_name = date("Ymd",strtotime($date_now));
-        $upload_dir = $upload_dir_pic1.$folder_name;
-        if( !file_exists($upload_dir) ){
-            mkdir($upload_dir);
+        $ret_upload = UploadService::uploadByFile( $filename,$filepath,$hash_url );
+        if( !$ret_upload ){
+            return false;
         }
 
-        $file_name = "{$folder_name}/{$hash_url}.{$file_type}";
-
-        file_put_contents($upload_dir_pic1.$file_name,$data);
-
-        $exif_info = @exif_read_data($upload_dir_pic1.$file_name,0,true);
+        $exif_info = @exif_read_data($ret_upload['path'],0,true);
 
         $model_rich_media = new RichMedia();
         $model_rich_media->type = $type;
-        $model_rich_media->src_url = "/{$file_name}";
+        $model_rich_media->src_url = $ret_upload['uri'];
         $model_rich_media->hash_url = $hash_url;
         $model_rich_media->thumb_url = $thumb_url;
         $model_rich_media->status = 0;
@@ -116,11 +116,4 @@ class Rich_mediaController extends Blog{
         return true;
     }
 
-    private function test(){
-        $option = [
-            "account" => "1586538192@qq.com",
-            "password" => "xxx"
-        ];
-        $wechat = new Wechat( $option );
-    }
 }
