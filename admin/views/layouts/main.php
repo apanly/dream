@@ -52,6 +52,18 @@ AppAsset::register($this);
                     <li><a href="<?=Url::toRoute("/library/index");?>"><span class="fa fa-heart"></span>图书列表</a></li>
                 </ul>
             </li>
+            <li class="xn-openable menu_file">
+                <a href="javascript:void(0);">
+                    <span class="fa fa-cogs"></span><span class="xn-text">文件管理</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="<?=Url::toRoute("/file/index");?>">
+                            <span class="fa fa-heart"></span>文件列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="xn-openable menu_doubanmz">
                 <a href="javascript:void(0);">
                     <span class="fa fa-cogs"></span><span class="xn-text">豆瓣妹纸</span>
