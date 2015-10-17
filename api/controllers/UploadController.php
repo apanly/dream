@@ -64,9 +64,10 @@ class UploadController extends AuthController
         }
 
         $exif_info = @exif_read_data($ret_upload['path'],0,true);
-
-        if (isset($exif['Orientation']) && $exif['Orientation'] == 6) {
-            //旋转imagerotate($img,-90,0);
+        $exif_ifd0_info = isset($exif_info['IFD0'])?$exif_info['IFD0']:[];
+        if ($exif_ifd0_info &&
+            isset($exif_ifd0_info['Orientation']) && $exif_ifd0_info['Orientation'] == 6) {
+            $this->rotate($ret_upload['path']);
         }
 
         $date_now = date("Y-m-d H:i:s");
@@ -92,6 +93,39 @@ class UploadController extends AuthController
         $model_rich_media->save(0);
         return $this->renderJSON([],"上传成功!");
 
+    }
+
+    /**
+     * 翻转处理
+     * 覆盖源文件
+     */
+    private function rotate($file_path){
+        list($width, $height, $type, $attr) = getimagesize($file_path);
+        switch ($type) {
+            case 1: $img = imagecreatefromgif($file_path); break;
+            case 2: $img = imagecreatefromjpeg($file_path); break;
+            case 3: $img = imagecreatefrompng($file_path); break;
+        }
+
+        if(!$img){
+            return false;
+        }
+
+        $rotate = imagerotate($img, 270, 0);
+        switch($type) {
+            case 1:
+                imagegif($rotate, $file_path);
+                break;
+            case 2:
+                imagejpeg($rotate, $file_path, 100);
+                break;
+            case 3:
+                imagepng($rotate, $file_path, 9);
+                break;
+        }
+
+        imagedestroy($img);
+        imagedestroy($rotate);
     }
 
 }
