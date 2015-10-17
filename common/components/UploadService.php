@@ -53,6 +53,7 @@ class UploadService extends  BaseService{
         $upload_dir = $upload_dir_pic.$folder_name;
         if( !file_exists($upload_dir) ){
             mkdir($upload_dir,0777);
+            chmod($upload_dir,0777);
         }
 
         $upload_file_name = "{$folder_name}/{$hash_key}.".$file_type;
@@ -116,6 +117,7 @@ class UploadService extends  BaseService{
         $upload_dir = $upload_dir_pic.$folder_name;
         if( !file_exists($upload_dir) ){
             mkdir($upload_dir,0777);
+            chmod($upload_dir,0777);
         }
 
         $upload_file_name = "{$folder_name}/{$hash_key}.".$file_type;

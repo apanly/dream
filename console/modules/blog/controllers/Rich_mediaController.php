@@ -34,7 +34,7 @@ class Rich_mediaController extends Blog{
             $thumb_url = "";
             $src_url = "";
             $type = $_rich_info['type'];
-            //$this->setCurId($this->cur_path,$_rich_info['id']);
+            $this->setCurId($this->cur_path,$_rich_info['id']);
             //只处理图片
             switch( $type ){
                 case "image":
