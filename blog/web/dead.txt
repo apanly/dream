@@ -1,0 +1,15 @@
+http://www.vincentguo.cn/index.php?c=default&a=album
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=10
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=4
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=6
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=2
+http://www.vincentguo.cn/index.php?c=default&a=default
+http://www.vincentguo.cn/index.php?c=default&a=resume
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=8
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=3
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=7
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=9
+http://www.vincentguo.cn/index.php?c=default&a=article
+http://www.vincentguo.cn/index.php?c=default&a=article&p=1
+http://www.vincentguo.cn/index.php?c=default&a=articledetail&id=5
+http://www.vincentguo.cn/index.php?c=default&a=love
