@@ -1,4 +1,10 @@
 <?php
+if( isset($_GET['a']) || isset($_GET['c']) ){
+    header('HTTP/1.1 404 Not Found');
+    header("status: 404 Not Found");
+    exit();
+}
+
 defined('YII_DEBUG') or define('YII_DEBUG', false);
 defined('YII_ENV') or define('YII_ENV', 'prod');
 
