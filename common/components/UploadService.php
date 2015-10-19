@@ -27,7 +27,6 @@ class UploadService extends  BaseService{
         $date_now = date("Y-m-d H:i:s");
         $tmp_file_extend = explode(".", $filename);
         $file_type = end($tmp_file_extend);
-
         if( !in_array( $file_type ,self::$allow_file_type)  && !$hash_key){
             return self::_err("非图片格式必须指定参数hask_key");
         }

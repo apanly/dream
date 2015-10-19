@@ -140,6 +140,10 @@ class BaseController extends Controller
         $this->renderJSON([],$msg = "ObjectNotFound", -1);
     }
 
+    protected  function renderJS($msg,$url = "/"){
+        return $this->renderPartial("/common/js",['msg' => $msg,'location' => $url ]);
+    }
+
 
     protected function geneReqId() {
         return uniqid();
