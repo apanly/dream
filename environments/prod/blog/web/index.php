@@ -5,6 +5,11 @@ if( isset($_GET['a']) || isset($_GET['c']) ){
     exit();
 }
 
+if( isset($_SERVER['REQUEST_URI']) && preg_match("/^\/default\/\d+$/",$_SERVER['REQUEST_URI']) ){
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: {$_SERVER['REQUEST_URI']}.html");
+}
+
 defined('YII_DEBUG') or define('YII_DEBUG', false);
 defined('YII_ENV') or define('YII_ENV', 'prod');
 

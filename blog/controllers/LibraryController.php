@@ -67,7 +67,7 @@ class LibraryController extends BaseController{
     }
 
     public function actionDetail($id){
-        return $this->redirect( Url::toRoute(["/library/info","id" => $id ]) );
+        return $this->redirect( Url::toRoute(["/library/info","id" => $id ]) ,301);
     }
     public function actionInfo($id){
 
