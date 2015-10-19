@@ -8,6 +8,7 @@ if( isset($_GET['a']) || isset($_GET['c']) ){
 if( isset($_SERVER['REQUEST_URI']) && preg_match("/^\/default\/\d+$/",$_SERVER['REQUEST_URI']) ){
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: {$_SERVER['REQUEST_URI']}.html");
+    exit();
 }
 
 defined('YII_DEBUG') or define('YII_DEBUG', false);
