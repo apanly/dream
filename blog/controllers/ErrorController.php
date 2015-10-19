@@ -1,6 +1,6 @@
 <?php
 
-namespace wap\controllers;
+namespace blog\controllers;
 
 use blog\controllers\common\BaseController;
 use blog\controllers\common\BlogException;
@@ -33,7 +33,7 @@ class ErrorController extends BaseController
             $code = -1;
             $msg = "系统错误，请稍后重试";
         }
-        $this->goHome();
+        return $this->goHome();
     }
 }
 
