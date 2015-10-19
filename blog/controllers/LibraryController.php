@@ -6,7 +6,7 @@ use blog\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\library\Book;
 use Yii;
-
+use yii\helpers\Url;
 
 
 class LibraryController extends BaseController{
@@ -47,7 +47,8 @@ class LibraryController extends BaseController{
                     'short_title' => $tmp_title,
                     "title" => DataHelper::encode($_book['subtitle']),
                     'author' => $tmp_author?$tmp_author:"&nbsp;",
-                    'imager_url' => $_book['origin_image_url']
+                    'imager_url' => $_book['origin_image_url'],
+                    'view_url' => Url::toRoute(["/library/info","id"=> $_book["id"] ])
                 ];
             }
         }
@@ -66,6 +67,9 @@ class LibraryController extends BaseController{
     }
 
     public function actionDetail($id){
+        return $this->redirect( Url::toRoute(["/library/info","id" => $id ]) );
+    }
+    public function actionInfo($id){
 
         $id = intval($id);
         if(!$id){

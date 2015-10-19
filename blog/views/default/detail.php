@@ -1,6 +1,7 @@
 <?php
 use  \common\components\DataHelper;
 use \blog\components\StaticService;
+use yii\helpers\Url;
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964",\blog\assets\AppAsset::className());
 ?>
 <main class="col-md-8 main-content">
@@ -45,11 +46,11 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
 
     <div class="prev-next-wrap clearfix">
         <?php if($prev_info):?>
-            <a class="btn btn-default" href="/default/<?=$prev_info['id'];?>"><i class="fa fa-angle-left fa-fw"></i> <?=DataHelper::encode($prev_info['title']);?></a>
+            <a class="btn btn-default" href="<?=Url::toRoute(["/default/info","id" => $prev_info['id'] ]);?>"><i class="fa fa-angle-left fa-fw"></i> <?=DataHelper::encode($prev_info['title']);?></a>
         <?php endif;?>
         &nbsp;
         <?php if($next_info):?>
-            <a class="btn btn-default" href="/default/<?=$next_info['id'];?>"><?=DataHelper::encode($next_info['title']);?> <i class="fa fa-angle-right fa-fw"></i></a>
+            <a class="btn btn-default" href="<?=Url::toRoute(["/default/info","id" => $next_info['id'] ]);?>"><?=DataHelper::encode($next_info['title']);?> <i class="fa fa-angle-right fa-fw"></i></a>
         <?php endif;?>
     </div>
 

@@ -45,7 +45,8 @@ class DefaultController extends BaseController
                     'author' => $author,
                     'tags' => $tags,
                     'date' => date("Y年m月d日",strtotime($_post['created_time'])),
-                    'view_url' => Url::toRoute("/default/{$_post['id']}")
+                    //'view_url' => Url::toRoute("/default/{$_post['id']}"),
+                    'view_url' => Url::toRoute(["/default/info","id" => $_post['id'] ]),
                 ];
             }
         }

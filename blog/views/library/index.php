@@ -15,7 +15,7 @@ use \yii\helpers\Url;
                     <div class="caption">
                         <h4><?=$_item['short_title'];?></h4>
                         <h5><?=$_item['author'];?></h5>
-                        <p><a href="<?=Url::toRoute("/library/detail/{$_item['id']}");?>" class="btn btn-default" >查看详情</a></p>
+                        <p><a href="<?=$_item['view_url'];?>" class="btn btn-default" >查看详情</a></p>
                     </div>
                 </div>
             </div>
