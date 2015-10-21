@@ -10,7 +10,8 @@ class SpiderService {
     public static $allow_hosts = [
         "mp.weixin.qq.com" => 'mp',
         "www.jianshu.com" => "jianshu",
-        "blog.devtang.com" => "devtang"
+        "blog.devtang.com" => "devtang",
+        "blog.csdn.net" => "csdn",
     ];
 
     public static function add($url){
