@@ -44,7 +44,7 @@ class DefaultController extends BaseController
                     'content' => nl2br( $tmp_content ),
                     'author' => $author,
                     'tags' => $tags,
-                    'date' => date("Y年m月d日",strtotime($_post['created_time'])),
+                    'date' => date("Y年m月d日",strtotime($_post['updated_time'])),
                     //'view_url' => Url::toRoute("/default/{$_post['id']}"),
                     'view_url' => Url::toRoute(["/default/info","id" => $_post['id'] ]),
                 ];
@@ -82,7 +82,7 @@ class DefaultController extends BaseController
             "title" => $post_info['title'],
             "content" => $post_info['content'],
             "tags" => $tags,
-            'date' => date("Y年m月d日",strtotime($post_info['created_time'])),
+            'date' => date("Y年m月d日",strtotime($post_info['updated_time'])),
             'author' => $author
         ];
 
