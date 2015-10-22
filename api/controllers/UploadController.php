@@ -3,7 +3,9 @@
 namespace api\controllers;
 
 use common\components\UploadService;
+use common\models\health\HealthLog;
 use common\models\posts\RichMedia;
+use common\service\health\HealthService;
 use Yii;
 use api\controllers\common\AuthController;
 
@@ -15,6 +17,30 @@ class UploadController extends AuthController
             return $this->renderJSON([],"非法上传",-1);
         }
         return $this->uploadMedia();
+    }
+    /*获取健康数据*/
+    public function actionHealth(){
+        $data = $this->post("data",[]);
+        if( !$data ){
+            return $this->renderJSON([],"没有数据",-1);
+        }
+        if( !is_array($data) ){
+            return $this->renderJSON([],"数据结构不对",-1);
+        }
+        foreach( $data as $_item ){
+            $tmp_arr = explode("#",$_item);
+            if( count($tmp_arr) != 3 ){
+                continue;
+            }
+            $tmp_params = [
+                "quantity" => intval($tmp_arr[0]),
+                "time_from" => $tmp_arr[1],
+                "time_to" => $tmp_arr[2]
+            ];
+            HealthService::setLog($tmp_params);
+            HealthService::setDay(date("Ymd",strtotime($tmp_params['time_from'])) );
+        }
+        return $this->renderJSON();
     }
 
     private function uploadMedia(){

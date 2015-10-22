@@ -2,11 +2,10 @@
 
 namespace console\modules\blog\controllers;
 
+use common\models\health\HealthLog;
 use console\modules\blog\Blog;
 use common\service\health\HealthService;
 
-class DefaultController extends Blog{
-    public function actionIndex(){
+class HealthController extends Blog{
 
-    }
 }
