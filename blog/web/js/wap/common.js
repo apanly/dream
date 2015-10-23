@@ -6,10 +6,7 @@ var common_ops = {
     setCurrentNav:function(){
         var pathname = window.location.pathname;
 
-        idx = 0 ;
-        if( pathname.indexOf("/wap/default") > -1 ){
-            idx = 1;
-        }
+        idx = 1 ;
 
         if( pathname.indexOf("/wap/library") > -1 ){
             idx = 2;
