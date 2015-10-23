@@ -1,6 +1,8 @@
 <?php
 namespace blog\controllers\common;
 
+use blog\components\UrlService;
+use common\components\UtilHelper;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;
@@ -25,7 +27,16 @@ class BaseController extends Controller
         $view->params['copyright'] = Yii::$app->params['Copyright'];
     }
     public function beforeAction($action) {
-        $this->setTitle();
+
+
+        if( !UtilHelper::isPC() ){
+            $params = [];
+            if( isset( $_GET['id'] ) ){
+                $params['id'] = $_GET['id'];
+            }
+            return $this->redirect( UrlService::buildWapUrl("/".$action->getUniqueId(),$params) );
+        }
+
         if (!in_array($action->getUniqueId(), $this->allowAllAction )) {
 
         }
