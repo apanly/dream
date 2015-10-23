@@ -4,6 +4,16 @@ namespace common\components;
 use  yii\helpers\Html;
 
 class DataHelper {
+
+
+
+    /**
+     * 转移特殊字符
+     */
+    public static function encode($dispaly_text){
+        return  Html::encode($dispaly_text);
+    }
+
     /**
      * 根据某个字段 in  查询
      */
@@ -40,21 +50,7 @@ class DataHelper {
         return $return;
     }
 
-    public static function encode($dispaly_text){
-        return  Html::encode($dispaly_text);
-    }
 
-    public static function UA_IS_PC(){
-        $ug= $_SERVER['HTTP_USER_AGENT'];
-        $clientkeywords = array('nokia', 'sony', 'ericsson', 'mot', 'samsung', 'htc', 'sgh', 'lg', 'sharp', 'sie-','philips', 'panasonic', 'alcatel', 'lenovo', 'iphone', 'ipod', 'blackberry', 'meizu','android', 'netfront', 'symbian', 'ucweb', 'windowsce', 'palm', 'operamini','operamobi', 'opera mobi', 'openwave', 'nexusone', 'cldc', 'midp', 'wap', 'mobile'
-        );
-        if(preg_match("/(".implode('|',$clientkeywords).")/i",$ug)
-            && strpos($ug,'ipad') === false )
-        {
-            return false;
-        }
-        return true;
-    }
 
     public static function encrypted($txt){
         $tmp_salt = "郭大帅哥";

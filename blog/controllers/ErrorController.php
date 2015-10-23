@@ -2,6 +2,7 @@
 
 namespace blog\controllers;
 
+use blog\components\UrlService;
 use blog\controllers\common\BaseController;
 use blog\controllers\common\BlogException;
 use Yii;
@@ -33,6 +34,11 @@ class ErrorController extends BaseController
             $code = -1;
             $msg = "系统错误，请稍后重试";
         }
+        if( preg_match("/^wap/",Yii::$app->request->getPathInfo() ) ){
+            return $this->redirect( UrlService::buildWapUrl("/default/index") );
+        }
+
+
         return $this->goHome();
     }
 }

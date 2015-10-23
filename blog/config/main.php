@@ -12,7 +12,11 @@ return [
     'controllerNamespace' => 'blog\controllers',
     'bootstrap' => ['log'],
     "timezone"  =>  "Asia/Shanghai",
-    'modules' => [],
+    'modules' => [
+        'wap'=>[
+            'class' =>'blog\modules\wap\WapModule'
+        ],
+    ],
     'components' => [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

@@ -98,11 +98,49 @@ class UtilHelper {
     }
 
     /**
+     * 截取字符串并去除特殊字符
+     */
+
+    public static function blog_short($body,$length = 200){
+        $content = strip_tags($body);
+        $del=array(" ","　","\t","\n","\r","<br>");
+        $alt=array("","","","","","");
+        $content = str_replace($del,$alt,$content);
+        return mb_substr($content,0,$length,"utf-8");
+    }
+
+    /**
      * 获取客户端IP
      */
     public static function getClientIP(){
         if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
             return $_SERVER["HTTP_X_FORWARDED_FOR"];
         return isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"]:'';
+    }
+
+    /**
+     * 判断是pc 还是 手机
+     */
+    public static function isPC(){
+        $ug= $_SERVER['HTTP_USER_AGENT'];
+        $clientkeywords = array('nokia', 'sony', 'ericsson', 'mot', 'samsung', 'htc', 'sgh', 'lg', 'sharp', 'sie-','philips', 'panasonic', 'alcatel', 'lenovo', 'iphone', 'ipod', 'blackberry', 'meizu','android', 'netfront', 'symbian', 'ucweb', 'windowsce', 'palm', 'operamini','operamobi', 'opera mobi', 'openwave', 'nexusone', 'cldc', 'midp', 'wap', 'mobile'
+        );
+        if(preg_match("/(".implode('|',$clientkeywords).")/i",$ug)
+            && strpos($ug,'ipad') === false )
+        {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 判断是否在微信
+     */
+    public static  function isWechat(){
+        $ug= isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'';
+        if( stripos($ug,'micromessenger') !== false ){
+            return true;
+        }
+        return false;
     }
 } 
