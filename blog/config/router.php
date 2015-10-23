@@ -20,5 +20,7 @@ return [
         '/<controller:\w+>/<action:\w+>' => '<controller>/<action>',
         '/' => 'default/index',
         '/<id:\d+>' => 'default/info',
+        '/wap' => '/wap/default/index',
+        '/wap/<id:\d+>' => '/wap/default/info',
     ],
 ];

@@ -33,7 +33,7 @@ class MenuController extends BaseController{
                         [
                             "name" => "文章列表",
                             "type" => "view",
-                            "url"  => "{$domain_blog}/?from={$from}"
+                            "url"  => "{$domain_blog}/wap/?from={$from}"
                         ]
                     ]
                 ],
@@ -48,12 +48,12 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "图书列表",
-                            "url"  => "{$domain_blog}/library/index?from={$from}"
+                            "url"  => "{$domain_blog}/wap/library/index?from={$from}"
                         ],
                         [
                             "name" => "富媒体",
                             "type" => "view",
-                            "url"  => "{$domain_blog}/richmedia/index?from={$from}"
+                            "url"  => "{$domain_blog}/wap/richmedia/index?from={$from}"
                         ]
                     ]
                 ],
@@ -63,12 +63,12 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "关于",
-                            "url"  => "{$domain_blog}/default/about?from={$from}"
+                            "url"  => "{$domain_blog}/wap/my/about?from={$from}"
                         ],
                         [
                             "type" => "view",
                             "name" => "赞助",
-                            "url"  => "{$domain_blog}/default/donation?from={$from}"
+                            "url"  => "{$domain_blog}/wap/my/wechat?from={$from}"
                         ]
                     ]
                 ]

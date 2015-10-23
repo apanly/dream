@@ -21,6 +21,11 @@
                     微信服务号：imguowei_888
                 </a>
             </li>
+            <li class="am-g am-list-item-dated">
+                <a href="javascript:void(0);" class="am-list-item-hd ">
+                    赞助：请加个人微信，如果你觉得本站对你有用
+                </a>
+            </li>
         </ul>
     </div>
 </div>
