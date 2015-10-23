@@ -75,7 +75,8 @@ class DefaultController extends BaseController
             return $this->goHome();
         }
 
-        $this->setTitle( $post_info['title']." - 郭大帅哥的博客");
+
+
         $author = Yii::$app->params['author'];
         $tags = explode(",",$post_info['tags']);
         $data = [
@@ -96,6 +97,10 @@ class DefaultController extends BaseController
             ->andWhere(['status' => 1])
             ->orderBy("id asc")
             ->one();
+
+        $this->setTitle( $post_info['title']." - 郭大帅哥的博客");
+        $this->setDescription($post_info['title']." - 郭大帅哥的博客" );
+        $this->setKeywords($post_info['tags']." - 郭大帅哥的博客");
 
         return $this->render("detail",[
             "info" => $data,

@@ -18,19 +18,22 @@ class BaseController extends  BaseWebController{
 
     public function beforeAction($action) {
         $this->setTitle();
-//        if( UtilHelper::isPC() ){
-//            $url_web = str_replace("/wap","",$action->getUniqueId());
-//            $params = [];
-//            if( isset( $_GET['id'] ) ){
-//                $params['id'] = $_GET['id'];
-//            }
-//            return $this->redirect( UrlService::buildUrl($url_web,$params) );
-//        }
-
+        $this->setDescription();
+        $this->setKeywords();
         if (!in_array($action->getUniqueId(), $this->allowAllAction )) {
 
         }
         return true;
+    }
+
+    public function setKeywords($keywords = ""){
+        $keywords = $keywords?$keywords:\Yii::$app->params['seo']['keywords'];
+        $this->getView()->params['seo']['keywords'] = $keywords;
+    }
+
+    public function setDescription($description = ""){
+        $description = $description?$description:\Yii::$app->params['seo']['description'];
+        $this->getView()->params['seo']['description'] = $description;
     }
 
 

@@ -46,7 +46,6 @@ class DefaultController extends BaseController{
             return $this->goHome();
         }
 
-        $this->setTitle( $post_info['title']." - 郭大帅哥的博客");
         $tags = explode(",",$post_info['tags']);
         $author = Yii::$app->params['author'];
         $data = [
@@ -56,6 +55,10 @@ class DefaultController extends BaseController{
             "author" => $author,
             'date' => date("Y年m月d日",strtotime($post_info['updated_time']))
         ];
+
+        $this->setTitle( $post_info['title']." - 郭大帅哥的博客");
+        $this->setDescription($post_info['title']." - 郭大帅哥的博客" );
+        $this->setKeywords($post_info['tags']." - 郭大帅哥的博客");
 
         return $this->render("info",[
             "info" => $data

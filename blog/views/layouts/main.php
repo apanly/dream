@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use blog\assets\AppAsset;
+use \common\components\DataHelper;
 
 AppAsset::register($this);
 ?>
@@ -10,9 +11,9 @@ AppAsset::register($this);
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title><?= Html::encode($this->title) ?></title>
-    <meta name="description" content="郭大帅哥的梦平台，一个有梦的php开发工程师"/>
-    <meta name="keywords" content="郭大帅哥的梦平台，一个有梦的php开发工程师">
+    <title><?= DataHelper::encode($this->title) ?></title>
+    <meta name="description" content="<?=DataHelper::encode($this->params['seo']['description']);?>"/>
+    <meta name="keywords" content="<?=DataHelper::encode($this->params['seo']['keywords']);?>">
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="/images/icon.png">

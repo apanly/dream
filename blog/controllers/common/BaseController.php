@@ -28,6 +28,9 @@ class BaseController extends Controller
     }
     public function beforeAction($action) {
 
+        $this->setTitle();
+        $this->setDescription();
+        $this->setKeywords();
 
         if( !UtilHelper::isPC() ){
             $params = [];
@@ -56,6 +59,16 @@ class BaseController extends Controller
 
     public function setTitle($title = "郭大帅哥的博客"){
         $this->getView()->title = $title;
+    }
+
+    public function setKeywords($keywords = ""){
+        $keywords = $keywords?$keywords:Yii::$app->params['seo']['keywords'];
+        $this->getView()->params['seo']['keywords'] = $keywords;
+    }
+
+    public function setDescription($description = ""){
+        $description = $description?$description:Yii::$app->params['seo']['description'];
+        $this->getView()->params['seo']['description'] = $description;
     }
 
 
