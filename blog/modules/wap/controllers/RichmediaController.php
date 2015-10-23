@@ -9,7 +9,7 @@ use Yii;
 
 class RichmediaController extends BaseController
 {
-    private $page_size = 5;
+    private $page_size = 10;
     public function actionIndex(){
 
         $data = $this->search();
