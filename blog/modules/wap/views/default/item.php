@@ -8,7 +8,9 @@
                     </a>
                 </div>
                 <div class=" am-u-sm-8 am-list-main">
-                    <h3 class="am-list-item-hd"><a href="<?=$_post_info['view_url'];?>"class=""><?=$_post_info['title'];?>"</a></h3>
+                    <h3 class="am-list-item-hd">
+                        <a href="<?=$_post_info['view_url'];?>"><?=$_post_info['title'];?></a>
+                    </h3>
 
                     <div class="am-list-item-text">
                         <?=$_post_info['content'];?>
@@ -18,7 +20,9 @@
         <?php else:?>
             <li class="am-g am-list-item-desced">
                 <div class=" am-list-main">
-                    <h3 class="am-list-item-hd"><a href="<?=$_post_info['view_url'];?>" class=""><?=$_post_info['title'];?></a></h3>
+                    <h3 class="am-list-item-hd">
+                        <a href="<?=$_post_info['view_url'];?>" ><?=$_post_info['title'];?></a>
+                    </h3>
 
                     <div class="am-list-item-text">
                         <?=$_post_info['content'];?>
