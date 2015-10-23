@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <span><?=$copyright;?></span> | PHP，Python 工程师
+                <span><?=$copyright;?></span>
             </div>
         </div>
     </div>

@@ -1,20 +1,17 @@
+<?php
+use blog\components\StaticService;
+StaticService::includeAppCssStatic("/css/wap/library/index.css",\blog\assets\WapAsset::className());
+StaticService::includeAppJsStatic("/js/wap/library/index.js",\blog\assets\WapAsset::className());
+?>
 <div class="am-g">
-    <?php if($book_list):?>
-        <?php foreach($book_list as $_book_info ):?>
-    <div class="am-u-sm-12">
-        <div class="am-thumbnail">
-            <img src="<?=$_book_info['imager_url'];?>" alt="<?=$_book_info['title'];?>" style="width: 100%;"/>
-            <div class="am-thumbnail-caption">
-                <h3><?=$_book_info['title'];?></h3>
-                <p>
-                    <?=$_book_info['author'];?>
-                </p>
-                <p>
-                    <a class="am-btn am-btn-warning" href="<?=$_book_info['view_url'];?>">查看详情</a>
-                </p>
-            </div>
+    <?=$book_list;?>
+</div>
+<div  class="am-g">
+    <div class="loading">
+        <div class="bubble">
+            <div class="bubble1"></div>
+            <div class="bubble2"></div>
         </div>
+        <p class="loading_txt">图书马上来</p>
     </div>
-        <?php endforeach;?>
-    <?php endif;?>
 </div>

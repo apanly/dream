@@ -36,7 +36,7 @@ class PublicController extends BaseController
 
         $hots = Posts::find()
             ->where(['status' => 1])
-            ->orderBy("comment_count desc")
+            ->orderBy("updated_time desc")
             ->limit(3)
             ->all();
 

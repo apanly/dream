@@ -7,31 +7,14 @@ use common\components\DataHelper;
 use common\components\UtilHelper;
 use common\models\posts\Posts;
 use Yii;
-use yii\helpers\Url;
 
 class DefaultController extends BaseController{
     private  $page_size = 10;
     public function actionIndex(){
-        $data = [];
-
-        $query = Posts::find()->where(['status' => 1]);
-        $posts_info = $query->orderBy("id desc")
-            ->limit($this->page_size)
-            ->all();
-
-        if($posts_info){
-            foreach($posts_info as $_post){
-                $data[] = [
-                    'title' => DataHelper::encode($_post['title']),
-                    'content' => nl2br( UtilHelper::blog_short($_post['content'],200) ),
-                    'image_url' => $_post['image_url'],
-                    'view_url' => UrlService::buildWapUrl("/default/info",["id" => $_post['id'] ]),
-                ];
-            }
-        }
-
+        $data = $this->search();
         return $this->render("index",[
-            "post_list" => $data
+            "post_list_html" => $this->buildItem($data),
+            "has_next" => ( count($data) < $this->page_size )?false:true
         ]);
     }
 
@@ -62,6 +45,46 @@ class DefaultController extends BaseController{
 
         return $this->render("info",[
             "info" => $data
+        ]);
+    }
+
+    public function actionSearch(){
+        $p = intval( $this->get("p",2) );
+        $data = $this->search( ['p' => $p ] );
+        return $this->renderJSON([
+            'html' => $this->buildItem($data),
+            "has_next" => ( count($data) < $this->page_size )?false:true,
+            "has_data" =>  $data?true:false
+        ]);
+    }
+
+    private function search($params = []){
+        $p = isset( $params['p'] )?$params['p']:1;
+        $offset = ( $p - 1 ) * $this->page_size;
+
+        $query = Posts::find()->where(['status' => 1]);
+        $posts_info = $query->orderBy("id desc")
+            ->offset($offset)
+            ->limit($this->page_size)
+            ->all();
+        $data = [];
+        if($posts_info){
+            foreach($posts_info as $_post){
+                $data[] = [
+                    'title' => DataHelper::encode($_post['title']),
+                    'content' => nl2br( UtilHelper::blog_short($_post['content'],200) ),
+                    'image_url' => $_post['image_url'],
+                    'view_url' => UrlService::buildWapUrl("/default/info",["id" => $_post['id'] ]),
+                ];
+            }
+        }
+
+        return $data;
+    }
+
+    private function buildItem($data){
+        return $this->renderPartial("item",[
+            "post_list" => $data
         ]);
     }
 }

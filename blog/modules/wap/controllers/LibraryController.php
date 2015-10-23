@@ -10,38 +10,14 @@ use Yii;
 
 
 class LibraryController extends BaseController{
-    private  $page_size = 5;
+    private  $page_size = 10;
 
     public function actionIndex(){
         $this->setTitle("郭大帅哥的图书馆");
-        $data = [];
-        $query = Book::find()->where(['status' => 1]);
-        $books = $query->orderBy("id desc")
-            ->offset(0)
-            ->limit($this->page_size)
-            ->all();
-
-        if($books){
-            foreach($books as $_book){
-                $tmp_author = @json_decode($_book['creator'],true);
-                $tmp_author = $tmp_author?$tmp_author[0]:'&nbsp;';
-                if(stripos($tmp_author,"(")!==false){
-                    $tmp_author = substr($tmp_author,0,stripos($tmp_author,"("));
-                }
-                if(stripos($tmp_author,"（")!==false){
-                    $tmp_author = substr($tmp_author,0,stripos($tmp_author,"（"));
-                }
-                $data[] = [
-                    "title" => DataHelper::encode($_book['subtitle']),
-                    'author' => $tmp_author?$tmp_author:"&nbsp;",
-                    'imager_url' => $_book['origin_image_url'],
-                    'view_url' => UrlService::buildWapUrl("/library/info",["id"=> $_book["id"] ])
-                ];
-            }
-        }
-
+        $data = $this->search();
         return $this->render("index",[
-            "book_list" => $data
+            "book_list" => $this->buildItem($data),
+            "has_next" => ( count($data) < $this->page_size )?false:true
         ]);
     }
 
@@ -75,6 +51,54 @@ class LibraryController extends BaseController{
 
         return $this->render("info",[
             "info" => $data,
+        ]);
+    }
+
+    public function actionSearch(){
+        $p = intval( $this->get("p",2) );
+        $data = $this->search( ['p' => $p ] );
+        return $this->renderJSON([
+            'html' => $this->buildItem($data),
+            "has_next" => ( count($data) < $this->page_size )?false:true,
+            "has_data" =>  $data?true:false
+        ]);
+    }
+
+    private function search($params = []){
+        $p = isset( $params['p'] )?$params['p']:1;
+        $offset = ( $p - 1 ) * $this->page_size;
+
+        $query = Book::find()->where(['status' => 1]);
+        $books = $query->orderBy("id desc")
+            ->offset($offset)
+            ->limit($this->page_size)
+            ->all();
+
+        $data = [];
+        if($books){
+            foreach($books as $_book){
+                $tmp_author = @json_decode($_book['creator'],true);
+                $tmp_author = $tmp_author?$tmp_author[0]:'&nbsp;';
+                if(stripos($tmp_author,"(")!==false){
+                    $tmp_author = substr($tmp_author,0,stripos($tmp_author,"("));
+                }
+                if(stripos($tmp_author,"（")!==false){
+                    $tmp_author = substr($tmp_author,0,stripos($tmp_author,"（"));
+                }
+                $data[] = [
+                    "title" => DataHelper::encode($_book['subtitle']),
+                    'author' => $tmp_author?$tmp_author:"&nbsp;",
+                    'imager_url' => $_book['origin_image_url'],
+                    'view_url' => UrlService::buildWapUrl("/library/info",["id"=> $_book["id"] ])
+                ];
+            }
+        }
+        return $data;
+    }
+
+    private function buildItem($data){
+        return $this->renderPartial("item",[
+            "book_list" => $data
         ]);
     }
 }
