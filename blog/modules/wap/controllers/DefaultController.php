@@ -10,14 +10,13 @@ use Yii;
 use yii\helpers\Url;
 
 class DefaultController extends BaseController{
+    private  $page_size = 10;
     public function actionIndex(){
         $data = [];
-        $pagesize = 5;
-        $offset = 0;
+
         $query = Posts::find()->where(['status' => 1]);
         $posts_info = $query->orderBy("id desc")
-            ->offset($offset)
-            ->limit($pagesize)
+            ->limit($this->page_size)
             ->all();
 
         if($posts_info){

@@ -34,6 +34,9 @@ class ErrorController extends BaseController
             $code = -1;
             $msg = "系统错误，请稍后重试";
         }
+
+//        $this->layout = false;
+//        return $this->render("index");
         if( preg_match("/^wap/",Yii::$app->request->getPathInfo() ) ){
             return $this->redirect( UrlService::buildWapUrl("/default/index") );
         }

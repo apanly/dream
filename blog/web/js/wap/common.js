@@ -19,7 +19,17 @@ var common_ops = {
             idx = 3;
         }
 
+        if( pathname == "/wap/my/about" ){
+            idx = 4;
+        }
+
+        if( pathname == "/wap/my/wechat" ){
+            idx = 5;
+        }
+
+
         if( idx < 1 ){
+
             return;
         }
 

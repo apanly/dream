@@ -22,13 +22,13 @@ use \blog\components\UrlService;
             </a>
         </li>
         <li >
-            <a href="javascript:void(0);" class="am-btn-warning">
+            <a href="<?=UrlService::buildWapUrl("/my/about");?>" class="am-btn-warning">
                 <span class="am-icon-user"></span>
                 <span class="am-navbar-label">关于</span>
             </a>
         </li>
         <li>
-            <a href="javascript:void(0);" class="am-btn-warning" data-am-modal="{target: '#wechat'}">
+            <a href="<?=UrlService::buildWapUrl("/my/wechat");?>" class="am-btn-warning" data-am-modal="{target: '#wechat'}">
                 <span class="am-icon-weixin"></span>
                 <span class="am-navbar-label">联系我</span>
             </a>
