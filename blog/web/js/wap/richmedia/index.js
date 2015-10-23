@@ -28,7 +28,7 @@ var richmedia_index_ops = {
                                 if (!res.data.has_next) {
                                     stop = false;
                                 }
-                            }, 5);
+                            }, 2);
                         }
                     }
                 });
