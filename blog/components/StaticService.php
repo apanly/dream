@@ -42,10 +42,12 @@ class StaticService {
             $path = $path."?version={$release_version}";
         }
 
+        $domain_static = Yii::$app->params['domains']['static'];
+
         if($type=="css"){
-            Yii::$app->getView()->registerCssFile($path,['depends'=>$depend]);
+            Yii::$app->getView()->registerCssFile($domain_static.$path,['depends'=>$depend]);
         }else{
-            Yii::$app->getView()->registerJsFile($path,['depends'=>$depend]);
+            Yii::$app->getView()->registerJsFile($domain_static.$path,['depends'=>$depend]);
         }
     }
 
