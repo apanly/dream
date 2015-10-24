@@ -17,6 +17,11 @@ class BaseController extends Controller
     protected  $current_city_id ;
     protected  $open_id = 0;
     protected  $allowAllAction = [];//在这里面的就不用检查合法性
+    protected  $ignoreRedirectAction = [
+        "run/step",
+        "public/blogs",
+        "public/tags"
+    ];
 
 
     public function __construct($id, $module, $config = []){
@@ -32,7 +37,9 @@ class BaseController extends Controller
         $this->setDescription();
         $this->setKeywords();
 
-        if( !UtilHelper::isPC() ){
+        if( !UtilHelper::isPC()
+            && !in_array($action->getUniqueId(), $this->ignoreRedirectAction) )
+        {
             $params = [];
             if( isset( $_GET['id'] ) ){
                 $params['id'] = $_GET['id'];

@@ -17,8 +17,8 @@ StaticService::includeAppJsStatic("/js/web/run/step.js",\blog\assets\AppAsset::c
         <a href="<?=$urls["monthly"];?>" type="button" class="btn btn-default">月</a>
     </div>
 </div>
-<div class="col-lg-12">
-    <div id="container" style="min-width:700px;height:400px"></div>
+<div class="col-lg-12" style="margin-bottom: 100px;">
+    <div id="container" style="min-width:100%;height:400px"></div>
 </div>
 <input type="hidden" id="chart_data" value='<?=$data;?>'/>
 <input type="hidden" id="chart_type" value="<?=$type;?>"/>
