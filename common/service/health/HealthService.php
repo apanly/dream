@@ -19,6 +19,8 @@ class HealthService {
         $model_health_log->quantity = $params['quantity'];
         $model_health_log->time_from = $params['time_from'];
         $model_health_log->time_to = $params['time_to'];
+        $model_health_log->lat = $params['lat'];
+        $model_health_log->lng = $params['lng'];
         $model_health_log->hash_key = $hash_key;
         $model_health_log->created_time = date("Y-m-d H:i:s");
         $model_health_log->save(0);

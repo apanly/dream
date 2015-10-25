@@ -13,6 +13,8 @@ use Yii;
  * @property integer $quantity
  * @property string $time_from
  * @property string $time_to
+ * @property double $lat
+ * @property double $lng
  * @property string $created_time
  */
 class HealthLog extends \yii\db\ActiveRecord
@@ -40,8 +42,9 @@ class HealthLog extends \yii\db\ActiveRecord
     {
         return [
             [['date', 'quantity'], 'integer'],
-            [['quantity'], 'required'],
+            [['quantity', 'lat'], 'required'],
             [['time_from', 'time_to', 'created_time'], 'safe'],
+            [['lat', 'lng'], 'number'],
             [['hash_key'], 'string', 'max' => 32]
         ];
     }
@@ -58,6 +61,8 @@ class HealthLog extends \yii\db\ActiveRecord
             'quantity' => 'Quantity',
             'time_from' => 'Time From',
             'time_to' => 'Time To',
+            'lat' => 'Lat',
+            'lng' => 'Lng',
             'created_time' => 'Created Time',
         ];
     }

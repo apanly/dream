@@ -27,6 +27,11 @@ class UploadController extends AuthController
         if( !is_array($data) ){
             return $this->renderJSON([],"数据结构不对",-1);
         }
+
+        $date_step = date("Ymd");
+        $lat = $this->post("lat",0);
+        $lng = $this->post("lng",0);
+
         foreach( $data as $_item ){
             $tmp_arr = explode("#",$_item);
             if( count($tmp_arr) != 3 ){
@@ -35,11 +40,14 @@ class UploadController extends AuthController
             $tmp_params = [
                 "quantity" => intval($tmp_arr[0]),
                 "time_from" => $tmp_arr[1],
-                "time_to" => $tmp_arr[2]
+                "time_to" => $tmp_arr[2],
+                "lat" => $lat,
+                "lng" => $lng
             ];
             HealthService::setLog($tmp_params);
-            HealthService::setDay(date("Ymd",strtotime($tmp_params['time_from'])) );
+            $date_step = date("Ymd",strtotime($tmp_params['time_from']));
         }
+        HealthService::setDay($date_step);
         return $this->renderJSON();
     }
 
