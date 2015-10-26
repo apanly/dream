@@ -87,9 +87,10 @@ class SearchController extends BaseController{
         $data = [];
 
         if( $post_list ){
+            $domain_blog = Yii::$app->params['domains']['blog'];
             foreach( $post_list as $_post_info ){
                 $data[] = [
-                    "loc" => UrlService::buildUrl("/default/info",["id" => $_post_info['id'] ] ),
+                    "loc" => $domain_blog.UrlService::buildUrl("/default/info",["id" => $_post_info['id'] ] ),
                     "priority" => 1.0,
                     "lastmod" => $_post_info['updated_time'],
                     "changefreq" => "daily"
