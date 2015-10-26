@@ -83,16 +83,64 @@ class SearchController extends BaseController{
     }
 
     public function actionSitemap(){
-        $post_list = Posts::find()->where(["status" => 1])->orderBy("id desc")->all();
         $data = [];
+        $tags = [];
+        $domain_blog = Yii::$app->params['domains']['blog'];
 
+        $index_urls = [
+            "/default/index",
+            "/library/index",
+            "/richmedia/index",
+            "/default/donation",
+            "/default/about"
+        ];
+
+        foreach( $index_urls as $_index_url ){
+            $data[] = [
+                "loc" => $domain_blog.UrlService::buildUrl($_index_url),
+                "priority" => 1.0,
+                "lastmod" => date("Y-m-d"),
+                "changefreq" => "daily"
+            ];
+        }
+
+
+        $post_list = Posts::find()->where(["status" => 1])->orderBy("id desc")->all();
         if( $post_list ){
-            $domain_blog = Yii::$app->params['domains']['blog'];
             foreach( $post_list as $_post_info ){
                 $data[] = [
                     "loc" => $domain_blog.UrlService::buildUrl("/default/info",["id" => $_post_info['id'] ] ),
                     "priority" => 1.0,
                     "lastmod" => date("Y-m-d",strtotime( $_post_info['updated_time'] ) ),
+                    "changefreq" => "daily"
+                ];
+                $tmp_tags = explode(",",$_post_info['tags']);
+                $tags = array_merge($tags,$tmp_tags);
+            }
+        }
+
+        $book_list = Book::find()->where(['status' =>1])->orderBy("id desc")->all();
+        if( $book_list ){
+            foreach( $book_list as $_book_info ){
+                $data[] = [
+                    "loc" => $domain_blog.UrlService::buildUrl("/library/info",["id" => $_book_info['id'] ] ),
+                    "priority" => 1.0,
+                    "lastmod" => date("Y-m-d",strtotime( $_book_info['updated_time'] ) ),
+                    "changefreq" => "daily"
+                ];
+
+                $tmp_tags = explode(",",$_book_info['tags']);
+                $tags = array_merge($tags,$tmp_tags);
+            }
+        }
+
+        $tags = array_unique($tags);
+        if( $tags ){
+            foreach($tags as $_tag) {
+                $data[] = [
+                    "loc" => $domain_blog.UrlService::buildUrl("/search/do",["kw" => $_tag ] ),
+                    "priority" => 1.0,
+                    "lastmod" => date("Y-m-d",time() ),
                     "changefreq" => "daily"
                 ];
             }
