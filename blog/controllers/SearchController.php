@@ -2,6 +2,7 @@
 
 namespace blog\controllers;
 
+use blog\components\UrlService;
 use blog\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\components\UtilHelper;
@@ -79,5 +80,30 @@ class SearchController extends BaseController{
                 "page_base" => Url::toRoute(["/search/do","kw" => $kw])
             ]
         ]);
+    }
+
+    public function actionSitemap(){
+        $post_list = Posts::find()->where(["status" => 1])->orderBy("id desc")->all();
+        $data = [];
+
+        if( $post_list ){
+            foreach( $post_list as $_post_info ){
+                $data[] = [
+                    "loc" => UrlService::buildUrl("/default/info",["id" => $_post_info['id'] ] ),
+                    "priority" => 1.0,
+                    "lastmod" => $_post_info['updated_time'],
+                    "changefreq" => "daily"
+                ];
+            }
+        }
+
+        $xml_content = $this->renderPartial("sitemap",[
+            "data" => $data
+        ]);
+
+        $app_root = Yii::$app->getBasePath();
+        $file_path = $app_root."/web/sitemap.xml";
+        file_put_contents($file_path,$xml_content);
+
     }
 }
