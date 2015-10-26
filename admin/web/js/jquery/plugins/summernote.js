@@ -2417,8 +2417,11 @@
       var dmRegExp = /.+dailymotion.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?/;
       var dmMatch = sUrl.match(dmRegExp);
 
-      var youkuRegExp = /\/\/v\.youku\.com\/v_show\/id_(\w+)\.html/;
+      var youkuRegExp = /\/\/v\.youku\.com\/v_show\/id_(.*)\.html/;
       var youkuMatch = sUrl.match(youkuRegExp);
+
+      var qqRegExp = /\/\/v\.qq\.com\/(.*)\.html\?vid=(.*)/;
+      var qqMatch = sUrl.match(qqRegExp);
 
       var $video;
       if (ytMatch && ytMatch[2].length === 11) {
@@ -2447,14 +2450,15 @@
           .attr('width', '640').attr('height', '360');
       } else if (youkuMatch && youkuMatch[1].length) {
         $video = $('<iframe webkitallowfullscreen mozallowfullscreen allowfullscreen>')
-          .attr('height', '498')
-          .attr('width', '510')
+          .attr('height', '200')
+          .attr('width', '100%')
           .attr('src', '//player.youku.com/embed/' + youkuMatch[1]);
-      } else {
+      } else if(qqMatch && qqMatch[2].length ) {
         // this is not a known video link. Now what, Cat? Now what?
         $video = $('<iframe>')
-              .attr('src', sUrl)
-              .attr('width', '600').attr('height', '600')
+              .attr('src', "http://v.qq.com/iframe/player.html?tiny=0&auto=0&vid=" + qqMatch[2])
+              .attr('width', '100%')
+              .attr('height', '200')
               .attr('class', 'vine-embed');
       }
 
