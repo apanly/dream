@@ -1,5 +1,7 @@
 <?php
 use \yii\helpers\Url;
+use \blog\components\StaticService;
+StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAsset::className());
 ?>
 <main class="col-md-8 main-content">
 <?php if($data):?>

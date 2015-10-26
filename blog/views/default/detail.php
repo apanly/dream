@@ -2,6 +2,9 @@
 use  \common\components\DataHelper;
 use \blog\components\StaticService;
 use yii\helpers\Url;
+
+StaticService::includeAppJsStatic("/js/web/default/info.js", \blog\assets\AppAsset::className());
+
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964",\blog\assets\AppAsset::className());
 ?>
 <main class="col-md-8 main-content">

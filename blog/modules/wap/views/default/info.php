@@ -1,3 +1,7 @@
+<?php
+use blog\components\StaticService;
+StaticService::includeAppJsStatic("/js/wap/default/info.js",\blog\assets\WapAsset::className());
+?>
 <div class="am-paragraph am-paragraph-default">
     <article class="am-article">
         <div class="am-article-hd">
