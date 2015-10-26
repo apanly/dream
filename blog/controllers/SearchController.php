@@ -92,7 +92,7 @@ class SearchController extends BaseController{
                 $data[] = [
                     "loc" => $domain_blog.UrlService::buildUrl("/default/info",["id" => $_post_info['id'] ] ),
                     "priority" => 1.0,
-                    "lastmod" => $_post_info['updated_time'],
+                    "lastmod" => date("Y-m-d",strtotime( $_post_info['updated_time'] ) ),
                     "changefreq" => "daily"
                 ];
             }
