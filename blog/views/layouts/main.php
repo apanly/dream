@@ -16,6 +16,7 @@ AppAsset::register($this);
     <meta name="keywords" content="<?=DataHelper::encode($this->params['seo']['keywords']);?>">
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="360-site-verification" content="8176f6da55b63a5c0afc481b8d80d4d0" />
     <link rel="shortcut icon" href="/images/icon.png">
 
     <?php $this->head() ?>
