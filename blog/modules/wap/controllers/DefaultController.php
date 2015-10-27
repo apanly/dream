@@ -30,13 +30,17 @@ class DefaultController extends BaseController{
         }
 
         $tags = explode(",",$post_info['tags']);
+        $domain_blog = Yii::$app->params['domains']['blog'];
         $author = Yii::$app->params['author'];
+
         $data = [
+            "id" => $post_info['id'],
             "title" => $post_info['title'],
             "content" => $post_info['content'],
             "tags" => $tags,
             "author" => $author,
-            'date' => date("Y年m月d日",strtotime($post_info['updated_time']))
+            'date' => date("Y年m月d日",strtotime($post_info['updated_time'])),
+            'url' => $domain_blog.UrlService::buildWapUrl("/default/info",["id" => $post_info['id'] ])
         ];
 
         $this->setTitle( $post_info['title']." - 郭大帅哥的博客");

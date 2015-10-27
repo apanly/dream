@@ -1,6 +1,7 @@
 <?php
 use blog\components\StaticService;
 StaticService::includeAppJsStatic("/js/wap/default/info.js",\blog\assets\WapAsset::className());
+StaticService::includeAppJsStatic("/js/duoshuo.js",\blog\assets\WapAsset::className());
 ?>
 <div class="am-paragraph am-paragraph-default">
     <article class="am-article">
@@ -15,6 +16,9 @@ StaticService::includeAppJsStatic("/js/wap/default/info.js",\blog\assets\WapAsse
         <div class="am-article-bd">
             <?=$info["content"];?>
         </div>
+        <!-- 多说评论框 start -->
+        <div class="ds-thread" data-thread-key="<?=$info['id'];?>" data-title="<?=$info['title'];?>" data-url="<?=$info['url'];?>"></div>
+        <!-- 多说评论框 end -->
     </article>
 </div>
 
