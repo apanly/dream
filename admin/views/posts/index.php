@@ -21,10 +21,11 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                         <thead>
                         <tr>
                             <th width="30">序号</th>
-                            <th width="100">标题</th>
+                            <th>标题</th>
+                            <th>原创状态</th>
                             <th width="100">发布时间</th>
-                            <th width="100">状态</th>
-                            <th width="60">操作</th>
+                            <th>状态</th>
+                            <th width="160">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,6 +37,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                                     <strong><?=$_item['title'];?></strong>
                                 </a>
                             </td>
+                            <td><?=$_item['original_info']['desc'];?></td>
                             <td><?=$_item['created'];?></td>
                             <td>
                                 <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span></td>

@@ -42,6 +42,7 @@ class DefaultController extends BaseController
                     'id' => $_post['id'],
                     'title' => DataHelper::encode($_post['title']),
                     'content' => nl2br( $tmp_content ),
+                    'original' => $_post['original'],
                     'author' => $author,
                     'tags' => $tags,
                     'date' => date("Y年m月d日",strtotime($_post['updated_time'])),
@@ -82,6 +83,7 @@ class DefaultController extends BaseController
         $data = [
             "title" => $post_info['title'],
             "content" => $post_info['content'],
+            "original" => $post_info['original'],
             "tags" => $tags,
             'date' => date("Y年m月d日",strtotime($post_info['updated_time'])),
             'author' => $author

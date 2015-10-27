@@ -13,6 +13,7 @@ class AppAsset extends AssetBundle
         "css/bootstrap/font-awesome.min.css",
         "css/bootstrap/monokai_sublime.min.css",
         "css/screen.css",
+        "css/common.css"
     ];
     public $js = [
         "js/jquery/jquery.min.js",

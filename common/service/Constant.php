@@ -11,4 +11,14 @@ class Constant {
         3 => "视频",
         4 => "音频"
     ];
+
+    public static $status_desc = [
+        0 => ['class' => 'danger','desc' => "隐藏"],
+        1 => ['class' => 'success','desc' => "正常"]
+    ];
+
+    public static $original_desc = [
+        0 => ['class' => 'danger','desc' => "非原创"],
+        1 => ['class' => 'success','desc' => "原创"]
+    ];
 } 

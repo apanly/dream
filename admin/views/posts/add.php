@@ -56,6 +56,26 @@ StaticService::includeAppJsStatic("/js/posts/add.js",\admin\assets\AppAsset::cla
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-xs-12 control-label">状态</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <select name="status" id="status" class="form-control">
+                                            <?php foreach( $status_desc as $_key => $_item):?>
+                                                <option value="<?=$_key;?>"  <?php if($info && $_key == $info['status']):?> selected <?php endif;?> ><?=$_item["desc"];?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-xs-12 control-label">原创</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <select name="original" id="original" class="form-control">
+                                            <?php foreach( $original_desc as $_key => $_item):?>
+                                                <option value="<?=$_key;?>"  <?php if($info && $_key == $info['original']):?> selected <?php endif;?> ><?=$_item["desc"];?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>

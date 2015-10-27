@@ -12,10 +12,15 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
     </div>
 
     <div class="post-head">
-        <h1 class="post-title"><a href="<?=$_item['view_url'];?>"><?=$_item['title'];?></a></h1>
+        <h1 class="post-title">
+            <a href="<?=$_item['view_url'];?>">
+                <?=$_item['title'];?>
+            </a>
+        </h1>
 
         <div class="post-meta">
             <span class="author">作者：<a href="<?=$_item['author']['link'];?>"><?=$_item['author']['nickname'];?></a></span> &bull;
+            <?php if($_item['original']):?>【原创】&bull;<?php endif;?>
             <time class="post-date"><?=$_item['date'];?></time>
         </div>
     </div>

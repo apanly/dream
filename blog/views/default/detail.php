@@ -10,9 +10,11 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
 <main class="col-md-8 main-content">
     <article  class="post tag-zhuti tag-static-page tag-customize-page">
         <header class="post-head">
+
             <h1 class="post-title"><?=$info['title'];?></h1>
             <section class="post-meta">
                 <span class="author">作者：<a href="<?=$info['author']['link'];?>"><?=$info['author']['nickname'];?></a></span> •
+                <?php if($info['original']):?>【原创】&bull;<?php endif;?>
                 <time class="post-date" ><?=$info['date'];?></time>
             </section>
         </header>

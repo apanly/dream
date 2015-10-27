@@ -15,10 +15,7 @@ use yii\helpers\Url;
 
 class PostsController extends BaseController
 {
-    private $status_desc = [
-        0 => ['class' => 'danger','desc' => "隐藏"],
-        1 => ['class' => 'success','desc' => "正常"]
-    ];
+
     public function actionIndex(){
         $p = intval( $this->get("p",1) );
         if(!$p){
@@ -56,9 +53,10 @@ class PostsController extends BaseController
                     'id' => $_post['id'],
                     'title' => DataHelper::encode($tmp_title),
                     'status' => $_post['status'],
-                    'status_info' => $this->status_desc[$_post['status']],
+                    'status_info' => Constant::$status_desc[$_post['status']],
+                    "original_info" => Constant::$original_desc[$_post['original']],
                     'created' => $_post['created_time'],
-                    'edit_url' => Url::toRoute("/posts/add?id={$_post['id']}"),
+                    'edit_url' => Url::toRoute("/posts/set?id={$_post['id']}"),
                     'view_url' => $domains['blog'].Url::toRoute("/default/{$_post['id']}")
                 ];
                 $idx++;
@@ -72,7 +70,7 @@ class PostsController extends BaseController
         ]);
     }
 
-    public function actionAdd(){
+    public function actionSet(){
         $request = Yii::$app->request;
         if($request->isGet){
             $id = trim($this->get("id",0));
@@ -85,13 +83,17 @@ class PostsController extends BaseController
                         "title" => DataHelper::encode($post_info['title']),
                         "content" => DataHelper::encode($post_info['content']),
                         "type" => $post_info['type'],
+                        "status" => $post_info['status'],
+                        "original" => $post_info['original'],
                         "tags" => DataHelper::encode($post_info['tags'])
                     ];
                 }
             }
             return $this->render("add",[
                 "info" => $info,
-                "posts_type" => Constant::$posts_type
+                "posts_type" => Constant::$posts_type,
+                "status_desc" => Constant::$status_desc,
+                "original_desc" => Constant::$original_desc
             ]);
         }
         $uid = $this->current_user->uid;
@@ -100,6 +102,8 @@ class PostsController extends BaseController
         $content = trim($this->post("content"));
         $tags = trim($this->post("tags"));
         $type = trim($this->post("type"));
+        $status = trim($this->post("status",0));
+        $original = trim($this->post("original",0));
 
         if( mb_strlen($title,"utf-8") <= 0 ){
             return $this->renderJSON([],"请输入博文标题",-1);
@@ -123,7 +127,6 @@ class PostsController extends BaseController
         }else{
             $model_posts = new Posts();
             $model_posts->uid = $uid;
-            $model_posts->status = 1;
             $model_posts->created_time = $date_now;
         }
         $tags_arr = [];
@@ -146,6 +149,8 @@ class PostsController extends BaseController
         $model_posts->title = $title;
         $model_posts->content = $content;
         $model_posts->type = $type;
+        $model_posts->original = $original;
+        $model_posts->status = $status;
         $model_posts->tags = $tags_arr?implode(",",$tags_arr):"";
         $model_posts->updated_time = $date_now;
         $model_posts->save(0);

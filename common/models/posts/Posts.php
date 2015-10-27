@@ -11,6 +11,7 @@ use Yii;
  * @property integer $uid
  * @property string $title
  * @property integer $type
+ * @property integer $original
  * @property string $content
  * @property string $tags
  * @property string $image_url
@@ -43,7 +44,7 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['uid', 'type', 'status', 'comment_count'], 'integer'],
+            [['uid', 'type', 'original', 'status', 'comment_count'], 'integer'],
             [['content'], 'required'],
             [['content'], 'string'],
             [['updated_time', 'created_time'], 'safe'],
@@ -62,6 +63,7 @@ class Posts extends \yii\db\ActiveRecord
             'uid' => 'Uid',
             'title' => 'Title',
             'type' => 'Type',
+            'original' => 'Original',
             'content' => 'Content',
             'tags' => 'Tags',
             'image_url' => 'Image Url',

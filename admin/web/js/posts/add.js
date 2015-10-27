@@ -60,6 +60,9 @@ var posts_add_ops = {
         var content  = $.trim( $("#post_add_edit .summernote").code() );
         var tags = $.trim( $("#post_add_edit input[name=tags]").val() );
         var type = $.trim($("#type").val());
+        var status = $.trim($("#status").val());
+        var original = $.trim($("#original").val());
+
         if(title.length <= 0){
             alert("请输入博文标题!!");
             $("#post_add_edit input[name=title]").focus();
@@ -91,15 +94,19 @@ var posts_add_ops = {
         var content  = $.trim( $("#post_add_edit .summernote").code() );
         var tags = $.trim( $("#post_add_edit input[name=tags]").val() );
         var type = $.trim($("#type").val());
+        var status = $.trim($("#status").val());
+        var original = $.trim($("#original").val());
         data = {
             id:post_id,
             title:title,
             content:content,
             tags:tags,
-            type:type
+            type:type,
+            status:status,
+            original:original
         };
         $.ajax({
-            url:'/posts/add',
+            url:'/posts/set',
             data:data,
             type:'POST',
             dataType:'json',
