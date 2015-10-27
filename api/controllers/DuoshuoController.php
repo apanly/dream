@@ -39,7 +39,7 @@ class DuoshuoController extends AuthController
         $params = [
             'short_name' => $this->short_name,
             'secret' => $this->secret,
-            'since_id' => 0,
+            'since_id' => $this->getCurId( $this->cur_path ),
             'limit' => 200,
             'order' => 'asc'
         ];
