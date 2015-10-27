@@ -27,6 +27,11 @@ class MenuController extends BaseController{
                     "sub_button" => [
                         [
                             "type" => "click",
+                            "name" => "原创文章",
+                            "key"  => "blog_original"
+                        ],
+                        [
+                            "type" => "click",
                             "name" => "最新文章",
                             "key"  => "blog_new"
                         ],

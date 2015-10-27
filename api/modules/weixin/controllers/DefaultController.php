@@ -70,6 +70,9 @@ class DefaultController extends  BaseController {
             case "CLICK":
                 $eventKey = trim($dataObj->EventKey);
                 switch($eventKey){
+                    case "blog_original":
+                        return $this->getLastestBlog();
+                        break;
                     case "blog_new":
                         return  $this->getLastestBlog();
                         break;
@@ -142,11 +145,41 @@ EOT;
         return ['type' => $type ,"data" => $data];
     }
 
-    private function getLastestBlog(){
+    private function getOriginalBlog(){
         $post_list = Posts::find()
             ->where([ 'status' => 1 ])
             ->orderBy("updated_time desc")
             ->limit(5)
+            ->all();
+
+        $list = [];
+        if( $post_list ){
+            $domain_static = \Yii::$app->params['domains']['static'];
+            $domain_blog = \Yii::$app->params['domains']['blog'];
+            foreach($post_list as $_item){
+                $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
+                if( $_item['image_url'] ){
+                    $tmp_image = $_item['image_url'];
+                }
+                $list[] = [
+                    "title" => $_item['title'],
+                    "description" => $_item['title'],
+                    "picurl" => $tmp_image,
+                    "url" => "{$domain_blog}/default/".$_item['id']
+                ];
+            }
+        }
+        $data = $list?$this->getRichXml($list):$this->help();
+        $type = $list?"rich":"text";
+        return ['type' => $type ,"data" => $data];
+    }
+
+
+    private function getLastestBlog(){
+        $post_list = Posts::find()
+            ->where([ 'original' => 1 ])
+            ->orderBy("id desc")
+            ->limit(8)
             ->all();
 
         $list = [];
