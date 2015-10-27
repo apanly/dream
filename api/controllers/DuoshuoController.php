@@ -13,7 +13,7 @@ class DuoshuoController extends AuthController
         if( $request->isPost ){
             $this->recode(var_export($_POST,true));
         }
-        return $this->renderJSON()
+        return $this->renderJSON();
     }
 
 }
