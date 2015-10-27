@@ -77,16 +77,18 @@ class DefaultController extends BaseController
         }
 
 
-
+        $domain_blog = Yii::$app->params['domains']['blog'];
         $author = Yii::$app->params['author'];
         $tags = explode(",",$post_info['tags']);
         $data = [
+            "id" => $post_info['id'],
             "title" => $post_info['title'],
             "content" => $post_info['content'],
             "original" => $post_info['original'],
             "tags" => $tags,
             'date' => date("Y年m月d日",strtotime($post_info['updated_time'])),
-            'author' => $author
+            'author' => $author,
+            "url" => $domain_blog.Url::toRoute(["/default/info","id" => $post_info['id'] ])
         ];
 
         $prev_info = Posts::find()

@@ -20,4 +20,3 @@ var default_info_ops = {
 $(document).ready(function(){
     default_info_ops.init();
 });
-

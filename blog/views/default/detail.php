@@ -4,7 +4,7 @@ use \blog\components\StaticService;
 use yii\helpers\Url;
 
 StaticService::includeAppJsStatic("/js/web/default/info.js", \blog\assets\AppAsset::className());
-
+StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964",\blog\assets\AppAsset::className());
 ?>
 <main class="col-md-8 main-content">
@@ -47,6 +47,9 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
         </footer>
         <?php endif;?>
 
+        <!-- 多说评论框 start -->
+        <div class="ds-thread" data-thread-key="<?=$info['id'];?>" data-title="<?=$info['title'];?>" data-url="<?=$info['url'];?>"></div>
+        <!-- 多说评论框 end -->
     </article>
 
     <div class="prev-next-wrap clearfix">
@@ -62,3 +65,17 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
 
 </main>
 <?= Yii::$app->controller->renderPartial("/public/side");?>
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"guowei"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
