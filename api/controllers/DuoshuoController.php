@@ -9,7 +9,11 @@ use api\controllers\common\AuthController;
 class DuoshuoController extends AuthController
 {
     public function actionCallback(){
-        $this->recode(var_export($_POST,true));
+        $request = Yii::$app->request;
+        if( $request->isPost ){
+            $this->recode(var_export($_POST,true));
+        }
+        return "hello";
     }
 
 }
