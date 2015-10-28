@@ -71,10 +71,10 @@ class DefaultController extends  BaseController {
                 $eventKey = trim($dataObj->EventKey);
                 switch($eventKey){
                     case "blog_original":
-                        return $this->getLastestBlog();
+                        return $this->getOriginalBlog();
                         break;
-                    case "blog_new":
-                        return  $this->getLastestBlog();
+                    case "blog_hot":
+                        return  $this->getHotBlog();
                         break;
                     case "book_hot":
                         return $this->getHotBook();
@@ -145,9 +145,10 @@ EOT;
         return ['type' => $type ,"data" => $data];
     }
 
-    private function getOriginalBlog(){
+    private function getHotBlog(){
         $post_list = Posts::find()
             ->where([ 'status' => 1 ])
+            ->andWhere(['>','hot',0])
             ->orderBy("updated_time desc")
             ->limit(5)
             ->all();
@@ -175,11 +176,11 @@ EOT;
     }
 
 
-    private function getLastestBlog(){
+    private function getOriginalBlog(){
         $post_list = Posts::find()
             ->where([ 'original' => 1 ])
-            ->orderBy("id desc")
-            ->limit(8)
+            ->orderBy("updated_time desc")
+            ->limit(5)
             ->all();
 
         $list = [];

@@ -32,8 +32,8 @@ class MenuController extends BaseController{
                         ],
                         [
                             "type" => "click",
-                            "name" => "最新文章",
-                            "key"  => "blog_new"
+                            "name" => "热门文章",
+                            "key"  => "blog_hot"
                         ],
                         [
                             "name" => "文章列表",
