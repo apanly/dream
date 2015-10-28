@@ -15,9 +15,9 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
         <div class="panel-body" style="padding: 5px 5px;">
             <div class="row">
                 <div class="col-md-8">
-                    <a href="<?=UrlService::buildUrl("/default/index",["type" => 1]);?>">文章列表</a>
-                    <a href="<?=UrlService::buildUrl("/default/index",["type" => 2]);?>">热门文章</a>
-                    <a href="<?=UrlService::buildUrl("/default/index",["type" => 3]);?>">原创文章</a>
+                    <a class="pull-left" href="<?=UrlService::buildUrl("/default/index",["type" => 1]);?>">文章列表</a>
+                    <a class="pull-left" href="<?=UrlService::buildUrl("/default/index",["type" => 2]);?>">热门文章</a>
+                    <a class="pull-left" href="<?=UrlService::buildUrl("/default/index",["type" => 3]);?>">原创文章</a>
                 </div>
                 <div class="col-md-4">
                     <?php foreach($hot_kws as $_kw):?>
