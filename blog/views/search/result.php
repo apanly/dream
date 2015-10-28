@@ -1,7 +1,7 @@
 <main class="col-md-8 main-content">
     <?php if($data):?>
         <?php foreach($data as $_item):?>
-            <article id=85 class="post tag-about-ghost tag-release featured">
+            <article  class="post tag-about-ghost tag-release featured">
                 <div class="featured" title="推荐文章">
                     <i class="fa fa-star"></i>
                 </div>
@@ -37,6 +37,12 @@
                 <?php endif;?>
             </article>
         <?php endforeach;?>
+    <?php else:?>
+    <div class="cover tag-cover">
+        <h3 class="tag-name">
+            抱歉,没有找到相关文章
+        </h3>
+    </div>
     <?php endif;?>
 
     <?php if($page_info['total_page']):?>
