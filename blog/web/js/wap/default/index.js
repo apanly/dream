@@ -2,10 +2,14 @@
 var default_index_ops = {
     init:function(){
         this.p = 1;
+        this.type = parseInt( $("#type").val() );
         this.eventBind();
+
     },
     eventBind:function(){
         var that = this;
+        $($("#se_btn a").get( (that.type - 1) )).addClass("am-btn-success");
+
         $(window).scroll(function () {
             if (($(window).scrollTop() + $(window).height() > $(document).height() - 10) && stop) {
                 stop = false;
@@ -16,7 +20,7 @@ var default_index_ops = {
                     url: common_ops.getUrlPrefix() + '/default/search',
                     type: 'GET',
                     dataType: 'json',
-                    data: {'p':p},
+                    data: {'p':p,'type':that.type},
                     success: function (res) {
                         if (res.code == 200) {
                             var t = setTimeout(function () {

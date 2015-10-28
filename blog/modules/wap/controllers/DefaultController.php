@@ -11,10 +11,14 @@ use Yii;
 class DefaultController extends BaseController{
     private  $page_size = 10;
     public function actionIndex(){
-        $data = $this->search();
+        $type = intval( $this->get("type",1) );
+        $type = in_array($type,[1,2,3])?$type:1;
+
+        $data = $this->search(['p' => 1,'type' => $type]);
         return $this->render("index",[
             "post_list_html" => $this->buildItem($data),
-            "has_next" => ( count($data) < $this->page_size )?false:true
+            "has_next" => ( count($data) < $this->page_size )?false:true,
+            "type" => $type
         ]);
     }
 
@@ -54,7 +58,11 @@ class DefaultController extends BaseController{
 
     public function actionSearch(){
         $p = intval( $this->get("p",2) );
-        $data = $this->search( ['p' => $p ] );
+        $type = intval( $this->get("type",1) );
+        $type = in_array($type,[1,2,3])?$type:1;
+
+
+        $data = $this->search( ['p' => $p,'type'=>$type ] );
         return $this->renderJSON([
             'html' => $this->buildItem($data),
             "has_next" => ( count($data) < $this->page_size )?false:true,
@@ -64,9 +72,19 @@ class DefaultController extends BaseController{
 
     private function search($params = []){
         $p = isset( $params['p'] )?$params['p']:1;
+        $type = isset( $params['type'] )?$params['type']:1;
+
         $offset = ( $p - 1 ) * $this->page_size;
 
         $query = Posts::find()->where(['status' => 1]);
+
+        if( $type == 2 ){
+            $query->andWhere(['>','hot',0]);
+        }
+        if( $type == 3 ){
+            $query->andWhere(['original' => 1]);
+        }
+
         $posts_info = $query->orderBy("id desc")
             ->offset($offset)
             ->limit($this->page_size)
