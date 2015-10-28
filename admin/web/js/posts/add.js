@@ -113,12 +113,7 @@ var posts_add_ops = {
             success:function(res){
                 alert(res.msg);
                 if(res.code == 200){
-                    if( post_id > 0 ){
-                        window.location.href = window.location.href;
-                    }else{
-                        window.location.href = "/posts/index";
-                    }
-
+                    window.location.href = "/posts/set?id="+res.data.post_id;
                 }
             }
         });

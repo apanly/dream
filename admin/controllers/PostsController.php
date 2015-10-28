@@ -53,8 +53,10 @@ class PostsController extends BaseController
                     'id' => $_post['id'],
                     'title' => DataHelper::encode($tmp_title),
                     'status' => $_post['status'],
+                    'hot' => $_post['hot'],
                     'status_info' => Constant::$status_desc[$_post['status']],
                     "original_info" => Constant::$original_desc[$_post['original']],
+                    "hot_info" => Constant::$hot_desc[$_post['hot']],
                     'created' => $_post['created_time'],
                     'edit_url' => Url::toRoute("/posts/set?id={$_post['id']}"),
                     'view_url' => $domains['blog'].Url::toRoute("/default/{$_post['id']}")
@@ -78,6 +80,7 @@ class PostsController extends BaseController
             if($id){
                 $post_info = Posts::findOne(['id' => $id]);
                 if($post_info){
+                    $domains = Yii::$app->params['domains'];
                     $info = [
                         "id" => $post_info['id'],
                         "title" => DataHelper::encode($post_info['title']),
@@ -85,7 +88,8 @@ class PostsController extends BaseController
                         "type" => $post_info['type'],
                         "status" => $post_info['status'],
                         "original" => $post_info['original'],
-                        "tags" => DataHelper::encode($post_info['tags'])
+                        "tags" => DataHelper::encode($post_info['tags']),
+                        'view_url' => $domains['blog'].Url::toRoute("/default/{$post_info['id']}")
                     ];
                 }
             }
@@ -157,7 +161,7 @@ class PostsController extends BaseController
 
         $post_id = $model_posts->id;
         BlogService::buildTags($post_id);
-        return $this->renderJSON([],"博文发布成功");
+        return $this->renderJSON(['post_id' => $post_id],"博文发布成功");
     }
 
     public function actionGet_tags(){
@@ -167,7 +171,7 @@ class PostsController extends BaseController
     }
     public function actionOps($id){
         $id = intval($id);
-        $act = trim($this->post("act","online"));
+        $act = trim($this->post("act","online","down-hot","go-hot"));
         if( !$id ){
             return $this->renderJSON([],"操作的博文可能不是你的吧!!",-1);
         }
@@ -177,12 +181,20 @@ class PostsController extends BaseController
             return $this->renderJSON([],"操作的博文可能不是你的吧!!",-1);
         }
 
-        if($act == "del" ){
-            $post_info->status = 0;
-            PostsTags::deleteAll(["posts_id" => $id]);
-        }else{
-            $post_info->status = 1;
-            BlogService::buildTags($id);
+        switch($act){
+            case "del":
+                $post_info->status = 0;
+                PostsTags::deleteAll(["posts_id" => $id]);
+                break;
+            case "online":
+                $post_info->status = 1;
+                BlogService::buildTags($id);
+                break;
+            case "go-hot":
+                $post_info->hot = 1;
+                break;
+            case "down-hot":
+                $post_info->hot = 0;
         }
 
         $post_info->updated_time = date("Y-m-d H:i:s");

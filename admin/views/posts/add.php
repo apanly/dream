@@ -12,10 +12,12 @@ StaticService::includeAppJsStatic("/js/posts/add.js",\admin\assets\AppAsset::cla
                 <div class="panel panel-default">
                     <div class="panel-heading ui-draggable-handle">
                         <h3 class="panel-title"><strong>写文章</strong></h3>
+
                         <ul class="panel-controls">
-                            <li>
-                                <a href="javascript:void(0);" >文章列表</a>
-                            </li>
+                            <?php if($info):?>
+                            <a href="<?=$info["view_url"];?>" target="_blank">预览文章</a>
+                            <?php endif;?>
+                            <a href="<?=Url::toRoute("/posts/index");?>" >文章列表</a>
                         </ul>
                     </div>
                     <div class="panel-body">

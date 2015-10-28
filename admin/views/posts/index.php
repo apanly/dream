@@ -11,7 +11,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                 <h3 class="panel-title">文章列表</h3>
                 <ul class="panel-controls">
                     <li><a href="javascript:void(0);" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                    <li><a href="<?=Url::toRoute("/posts/add");?>"><span class="fa fa-edit"></span></a></li>
+                    <li><a href="<?=Url::toRoute("/posts/set");?>"><span class="fa fa-edit"></span></a></li>
                 </ul>
             </div>
             <div class="panel-body">
@@ -20,12 +20,11 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                     <table class="table table-bordered table-striped table-actions">
                         <thead>
                         <tr>
-                            <th width="30">序号</th>
+                            <th>序号</th>
                             <th>标题</th>
-                            <th>原创状态</th>
-                            <th width="100">发布时间</th>
+                            <th>发布时间</th>
                             <th>状态</th>
-                            <th width="160">操作</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,10 +36,12 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                                     <strong><?=$_item['title'];?></strong>
                                 </a>
                             </td>
-                            <td><?=$_item['original_info']['desc'];?></td>
                             <td><?=$_item['created'];?></td>
                             <td>
-                                <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span></td>
+                                <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span>
+                                <span class="label label-<?=$_item['original_info']['class'];?>"><?=$_item['original_info']['desc'];?></span>
+                                <span class="label label-<?=$_item['hot_info']['class'];?>"><?=$_item['hot_info']['desc'];?></span>
+                            </td>
                             <td>
 
                                 <a href="<?=$_item['edit_url'];?>" class="btn btn-default btn-rounded btn-sm">
@@ -56,6 +57,16 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                                         <span class="fa fa-history"></span>展示
                                     </a>
                                 <?php endif;?>
+                                <?php if($_item['hot']):?>
+                                    <a href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm down-hot" data="<?=$_item['id'];?>">
+                                        <span class="fa fa-thumbs-down" ></span>下热门
+                                    </a>
+                                <?php else:?>
+                                    <a href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm go-hot" data="<?=$_item['id'];?>">
+                                        <span class="fa fa-thumbs-up"></span>上热门
+                                    </a>
+                                <?php endif;?>
+
                             </td>
                         </tr>
                         <?php endforeach;?>

@@ -21,4 +21,10 @@ class Constant {
         0 => ['class' => 'danger','desc' => "非原创"],
         1 => ['class' => 'success','desc' => "原创"]
     ];
+
+    public static $hot_desc = [
+        0 => ['class' => 'danger','desc' => "非热门"],
+        1 => ['class' => 'success','desc' => "热门"]
+    ];
+
 } 
