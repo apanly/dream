@@ -13,6 +13,9 @@ use yii\helpers\Url;
 class DefaultController extends BaseController
 {
     public function actionIndex(){
+        $type = intval( $this->get("type",1) );
+        $type = in_array($type,[1,2,3])?$type:1;
+
         $p = intval($this->get("p",1));
         if(!$p){
             $p = 1;
@@ -24,6 +27,14 @@ class DefaultController extends BaseController
 
 
         $query = Posts::find()->where(['status' => 1]);
+        if( $type == 2 ){
+            $query->andWhere([">","hot",0]);
+        }
+
+        if( $type == 3 ){
+            $query->andWhere(['original' => 1]);
+        }
+
         $total_count = $query->count();
 
         $posts_info = $query->orderBy("id desc")
@@ -61,7 +72,11 @@ class DefaultController extends BaseController
 
         return $this->render("index",[
             "data" => $data,
-            "page_info" => $page_info
+            "page_info" => $page_info,
+            "type" => $type,
+            "hot_kws" => [
+                "git","vagrant","微信","图书馆","缓存","二维码"
+            ]
         ]);
     }
 

@@ -13,8 +13,10 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
 
             <h1 class="post-title"><?=$info['title'];?></h1>
             <section class="post-meta">
-                <span class="author">作者：<a href="<?=$info['author']['link'];?>"><?=$info['author']['nickname'];?></a></span> •
-                <?php if($info['original']):?>【原创】&bull;<?php endif;?>
+                <span class="author">作者：<a href="<?=$info['author']['link'];?>"><?=$info['author']['nickname'];?></a></span> &bull;
+                <?php if($info['original']):?>
+                    <span class="label label-success">原创</span>&bull;
+                <?php endif;?>
                 <time class="post-date" ><?=$info['date'];?></time>
             </section>
         </header>

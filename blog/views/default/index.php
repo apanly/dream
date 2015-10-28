@@ -1,8 +1,34 @@
 <?php
 use \yii\helpers\Url;
 use \blog\components\StaticService;
+use \blog\components\UrlService;
 StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAsset::className());
 ?>
+<style type="text/css">
+#short_cut a{
+    padding: 5px 5px;
+}
+</style>
+
+<div class="col-md-12" id="short_cut">
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding: 5px 5px;">
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="<?=UrlService::buildUrl("/default/index",["type" => 1]);?>">文章列表</a>
+                    <a href="<?=UrlService::buildUrl("/default/index",["type" => 2]);?>">热门文章</a>
+                    <a href="<?=UrlService::buildUrl("/default/index",["type" => 3]);?>">原创文章</a>
+                </div>
+                <div class="col-md-4">
+                    <?php foreach($hot_kws as $_kw):?>
+                        <a href="/search/do?kw=<?=$_kw;?>" class="pull-right"><?=$_kw;?></a>
+                    <?php endforeach;?>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <main class="col-md-8 main-content">
 <?php if($data):?>
     <?php foreach($data as $_item):?>
@@ -20,7 +46,9 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
 
         <div class="post-meta">
             <span class="author">作者：<a href="<?=$_item['author']['link'];?>"><?=$_item['author']['nickname'];?></a></span> &bull;
-            <?php if($_item['original']):?>【原创】&bull;<?php endif;?>
+            <?php if($_item['original']):?>
+                <span class="label label-success">原创</span>&bull;
+            <?php endif;?>
             <time class="post-date"><?=$_item['date'];?></time>
         </div>
     </div>
@@ -49,11 +77,11 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
 <?php if($page_info['total_page']):?>
 <nav class="pagination" role="navigation">
     <?php if($page_info['previous']):?>
-    <a class="newer-posts" href="<?=Url::toRoute("/default/index?p=".($page_info['current']-1));?>"><i class="fa fa-angle-left"></i></a>
+    <a class="newer-posts" href="<?=UrlService::buildUrl("/default/index",["type" => $type,"p" => ($page_info['current']-1)]);?>" title="上一页"><i class="fa fa-angle-left"></i></a>
     <?php endif;?>
     <span class="page-number">第 <?=$page_info['current'];?> 页 &frasl; 共 <?=$page_info['total_page'];?> 页</span>
     <?php if($page_info['next']):?>
-        <a class="older-posts" href="<?=Url::toRoute("/default/index?p=".($page_info['current'] + 1));?>"><i class="fa fa-angle-right"></i></a>
+        <a class="older-posts" href="<?=UrlService::buildUrl("/default/index",["type" => $type,"p" => ($page_info['current']+1)]);?>" title="下一页"><i class="fa fa-angle-right"></i></a>
     <?php endif;?>
 </nav>
 <?php endif;?>
