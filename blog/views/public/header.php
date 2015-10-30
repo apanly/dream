@@ -19,7 +19,7 @@
             <div class="col-sm-12">
                 <div class="navbar-header">
                         <span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only">菜单</span>
                         <i class="fa fa-bars"></i>
                         </span>
                 </div>

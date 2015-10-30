@@ -20,10 +20,6 @@ AppAsset::register($this);
 
     <?php $this->head() ?>
     <?php $this->beginBody() ?>
-    <script>
-        var sidebar_left = false;
-        var recent_post_count = 3;
-    </script>
 </head>
 <body class="home-template">
 <?= Yii::$app->controller->renderPartial("/public/header", ["menu" => $this->params['menu']]); ?>
