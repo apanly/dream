@@ -91,16 +91,25 @@ class SearchController extends BaseController
         $domain_blog = Yii::$app->params['domains']['blog'];
 
         $index_urls = [
-            "/default/index",
+            "/default/index?type=1",
+            "/default/index?type=2",
+            "/default/index?type=3",
             "/library/index",
             "/richmedia/index",
             "/default/donation",
-            "/default/about"
+            "/default/about",
+            "http://m.vincentguo.cn"
         ];
 
         foreach ($index_urls as $_index_url) {
+            if( preg_match("/^http/",$_index_url) ){
+                $tmp_url = $_index_url;
+            }else{
+                $tmp_url = $domain_blog . UrlService::buildUrl($_index_url);
+            }
+
             $data[] = [
-                "loc"        => $domain_blog . UrlService::buildUrl($_index_url),
+                "loc"        => $tmp_url,
                 "priority"   => 1.0,
                 "lastmod"    => date("Y-m-d"),
                 "changefreq" => "daily"
