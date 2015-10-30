@@ -1,10 +1,10 @@
 ;
 var richmedia_index_ops = {
-    init:function(){
+    init: function () {
         this.p = 1;
         this.eventBind();
     },
-    eventBind:function(){
+    eventBind: function () {
         var that = this;
         $(window).scroll(function () {
             if (($(window).scrollTop() + $(window).height() > $(document).height() - 10) && stop) {
@@ -16,7 +16,7 @@ var richmedia_index_ops = {
                     url: common_ops.getUrlPrefix() + '/richmedia/search',
                     type: 'GET',
                     dataType: 'json',
-                    data: {'p':p},
+                    data: {'p': p},
                     success: function (res) {
                         if (res.code == 200) {
                             var t = setTimeout(function () {
@@ -37,6 +37,6 @@ var richmedia_index_ops = {
     }
 };
 
-$(document).ready(function(){
+$(document).ready(function () {
     richmedia_index_ops.init();
 });

@@ -1,51 +1,51 @@
 ;
 var common_ops = {
-    getUrlPrefix:function(){
-        return "/wap";
+    getUrlPrefix: function () {
+        return "";
     },
-    setCurrentNav:function(){
+    setCurrentNav: function () {
         var pathname = window.location.pathname;
 
-        idx = 1 ;
+        idx = 1;
 
-        if( pathname.indexOf("/wap/library") > -1 ){
+        if (pathname.indexOf("/library") > -1) {
             idx = 2;
         }
 
-        if( pathname.indexOf("/wap/richmedia") > -1 ){
+        if (pathname.indexOf("/richmedia") > -1) {
             idx = 3;
         }
 
-        if( pathname == "/wap/my/about" ){
+        if (pathname == "/my/about") {
             idx = 4;
         }
 
-        if( pathname == "/wap/my/wechat" ){
+        if (pathname == "/my/wechat") {
             idx = 5;
         }
 
 
-        if( idx < 1 ){
+        if (idx < 1) {
 
             return;
         }
 
-        var target = $( $(".am-navbar a").get(idx - 1) );
+        var target = $($(".am-navbar a").get(idx - 1));
         target.addClass("am-btn-success");
     },
-    getRequest:function() {
+    getRequest: function () {
         var url = location.search; //获取url中"?"符后的字串
         var theRequest = new Object();
         if (url.indexOf("?") != -1) {
             var str = url.substr(1);
             strs = str.split("&");
-            for(var i = 0; i < strs.length; i ++) {
-                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
             }
         }
         return theRequest;
     }
 };
-$(document).ready(function(){
+$(document).ready(function () {
     common_ops.setCurrentNav();
 });

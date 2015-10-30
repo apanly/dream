@@ -73,7 +73,7 @@
                 },
                 callbacks
             ),
-            // Select all links with the same data-gallery attribute:
+        // Select all links with the same data-gallery attribute:
             links = $('[data-gallery="' + id + '"]');
         if (options.filter) {
             links = links.filter(options.filter);

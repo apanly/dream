@@ -16,27 +16,29 @@ StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery
 StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/jquery.blueimp-gallery.js", \blog\assets\AppAsset::className());
 ?>
 <style type="text/css">
-    .thumbnail{
+    .thumbnail {
         position: relative;
     }
+
     .rich_media_title {
         text-align: left;
         position: absolute;
         bottom: 4px;
         width: 97%;
         background-color: #000000;
-        filter:alpha(opacity=50);
-        -moz-opacity:0.5;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
         -khtml-opacity: 0.5;
         opacity: 0.5;
         color: #ffffff;
         height: 30px;
         line-height: 30px;
     }
-    .rich_media_title span{
+
+    .rich_media_title span {
         color: #ffffff;
-        filter:alpha(opacity=100);
-        -moz-opacity:1;
+        filter: alpha(opacity=100);
+        -moz-opacity: 1;
         -khtml-opacity: 1;
         opacity: 1;
     }
@@ -46,24 +48,27 @@ StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/jquery.blueimp-
         <div class="row">
             <?php foreach ($data as $_item): ?>
                 <div class="col-sm-6 col-md-3">
-                <?php if($_item['type'] == "image"):?>
-                    <a href="<?= $_item['src_url']; ?>?format=/w/600" class="thumbnail" data-gallery>
-                        <img src="<?= $_item['src_url']; ?>?format=/h/200" style="height: 200px; width: 100%; display: block;">
-                        <div class="rich_media_title">
+                    <?php if ($_item['type'] == "image"): ?>
+                        <a href="<?= $_item['src_url']; ?>?format=/w/600" class="thumbnail" data-gallery>
+                            <img src="<?= $_item['src_url']; ?>?format=/h/200"
+                                 style="height: 200px; width: 100%; display: block;">
+
+                            <div class="rich_media_title">
 
                                 <span>
                                     <i class="glyphicon glyphicon-map-marker"></i>
-                                    <?=$_item["address"]?$_item["address"]:"囧,无GPS信息";?>
+                                    <?= $_item["address"] ? $_item["address"] : "囧,无GPS信息"; ?>
                                 </span>
-                        </div>
-                    </a>
+                            </div>
+                        </a>
 
-                <?php else:?>
-                    <video poster="<?=$_item['thumb_url'];?>"  controls="controls" preload="auto" style="height: 200px; width: 100%; display: block;">
-                        <source src="<?=$_item['src_url'];?>" type="video/mp4">
-                        <p>&nbsp;</p>
-                    </video>
-                <?php endif;?>
+                    <?php else: ?>
+                        <video poster="<?= $_item['thumb_url']; ?>" controls="controls" preload="auto"
+                               style="height: 200px; width: 100%; display: block;">
+                            <source src="<?= $_item['src_url']; ?>" type="video/mp4">
+                            <p>&nbsp;</p>
+                        </video>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>

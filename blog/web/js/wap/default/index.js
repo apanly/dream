@@ -1,14 +1,14 @@
 ;
 var default_index_ops = {
-    init:function(){
+    init: function () {
         this.p = 1;
-        this.type = parseInt( $("#type").val() );
+        this.type = parseInt($("#type").val());
         this.eventBind();
 
     },
-    eventBind:function(){
+    eventBind: function () {
         var that = this;
-        $($("#se_btn a").get( (that.type - 1) )).addClass("am-btn-success");
+        $($("#se_btn a").get((that.type - 1))).addClass("am-btn-success");
 
         $(window).scroll(function () {
             if (($(window).scrollTop() + $(window).height() > $(document).height() - 10) && stop) {
@@ -20,7 +20,7 @@ var default_index_ops = {
                     url: common_ops.getUrlPrefix() + '/default/search',
                     type: 'GET',
                     dataType: 'json',
-                    data: {'p':p,'type':that.type},
+                    data: {'p': p, 'type': that.type},
                     success: function (res) {
                         if (res.code == 200) {
                             var t = setTimeout(function () {
@@ -41,6 +41,6 @@ var default_index_ops = {
     }
 };
 
-$(document).ready(function(){
+$(document).ready(function () {
     default_index_ops.init();
 });

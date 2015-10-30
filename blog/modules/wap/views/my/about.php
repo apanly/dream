@@ -1,9 +1,9 @@
-<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
     <h2 class="am-titlebar-title ">
         基本信息
     </h2>
 </div>
-<div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+<div data-am-widget="list_news" class="am-list-news am-list-news-default">
     <div class="am-list-news-bd">
         <ul class="am-list">
             <li class="am-g am-list-item-dated">
@@ -40,12 +40,12 @@
     </div>
 
 </div>
-<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
     <h2 class="am-titlebar-title ">
         职业技能
     </h2>
 </div>
-<div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+<div data-am-widget="list_news" class="am-list-news am-list-news-default">
     <div class="am-list-news-bd">
         <ul class="am-list">
             <li class="am-g am-list-item-dated">
@@ -84,13 +84,13 @@
 </div>
 
 
-<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
     <h2 class="am-titlebar-title ">
         工作经历
     </h2>
 </div>
 
-<div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+<div data-am-widget="list_news" class="am-list-news am-list-news-default">
     <div class="am-list-news-bd">
         <ul class="am-list">
             <li class="am-g am-list-item-dated">

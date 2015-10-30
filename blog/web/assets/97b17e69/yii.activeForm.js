@@ -303,7 +303,7 @@
             });
 
             // ajax validation
-            $.when.apply(this, deferreds).always(function() {
+            $.when.apply(this, deferreds).always(function () {
                 // Remove empty message arrays
                 for (var i in messages) {
                     if (0 === messages[i].length) {
@@ -460,7 +460,7 @@
             methods.validate.call($form);
         }, validationDelay ? validationDelay : 200);
     };
-    
+
     /**
      * Returns an array prototype with a shortcut method for adding a new deferred.
      * The context of the callback will be the deferred object so it can be resolved like ```this.resolve()```
@@ -468,7 +468,7 @@
      */
     var deferredArray = function () {
         var array = [];
-        array.add = function(callback) {
+        array.add = function (callback) {
             this.push(new $.Deferred(callback));
         };
         return array;

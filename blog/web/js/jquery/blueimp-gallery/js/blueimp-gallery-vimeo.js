@@ -148,7 +148,7 @@
             }
             if (this.ready) {
                 if (!this.hasPlayed && (this.clickToPlay || (window.navigator &&
-                        /iP(hone|od|ad)/.test(window.navigator.platform)))) {
+                    /iP(hone|od|ad)/.test(window.navigator.platform)))) {
                     // Manually trigger the playing callback if clickToPlay
                     // is enabled and to workaround a limitation in iOS,
                     // which requires synchronous user interaction to start

@@ -8,11 +8,11 @@ use common\models\posts\PostsTags;
 use Yii;
 
 
-
 class PublicController extends BaseController
 {
-    public function actionTags(){
-        $ret = [];
+    public function actionTags()
+    {
+        $ret  = [];
         $tags = PostsTags::find()
             ->select("tag,count(*) as num ")
             ->groupBy("tag")
@@ -20,15 +20,16 @@ class PublicController extends BaseController
             ->limit(20)
             ->all();
 
-        if($tags){
-            foreach($tags as $_tag){
+        if ($tags) {
+            foreach ($tags as $_tag) {
                 $ret[] = $_tag['tag'];
             }
         }
         return $this->renderJSON($ret);
     }
 
-    public function actionBlogs(){
+    public function actionBlogs()
+    {
         $ret = [
             "hots" => [],
             "news" => []
@@ -46,22 +47,22 @@ class PublicController extends BaseController
             ->limit(3)
             ->all();
 
-        if($hots){
-            foreach($hots as $_hot){
+        if ($hots) {
+            foreach ($hots as $_hot) {
                 $ret['hots'][] = [
-                    "id" => $_hot['id'],
+                    "id"    => $_hot['id'],
                     "title" => $_hot['title'],
-                    "url" => "/default/{$_hot['id']}"
+                    "url"   => "/default/{$_hot['id']}"
                 ];
             }
         }
 
-        if($news){
-            foreach($news as $_new){
+        if ($news) {
+            foreach ($news as $_new) {
                 $ret['news'][] = [
-                    "id" => $_new['id'],
+                    "id"    => $_new['id'],
                     "title" => $_new['title'],
-                    "url" => "/default/{$_new['id']}"
+                    "url"   => "/default/{$_new['id']}"
                 ];
             }
         }

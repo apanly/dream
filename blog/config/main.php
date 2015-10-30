@@ -7,30 +7,33 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-blog',
-    'basePath' => dirname(__DIR__),
+    'id'                  => 'app-blog',
+    'basePath'            => dirname(__DIR__),
     'controllerNamespace' => 'blog\controllers',
-    'bootstrap' => ['log'],
-    "timezone"  =>  "Asia/Shanghai",
-    'modules' => [
-        'wap'=>[
-            'class' =>'blog\modules\wap\WapModule'
+    'bootstrap'           => ['log'],
+    "timezone"            => "Asia/Shanghai",
+    'modules'             => [
+        'wap'  => [
+            'class' => 'blog\modules\wap\WapModule'
         ],
+        'game' => [
+            'class' => 'blog\modules\game\GameModule'
+        ]
     ],
-    'components' => [
-        'log' => [
+    'components'          => [
+        'log'          => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
+            'targets'    => [
                 [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning','trace'],
+                    'class'  => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning', 'trace'],
                 ],
             ],
         ],
-        "urlManager" => require (__DIR__ . '/router.php'),
+        "urlManager"   => require(__DIR__ . '/router.php'),
         'errorHandler' => [
             'errorAction' => 'error/error',
         ],
     ],
-    'params' => $params,
+    'params'              => $params,
 ];

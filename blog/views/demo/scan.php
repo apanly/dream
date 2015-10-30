@@ -1,6 +1,7 @@
 <?php
 use \blog\components\StaticService;
-StaticService::includeAppJsStatic("/js/demo/scan.js",\blog\assets\AppAsset::className());
+
+StaticService::includeAppJsStatic("/js/demo/scan.js", \blog\assets\AppAsset::className());
 ?>
 <main class="col-md-12 main-content">
     <article class="post page">
@@ -13,8 +14,10 @@ StaticService::includeAppJsStatic("/js/demo/scan.js",\blog\assets\AppAsset::clas
             </div>
             <div class="row result" style="display: none;">
                 <h3>扫描成功！</h3>
+
                 <p class="nickname"> -- </p>
-                <p class="email"> --  </p>
+
+                <p class="email"> -- </p>
             </div>
         </section>
     </article>

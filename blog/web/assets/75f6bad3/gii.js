@@ -154,11 +154,11 @@ yii.gii = (function ($) {
             // model generator: translate table name to model class
             $('#model-generator #generator-tablename').on('blur', function () {
                 var tableName = $(this).val();
-                if ($('#generator-modelclass').val()=='' && tableName && tableName.indexOf('*') === -1){
-                    var modelClass='';
-                    $.each(tableName.split('_'), function() {
-                        if(this.length>0)
-                            modelClass+=this.substring(0,1).toUpperCase()+this.substring(1);
+                if ($('#generator-modelclass').val() == '' && tableName && tableName.indexOf('*') === -1) {
+                    var modelClass = '';
+                    $.each(tableName.split('_'), function () {
+                        if (this.length > 0)
+                            modelClass += this.substring(0, 1).toUpperCase() + this.substring(1);
                     });
                     $('#generator-modelclass').val(modelClass);
                 }

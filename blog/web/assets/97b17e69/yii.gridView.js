@@ -49,7 +49,7 @@
          */
         afterFilter: 'afterFilter'
     };
-    
+
     var methods = {
         init: function (options) {
             return this.each(function () {
@@ -103,7 +103,7 @@
             $.each(data, function (name, value) {
                 $form.append($('<input type="hidden" name="t" value="" />').attr('name', name).val(value));
             });
-            
+
             event = $.Event(gridEvents.beforeFilter);
             $grid.trigger(event);
             if (event.result === false) {
@@ -111,7 +111,7 @@
             }
 
             $form.submit();
-            
+
             $grid.trigger(gridEvents.afterFilter);
         },
 

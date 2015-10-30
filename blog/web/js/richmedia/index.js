@@ -1,13 +1,13 @@
 ;
 var richmedia_index_ops = {
-    init:function(){
+    init: function () {
         this.eventBind();
     },
-    eventBind:function(){
+    eventBind: function () {
 
     }
 };
 
-$(document).ready(function(){
+$(document).ready(function () {
     richmedia_index_ops.init();
 });

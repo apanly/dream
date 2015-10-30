@@ -1,46 +1,50 @@
 .loading {
-    display:none;
-    width:110px;
-    height:20px;
-    margin:0 auto;
-    padding:10px 0
+    display: none;
+    width: 110px;
+    height: 20px;
+    margin: 0 auto;
+    padding: 10px 0
 }
-.loading:before,.loading:after{
-    content:" ";display:table
+
+.loading:before, .loading:after {
+    content: " ";
+    display: table
 }
 
 .loading:after {
-    clear:both
+    clear: both
 }
 
 .loading .bubble {
-    float:left;
-    width:20px;
-    height:20px;
-    position:relative;
-    margin-right:10px
+    float: left;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    margin-right: 10px
 }
-.loading .bubble .bubble1,.loading .bubble .bubble2 {
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    background:#969696;
-    opacity:.4;
-    filter:alpha(opacity=.4);
-    position:absolute;
-    top:0;
-    left:0;
-    -webkit-animation:bounce 2s infinite ease-in-out
+
+.loading .bubble .bubble1, .loading .bubble .bubble2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #969696;
+    opacity: .4;
+    filter: alpha(opacity=.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: bounce 2s infinite ease-in-out
 }
+
 .loading .bubble .bubble2 {
-    -webkit-animation-delay:-1s
+    -webkit-animation-delay: -1s
 }
 
 .loading .loading_txt {
-    width:80px;
-    height:20px;
-    float:left;
-    font-size:1.4rem;
-    color:#969696;
-    line-height:20px
+    width: 80px;
+    height: 20px;
+    float: left;
+    font-size: 1.4rem;
+    color: #969696;
+    line-height: 20px
 }

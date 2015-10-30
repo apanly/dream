@@ -1,9 +1,8 @@
 <?php
-namespace blog\modules\wap\controllers\common;
+namespace blog\modules\game\controllers\common;
 
 use blog\components\UrlService;
 use common\components\BaseWebController;
-use common\components\UtilHelper;
 
 class BaseController extends BaseWebController
 {
@@ -15,7 +14,7 @@ class BaseController extends BaseWebController
         parent::__construct($id, $module, $config = []);
         $view               = \Yii::$app->view;
         $view->params['id'] = $id;
-        $this->layout       = "main";
+        $this->layout       = false;
     }
 
     public function beforeAction($action)

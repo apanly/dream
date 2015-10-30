@@ -58,10 +58,12 @@
                 options = this.options,
                 videoContainerNode = this.elementPrototype.cloneNode(false),
                 videoContainer = $(videoContainerNode),
-                errorArgs = [{
-                    type: 'error',
-                    target: videoContainerNode
-                }],
+                errorArgs = [
+                    {
+                        type: 'error',
+                        target: videoContainerNode
+                    }
+                ],
                 video = videoInterface || document.createElement('video'),
                 url = this.getItemProperty(obj, options.urlProperty),
                 type = this.getItemProperty(obj, options.typeProperty),
@@ -159,10 +161,12 @@
                 );
             }
             videoContainerNode.appendChild(playMediaControl);
-            this.setTimeout(callback, [{
-                type: 'load',
-                target: videoContainerNode
-            }]);
+            this.setTimeout(callback, [
+                {
+                    type: 'load',
+                    target: videoContainerNode
+                }
+            ]);
             return videoContainerNode;
         }
     });
