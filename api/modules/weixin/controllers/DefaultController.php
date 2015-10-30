@@ -156,7 +156,7 @@ EOT;
         $list = [];
         if( $post_list ){
             $domain_static = \Yii::$app->params['domains']['static'];
-            $domain_blog = \Yii::$app->params['domains']['blog'];
+            $domain_m = \Yii::$app->params['domains']['m'];
             foreach($post_list as $_item){
                 $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
                 if( $_item['image_url'] ){
@@ -166,7 +166,7 @@ EOT;
                     "title" => $_item['title'],
                     "description" => $_item['title'],
                     "picurl" => $tmp_image,
-                    "url" => "{$domain_blog}/default/".$_item['id']
+                    "url" => "{$domain_m}/default/".$_item['id']
                 ];
             }
         }
@@ -186,7 +186,7 @@ EOT;
         $list = [];
         if( $post_list ){
             $domain_static = \Yii::$app->params['domains']['static'];
-            $domain_blog = \Yii::$app->params['domains']['blog'];
+            $domain_m = \Yii::$app->params['domains']['m'];
             foreach($post_list as $_item){
                 $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
                 if( $_item['image_url'] ){
@@ -196,7 +196,7 @@ EOT;
                     "title" => $_item['title'],
                     "description" => $_item['title'],
                     "picurl" => $tmp_image,
-                    "url" => "{$domain_blog}/default/".$_item['id']
+                    "url" => "{$domain_m}/default/".$_item['id']
                 ];
             }
         }
@@ -214,13 +214,13 @@ EOT;
 
         $list = [];
         if( $book_list ){
-            $domain_blog = \Yii::$app->params['domains']['blog'];
+            $domain_m = \Yii::$app->params['domains']['m'];
             foreach($book_list as $_item){
                 $list[] = [
                     "title" => $_item['subtitle'],
                     "description" => $_item['subtitle'],
                     "picurl" => $_item['origin_image_url'],
-                    "url" => "{$domain_blog}/library/detail/".$_item['id']
+                    "url" => "{$domain_m}/library/detail/".$_item['id']
                 ];
             }
         }

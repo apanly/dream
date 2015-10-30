@@ -74,7 +74,7 @@
         proxy_set_header Host www.vincentguo.cn;
         location / {
 
-            rewrite ^(.*)$ /wap/$1 break;
+            rewrite ^(.*)$ /wap$1 break;
             proxy_pass http://127.0.0.1:80;
         }
 

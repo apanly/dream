@@ -6,7 +6,9 @@ return [
     "domains" => [
         "blog" => "http://www.dr.local.com",
         "admin" => "http://admin.dr.local.com",
-        "static" => "http://static.dr.local.com"
+        "static" => "http://static.dr.local.com",
+        "pic1" => "http://pic1.vincentguo.cn",
+        "m"  => "http://m.vincentguo.cn",
     ],
     "author" => [
         "nickname" => "郭大帅哥",
