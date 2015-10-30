@@ -5,9 +5,16 @@ if( isset($_GET['a']) || isset($_GET['c']) ){
     exit();
 }
 
-if( isset($_SERVER['REQUEST_URI']) && preg_match("/^\/default\/\d+$/",$_SERVER['REQUEST_URI']) ){
+//www
+if (isset($_SERVER['REQUEST_URI']) && preg_match("/^\/default\/\d+$/", $_SERVER['REQUEST_URI'])) {
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: {$_SERVER['REQUEST_URI']}.html");
+    exit();
+}
+//module wap
+if (isset($_SERVER['REQUEST_URI']) && preg_match("/^\/wap\/default\/\d+$/", $_SERVER['REQUEST_URI'])) {
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: ".str_replace("/wap","",$_SERVER['REQUEST_URI']).".html");
     exit();
 }
 

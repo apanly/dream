@@ -27,15 +27,14 @@ class BaseController extends Controller
     public function __construct($id, $module, $config = [])
     {
         parent::__construct($id, $module, $config = []);
-        $view                      = Yii::$app->view;
-        $view->params['id']        = $id;
-        $view->params['menu']      = $this->getMenu();
+        $view = Yii::$app->view;
+        $view->params['id'] = $id;
+        $view->params['menu'] = $this->getMenu();
         $view->params['copyright'] = Yii::$app->params['Copyright'];
     }
 
     public function beforeAction($action)
     {
-
         $this->setTitle();
         $this->setDescription();
         $this->setKeywords();
@@ -77,20 +76,20 @@ class BaseController extends Controller
 
     public function setKeywords($keywords = "")
     {
-        $keywords                                   = $keywords ? $keywords : Yii::$app->params['seo']['keywords'];
+        $keywords  = $keywords ? $keywords : Yii::$app->params['seo']['keywords'];
         $this->getView()->params['seo']['keywords'] = $keywords;
     }
 
     public function setDescription($description = "")
     {
-        $description                                   = $description ? $description : Yii::$app->params['seo']['description'];
+        $description = $description ? $description : Yii::$app->params['seo']['description'];
         $this->getView()->params['seo']['description'] = $description;
     }
 
 
     public function setHeaderTitle($title)
     {
-        $view                         = Yii::$app->view;
+        $view = Yii::$app->view;
         $view->params['header_title'] = $title;
 
     }
@@ -113,7 +112,6 @@ class BaseController extends Controller
     {
 
         $func = $this->get("jsonp", "jsonp_func");
-
 
         echo $func . "(" . json_encode([
                 "code"   => $code,
