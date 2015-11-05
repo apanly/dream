@@ -20,6 +20,10 @@ class BackupController extends  BaseController {
 
         $command = "cd /data/www/backup/ && /usr/bin/mysqldump -u{$mysql_user}".($mysql_passwd?"  -p{$mysql_passwd}":" ").  " {$db_name} --skip-lock-tables > {$filename}";
         exec($command);
-        $this->echoLog($command);
+        $this->echoLog("backp mysql:".$command);
+
+        $command = "cd /data/www/backup/ && tar -zcf {$filename}.tar.gz {$filename} && rm {$filename}";
+        exec($command);
+        $this->echoLog("tar backup_mysql:".$command);
     }
 } 
