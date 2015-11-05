@@ -18,7 +18,7 @@ class BackupController extends  BaseController {
         $mysql_passwd = $config_mysql['password'];
         $db_name = "dream_blog";
 
-        $command = "cd /data/www/backup/ && /usr/bin/mysqldump -u{$mysql_user}".($mysql_passwd?"-p{$mysql_passwd}":"").  " {$db_name} > {$filename}";
+        $command = "cd /data/www/backup/ && /usr/bin/mysqldump -u{$mysql_user}".($mysql_passwd?"  -p{$mysql_passwd}":" ").  " {$db_name} > {$filename}";
         exec($command);
         $this->echoLog($command);
     }
