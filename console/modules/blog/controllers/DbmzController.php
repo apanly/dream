@@ -7,7 +7,9 @@ use common\service\DoubanmzService;
 use console\modules\blog\Blog;
 
 class DbmzController extends Blog{
-
+    /*
+     * http://huaban.com/boards/25007076/ 这个网站需要加入进来
+     * */
     public function actionRun(){
         $url = "http://www.dbmeinv.com/?p=&pager_offset=";
         for($idx = 10 ;$idx >= 1;$idx-- ){

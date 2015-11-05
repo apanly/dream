@@ -13,9 +13,8 @@ use common\service\SpiderService;
 use console\modules\blog\Blog;
 use \Yii;
 
+
 class SpiderController extends Blog{
-
-
 
     public function actionRobot(){
 
