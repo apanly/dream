@@ -16,7 +16,7 @@ use Yii;
  * @property string $updated_time
  * @property string $created_time
  */
-class User extends \yii\db\ActiveRecord
+class Admin extends \yii\db\ActiveRecord
 {
 
     private $pass_salt = "yc^U2MvA@Or3rq@Y";
@@ -34,7 +34,7 @@ class User extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'user';
+        return 'admin';
     }
 
     /**

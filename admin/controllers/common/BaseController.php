@@ -6,7 +6,7 @@ use Yii;
 use yii\web\HttpException;
 use yii\log\FileTarget;
 use \yii\helpers\Url;
-use common\models\user\User;
+use common\models\user\Admin;
 
 class BaseController extends Controller
 {
@@ -56,7 +56,7 @@ class BaseController extends Controller
         }
         if($uid && preg_match("/^\d+$/",$uid)){
 
-            $userinfo = User::findOne(['uid' => $uid]);
+            $userinfo = Admin::findOne(['uid' => $uid]);
             if(!$userinfo){
                 $this->removeAuthToken();
                 return false;

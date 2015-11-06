@@ -21,6 +21,11 @@ return [
             'appid' => 'wx936957aebefb4e76',
             'appsecret' => 'xxx',
             'apptoken' => 'xxx'
+        ],
+        'oauth' => [
+            'appid' => 'xxxx',
+            'appsecret' => 'xx',
+            'apptoken' => 'xx'
         ]
     ],
     'upload' => [

@@ -4,7 +4,7 @@ namespace admin\controllers;
 
 use admin\controllers\common\BaseController;
 use Yii;
-use common\models\user\User;
+use common\models\user\Admin;
 
 class AuthController extends BaseController
 {
@@ -28,7 +28,7 @@ class AuthController extends BaseController
             return $this->renderJSON([],"请输入符合规范的手机号码!",-1);
         }
 
-        $user_info = User::findOne(['mobile' => $mobile]);
+        $user_info = Admin::findOne(['mobile' => $mobile]);
         if(!$user_info){
             return $this->renderJSON([],"请输入正确的手机号码和密码!",-1);
         }
