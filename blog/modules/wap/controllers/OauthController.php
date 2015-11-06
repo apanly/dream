@@ -3,6 +3,7 @@ namespace blog\modules\wap\controllers;
 
 use blog\components\UrlService;
 use \blog\modules\wap\controllers\common\BaseController;
+use common\components\HttpClient;
 use common\components\HttpLib;
 use Yii;
 
@@ -34,9 +35,7 @@ class OauthController extends BaseController{
         $appid = $this->appid;
         $appsecret = $this->appsecret;
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$appsecret."&code=".$code."&grant_type=authorization_code";
-        $http = new HttpLib();
-        $ret = $http->get($url,[]);
-        var_dump($ret);exit();
+        $ret = HttpClient::get($url,[]);
         $data = @json_decode($ret,true);
         if(empty($data) || isset($data['errcode'])){
             return $this->goHome();
