@@ -1,10 +1,8 @@
 <?php
 namespace blog\modules\wap\controllers;
 
-use blog\components\UrlService;
 use \blog\modules\wap\controllers\common\BaseController;
 use common\components\HttpClient;
-use common\components\HttpLib;
 use Yii;
 
 class OauthController extends BaseController{
