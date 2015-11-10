@@ -178,7 +178,7 @@ EOT;
 
     private function getOriginalBlog(){
         $post_list = Posts::find()
-            ->where([ 'original' => 1 ])
+            ->where([ 'original' => 1,'status' => 1 ])
             ->orderBy("updated_time desc")
             ->limit(5)
             ->all();
