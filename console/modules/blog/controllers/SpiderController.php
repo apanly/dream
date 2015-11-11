@@ -153,6 +153,39 @@ class SpiderController extends Blog{
         return $ret;
     }
 
+    private function crawl_jobbole($url){
+        $ret = [];
+        $content = $this->getContentByUrl($url);
+        if(!$content){
+            return $ret;
+        }
+        $reg_rule = "/<div\s*class=\"entry\">(.*?)<\/div>\s*<!-- END .entry -->/is";
+        preg_match($reg_rule,$content,$matches);
+        if( $matches && $matches[1] ){
+            $search = [
+                "'<script[^>]*?>.*?</script>'si", // 去掉 javascript
+                "'<style[^>]*?>.*?</style>'si", // 去掉 css
+                "'<div\s*class=\'copyright-area\'>.*?</div>'si",
+                "'<div\s*class=\"post-adds\">.*?</div>\s*</div>'si",
+                "'<!-- BEGIN #author-bio -->'",
+                "'<!-- END #author-bio -->'"
+            ];
+            $replace = [
+                "",""
+            ];
+            $ret['content'] = trim( preg_replace($search,"",$matches[1]) );
+
+        }
+
+        $reg_rule = "/<div\s*class=\"entry-header\">\s*<h1>(.*?)<\/h1>\s*<\/div>/is";
+        preg_match($reg_rule,$content,$matches);
+        if( $matches && $matches[1] ){
+            $ret['title'] = trim( $matches[1] );
+        }
+
+        return $ret;
+    }
+
     private function getContentByUrl($url){
         $target = new HttpLib();
         $ret = $target->get($url);
