@@ -15,7 +15,7 @@ class BaseController extends BaseBlogController
         parent::__construct($id, $module, $config = []);
         $view  = \Yii::$app->view;
         $view->params['id'] = $id;
-        $this->layout = false;
+        $this->layout = "main";
     }
 
     public function beforeAction($action)

@@ -18,4 +18,11 @@ class UrlService
         return Url::toRoute(array_merge([$uri], $params));
     }
 
+
+    public static function buildGameUrl($uri, $params = [])
+    {
+        $uri = "/game" . $uri;
+        return Url::toRoute(array_merge([$uri], $params));
+    }
+
 } 
