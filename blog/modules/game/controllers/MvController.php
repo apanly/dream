@@ -14,7 +14,6 @@ class MvController extends BaseController
             $p = 1;
         }
 
-
         $pagesize = 10;
         $query = Doubanmz::find();
 
@@ -48,6 +47,7 @@ class MvController extends BaseController
             $has_pre = true;
         }
 
+        $this->setTitle("美女也耍流氓 -- 一睹眼福");
         return $this->render("index",[
             "list" => $data,
             "p" => $p,
