@@ -18,7 +18,10 @@ return [
         ],
         'game' => [
             'class' => 'blog\modules\game\GameModule'
-        ]
+        ],
+        'weixin' => [
+            'class' => 'blog\modules\weixin\WeixinModule'
+        ],
     ],
     'components'          => [
         'log'          => [

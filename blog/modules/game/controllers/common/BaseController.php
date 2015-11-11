@@ -30,13 +30,13 @@ class BaseController extends BaseWebController
 
     public function setKeywords($keywords = "")
     {
-        $keywords                                   = $keywords ? $keywords : \Yii::$app->params['seo']['keywords'];
+        $keywords  = $keywords ? $keywords : \Yii::$app->params['seo']['keywords'];
         $this->getView()->params['seo']['keywords'] = $keywords;
     }
 
     public function setDescription($description = "")
     {
-        $description                                   = $description ? $description : \Yii::$app->params['seo']['description'];
+        $description  = $description ? $description : \Yii::$app->params['seo']['description'];
         $this->getView()->params['seo']['description'] = $description;
     }
 

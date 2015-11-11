@@ -6,7 +6,7 @@ use blog\modules\game\controllers\common\BaseController;
 
 class DefaultController extends BaseController
 {
-    public function actionData(){
-
+    public function actionIndex(){
+        var_dump($this->getCookie("openid"));
     }
 } 
