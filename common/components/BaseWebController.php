@@ -9,7 +9,6 @@ class BaseWebController extends Controller
 {
     public $enableCsrfValidation = false;
 
-
     public function setTitle($title = "郭大帅哥的博客"){
         $this->getView()->title = $title;
     }

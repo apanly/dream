@@ -1,10 +1,11 @@
 <?php
 namespace blog\modules\game\controllers\common;
 
+use blog\components\BaseBlogController;
 use blog\components\UrlService;
-use common\components\BaseWebController;
 
-class BaseController extends BaseWebController
+
+class BaseController extends BaseBlogController
 {
 
     protected $allowAllAction = [];
@@ -12,9 +13,9 @@ class BaseController extends BaseWebController
     public function __construct($id, $module, $config = [])
     {
         parent::__construct($id, $module, $config = []);
-        $view               = \Yii::$app->view;
+        $view  = \Yii::$app->view;
         $view->params['id'] = $id;
-        $this->layout       = false;
+        $this->layout = false;
     }
 
     public function beforeAction($action)

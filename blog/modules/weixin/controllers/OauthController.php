@@ -1,15 +1,15 @@
 <?php
 namespace blog\modules\weixin\controllers;
 
+use blog\components\BaseBlogController;
 use blog\components\UrlService;
-use common\components\BaseWebController;
 use common\components\HttpClient;
 use common\models\user\UserOpenidUnionid;
 use common\models\user\User;
 use common\service\GlobalUrlService;
 use Yii;
 
-class OauthController extends BaseWebController{
+class OauthController extends BaseBlogController{
 
     private $appid = '';
     private $appsecret = '';
@@ -64,12 +64,15 @@ class OauthController extends BaseWebController{
             $model_bind->updated_time = $date_now;
             $model_bind->created_time = $date_now;
             $model_bind->save(0);
+        }else{
+            $user_info  = User::findOne(['uid' => $reg_bind['uid'] ]);
         }
-        $this->setCookie("openid",$openid);
+
+        $this->createLoginStatus($user_info);
 
         $url = UrlService::buildUrl("/");
         if( $state == "game" ){
-            $url = GlobalUrlService::buildUrl("/game/default/index");
+            $url = GlobalUrlService::buildUrl("/game/mv/index");
         }
 
         return $this->redirect($url);
