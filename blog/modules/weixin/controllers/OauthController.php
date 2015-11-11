@@ -46,14 +46,19 @@ class OauthController extends BaseWebController{
         $reg_bind = UserOpenidUnionid::findOne(["openid" => $openid ]);
         if( !$reg_bind ){
             $date_now = date("Y-m-d H:i:s");
-            $model_user = new User();
-            $model_user->nicknane = "微信用户".substr($openid,-10);
-            $model_user->updated_time = $date_now;
-            $model_user->created_time = $date_now;
-            $model_user->save(0);
+            $nickname = "微信用户".substr($openid,-10);
+            $user_info  = User::findOne(['nickname' => $nickname]);
+            if( !$user_info ){
+                $model_user = new User();
+                $model_user->nicknane = $nickname;
+                $model_user->updated_time = $date_now;
+                $model_user->created_time = $date_now;
+                $model_user->save(0);
+                $user_info = $model_user;
+            }
 
             $model_bind = new UserOpenidUnionid();
-            $model_bind->uid = $model_user['uid'];
+            $model_bind->uid = $user_info['uid'];
             $model_bind->openid = $openid;
             $model_bind->unionid = '';
             $model_bind->updated_time = $date_now;
