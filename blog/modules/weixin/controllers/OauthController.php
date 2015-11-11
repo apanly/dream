@@ -41,6 +41,7 @@ class OauthController extends BaseWebController{
         if(empty($data) || isset($data['errcode'])){
             return $this->goHome();
         }
+        var_dump($data);exit();
 
         $openid = $data['openid'];
         $reg_bind = UserOpenidUnionid::findOne(["openid" => $openid ]);
