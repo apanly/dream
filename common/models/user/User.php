@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "user".
  *
  * @property integer $uid
- * @property string $nicknane
+ * @property string $nickname
  * @property string $mobile
  * @property string $updated_time
  * @property string $created_time
@@ -38,7 +38,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['updated_time', 'created_time'], 'safe'],
-            [['nicknane'], 'string', 'max' => 20],
+            [['nickname'], 'string', 'max' => 20],
             [['mobile'], 'string', 'max' => 11]
         ];
     }
@@ -50,7 +50,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'uid' => 'Uid',
-            'nicknane' => 'Nicknane',
+            'nickname' => 'Nickname',
             'mobile' => 'Mobile',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',

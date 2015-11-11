@@ -50,7 +50,7 @@ class OauthController extends BaseWebController{
             $user_info  = User::findOne(['nickname' => $nickname]);
             if( !$user_info ){
                 $model_user = new User();
-                $model_user->nicknane = $nickname;
+                $model_user->nickname = $nickname;
                 $model_user->updated_time = $date_now;
                 $model_user->created_time = $date_now;
                 $model_user->save(0);
