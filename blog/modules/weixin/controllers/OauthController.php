@@ -27,8 +27,8 @@ class OauthController extends BaseWebController{
 
     public function actionToken(){
         $this->setWeixinConfig();
-        $code = isset($_GET['code'])?$_GET['code']:'';
-        $state = isset($_GET['state'])?$_GET['state']:'';
+        $code = $this->get("code","");
+        $state = $this->get("state","");
         if( !$code ){
             return $this->goHome();
         }
