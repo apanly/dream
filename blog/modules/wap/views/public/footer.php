@@ -29,8 +29,7 @@ use \blog\components\UrlService;
             </a>
         </li>
         <li>
-            <a href="<?= UrlService::buildWapUrl("/my/wechat"); ?>" class="am-btn-warning"
-               data-am-modal="{target: '#wechat'}">
+            <a href="<?= UrlService::buildWapUrl("/my/wechat"); ?>" class="am-btn-warning">
                 <span class="am-icon-weixin"></span>
                 <span class="am-navbar-label">联系我</span>
             </a>
