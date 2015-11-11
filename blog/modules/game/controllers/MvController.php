@@ -17,7 +17,10 @@ class MvController extends BaseController
 
         $pagesize = 10;
         $query = Doubanmz::find();
+
         $total_count = $query->count();
+        $total_page = ceil($total_count/$pagesize);
+
         $offset = ($p - 1) * $pagesize;
         $mz_list = $query->orderBy("id desc")
             ->offset($offset)
@@ -29,14 +32,29 @@ class MvController extends BaseController
             foreach( $mz_list as $_mz_info ){
                 $data[] = [
                     "id" => $_mz_info["id"],
-                    "title" => mb_substr( DataHelper::encode( $_mz_info["title"] ),0,10,"utf-8"),
+                    "title" => DataHelper::encode( $_mz_info["title"] ),
                     "src_url" => $_mz_info['src_url']
                 ];
             }
         }
 
+        $has_pre = $has_next = false;
+
+        if( ( count( $data ) >= $pagesize ) && ( $p <= $total_page ) ){
+            $has_next = true;
+        }
+
+        if( $p > 1 ){
+            $has_pre = true;
+        }
+
         return $this->render("index",[
-            "list" => $data
+            "list" => $data,
+            "p" => $p,
+            "urls" => [
+                "has_pre" => $has_pre,
+                "has_next" => $has_next
+            ]
         ]);
     }
 } 
