@@ -7,7 +7,7 @@ use \blog\components\UrlService;
             <?php if( $urls['has_pre'] ):?>
                 <a href="<?=UrlService::buildGameUrl("/mv/index",['p' => ($p-1)]);?>" class="am-btn am-btn-warning am-fl">上一组</a>
             <?php else:?>
-                <a href="javascript:void(0);" class="am-btn am-btn-default am-fl">上一一组</a>
+                <a href="javascript:void(0);" class="am-btn am-btn-default am-fl">上一组</a>
             <?php endif;?>
 
             <?php if( $urls['has_next'] ):?>
@@ -39,7 +39,7 @@ use \blog\components\UrlService;
             <?php if( $urls['has_pre'] ):?>
                 <a href="<?=UrlService::buildGameUrl("/mv/index",['p' => ($p-1)]);?>" class="am-btn am-btn-warning am-fl">上一组</a>
             <?php else:?>
-                <a href="javascript:void(0);" class="am-btn am-btn-default am-fl">上一一组</a>
+                <a href="javascript:void(0);" class="am-btn am-btn-default am-fl">上一组</a>
             <?php endif;?>
 
             <?php if( $urls['has_next'] ):?>
