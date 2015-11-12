@@ -21,6 +21,7 @@ class BaseBlogController extends \common\components\BaseWebController{
                 if( $user_info && $auth_token == $check_token ){
                     $login_status = true;
                     $this->current_user = $user_info;
+                    $this->getView()->params['current_user'] = $this->current_user;
                 }
             }
         }

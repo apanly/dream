@@ -23,8 +23,19 @@ GameAsset::register($this);
 </head>
 <body>
 <div class="am-g">
+    <header data-am-widget="header" class="am-header am-header-default">
+        <h1 class="am-header-title">
+            <?= DataHelper::encode($this->params['subtitle']); ?>
+
+        </h1>
+        <div class="am-header-right am-header-nav">
+            <?php if( isset( $this->params['current_user'] ) ):?>
+                欢迎您，<?= DataHelper::encode($this->params['current_user']['nickname']); ?>
+            <?php endif;?>
+        </div>
+    </header>
     <section>
-        <?php echo $content ?>
+        <?=$content;?>
     </section>
     <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default">
         <ul class="am-navbar-nav am-cf am-avg-sm-4">
@@ -36,7 +47,6 @@ GameAsset::register($this);
             </li>
         </ul>
     </div>
-
     <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" style="display: none;">
         <a href="#top" title="回到顶部">
             <span class="am-gotop-title">回到顶部</span>

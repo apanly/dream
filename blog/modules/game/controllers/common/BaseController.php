@@ -21,6 +21,7 @@ class BaseController extends BaseBlogController
     public function beforeAction($action)
     {
         $this->setTitle();
+        $this->setSubTitle();
         $this->setDescription();
         $this->setKeywords();
         if (!in_array($action->getUniqueId(), $this->allowAllAction)) {
@@ -39,6 +40,10 @@ class BaseController extends BaseBlogController
 
     public function setTitle($title = "郭大帅哥的游戏中心"){
         $this->getView()->title = $title;
+    }
+
+    public function setSubTitle($title = "郭大帅哥的游戏中心"){
+        $this->getView()->params['subtitle'] = $title;
     }
 
     public function setKeywords($keywords = "")
