@@ -5,6 +5,7 @@ namespace blog\controllers;
 use blog\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\posts\RichMedia;
+use common\service\GlobalUrlService;
 use Yii;
 use yii\helpers\Url;
 
@@ -35,10 +36,13 @@ class RichmediaController extends BaseController
         if ($rich_media_list) {
             $domains = Yii::$app->params['domains'];
             foreach ($rich_media_list as $_rich_info) {
+                $tmp_small_pic_url = GlobalUrlService::buildPic1Static($_rich_info['src_url'],['h' => 200]);
+                $tmp_big_pic_url = GlobalUrlService::buildPic1Static($_rich_info['src_url'],['w' => 600]);
                 $data[] = [
                     'id'        => $_rich_info['id'],
                     'type'      => $_rich_info['type'],
-                    'src_url'   => $domains['pic1'] . $_rich_info['src_url'],
+                    'small_src_url'   => $tmp_small_pic_url,
+                    'big_src_url'   => $tmp_big_pic_url,
                     'thumb_url' => $_rich_info['thumb_url'] ? $_rich_info['thumb_url'] : $domains['static'] . "/wx/video_cover.jpg",
                     'address'   => $_rich_info['address']
                 ];
