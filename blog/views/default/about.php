@@ -1,3 +1,11 @@
+<?php
+use \common\service\GlobalUrlService;
+$wx_urls = [
+    "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
+    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
+    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+];
+?>
 <main class="col-md-12 main-content">
     <article class="post page">
 
@@ -41,7 +49,7 @@
                     郭大帅哥的微信
                     <ul>
                         <li>
-                            <img title="郭大帅哥的微信" src="/images/qrcode.jpg?version=20151013">
+                            <img title="郭大帅哥的微信" src="<?=$wx_urls['my'];?>">
                         </li>
                     </ul>
                 </li>
@@ -49,14 +57,14 @@
                     郭大帅哥的故事（服务号）
                     <ul>
                         <li>
-                            <img title="郭大帅哥的故事:imguowei_888" src="/images/imguowei_888.jpg?version=20151013">
+                            <img title="郭大帅哥的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
                         </li>
                     </ul>
                 </li>
                 <li>
                     狂神星域（订阅号）
                     <ul>
-                        <li><img title="狂神星域:mystarzone" src="/images/wechat.jpg?version=20151013"></li>
+                        <li><img title="狂神星域:mystarzone" src="<?=$wx_urls['starzone'];?>"></li>
                     </ul>
                 </li>
             </ul>
