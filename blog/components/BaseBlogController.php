@@ -11,7 +11,7 @@ class BaseBlogController extends \common\components\BaseWebController{
     public $current_user = null;
 
     public function checkLoginStatus(){
-        $auth_cookie = $this->get($this->auth_cookie_name);
+        $auth_cookie = $this->getCookie($this->auth_cookie_name);
         $login_status = false;
         if( $auth_cookie ){
             list($auth_token,$uid) = explode("#",$auth_cookie);
