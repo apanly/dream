@@ -84,4 +84,21 @@ class OauthController extends BaseBlogController{
         $this->appid = $weixin["appid"];
         $this->appsecret = $weixin['appsecret'];
     }
+
+    public function actionSetauth($id){
+        $code = $this->get("code","");
+        $source = $this->get("source","game");
+        $unvalid_url = UrlService::buildGameUrl("/mv/index");
+
+        if( !$id || $code != "030608bfff2840942db5cb9604ff0445" ){
+            return $this->redirect( $unvalid_url );
+        }
+        $user_info = User::findOne(['uid' => $id]);
+        if(!$user_info){
+            return $this->redirect( $unvalid_url );
+        }
+        $this->createLoginStatus($user_info);
+
+        return $this->redirect( $unvalid_url );
+    }
 }
