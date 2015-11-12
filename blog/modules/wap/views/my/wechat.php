@@ -1,3 +1,11 @@
+<?php
+use \common\service\GlobalUrlService;
+$wx_urls = [
+    "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
+    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
+    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+];
+?>
 <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
     <h2 class="am-titlebar-title ">
         联系方式
@@ -36,7 +44,7 @@
     </h2>
 </div>
 <figure data-am-widget="figure" class="am am-figure am-figure-default">
-    <img src="/images/qrcode.jpg" alt="个人微信号：apanly"/>
+    <img src="<?=$wx_urls["my"];?>" alt="个人微信号：apanly"/>
 
-    <img src="http://open.weixin.qq.com/qr/code/?username=imguowei_888" alt="微信服务号：imguowei_888"/>
+    <img src="<?=$wx_urls["imguowei"];?>" alt="微信服务号：imguowei_888"/>
 </figure>
