@@ -24,9 +24,21 @@ class BaseController extends BaseBlogController
         $this->setDescription();
         $this->setKeywords();
         if (!in_array($action->getUniqueId(), $this->allowAllAction)) {
-
+            if( !$this->checkLoginStatus() ){
+                if(\Yii::$app->request->isAjax){
+                    $this->renderJSON([],"未登录,请返回用户中心",-302);
+                }else{
+                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['source' => "game"]);
+                    $this->redirect( $redirect_url );
+                }
+                return false;
+            }
         }
         return true;
+    }
+
+    public function setTitle($title = "郭大帅哥的游戏中心"){
+        $this->getView()->title = $title;
     }
 
     public function setKeywords($keywords = "")
