@@ -1,3 +1,11 @@
+<?php
+use \common\service\GlobalUrlService;
+$wx_urls = [
+    "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
+    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
+    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+];
+?>
 <aside class="col-md-4 sidebar">
     <div class="widget">
         <h4 class="title">搜索</h4>
@@ -37,7 +45,7 @@
         </p>
 
         <div class="content download">
-            <img title="郭大帅哥的微信" src="/images/qrcode.jpg?version=20151013"/>
+            <img title="郭大帅哥的微信" src="<?=$wx_urls['my'];?>"/>
         </div>
     </div>
     <!-- end widget -->
