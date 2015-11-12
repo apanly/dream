@@ -27,7 +27,7 @@ StaticService::includeAppJsStatic("/js/game/tools/index.js", \blog\assets\GameAs
         <tr>
             <td>生成结果</td>
             <td>
-                <input type="text" id="result" disabled>
+                <input type="text" id="result">
             </td>
         </tr>
         <tr>
