@@ -4,7 +4,13 @@ namespace common\service;
 
 class GlobalUrlService {
     public static function buildStaticUrl($path){
-        $domain = \Yii::$app->params['domains']['static'];
+        $switch = \Yii::$app->params['switch']['cdn']['static'];
+        if( $switch ){
+            $domain = \Yii::$app->params['domains']['cdn_static'];
+        }else{
+            $domain = \Yii::$app->params['domains']['static'];
+        }
+
         return $domain.$path;
     }
 

@@ -7,7 +7,9 @@ return [
         "blog" => "http://www.dr.local.com",
         "admin" => "http://admin.dr.local.com",
         "static" => "http://static.dr.local.com",
+        "cdn_static" => "http://cdn.static.yunetidc.com",
         "pic1" => "http://pic1.vincentguo.cn",
+        "cdn_pic1" => "http://cdn.pic1.yunetidc.com",
         "m"  => "http://m.vincentguo.cn",
     ],
     "author" => [
@@ -33,5 +35,12 @@ return [
     ],
     'upload' => [
         "pic1" => "/data/www/pic1/"
+    ],
+    'switch' => [
+        "cdn" => [
+            "static" => false,
+            "pic1" => false,
+            "pic2" => false
+        ]
     ]
 ];
