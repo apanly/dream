@@ -24,25 +24,39 @@ GameAsset::register($this);
 <body>
 <div class="am-g">
     <header data-am-widget="header" class="am-header am-header-default">
-        <h1 class="am-header-title">
-            <?= DataHelper::encode($this->params['subtitle']); ?>
-
-        </h1>
-        <div class="am-header-right am-header-nav">
-            <?php if( isset( $this->params['current_user'] ) ):?>
-                欢迎您，<?= DataHelper::encode($this->params['current_user']['nickname']); ?>
-            <?php endif;?>
+        <div class="am-header-left am-header-nav">
+            <a href="/">
+                <i class="am-header-icon am-icon-home"></i>
+            </a>
         </div>
+        <h1 class="am-text-center" style="color: #ffffff;">
+            <?= DataHelper::encode($this->params['subtitle']); ?>
+        </h1>
     </header>
     <section>
         <?=$content;?>
     </section>
+    <?php if( isset( $this->params['current_user'] ) ):?>
+    <footer data-am-widget="footer"  class="am-footer am-footer-default">
+        <div class="am-footer-miscs ">
+            <p>欢迎您，<?= DataHelper::encode($this->params['current_user']['nickname']); ?></p>
+            <p>由 郭大帅哥 提供技术支持</p>
+        </div>
+    </footer>
+    <?php endif;?>
+
     <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default">
         <ul class="am-navbar-nav am-cf am-avg-sm-4">
             <li>
                 <a href="<?= UrlService::buildGameUrl("/mv/index"); ?>" class="am-btn-warning">
                     <span class="am-icon-home"></span>
                     <span class="am-navbar-label">美女</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?= UrlService::buildGameUrl("/tools/index"); ?>" class="am-btn-warning">
+                    <span class="am-icon-paper-plane"></span>
+                    <span class="am-navbar-label">工具</span>
                 </a>
             </li>
         </ul>

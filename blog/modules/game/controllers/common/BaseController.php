@@ -8,7 +8,9 @@ use blog\components\UrlService;
 class BaseController extends BaseBlogController
 {
 
-    protected $allowAllAction = [];
+    protected $allowAllAction = [
+        "game/tools/index"
+    ];
 
     public function __construct($id, $module, $config = [])
     {

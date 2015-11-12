@@ -48,6 +48,7 @@ class MvController extends BaseController
         }
 
         $this->setTitle("美女也耍流氓 -- 一睹眼福");
+        $this->setSubTitle("美女耍流氓");
         return $this->render("index",[
             "list" => $data,
             "p" => $p,

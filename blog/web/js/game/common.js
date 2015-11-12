@@ -1,30 +1,16 @@
 ;
 var common_ops = {
     getUrlPrefix: function () {
-        return "";
+        return "/game";
     },
     setCurrentNav: function () {
         var pathname = window.location.pathname;
 
         idx = 1;
 
-        if (pathname.indexOf("/library") > -1) {
+        if (pathname.indexOf("/tools") > -1) {
             idx = 2;
         }
-
-        if (pathname.indexOf("/richmedia") > -1) {
-            idx = 3;
-        }
-
-        if (pathname == "/my/about") {
-            idx = 4;
-        }
-
-        if (pathname == "/my/wechat") {
-            idx = 5;
-        }
-
-
         if (idx < 1) {
 
             return;
