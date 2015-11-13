@@ -53,7 +53,7 @@ var richmedia_index_ops = {
             if(  $(this).attr("src") ){
                 return true;
             }
-            var url = $(this).attr("data-src")+"??format=/w/"+picwidth;
+            var url = $(this).attr("data-src")+"?format=/w/"+picwidth;
             if( $(this).attr("data") == 1 ){
                 url = $(this).attr("data-src")+"?imageView/2/w/"+picwidth;
             }
