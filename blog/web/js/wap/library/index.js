@@ -25,6 +25,7 @@ var library_index_ops = {
                                 $('.loading').hide();
                                 if (res.data.has_data) {
                                     $(".am-g").append(res.data.html);
+                                    that.adaptImage();
                                     stop = true;
                                 }
                                 if (!res.data.has_next) {
