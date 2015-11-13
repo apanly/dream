@@ -5,6 +5,7 @@ namespace admin\controllers;
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\Images;
+use common\service\GlobalUrlService;
 use Yii;
 
 
@@ -35,12 +36,16 @@ class FileController extends BaseController
 
         if($image_list){
             $idx = 1;
-            $domains = Yii::$app->params['domains'];
+
             foreach($image_list as $_image_info ){
+                $tmp_small_pic_url = GlobalUrlService::buildPicStatic($_image_info['filepath'],['h' => 100,'w' => 200],$_image_info['bucket']);
+                $tmp_big_pic_url = GlobalUrlService::buildPicStatic($_image_info['filepath'],['w' => 600],$_image_info['bucket']);
+
                 $data[] = [
                     'idx' =>  $idx,
                     'id' => $_image_info['id'],
-                    'url' => $domains[$_image_info['bucket']].$_image_info['filepath']
+                    'small_pic_url' => $tmp_small_pic_url,
+                    'big_pic_url' => $tmp_big_pic_url,
                 ];
                 $idx++;
             }

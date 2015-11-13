@@ -32,10 +32,10 @@ use \admin\components\StaticService;
                                     <tr id="trow_1">
                                         <td class="text-center"><?=$_item['idx'];?></td>
                                         <td>
-                                            <img src="<?= $_item['url']; ?>?format=/w/200/h/100"/>
+                                            <img src="<?= $_item['small_pic_url']; ?>"/>
                                         </td>
                                         <td>
-                                            <a href="<?= $_item['url']; ?>?format=/w/600" target="_blank">查看大图</a>
+                                            <a href="<?= $_item['big_pic_url']; ?>" target="_blank">查看大图</a>
                                         </td>
                                     </tr>
                                 <?php endforeach;?>
