@@ -90,15 +90,15 @@ class LibraryController extends BaseController
 
         $this->setTitle($book_info['subtitle'] . " - 郭大帅哥的图书馆");
 
-        $data                 = [];
-        $author               = json_decode($book_info['creator'], true);
-        $data['name']         = DataHelper::encode($book_info['name']);
-        $data['title']        = DataHelper::encode($book_info['subtitle']);
-        $data['summary']      = nl2br(DataHelper::encode($book_info['summary']));
+        $data  = [];
+        $author = json_decode($book_info['creator'], true);
+        $data['name']  = DataHelper::encode($book_info['name']);
+        $data['title']  = DataHelper::encode($book_info['subtitle']);
+        $data['summary'] = nl2br(DataHelper::encode($book_info['summary']));
         $data['publish_date'] = $book_info['publish_date'];
-        $data['author']       = implode(" ~ ", $author);
-        $data['tags']         = explode(",", $book_info['tags']);
-        $data['image_url']    = $book_info['origin_image_url'];
+        $data['author'] = implode(" ~ ", $author);
+        $data['tags']  = explode(",", $book_info['tags']);
+        $data['image_url']  = GlobalUrlService::buildPic1Static($book_info['image_url'],['w' => 500]);
 
         $prev_info = Book::find()
             ->where(["<", "id", $id])
