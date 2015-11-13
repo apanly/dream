@@ -18,7 +18,7 @@ class MenuController extends BaseController{
 
         $from  = $this->getSource();
         $domains = Yii::$app->params['domains'];
-        $domain_blog = $domains['blog'];
+        $domain_m = $domains['m'];
 
         $menu  = [
             "button" => [
@@ -38,7 +38,7 @@ class MenuController extends BaseController{
                         [
                             "name" => "文章列表",
                             "type" => "view",
-                            "url"  => "{$domain_blog}/wap/?from={$from}"
+                            "url"  => "{$domain_m}/?from={$from}"
                         ]
                     ]
                 ],
@@ -53,12 +53,12 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "图书列表",
-                            "url"  => "{$domain_blog}/wap/library/index?from={$from}"
+                            "url"  => "{$domain_m}/library/index?from={$from}"
                         ],
                         [
                             "name" => "富媒体",
                             "type" => "view",
-                            "url"  => "{$domain_blog}/wap/richmedia/index?from={$from}"
+                            "url"  => "{$domain_m}/richmedia/index?from={$from}"
                         ]
                     ]
                 ],
@@ -68,12 +68,12 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "关于",
-                            "url"  => "{$domain_blog}/wap/my/about?from={$from}"
+                            "url"  => "{$domain_m}/my/about?from={$from}"
                         ],
                         [
                             "type" => "view",
                             "name" => "赞助",
-                            "url"  => "{$domain_blog}/wap/my/wechat?from={$from}"
+                            "url"  => "{$domain_m}/my/wechat?from={$from}"
                         ]
                     ]
                 ]
