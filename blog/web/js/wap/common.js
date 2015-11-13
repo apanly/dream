@@ -1,6 +1,10 @@
 ;
 var common_ops = {
     getUrlPrefix: function () {
+        var pathname = window.location.pathname;
+        if( pathname.indexOf("/wap") ){
+            return "/wap"
+        }
         return "";
     },
     setCurrentNav: function () {

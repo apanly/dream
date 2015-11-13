@@ -2,8 +2,9 @@
 var richmedia_index_ops = {
     init: function () {
         this.p = 1;
-        this.eventBind();
         this.adaptImage();
+        this.eventBind();
+
     },
     eventBind: function () {
         var that = this;
@@ -57,7 +58,7 @@ var richmedia_index_ops = {
                 url = $(this).attr("data-src")+"?imageView/2/w/"+picwidth;
             }
             $(this).attr("src",url);
-            $( $(this).parent()).attr("href",url);
+            $(this).attr("data-rel",url);
         });
     },
     calPicWidth:function(width){
