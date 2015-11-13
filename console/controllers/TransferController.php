@@ -81,7 +81,7 @@ class TransferController extends  BaseController {
     }
 
     public function actionMv(){
-        $list = Doubanmz::find()->where(['=','image_url',''])->orderBy("id desc")->all();
+        $list = Doubanmz::find()->where(['=','image_url',''])->orderBy("id desc")->limit(10)->all();
         if( !$list ){
             return 'no data';
         }
