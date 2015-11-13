@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $hash_key
  * @property string $title
+ * @property string $image_url
  * @property string $src_url
  * @property integer $status
  * @property string $created_time
@@ -42,7 +43,7 @@ class Doubanmz extends \yii\db\ActiveRecord
             [['created_time'], 'safe'],
             [['hash_key'], 'string', 'max' => 32],
             [['title'], 'string', 'max' => 50],
-            [['src_url'], 'string', 'max' => 255]
+            [['image_url', 'src_url'], 'string', 'max' => 255]
         ];
     }
 
@@ -55,6 +56,7 @@ class Doubanmz extends \yii\db\ActiveRecord
             'id' => 'ID',
             'hash_key' => 'Hash Key',
             'title' => 'Title',
+            'image_url' => 'Image Url',
             'src_url' => 'Src Url',
             'status' => 'Status',
             'created_time' => 'Created Time',

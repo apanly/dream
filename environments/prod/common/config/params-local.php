@@ -10,6 +10,8 @@ return [
         "cdn_static" => "http://cdn.static.yunetidc.com",
         "pic1" => "http://pic1.vincentguo.cn",
         "cdn_pic1" => "http://cdn.pic1.yunetidc.com",
+        "pic2" => "http://pic2.vincentguo.cn",
+        "cdn_pic2" => "http://cdn.pic2.yunetidc.com",
         "m"  => "http://m.vincentguo.cn",
     ],
     "author" => [
@@ -34,7 +36,8 @@ return [
         ]
     ],
     'upload' => [
-        "pic1" => "/data/www/pic1/"
+        "pic1" => "/data/www/pic1/",
+        "pic2" => "/data/www/pic2/",
     ],
     'switch' => [
         "cdn" => [

@@ -10,6 +10,8 @@ return [
         "cdn_static" => "http://static.dr.local.com",
         "pic1" => "http://pic1.dr.local.com",
         "cdn_pic1" => "http://pic1.dr.local.com",
+        "pic2" => "http://pic2.dr.local.com",
+        "cdn_pic2" => "http://pic2.dr.local.com",
         "m" => "http://m.dr.local.com"
     ],
     "author" => [
@@ -34,7 +36,8 @@ return [
         ]
     ],
     'upload' => [
-        "pic1" => "/data/www/pic1/"
+        "pic1" => "/data/www/pic1/",
+        "pic2" => "/data/www/pic2/",
     ],
     'switch' => [
         "cdn" => [
