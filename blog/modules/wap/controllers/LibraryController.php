@@ -6,6 +6,7 @@ use blog\components\UrlService;
 use blog\modules\wap\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\library\Book;
+use common\service\GlobalUrlService;
 use Yii;
 
 
@@ -42,15 +43,15 @@ class LibraryController extends BaseController
 
         $this->setTitle($book_info['subtitle'] . " - 郭大帅哥的图书馆");
 
-        $data                 = [];
-        $author               = json_decode($book_info['creator'], true);
-        $data['name']         = DataHelper::encode($book_info['name']);
-        $data['title']        = DataHelper::encode($book_info['subtitle']);
-        $data['summary']      = nl2br(DataHelper::encode($book_info['summary']));
+        $data = [];
+        $author  = json_decode($book_info['creator'], true);
+        $data['name'] = DataHelper::encode($book_info['name']);
+        $data['title']  = DataHelper::encode($book_info['subtitle']);
+        $data['summary'] = nl2br(DataHelper::encode($book_info['summary']));
         $data['publish_date'] = $book_info['publish_date'];
-        $data['author']       = implode(" ~ ", $author);
-        $data['tags']         = explode(",", $book_info['tags']);
-        $data['image_url']    = $book_info['origin_image_url'];
+        $data['author'] = implode(" ~ ", $author);
+        $data['tags'] = explode(",", $book_info['tags']);
+        $data['image_url'] = GlobalUrlService::buildPic1Static($book_info['image_url']);
 
 
         return $this->render("info", [
@@ -94,7 +95,7 @@ class LibraryController extends BaseController
                 $data[] = [
                     "title"      => DataHelper::encode($_book['subtitle']),
                     'author'     => $tmp_author ? $tmp_author : "&nbsp;",
-                    'imager_url' => $_book['origin_image_url'],
+                    'imager_url' => GlobalUrlService::buildPic1Static($_book['image_url']),
                     'view_url'   => UrlService::buildWapUrl("/library/info", ["id" => $_book["id"]])
                 ];
             }

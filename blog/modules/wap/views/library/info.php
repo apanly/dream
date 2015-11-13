@@ -1,3 +1,7 @@
+<?php
+use blog\components\StaticService;
+StaticService::includeAppJsStatic("/js/wap/library/info.js", \blog\assets\WapAsset::className());
+?>
 <div class="am-paragraph am-paragraph-default">
     <article class="am-article">
         <div class="am-article-hd">
@@ -11,7 +15,7 @@
         <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
         <div class="am-article-bd">
             <figure data-am-widget="figure" class="am am-figure am-figure-default ">
-                <img src="<?= $info["image_url"]; ?>" alt="<?= $info["title"]; ?>"/>
+                <img data-src="<?= $info["image_url"]; ?>" alt="<?= $info["title"]; ?>"/>
             </figure>
             <?= $info["summary"]; ?>
         </div>
