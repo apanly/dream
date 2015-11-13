@@ -60,6 +60,7 @@ var richmedia_index_ops = {
             $(this).attr("src",url);
             $(this).attr("data-rel",url);
         });
+        $('.am-gallery').pureview();
     },
     calPicWidth:function(width){
         var tmp_int = Math.ceil(width/50);
