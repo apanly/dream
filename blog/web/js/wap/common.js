@@ -2,7 +2,7 @@
 var common_ops = {
     getUrlPrefix: function () {
         var pathname = window.location.pathname;
-        if( pathname.indexOf("/wap") ){
+        if( pathname.indexOf("/wap") > -1 ){
             return "/wap"
         }
         return "";
