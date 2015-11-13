@@ -41,22 +41,5 @@ class WapAsset extends AssetBundle
             'js/wap/common.js'
         ];
         parent::registerAssetFiles($view);
-
-//        $this->css = [
-//            'http://cdn.amazeui.org/amazeui/2.4.2/css/amazeui.css',
-//            'http://cdn.amazeui.org/amazeui/2.4.2/css/amazeui.min.css',
-//            'css/wap/common.css',
-//        ];
-//        $this->js = [
-//            'js/jquery/jquery.min.js',
-//            'http://cdn.amazeui.org/amazeui/2.4.2/js/amazeui.js',
-//            'http://cdn.amazeui.org/amazeui/2.4.2/js/amazeui.min.js',
-//            'http://cdn.amazeui.org/amazeui/2.4.2/js/amazeui.ie8polyfill.js',
-//            'http://cdn.amazeui.org/amazeui/2.4.2/js/amazeui.ie8polyfill.min.js',
-//            'http://cdn.amazeui.org/amazeui/2.4.2/js/amazeui.widgets.helper.js',
-//            'http://cdn.amazeui.org/amazeui/2.4.2/js/amazeui.widgets.helper.min.js',
-//            'js/wap/common.js'
-//        ];
-//        parent::registerAssetFiles($view);
     }
 }

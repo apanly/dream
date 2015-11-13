@@ -11,4 +11,6 @@ class BaseController extends  \yii\console\Controller {
         echo $msg."\r\n";
         return true;
     }
+
+    //preg_match('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i',$content,$match_img);
 } 

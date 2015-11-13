@@ -5,6 +5,7 @@ namespace blog\controllers;
 use blog\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\library\Book;
+use common\service\GlobalUrlService;
 use Yii;
 use yii\helpers\Url;
 
@@ -44,12 +45,14 @@ class LibraryController extends BaseController
                 if (stripos($tmp_author, "（") !== false) {
                     $tmp_author = substr($tmp_author, 0, stripos($tmp_author, "（"));
                 }
+
+                $tmp_small_pic_url = GlobalUrlService::buildPic1Static($_book['image_url'],['h' => 200]);
                 $data[] = [
                     'id'          => $_book['id'],
                     'short_title' => $tmp_title,
                     "title"       => DataHelper::encode($_book['subtitle']),
                     'author'      => $tmp_author ? $tmp_author : "&nbsp;",
-                    'imager_url'  => $_book['origin_image_url'],
+                    'imager_url'  => $tmp_small_pic_url,
                     'view_url'    => Url::toRoute(["/library/info", "id" => $_book["id"]])
                 ];
             }

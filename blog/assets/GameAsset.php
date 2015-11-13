@@ -28,7 +28,7 @@ class GameAsset extends AssetBundle
         $this->css = [
             GlobalUrlService::buildStaticUrl("/amazeui/css/amazeui.css"),
             GlobalUrlService::buildStaticUrl("/amazeui/css/amazeui.min.css"),
-            'css/wap/common.css',
+            'css/game/common.css',
         ];
         $this->js = [
             'js/jquery/jquery.min.js',
@@ -38,7 +38,7 @@ class GameAsset extends AssetBundle
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.ie8polyfill.min.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.widgets.helper.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.widgets.helper.min.js"),
-            'js/wap/common.js'
+            'js/game/common.js'
         ];
         parent::registerAssetFiles($view);
     }
