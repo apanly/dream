@@ -49,17 +49,13 @@ class RichmediaController extends BaseController
 
         $data = [];
         if ($rich_media_list) {
-            $domains = Yii::$app->params['domains'];
             foreach ($rich_media_list as $_rich_info) {
-                $tmp_small_pic_url = GlobalUrlService::buildPic1Static($_rich_info['src_url'],['h' => 400]);
-                $tmp_big_pic_url = GlobalUrlService::buildPic1Static($_rich_info['src_url'],['w' => 800]);
                 $data[] = [
                     'id' => $_rich_info['id'],
                     'type' => $_rich_info['type'],
-                    'small_src_url'   => $tmp_small_pic_url,
-                    'big_src_url'   => $tmp_big_pic_url,
-                    'thumb_url' => $_rich_info['thumb_url'] ? $_rich_info['thumb_url'] : $domains['static'] . "/wx/video_cover.jpg",
-                    'address'   => $_rich_info['address']
+                    'src_url'   => GlobalUrlService::buildPic1Static($_rich_info['src_url']),
+                    'address'   => $_rich_info['address'],
+                    'switch' => \Yii::$app->params['switch']['cdn']['pic1']
                 ];
             }
         }
