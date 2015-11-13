@@ -5,6 +5,7 @@ namespace blog\modules\game\controllers;
 use blog\modules\game\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\games\Doubanmz;
+use common\service\GlobalUrlService;
 
 class MvController extends BaseController
 {
@@ -32,7 +33,7 @@ class MvController extends BaseController
                 $data[] = [
                     "id" => $_mz_info["id"],
                     "title" => DataHelper::encode( $_mz_info["title"] ),
-                    "src_url" => $_mz_info['src_url']
+                    "src_url" => GlobalUrlService::buildPic2Static($_mz_info['image_url'])
                 ];
             }
         }

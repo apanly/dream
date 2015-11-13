@@ -1,5 +1,7 @@
 <?php
 use \blog\components\UrlService;
+use \admin\components\StaticService;
+StaticService::includeAppJsStatic("/js/game/mv/index.js",\blog\assets\GameAsset::className());
 ?>
 <div class="am-g">
     <div class="am-u-lg-12 am-u-md-12 am-u-sm-12">
@@ -25,7 +27,7 @@ use \blog\components\UrlService;
             <li>
                 <div class="am-gallery-item">
                     <a href="javascript:void(0);">
-                        <img src="<?=$_item['src_url'];?>"  alt="<?=$_item['title'];?>"/>
+                        <img data-src="<?=$_item['src_url'];?>"  alt="<?=$_item['title'];?>"/>
                         <h3 class="am-gallery-title"><?=$_item['title'];?></h3>
                     </a>
                 </div>
