@@ -130,7 +130,7 @@ $wx_urls = [
 
 </div>
 <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-    <h2 class="am-titlebar-title ">
+    <h2 class="am-titlebar-title" id="contact">
         联系方式
     </h2>
 </div>
