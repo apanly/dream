@@ -73,7 +73,7 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "赞助",
-                            "url"  => "{$domain_m}/my/wechat?from={$from}#contact"
+                            "url"  => "{$domain_m}/my/about?from={$from}#contact"
                         ]
                     ]
                 ]
