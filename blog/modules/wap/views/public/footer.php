@@ -29,9 +29,9 @@ use \blog\components\UrlService;
             </a>
         </li>
         <li>
-            <a href="<?= UrlService::buildWapUrl("/my/wechat"); ?>" class="am-btn-warning">
+            <a href="<?= UrlService::buildGameUrl("/tools/index"); ?>" class="am-btn-warning">
                 <span class="am-icon-weixin"></span>
-                <span class="am-navbar-label">联系我</span>
+                <span class="am-navbar-label">小玩意</span>
             </a>
         </li>
     </ul>
