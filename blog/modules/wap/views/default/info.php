@@ -21,6 +21,7 @@ $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",[
         <div class="am-article-bd">
             <?= $info["content"]; ?>
         </div>
+        <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
         <figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout">
             <img src="<?=$wx_url;?>" alt="微信服务号：imguowei_888">
         </figure>
