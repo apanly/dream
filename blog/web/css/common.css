@@ -4,3 +4,7 @@
     height: 32px;
     background-image: url(../../images/icons/original.png);
 }
+
+#ds-thread #ds-reset .ds-powered-by{
+    display: none;
+}
