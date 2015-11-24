@@ -2,9 +2,11 @@
 
 namespace console\modules\blog\controllers;
 
+use blog\components\UrlService;
 use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\search\IndexSearch;
+use common\service\GlobalUrlService;
 use console\modules\blog\Blog;
 
 class SearchController extends Blog{
@@ -39,7 +41,7 @@ class SearchController extends Blog{
                     "book_id" => $_book_info['id'],
                     "post_id" => 0,
                     "search_key" => $tmp_search_key,
-                    "image" => $_book_info['origin_image_url']
+                    "image" => GlobalUrlService::buildPic1Static($_book_info['image_url'],['w'=>600])
                 ];
             }
         }
@@ -102,5 +104,20 @@ class SearchController extends Blog{
         curl_setopt_array($ch, $options);
         $result = curl_exec($ch);
         print_r($result);
+    }
+
+    public function actionRepair(){
+        $post_list = Posts::find()->where(['status' => 1])->orderBy("id asc")->all();
+        if($post_list){
+            foreach( $post_list as $_post_info ){
+                preg_match('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i',$_post_info['content'],$match_img);
+                if( $match_img && count($match_img) == 3 ){
+                    $_post_info->image_url = $match_img[2];
+                }else{
+                    $_post_info->image_url = "";
+                }
+                $_post_info->update(0);
+            }
+        }
     }
 }
