@@ -1,8 +1,11 @@
 <?php
 use blog\components\StaticService;
+use \common\service\GlobalUrlService;
 
 StaticService::includeAppJsStatic("/js/wap/default/info.js", \blog\assets\WapAsset::className());
 StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\WapAsset::className());
+
+$wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",['w' => 300]);
 ?>
 <div class="am-paragraph am-paragraph-default">
     <article class="am-article">
@@ -18,6 +21,9 @@ StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\WapAsset::class
         <div class="am-article-bd">
             <?= $info["content"]; ?>
         </div>
+        <figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout">
+            <img src="<?=$wx_url;?>" alt="微信服务号：imguowei_888">
+        </figure>
         <!-- 多说评论框 start -->
         <div class="ds-thread" data-thread-key="<?= $info['id']; ?>" data-title="<?= $info['title']; ?>"
              data-url="<?= $info['url']; ?>"></div>
