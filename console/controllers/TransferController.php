@@ -3,8 +3,6 @@
 namespace console\controllers;
 
 use common\components\UploadService;
-use common\models\games\Doubanmz;
-use common\models\library\Book;
 use common\models\posts\Posts;
 use common\service\GlobalUrlService;
 
@@ -64,44 +62,6 @@ class TransferController extends  BaseController {
                 }
 
             }
-        }
-    }
-
-    public function actionBook(){
-        $list = Book::find()->where(['=','image_url',''])->orderBy("id desc")->all();
-        if( !$list ){
-            return 'no data';
-        }
-        foreach( $list as $_item ){
-            $this->echoLog("book_id:{$_item['id']}");
-            if( !$_item['origin_image_url'] ){
-                continue;
-            }
-            $tmp_ret = UploadService::uploadByUrl($_item['origin_image_url']);
-            if( !$tmp_ret ){
-                continue;
-            }
-            $_item->image_url = $tmp_ret['uri'];
-            $_item->update(0);
-        }
-    }
-
-    public function actionMv(){
-        $list = Doubanmz::find()->where(['=','image_url',''])->orderBy("id desc")->limit(500)->all();
-        if( !$list ){
-            return 'no data';
-        }
-        foreach( $list as $_item ){
-            $this->echoLog("mv_id:{$_item['id']}");
-            if( !$_item['src_url'] ){
-                continue;
-            }
-            $tmp_ret = UploadService::uploadByUrl($_item['src_url'],"","pic2");
-            if( !$tmp_ret ){
-                continue;
-            }
-            $_item->image_url = $tmp_ret['uri'];
-            $_item->update(0);
         }
     }
 

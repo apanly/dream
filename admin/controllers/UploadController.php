@@ -4,6 +4,7 @@ namespace admin\controllers;
 
 use admin\controllers\common\BaseController;
 use common\components\UploadService;
+use common\service\GlobalUrlService;
 use common\service\ImagesService;
 use Yii;
 use common\models\user\User;
@@ -35,7 +36,8 @@ class UploadController extends BaseController
             return $this->renderJSON([],UploadService::getLastErrorMsg(),-1);
         }
 
-        return $this->renderJSON([ 'url' => $ret['url'], 'filename' => $filename ]);
+        $display_url = GlobalUrlService::buildPic1Static($ret['uri'],['w' => 600]);
+        return $this->renderJSON([ 'url' => $display_url, 'filename' => $filename ]);
     }
 
     public function actionFile(){
