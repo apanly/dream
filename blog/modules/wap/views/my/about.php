@@ -1,11 +1,24 @@
 <?php
+use blog\components\StaticService;
 use \common\service\GlobalUrlService;
+use \blog\components\UrlService;
+
+StaticService::includeAppJsStatic("/js/wap/my/index.js", \blog\assets\WapAsset::className());
+
 $wx_urls = [
     "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
     "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
     "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
 ];
 ?>
+
+<div data-am-widget="tabs" class="am-tabs am-tabs-d2" style="margin-top: 0px;">
+    <ul class="am-tabs-nav am-cf">
+        <li><a href="javascript:void(0);">工作履历</a></li>
+        <li><a href="javascript:void(0);">捐赠</a></li>
+    </ul>
+</div>
+
 <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
     <h2 class="am-titlebar-title ">
         基本信息

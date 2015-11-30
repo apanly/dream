@@ -19,6 +19,9 @@ return [
         'game' => [
             'class' => 'blog\modules\game\GameModule'
         ],
+        'mate' => [
+            'class' => 'blog\modules\mate\MateModule'
+        ],
         'weixin' => [
             'class' => 'blog\modules\weixin\WeixinModule'
         ],

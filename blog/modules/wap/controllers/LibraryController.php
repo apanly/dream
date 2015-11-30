@@ -10,8 +10,7 @@ use common\service\GlobalUrlService;
 use Yii;
 
 
-class LibraryController extends BaseController
-{
+class LibraryController extends BaseController{
     private $page_size = 10;
 
     public function actionIndex()
