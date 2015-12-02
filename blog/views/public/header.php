@@ -1,14 +1,15 @@
 <?php
 use \blog\components\UrlService;
+use \common\service\GlobalUrlService;
 ?>
-<header class="main-header" style="background-image: url(/images/banner_bg.jpg)">
+<header class="main-header" style="background-image: url(<?=GlobalUrlService::buildStaticUrl("/images/web/banner_bg.jpg");?>)">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <img src="/images/xiuxing.png" title="上善若水，人生就是修行"/>
+                <img src="<?=GlobalUrlService::buildStaticUrl("/images/web/xiuxing.png");?>" title="上善若水，人生就是修行"/>
             </div>
             <div class="col-sm-12">
-                <img src="/images/banner.png" title="人类进化不易">
+                <img src="<?=GlobalUrlService::buildStaticUrl("/images/web/banner.png");?>" title="人类进化不易">
             </div>
         </div>
     </div>
