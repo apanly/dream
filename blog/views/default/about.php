@@ -22,12 +22,25 @@ $wx_urls = [
             <ul>
                 <li>姓名：郭威</li>
                 <li>坐标：上海&bull;徐汇区&bull;田林</li>
+                <li>学历：本科</li>
+                <li>工作：4年+</li>
+                <li>邮箱：apanly@163.com</li>
                 <li>工作经历：
                     <ul>
                         <li> 2010年10月 ~ 2011年06月 上海奥智 PHP开发</li>
                         <li> 2011年06月 ~ 2012年03月 上海新浪 PHP开发</li>
-                        <li> 2012年03月 ~ 2015年04月 上海安居客 PHP开发，python DevOps</li>
+                        <li> 2012年03月 ~ 2015年04月 上海安居客 PHP开发，python DevOps，主管</li>
                         <li> 2015年04月 ~ 至今 小型创业公司 PHP开发</li>
+                    </ul>
+                </li>
+                <li>职业技能：
+                    <ul>
+                        <li> 熟悉 LNMP（Linux/Nginx/MySql/PHP）环境开发</li>
+                        <li> 熟悉自动化（vagrant,ansible,fabric）</li>
+                        <li> 熟练使用 PHP/Python/Shell/JavaScript/Java 编程</li>
+                        <li> 熟悉 HTML+CSS+JS+NodeJS 等多种Web相关技术</li>
+                        <li> 具有 MySQL数据库索引优化、查询优化和存储优化经验</li>
+                        <li> 高并发程序开发经验,（日PV千万级）</li>
                     </ul>
                 </li>
                 <li>

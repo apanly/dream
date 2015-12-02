@@ -128,7 +128,7 @@ $wx_urls = [
             </li>
             <li class="am-g am-list-item-dated">
                 <a href="javascript:void(0);" class="am-list-item-hd ">
-                    上海安居客 PHP开发
+                    上海安居客 PHP开发，主管
                 </a>
                 <span class="am-list-date">2012年03月 ~ 2015年04月</span>
             </li>
