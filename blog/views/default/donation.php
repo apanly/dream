@@ -1,3 +1,11 @@
+<?php
+use \common\service\GlobalUrlService;
+$wx_urls = [
+    "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
+    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
+    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+];
+?>
 <main class="col-md-12 main-content">
     <article class="post page">
 
@@ -25,7 +33,7 @@
             </blockquote>
             <ul>
                 <li>
-                    <img src="/images/qrcode.jpg" width="300" height="300"/>
+                    <img src="<?=$wx_urls['my'];?>" width="300" height="300"/>
                 </li>
             </ul>
             <hr>
