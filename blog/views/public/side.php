@@ -1,11 +1,15 @@
 <?php
 use common\service\CacheHelperService;
+use blog\components\StaticService;
+
+//StaticService::includeStaticJs("/jquery/jquery.mousewheel.min.js", \blog\assets\AppAsset::className());
+//StaticService::includeStaticJs("/jquery/jquery.tagsphere.min.js", \blog\assets\AppAsset::className());
+//StaticService::includeAppJsStatic("/js/web/public/side.js",\blog\assets\AppAsset::className());
 $tags = CacheHelperService::getFrontCache("tag");
 ?>
 <aside class="col-md-4 sidebar">
     <div class="widget">
         <h4 class="title">搜索</h4>
-
         <div class="content search">
             <div class="input-group">
                 <input type="text" class="form-control" id="kw"/>

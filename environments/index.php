@@ -37,7 +37,8 @@ return [
             'console/web/assets',
             'blog/runtime',
             'blog/web/assets',
-            'static/web/uploads'
+            'static/web/uploads',
+            'common/logs'
         ],
         'setExecutable' => [
             'yii',
@@ -59,7 +60,8 @@ return [
             'console/web/assets',
             'blog/runtime',
             'blog/web/assets',
-            'static/web/uploads'
+            'static/web/uploads',
+            'common/logs'
         ],
         'setExecutable' => [
             'yii',

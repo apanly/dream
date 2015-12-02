@@ -8,6 +8,7 @@ use common\components\DataHelper;
 use common\components\phpanalysis\FenCiService;
 use common\models\posts\Posts;
 use common\models\posts\PostsTags;
+use common\service\CacheHelperService;
 use common\service\Constant;
 use Yii;
 use yii\helpers\Url;
@@ -161,6 +162,8 @@ class PostsController extends BaseController
 
         $post_id = $model_posts->id;
         BlogService::buildTags($post_id);
+
+        CacheHelperService::buildFront(true);
         return $this->renderJSON(['post_id' => $post_id],"博文发布成功");
     }
 
