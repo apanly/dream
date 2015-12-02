@@ -1,8 +1,8 @@
 ;
 var public_ops = {
     init: function () {
-        this.initTags();
-        this.initBlogs();
+        //this.initTags();
+        //this.initBlogs();
         this.eventBind();
     },
     eventBind: function () {

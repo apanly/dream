@@ -143,4 +143,9 @@ class UtilHelper {
         }
         return false;
     }
+
+    public static function getRootPath(){
+        $vendor_path = \Yii::$app->vendorPath;
+        return dirname($vendor_path);
+    }
 } 

@@ -1,10 +1,6 @@
 <?php
-use \common\service\GlobalUrlService;
-$wx_urls = [
-    "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
-    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
-    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
-];
+use common\service\CacheHelperService;
+$tags = CacheHelperService::getFrontCache("tag");
 ?>
 <aside class="col-md-4 sidebar">
     <div class="widget">
@@ -21,34 +17,23 @@ $wx_urls = [
     </div>
     <div class="widget">
         <h4 class="title">标签云</h4>
-
         <div class="content tag-cloud">
+            <?php if( $tags ):?>
+                <?php foreach($tags as $_tag):?>
+                    <a href="/search/do?kw=<?=$_tag;?>"><?=$_tag;?></a>
+                <?php endforeach;?>
+            <?php endif;?>
         </div>
     </div>
 
     <div class="widget">
-        <h4 class="title">关于</h4>
-
-        <div class="content community">
-            <a href="/default/about">郭大帅哥，php 开发工程师，...</a>
+        <h4 class="title">电子书籍</h4>
+        <div class="content e-book">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="http://www.walu.cc/phpbook/" target="_blank">PHP扩展开发及内核应用</a>
+                </li>
+            </ul>
         </div>
     </div>
-
-    <!-- start widget -->
-    <div class="widget">
-        <h4 class="title">联系方式</h4>
-
-        <p>
-            <i class="fa fa-github"></i>
-            <a href="https://github.com/apanly" title="Github" target="_blank"
-                >https://github.com/apanly</a>
-        </p>
-
-        <div class="content download">
-            <img title="郭大帅哥的微信" src="<?=$wx_urls['my'];?>"/>
-        </div>
-    </div>
-    <!-- end widget -->
-
-
 </aside>

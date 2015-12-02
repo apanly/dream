@@ -40,3 +40,4 @@ composer.lock
 tags
 static/web/life/*
 static/web/uploads/*
+common/logs/*

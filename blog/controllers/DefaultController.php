@@ -6,6 +6,7 @@ use blog\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\components\UtilHelper;
 use common\models\posts\Posts;
+use common\service\CacheHelperService;
 use Yii;
 use yii\helpers\Url;
 
@@ -71,13 +72,14 @@ class DefaultController extends BaseController
             "display"     => 5
         ]);
 
+
+        $tags = CacheHelperService::getFrontCache("tag");
+
         return $this->render("index", [
             "data"      => $data,
             "page_info" => $page_info,
             "type"      => $type,
-            "hot_kws"   => [
-                "git", "vagrant", "微信", "图书馆", "缓存", "二维码"
-            ]
+            "hot_kws"   => array_slice($tags,0,5)
         ]);
     }
 
