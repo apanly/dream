@@ -40,4 +40,5 @@ composer.lock
 tags
 static/web/life/*
 static/web/uploads/*
+static/web/test/*
 common/logs/*
