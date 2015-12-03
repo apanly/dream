@@ -2,7 +2,7 @@
 
     server {
         listen       80;
-        server_name  pic1.vincentguo.cn pic2.vincentguo.cn;
+        server_name  pic1.vincentguo.cn pic2.vincentguo.cn pic3.vincentguo.cn;
 
         if ( $http_host ~* "^(.*?)\.vincentguo\.cn$"){
               set $domain $1;
