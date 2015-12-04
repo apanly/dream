@@ -7,7 +7,7 @@ StaticService::includeAppJsStatic("/js/wap/gallery/index.js",\blog\assets\WapAss
     <a href="<?=UrlService::buildWapUrl("/richmedia/index");?>" class="am-btn am-btn-default am-u-sm-6 am-u-md-6 am-u-lg-6">
         看今朝
     </a>
-    <a href="javascript:void(0);" class="am-btn am-btn-default am-u-sm-6 am-u-md-6 am-u-lg-6      am-btn-success">
+    <a href="javascript:void(0);" class="am-btn am-btn-default am-u-sm-6 am-u-md-6 am-u-lg-6      am-btn-primary">
         想当年
     </a>
 </div>

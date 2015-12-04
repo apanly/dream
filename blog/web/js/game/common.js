@@ -17,7 +17,7 @@ var common_ops = {
         }
 
         var target = $($(".am-navbar a").get(idx - 1));
-        target.addClass("am-btn-success");
+        target.addClass("am-btn-primary");
     },
     getRequest: function () {
         var url = location.search; //获取url中"?"符后的字串

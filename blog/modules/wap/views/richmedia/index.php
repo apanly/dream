@@ -5,7 +5,7 @@ StaticService::includeAppCssStatic("/css/wap/richmedia/index.css", \blog\assets\
 StaticService::includeAppJsStatic("/js/wap/richmedia/index.js", \blog\assets\WapAsset::className());
 ?>
 <div class="am-g" id="se_btn">
-    <a href="javascript:void(0);" class="am-btn am-btn-default am-u-sm-6 am-u-md-6 am-u-lg-6 am-btn-success">
+    <a href="javascript:void(0);" class="am-btn am-btn-default am-u-sm-6 am-u-md-6 am-u-lg-6 am-btn-primary">
         看今朝
     </a>
     <a href="<?=UrlService::buildWapUrl("/gallery/index");?>" class="am-btn am-btn-default am-u-sm-6 am-u-md-6 am-u-lg-6">

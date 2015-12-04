@@ -48,13 +48,13 @@ GameAsset::register($this);
     <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default">
         <ul class="am-navbar-nav am-cf am-avg-sm-4">
             <li>
-                <a href="<?= UrlService::buildGameUrl("/mv/index"); ?>" class="am-btn-warning">
+                <a href="<?= UrlService::buildGameUrl("/mv/index"); ?>" class="am-btn-default">
                     <span class="am-icon-home"></span>
                     <span class="am-navbar-label">美女</span>
                 </a>
             </li>
             <li>
-                <a href="<?= UrlService::buildGameUrl("/tools/index"); ?>" class="am-btn-warning">
+                <a href="<?= UrlService::buildGameUrl("/tools/index"); ?>" class="am-btn-default">
                     <span class="am-icon-paper-plane"></span>
                     <span class="am-navbar-label">工具</span>
                 </a>

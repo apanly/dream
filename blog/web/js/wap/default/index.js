@@ -8,7 +8,7 @@ var default_index_ops = {
     },
     eventBind: function () {
         var that = this;
-        $($("#se_btn a").get((that.type - 1))).addClass("am-btn-success");
+        $($("#se_btn a").get((that.type - 1))).addClass("am-btn-primary");
 
         $(window).scroll(function () {
             if (($(window).scrollTop() + $(window).height() > $(document).height() - 10) && stop) {
