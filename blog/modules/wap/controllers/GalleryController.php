@@ -52,7 +52,8 @@ class GalleryController extends BaseController {
                 }
                 $album_list[ $entry ] = [
                     "name" => $entry,
-                    "cover_url" => GlobalUrlService::buildPicStaticUrl("pic3","/{$entry}/1.jpg",['h' => 1000]),
+                    'switch' => \Yii::$app->params['switch']['cdn']['pic3']?1:0,
+                    "cover_src_url" => GlobalUrlService::buildPicStaticUrl("pic3","/{$entry}/1.jpg"),
                     "info_url" => UrlService::buildWapUrl("/gallery/list",['album' => $entry])
                 ];
             }
