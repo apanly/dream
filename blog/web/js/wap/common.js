@@ -16,7 +16,7 @@ var common_ops = {
             idx = 2;
         }
 
-        if (pathname.indexOf("/richmedia") > -1) {
+        if ( pathname.indexOf("/richmedia") > -1 || pathname.indexOf("/gallery") > -1) {
             idx = 3;
         }
 
