@@ -4,6 +4,7 @@ namespace api\controllers;
 
 use api\controllers\common\AuthController;
 use common\components\HttpLib;
+use common\components\UploadService;
 use common\models\library\Book;
 use Yii;
 
@@ -30,6 +31,9 @@ class LibraryController extends AuthController{
             return $this->render([],"无法从豆瓣获取数据信息",-1);
         }
 
+        $ret_upload = UploadService::uploadByUrl($ret['origin_image_url']);
+
+
         $model_book = new Book();
         $model_book->isbn = $ret['isbn'];
         $model_book->bartype = $ret['bartype'];
@@ -42,6 +46,7 @@ class LibraryController extends AuthController{
         $model_book->publishing_house = $ret['publishing_house'];
         $model_book->tags = $ret['tags'];
         $model_book->summary = $ret['summary'];
+        $model_book->image_url = $ret_upload?$ret_upload['uri']:'';
         $model_book->origin_image_url = $ret['origin_image_url'];
         $model_book->status = 0;
         $model_book->updated_time = $date_now;
