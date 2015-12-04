@@ -4,3 +4,10 @@
 #ds-thread #ds-reset .ds-powered-by{
     display: none;
 }
+
+.am-navbar-one a {
+    color: #000000;
+}
+.am-navbar-default a {
+    color: #000000;
+}

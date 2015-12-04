@@ -1,3 +1,10 @@
 .am-navbar .am-navbar-nav {
     padding: 0 0 0 0;
 }
+
+.am-navbar-one a {
+    color: #000000;
+}
+.am-navbar-default a {
+    color: #000000;
+}
