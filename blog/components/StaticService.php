@@ -1,6 +1,7 @@
 <?php
 namespace blog\components;
 
+use common\service\GlobalUrlService;
 use Yii;
 
 class StaticService
@@ -50,12 +51,10 @@ class StaticService
             $path = $path . "?version={$release_version}";
         }
 
-        $domain_static = Yii::$app->params['domains']['static'];
-
         if ($type == "css") {
-            Yii::$app->getView()->registerCssFile($domain_static . $path, ['depends' => $depend]);
+            Yii::$app->getView()->registerCssFile(GlobalUrlService::buildStaticUrl($path), ['depends' => $depend]);
         } else {
-            Yii::$app->getView()->registerJsFile($domain_static . $path, ['depends' => $depend]);
+            Yii::$app->getView()->registerJsFile(GlobalUrlService::buildStaticUrl($path), ['depends' => $depend]);
         }
     }
 
