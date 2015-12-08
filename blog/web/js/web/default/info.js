@@ -5,7 +5,7 @@ var default_info_ops = {
         this.adaptVideo();
     },
     eventBind: function () {
-        $("article img").each(function(){
+        $("article .post-content img").each(function(){
             $(this).attr("title","点击查看大图");
             $(this).attr("alt","点击查看大图");
             var image_url = $(this).attr("src");
