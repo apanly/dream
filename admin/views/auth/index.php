@@ -1,5 +1,6 @@
 <?php
 use admin\components\StaticService;
+use \common\service\GlobalUrlService;
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -7,7 +8,9 @@ use admin\components\StaticService;
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>管理后台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
     <link href="<?=StaticService::buildStaticUrl("css/login/index.css");?>" rel='stylesheet' type='text/css'/>
+
 </head>
 <body>
 <h2>&nbsp;</h2>

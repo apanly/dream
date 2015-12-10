@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use admin\assets\AppAsset;
 use admin\components\StaticService;
+use \common\service\GlobalUrlService;
 use yii\helpers\Url;
 AppAsset::register($this);
 ?>
@@ -13,6 +14,7 @@ AppAsset::register($this);
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
     <?php $this->head() ?>
     <?php $this->beginBody() ?>
 </head>

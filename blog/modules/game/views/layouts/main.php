@@ -2,6 +2,7 @@
 use blog\assets\GameAsset;
 use blog\components\StaticService;
 use blog\components\UrlService;
+use \common\service\GlobalUrlService;
 use  \common\components\DataHelper;
 
 GameAsset::register($this);
@@ -17,7 +18,7 @@ GameAsset::register($this);
     <meta name="keywords" content="<?= DataHelper::encode($this->params['seo']['keywords']); ?>">
     <title><?= DataHelper::encode($this->title) ?></title>
     <meta name="HandheldFriendly" content="True"/>
-    <link rel="shortcut icon" href="/images/icon.png">
+    <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
     <?php $this->head() ?>
     <?php $this->beginBody() ?>
 </head>

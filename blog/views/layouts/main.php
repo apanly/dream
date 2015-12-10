@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use blog\assets\AppAsset;
+use \common\service\GlobalUrlService;
 use \common\components\DataHelper;
 
 AppAsset::register($this);
@@ -16,7 +17,7 @@ AppAsset::register($this);
     <meta name="keywords" content="<?= DataHelper::encode($this->params['seo']['keywords']); ?>">
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="shortcut icon" href="/images/icon.png">
+    <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
 
     <?php $this->head() ?>
     <?php $this->beginBody() ?>
