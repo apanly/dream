@@ -46,9 +46,9 @@ class BaseController extends Controller
             if (isset($_GET['id'])) {
                 $params['id'] = $_GET['id'];
             }
-            $domain_m = Yii::$app->params['domains']['m'];
-            $url = $domain_m.UrlService::buildWapUrl("/" . $action->getUniqueId(), $params);
-            return $this->redirect($url);
+            $url = UrlService::buildWapUrl("/" . $action->getUniqueId(), $params);
+            $this->redirect($url);
+            return false;
         }
 
         if (!in_array($action->getUniqueId(), $this->allowAllAction)) {
