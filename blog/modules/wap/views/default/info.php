@@ -16,7 +16,9 @@ $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",[
 
             <p class="am-article-meta">
                 作者：<?= $info["author"]['nickname']; ?><br/>
+                <?php if( $info['updated_date'] != $info['created_date'] ):?>
                 更新时间：<?= $info['updated_date']; ?><br/>
+                <?php endif;?>
                 创建时间：<?= $info['created_date']; ?>
             </p>
         </div>
