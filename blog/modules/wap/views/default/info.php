@@ -5,7 +5,7 @@ StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\asset
 StaticService::includeStaticJs("/jquery/lightbox2/js/lightbox.min.js",\blog\assets\WapAsset::className());
 
 StaticService::includeAppJsStatic("/js/wap/default/info.js", \blog\assets\WapAsset::className());
-//StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\WapAsset::className());
+StaticService::includeStaticJs("/js/duoshuo/duoshuo.js", \blog\assets\WapAsset::className());
 
 $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",['w' => 300]);
 ?>
@@ -28,7 +28,7 @@ $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",[
             <img src="<?=$wx_url;?>" alt="微信服务号：imguowei_888">
         </figure>
         <!-- 多说评论框 start -->
-        <div style="display: none;" class="ds-thread" data-thread-key="<?= $info['id']; ?>" data-title="<?= $info['title']; ?>"
+        <div class="ds-thread" data-thread-key="<?= $info['id']; ?>" data-title="<?= $info['title']; ?>"
              data-url="<?= $info['url']; ?>"></div>
         <!-- 多说评论框 end -->
     </article>
