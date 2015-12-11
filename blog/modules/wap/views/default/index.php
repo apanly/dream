@@ -7,11 +7,13 @@ StaticService::includeAppJsStatic("/js/wap/default/index.js", \blog\assets\WapAs
 ?>
 <div class="am-g" id="se_btn">
     <a href="<?= UrlService::buildWapUrl("/default/index", ["type" => 1]); ?>"
-       class="am-btn am-btn-default am-u-sm-4 am-u-md-4 am-u-lg-4">文章</a>
+       class="am-btn am-btn-default am-u-sm-3 am-u-md-3">文章</a>
     <a href="<?= UrlService::buildWapUrl("/default/index", ["type" => 2]); ?>"
-       class="am-btn am-btn-default am-u-sm-4 am-u-md-4 am-u-lg-4">热门</a>
+       class="am-btn am-btn-default am-u-sm-3 am-u-md-3">热门</a>
     <a href="<?= UrlService::buildWapUrl("/default/index", ["type" => 3]); ?>"
-       class="am-btn am-btn-default am-u-sm-4 am-u-md-4 am-u-lg-4">原创</a>
+       class="am-btn am-btn-default am-u-sm-3 am-u-md-3">原创</a>
+    <a href="<?= UrlService::buildWapUrl("/search/do"); ?>"
+       class="am-btn am-btn-default am-u-sm-3 am-u-md-3"><span class="am-icon-search"></span></a>
 </div>
 <div data-am-widget="list_news" class="am-list-news am-list-news-default">
     <div class="am-list-news-bd">

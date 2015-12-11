@@ -40,11 +40,7 @@ class BaseController extends Controller
         if (!UtilHelper::isPC()
             && !in_array($action->getUniqueId(), $this->ignoreRedirectAction)
         ) {
-            $params = [];
-            if (isset($_GET['id'])) {
-                $params['id'] = $_GET['id'];
-            }
-            $url = UrlService::buildWapUrl("/" . $action->getUniqueId(), $params);
+            $url = UrlService::buildWapUrl("/" . $action->getUniqueId(), $_GET);
             $this->redirect($url);
             return false;
         }
