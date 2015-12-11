@@ -48,7 +48,8 @@ class DefaultController extends BaseController
             "content" => $post_info['content'],
             "tags"    => $tags,
             "author"  => $author,
-            'date'    => date("Y年m月d日", strtotime($post_info['updated_time'])),
+            'updated_date'    => date("Y.m.d", strtotime($post_info['updated_time'])),
+            'created_date'    => date("Y.m.d", strtotime($post_info['created_time'])),
             'url'     => $domain_m . UrlService::buildWapUrl("/default/info", ["id" => $post_info['id']])
         ];
 

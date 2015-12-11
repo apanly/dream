@@ -15,8 +15,9 @@ $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",[
             <h1 class="am-article-title"><?= $info["title"]; ?></h1>
 
             <p class="am-article-meta">
-                作者：<?= $info["author"]['nickname']; ?>
-                更新时间：<?= $info['date']; ?>
+                作者：<?= $info["author"]['nickname']; ?><br/>
+                更新时间：<?= $info['updated_date']; ?><br/>
+                创建时间：<?= $info['created_date']; ?>
             </p>
         </div>
         <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
