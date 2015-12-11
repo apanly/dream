@@ -25,7 +25,7 @@ class SearchController extends BaseController{
                         $tmp_view_url = UrlService::buildWapUrl("/library/info",['id' => $_item['book_id']]);
                     } else {
                         $tmp_title    = DataHelper::encode($_item['title']);
-                        $tmp_view_url = UrlService::buildWapUrl("/default/info",['id' => $_item['book_id']]);
+                        $tmp_view_url = UrlService::buildWapUrl("/default/info",['id' => $_item['post_id']]);
                     }
 
                     $data[] = [
