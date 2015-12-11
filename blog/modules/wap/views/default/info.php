@@ -1,8 +1,8 @@
 <?php
 use blog\components\StaticService;
 use \common\service\GlobalUrlService;
-StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\AppAsset::className());
-StaticService::includeStaticJs("/jquery/lightbox2/js/lightbox.min.js",\blog\assets\AppAsset::className());
+StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\WapAsset::className());
+StaticService::includeStaticJs("/jquery/lightbox2/js/lightbox.min.js",\blog\assets\WapAsset::className());
 
 StaticService::includeAppJsStatic("/js/wap/default/info.js", \blog\assets\WapAsset::className());
 //StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\WapAsset::className());
