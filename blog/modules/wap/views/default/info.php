@@ -1,6 +1,7 @@
 <?php
 use blog\components\StaticService;
 use \common\service\GlobalUrlService;
+use \blog\components\UrlService;
 StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\WapAsset::className());
 StaticService::includeStaticJs("/jquery/lightbox2/js/lightbox.min.js",\blog\assets\WapAsset::className());
 
@@ -13,7 +14,6 @@ $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",[
     <article class="am-article">
         <div class="am-article-hd">
             <h1 class="am-article-title"><?= $info["title"]; ?></h1>
-
             <p class="am-article-meta">
                 作者：<?= $info["author"]['nickname']; ?><br/>
                 <?php if( $info['updated_date'] != $info['created_date'] ):?>
@@ -26,6 +26,14 @@ $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",[
         <div class="am-article-bd">
             <?= $info["content"]; ?>
         </div>
+        <?php if( $info['tags'] ):?>
+        <div class="am-article-bd">
+            <i class="am-icon-tags"></i>
+            <?php foreach( $info['tags'] as $_tag ):?>
+                <a href="<?=UrlService::buildWapUrl("/search/do",['kw' => $_tag]);?>"><?=$_tag;?></a>
+            <?php endforeach;?>
+        </div>
+        <?php endif;?>
         <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
         <figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout">
             <img src="<?=$wx_url;?>" alt="微信服务号：imguowei_888">

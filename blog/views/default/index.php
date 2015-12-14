@@ -63,7 +63,7 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
                 <?php if ($_item['tags']): ?>
                     <footer class="post-footer clearfix">
                         <div class="pull-left tag-list">
-                            <i class="fa fa-folder-open-o"></i>
+                            <i class="glyphicon glyphicon-tags"></i>
                             <?php foreach ($_item['tags'] as $_tag): ?>
                                 <a href="/search/do?kw=<?= $_tag; ?>"><?= $_tag; ?></a>
                             <?php endforeach; ?>

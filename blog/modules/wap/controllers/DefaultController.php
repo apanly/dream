@@ -100,9 +100,11 @@ class DefaultController extends BaseController
         $data       = [];
         if ($posts_info) {
             foreach ($posts_info as $_post) {
+                $tmp_tags = explode(",", $_post['tags']);
                 $data[] = [
                     'title'     => DataHelper::encode($_post['title']),
                     'content'   => nl2br(UtilHelper::blog_short($_post['content'], 200)),
+                    "tags" => $tmp_tags,
                     'image_url' => $_post['image_url'],
                     'view_url'  => UrlService::buildWapUrl("/default/info", ["id" => $_post['id']]),
                 ];

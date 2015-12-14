@@ -44,7 +44,7 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
         <?php if ($info['tags']): ?>
             <footer class="post-footer clearfix">
                 <div class="pull-left tag-list">
-                    <i class="fa fa-folder-open-o"></i>
+                    <i class="glyphicon glyphicon-tags"></i>
                     <?php foreach ($info['tags'] as $_tag): ?>
                         <a href="/search/do?kw=<?= $_tag; ?>"><?= $_tag; ?></a>
                     <?php endforeach; ?>
