@@ -20,7 +20,7 @@ use \blog\components\UrlService;
                     </a>
                 </div>
                 <?php if( $_post_info['tags'] ):?>
-                <div class="am-g">
+                <div class="am-g" style="display: none;">
                     <div class="am-u-sm-12" style="padding: 0;margin-top: 5px">
                         <i class="am-icon-tags"></i>
                         <?php foreach( $_post_info['tags'] as $_tag ):?>
@@ -41,7 +41,7 @@ use \blog\components\UrlService;
                     </div>
                 </div>
                 <?php if( $_post_info['tags'] ):?>
-                    <div class="am-g">
+                    <div class="am-g" style="display: none;">
                         <div class="am-u-sm-12" style="padding: 0;margin-top: 5px;">
                             <i class="am-icon-tags"></i>
                             <?php foreach( $_post_info['tags'] as $_tag ):?>
