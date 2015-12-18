@@ -1,6 +1,7 @@
 <?php
 namespace blog\assets;
 
+use common\service\GlobalUrlService;
 use yii\web\AssetBundle;
 
 
@@ -8,19 +9,25 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
-        "css/bootstrap/bootstrap.min.css",
-        "css/bootstrap/font-awesome.min.css",
-        "css/bootstrap/monokai_sublime.min.css",
-        "css/screen.css",
-        "css/common.css"
-    ];
-    public $js = [
-        "js/jquery/jquery.min.js",
-        "js/bootstrap/bootstrap.min.js",
-        "js/jquery/jquery.fitvids.min.js",
-        "js/bootstrap/highlight.min.js",
-        "js/main.js",
-        "js/public.js",
-    ];
+    public $css = [];
+    public $js = [];
+
+    public function registerAssetFiles($view){
+        $this->css = [
+            GlobalUrlService::buildStaticUrl("/bootstrap/css/bootstrap.min.css"),
+            GlobalUrlService::buildStaticUrl("bootstrap/css/font-awesome.min.css"),
+            GlobalUrlService::buildStaticUrl("bootstrap/css/monokai_sublime.min.css"),
+            "css/screen.css",
+            "css/common.css"
+        ];
+        $this->js = [
+            GlobalUrlService::buildStaticUrl("jquery/jquery.min.js"),
+            GlobalUrlService::buildStaticUrl("bootstrap/js/bootstrap.min.js"),
+            GlobalUrlService::buildStaticUrl("jquery/js/jquery.fitvids.min.js"),
+            GlobalUrlService::buildStaticUrl("bootstrap/js/highlight.min.js"),
+            "js/main.js",
+            "js/public.js",
+        ];
+        parent::registerAssetFiles($view);
+    }
 }
