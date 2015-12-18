@@ -67,3 +67,4 @@ $post_latest = array_slice($data['post_latest'],0,5);
 </div>
 
 <a href="javascript:void(0);" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<input type="hidden" id="access_domain" value="<?=\Yii::$app->params['domains']['blog'];?>">

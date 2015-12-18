@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
             GlobalUrlService::buildStaticUrl("/bootstrap/js/highlight.min.js"),
             "js/main.js",
             "js/public.js",
+            "js/access.js",
         ];
         parent::registerAssetFiles($view);
     }

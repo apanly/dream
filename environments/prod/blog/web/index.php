@@ -34,8 +34,8 @@ $config = yii\helpers\ArrayHelper::merge(
 );
 
 /*定义版本号变量*/
-if(file_exists("/data/htdocs/release_version/version_blog")){
-    define("RELEASE_VERSION",file_get_contents("/data/htdocs/release_version/version_wap"));
+if(file_exists("/data/www/release_version/version_blog")){
+    define("RELEASE_VERSION",trim( file_get_contents("/data/www/release_version/version_blog") ) );
 }else{
     define("RELEASE_VERSION","20150731141600");
 }
