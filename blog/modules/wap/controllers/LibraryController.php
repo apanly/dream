@@ -13,8 +13,7 @@ use Yii;
 class LibraryController extends BaseController{
     private $page_size = 10;
 
-    public function actionIndex()
-    {
+    public function actionIndex(){
         $this->setTitle("郭大帅哥的图书馆");
         $data = $this->search();
         return $this->render("index", [
@@ -23,13 +22,11 @@ class LibraryController extends BaseController{
         ]);
     }
 
-    public function actionDetail($id)
-    {
+    public function actionDetail($id){
         return $this->redirect(UrlService::buildWapUrl("/library/info", ["id" => $id]), 301);
     }
 
-    public function actionInfo($id)
-    {
+    public function actionInfo($id){
 
         $id = intval($id);
         if (!$id) {
@@ -58,8 +55,7 @@ class LibraryController extends BaseController{
         ]);
     }
 
-    public function actionSearch()
-    {
+    public function actionSearch(){
         $p    = intval($this->get("p", 2));
         $data = $this->search(['p' => $p]);
         return $this->renderJSON([
@@ -69,8 +65,7 @@ class LibraryController extends BaseController{
         ]);
     }
 
-    private function search($params = [])
-    {
+    private function search($params = []){
         $p      = isset($params['p']) ? $params['p'] : 1;
         $offset = ($p - 1) * $this->page_size;
 
@@ -102,8 +97,7 @@ class LibraryController extends BaseController{
         return $data;
     }
 
-    private function buildItem($data)
-    {
+    private function buildItem($data){
         return $this->renderPartial("item", [
             "book_list" => $data
         ]);

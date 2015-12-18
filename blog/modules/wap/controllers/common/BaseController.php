@@ -10,16 +10,14 @@ class BaseController extends BaseWebController
 
     protected $allowAllAction = [];
 
-    public function __construct($id, $module, $config = [])
-    {
+    public function __construct($id, $module, $config = []){
         parent::__construct($id, $module, $config = []);
         $view               = \Yii::$app->view;
         $view->params['id'] = $id;
         $this->layout       = "main";
     }
 
-    public function beforeAction($action)
-    {
+    public function beforeAction($action){
         $this->setTitle();
         $this->setDescription();
         $this->setKeywords();

@@ -18,7 +18,8 @@ class BaseController extends Controller
     protected $open_id = 0;
     protected $allowAllAction = []; //在这里面的就不用检查合法性
     protected $ignoreRedirectAction = [
-        "run/step"
+        "run/step",
+        "error/error"
     ];
 
 
