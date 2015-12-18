@@ -30,7 +30,7 @@ class AppLogs extends \yii\db\ActiveRecord
      */
     public static function getDb()
     {
-        return Yii::$app->get('blog');
+        return Yii::$app->get('dream_log');
     }
 
     /**
