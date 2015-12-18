@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $app_name
+ * @property string $request_uri
  * @property string $content
  * @property string $ip
  * @property string $ua
@@ -43,6 +44,7 @@ class AppLogs extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['created_time'], 'safe'],
             [['app_name'], 'string', 'max' => 30],
+            [['request_uri'], 'string', 'max' => 255],
             [['ip'], 'string', 'max' => 500],
             [['ua', 'cookies'], 'string', 'max' => 1000]
         ];
@@ -56,6 +58,7 @@ class AppLogs extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'app_name' => 'App Name',
+            'request_uri' => 'Request Uri',
             'content' => 'Content',
             'ip' => 'Ip',
             'ua' => 'Ua',

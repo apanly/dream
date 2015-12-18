@@ -25,6 +25,7 @@ class AppLogService extends BaseService {
         $err_msg = $msg . " [file: {$file}][line: {$line}][err code:$code.][url:{$url}][post:".http_build_query($_POST)."]";
         $model_app_logs = new AppLogs();
         $model_app_logs->app_name = \Yii::$app->id;
+        $model_app_logs->request_uri = $uri;
         $model_app_logs->content = $err_msg;
         $model_app_logs->ip = UtilHelper::getClientIP();
         $model_app_logs->ua = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:"";
