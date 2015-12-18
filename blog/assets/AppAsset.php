@@ -23,7 +23,7 @@ class AppAsset extends AssetBundle
         $this->js = [
             GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
             GlobalUrlService::buildStaticUrl("/bootstrap/js/bootstrap.min.js"),
-            GlobalUrlService::buildStaticUrl("/jquery/js/jquery.fitvids.min.js"),
+            GlobalUrlService::buildStaticUrl("/jquery/jquery.fitvids.min.js"),
             GlobalUrlService::buildStaticUrl("/bootstrap/js/highlight.min.js"),
             "js/main.js",
             "js/public.js",
