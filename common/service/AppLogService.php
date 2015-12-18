@@ -10,6 +10,10 @@ class AppLogService extends BaseService {
 
     public static function addLog(){
         $error = \Yii::$app->errorHandler->exception;
+        if( !$error ){
+            return true;
+        }
+
         $code = $error->getCode();
         $msg = $error->getMessage();
         $file = $error->getFile();
@@ -27,5 +31,6 @@ class AppLogService extends BaseService {
         $model_app_logs->cookies = var_export($_COOKIE,true);
         $model_app_logs->created_time = date("Y-m-d H:i:s");
         $model_app_logs->save(0);
+        return true;
     }
 } 
