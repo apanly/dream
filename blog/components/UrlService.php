@@ -7,7 +7,9 @@ use yii\helpers\Url;
 class UrlService
 {
     public static function buildUrl($uri, $params = []){
-        return Url::toRoute(array_merge([$uri], $params));
+        $path = Url::toRoute(array_merge([$uri], $params));
+        $domain_blog = \Yii::$app->params['domains']['blog'];
+        return $domain_blog.$path;
     }
 
 
