@@ -38,7 +38,8 @@ class MateAsset extends AssetBundle
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.ie8polyfill.min.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.widgets.helper.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.widgets.helper.min.js"),
-            'js/mate/common.js'
+            'js/mate/common.js',
+            "js/access.js",
         ];
         parent::registerAssetFiles($view);
     }

@@ -68,6 +68,7 @@ GameAsset::register($this);
             <i class="am-gotop-icon am-icon-chevron-up"></i>
         </a>
     </div>
+    <input type="hidden" id="access_domain" value="<?=\Yii::$app->params['domains']['blog'];?>">
 </div>
 <?php $this->endBody() ?>
 </body>
