@@ -7,6 +7,13 @@ return [
             'username' => 'xxx',
             'password' => 'xxx',
             'charset' => 'utf8',
+        ],
+        'log' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=dream_log',
+            'username' => 'xxx',
+            'password' => 'xxx',
+            'charset' => 'utf8',
         ]
     ],
 ];
