@@ -31,7 +31,7 @@ class WapAsset extends AssetBundle
             'css/wap/common.css',
         ];
         $this->js = [
-            'js/jquery/jquery.min.js',
+            GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.min.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.ie8polyfill.js"),

@@ -15,7 +15,18 @@ var access_ops = {
         }
         var referer = document.referrer;
         var url = window.location.href;
-        $.getJSON(access_domain + "/log/add", { 'referer': referer });
+
+        $.ajax(access_domain + "/log/add", {
+            data: {
+                'referer': referer,
+                '_': new Date().getTime()
+            },
+            dataType: 'jsonp',
+            crossDomain: true,
+            success: function(data) {
+            }
+        });
+        //$.getJSON(access_domain + "/log/add", { 'referer': referer });
     }
 };
 $(document).ready(function(){

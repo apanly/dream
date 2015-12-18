@@ -31,7 +31,7 @@ class MateAsset extends AssetBundle
             'css/mate/common.css',
         ];
         $this->js = [
-            'js/jquery/jquery.min.js',
+            GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.min.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.ie8polyfill.js"),
