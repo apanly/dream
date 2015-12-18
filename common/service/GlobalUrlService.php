@@ -1,16 +1,17 @@
 <?php
 namespace common\service;
 
+use yii\helpers\Url;
 
 class GlobalUrlService {
-    public static function buildStaticUrl($path){
+    public static function buildStaticUrl($path,$params = []){
         $switch = \Yii::$app->params['switch']['cdn']['static'];
         if( $switch ){
             $domain = \Yii::$app->params['domains']['cdn_static'];
         }else{
             $domain = \Yii::$app->params['domains']['static'];
         }
-
+        $path = Url::toRoute(array_merge([$path],$params));
         return $domain.$path;
     }
 

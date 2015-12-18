@@ -14,7 +14,7 @@ class AppAsset extends AssetBundle
 
     public function registerAssetFiles($view){
         $this->css = [
-            GlobalUrlService::buildStaticUrl("/bootstrap/css/bootstrap.min.css"),
+            GlobalUrlService::buildStaticUrl("/bootstrap/css/bootstrap.min.css",['ver' => RELEASE_VERSION]),
             GlobalUrlService::buildStaticUrl("/bootstrap/css/font-awesome.min.css"),
             GlobalUrlService::buildStaticUrl("/bootstrap/css/monokai_sublime.min.css"),
             "css/screen.css",
