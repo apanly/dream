@@ -13,6 +13,8 @@ use \common\service\GlobalUrlService;
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
+    <link rel="icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
+
     <link href="<?=GlobalUrlService::buildStaticUrl("/bootstrap/css/bootstrap.min.css");?>" rel="stylesheet">
     <link href="<?=GlobalUrlService::buildStaticUrl("/bootstrap/css/font-awesome.min.css");?>" rel="stylesheet">
     <link href="<?=GlobalUrlService::buildStaticUrl("/bootstrap/css/monokai_sublime.min.css");?>" rel="stylesheet">

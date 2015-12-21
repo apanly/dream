@@ -19,6 +19,7 @@ GameAsset::register($this);
     <title><?= DataHelper::encode($this->title) ?></title>
     <meta name="HandheldFriendly" content="True"/>
     <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
+    <link rel="icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
     <?php $this->head() ?>
     <?php $this->beginBody() ?>
 </head>
