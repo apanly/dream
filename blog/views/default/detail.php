@@ -2,8 +2,22 @@
 use  \common\components\DataHelper;
 use \blog\components\StaticService;
 use yii\helpers\Url;
+
+/*lightbox*/
 StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\AppAsset::className());
 StaticService::includeStaticJs("/jquery/lightbox2/js/lightbox.min.js",\blog\assets\AppAsset::className());
+/*syntaxhighlighter*/
+//StaticService::includeStaticJs("/syntaxhighlighter/scripts/shCore.js",\blog\assets\AppAsset::className());
+//StaticService::includeStaticJs("/syntaxhighlighter/scripts/shBrushBash.js",\blog\assets\AppAsset::className());
+//StaticService::includeStaticJs("/syntaxhighlighter/scripts/shBrushJava.js",\blog\assets\AppAsset::className());
+//StaticService::includeStaticJs("/syntaxhighlighter/scripts/shBrushPhp.js",\blog\assets\AppAsset::className());
+//StaticService::includeStaticJs("/syntaxhighlighter/scripts/shBrushPython.js",\blog\assets\AppAsset::className());
+//StaticService::includeStaticJs("/syntaxhighlighter/scripts/shBrushJScript.js",\blog\assets\AppAsset::className());
+//StaticService::includeStaticJs("/syntaxhighlighter/scripts/shBrushSql.js",\blog\assets\AppAsset::className());
+//StaticService::includeStaticCss("/syntaxhighlighter/styles/shCore.css",\blog\assets\AppAsset::className());
+//StaticService::includeStaticCss("/syntaxhighlighter/styles/shThemeDefault.css",\blog\assets\AppAsset::className());
+
+
 StaticService::includeAppJsStatic("/js/web/default/info.js", \blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964", \blog\assets\AppAsset::className());

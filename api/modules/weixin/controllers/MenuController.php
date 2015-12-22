@@ -31,34 +31,34 @@ class MenuController extends BaseController{
                             "key"  => "blog_original"
                         ],
                         [
-                            "type" => "click",
-                            "name" => "热门文章",
-                            "key"  => "blog_hot"
-                        ],
-                        [
                             "name" => "文章列表",
                             "type" => "view",
                             "url"  => "{$domain_m}/?from={$from}"
-                        ]
-                    ]
-                ],
-                [
-                    "name"       => "生活",
-                    "sub_button" => [
-                        [
-                            "type" => "click",
-                            "name" => "精选图书",
-                            "key"  => "book_hot"
                         ],
                         [
                             "type" => "view",
-                            "name" => "图书列表",
+                            "name" => "图书馆",
                             "url"  => "{$domain_m}/library/index?from={$from}"
                         ],
                         [
                             "name" => "富媒体",
                             "type" => "view",
                             "url"  => "{$domain_m}/richmedia/index?from={$from}"
+                        ],
+                    ]
+                ],
+                [
+                    "name"       => "小玩意",
+                    "sub_button" => [
+                        [
+                            "type" => "click",
+                            "name" => "点歌",
+                            "key"  => "ktv"
+                        ],
+                        [
+                            "type" => "view",
+                            "name" => "密码生成",
+                            "url"  => "{$domain_m}/library/index?from={$from}"
                         ]
                     ]
                 ],

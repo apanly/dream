@@ -79,6 +79,9 @@ class DefaultController extends  BaseController {
                     case "book_hot":
                         return $this->getHotBook();
                         break;
+                    case "ktv":
+                        return $this->songTips();
+                        break;
                 }
                 break;
         }
@@ -294,4 +297,11 @@ EOT;
         return $resData;
     }
 
+    private function songTips(){
+        $resData = <<<EOT
+点歌，请回复“@歌曲名称或者@歌手名”
+例如“@王菲”，“@匆匆那年”
+EOT;
+        return $resData;
+    }
 } 

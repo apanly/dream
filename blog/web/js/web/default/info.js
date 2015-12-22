@@ -3,6 +3,7 @@ var default_info_ops = {
     init: function () {
         this.eventBind();
         this.adaptVideo();
+        //this.syntaxHighlighter();
     },
     eventBind: function () {
         $("article .post-content img").each(function(){
@@ -26,6 +27,14 @@ var default_info_ops = {
         $("iframe").each(function () {
             $(this).attr("height", height);
         });
+    },
+    syntaxHighlighter:function(){
+        $("pre").each(function(){
+            $(this).attr("class","brush: js;");
+        });
+        SyntaxHighlighter.config.bloggerMode = true;
+        //SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+        SyntaxHighlighter.all();
     }
 };
 
