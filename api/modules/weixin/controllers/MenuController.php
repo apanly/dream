@@ -6,6 +6,7 @@ use api\modules\weixin\controllers\common\BaseController;
 use api\modules\weixin\controllers\WxrequestController;
 
 
+use blog\components\UrlService;
 use Yii;
 
 class MenuController extends BaseController{
@@ -19,6 +20,7 @@ class MenuController extends BaseController{
         $from  = $this->getSource();
         $domains = Yii::$app->params['domains'];
         $domain_m = $domains['m'];
+        $domain_blog = $domains['blog'];
 
         $menu  = [
             "button" => [
@@ -33,17 +35,17 @@ class MenuController extends BaseController{
                         [
                             "name" => "文章列表",
                             "type" => "view",
-                            "url"  => "{$domain_m}/?from={$from}"
+                            "url"  => UrlService::buildWapUrl("/default/index",["from"=>$from])
                         ],
                         [
                             "type" => "view",
                             "name" => "图书馆",
-                            "url"  => "{$domain_m}/library/index?from={$from}"
+                            "url"  => UrlService::buildWapUrl("/library/index",["from"=>$from])
                         ],
                         [
                             "name" => "富媒体",
                             "type" => "view",
-                            "url"  => "{$domain_m}/richmedia/index?from={$from}"
+                            "url"  => UrlService::buildWapUrl("/richmedia/index",["from"=>$from])
                         ],
                     ]
                 ],
@@ -58,7 +60,7 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "密码生成",
-                            "url"  => "{$domain_m}/library/index?from={$from}"
+                            "url"  => UrlService::buildGameUrl("/tools/index",['from' => $from])
                         ]
                     ]
                 ],
@@ -68,12 +70,12 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "关于",
-                            "url"  => "{$domain_m}/my/about?from={$from}"
+                            "url"  => UrlService::buildWapUrl("/my/about",["from"=>$from])
                         ],
                         [
                             "type" => "view",
                             "name" => "赞助",
-                            "url"  => "{$domain_m}/my/about?from={$from}#contact"
+                            "url"  => UrlService::buildWapUrl("/my/about",["from"=>$from,"#" => contact])
                         ]
                     ]
                 ]
