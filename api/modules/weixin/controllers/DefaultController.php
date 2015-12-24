@@ -154,7 +154,7 @@ EOT;
         if( $songs ){
             foreach( $songs as $_song_info ){
                 $list[] = [
-                    "title" => $_song_info['fsinger']." -- ".$_song_info['fsong'],
+                    "title" => $_song_info['song_author']." -- ".$_song_info['song_title'],
                     "description" => '',
                     "picurl" => $_song_info['cover_image'],
                     "url" => $_song_info['view_url']
