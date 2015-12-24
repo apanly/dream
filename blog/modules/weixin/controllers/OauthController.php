@@ -115,8 +115,8 @@ class OauthController extends BaseBlogController{
                 font-size:3em;
             }
         </style>
-        <a href="<?=$url_blog;?>">博客首页</a>
-        <a href="<?=$url_game;?>">游戏中心</a>
+        <a href="{$url_blog}">博客首页</a>
+        <a href="{$url_game}">游戏中心</a>
 EOT;
     }
 }
