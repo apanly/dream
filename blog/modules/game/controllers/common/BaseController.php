@@ -54,7 +54,7 @@ class BaseController extends BaseBlogController
         if( isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ){
             $refer .= "@|@".str_replace("&","@@",$_SERVER['QUERY_STRING']);
         }
-        return sprintf('/oauth/login?type=%s&refer=/%s',$type,urlencode($refer));
+        return sprintf('/oauth/login?type=%s&refer=/%s',$type,UrlService::buildUrl("/".urlencode($refer)) );
     }
 
     public function setTitle($title = "郭大帅哥的游戏中心"){

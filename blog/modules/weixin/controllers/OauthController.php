@@ -70,11 +70,14 @@ class OauthController extends BaseBlogController{
 
         $this->createLoginStatus($user_info);
 
-        $url = UrlService::buildUrl("/");
-        if( $state == "game" ){
-            $url = GlobalUrlService::buildUrl("/game/mv/index");
-        }
+        /*特殊处理*/
+        $state = str_replace("@@","&",urldecode($state));
+        $state = str_replace("@|@","?",urldecode($state));
+        $state = rtrim($state,"?");
+        $state = rtrim($state,"&");
 
+
+        $url = $state?$state:UrlService::buildWapUrl("/default/index");
         return $this->redirect($url);
 
     }
