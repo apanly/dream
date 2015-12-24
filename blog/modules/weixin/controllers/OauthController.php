@@ -107,6 +107,11 @@ class OauthController extends BaseBlogController{
 
     public function actionClear(){
         $this->removeAuthToken();
-        return $this->redirect( UrlService::buildGameUrl("/mv/index") );
+        $url_blog = UrlService::buildWapUrl("/default/index");
+        $url_game = UrlService::buildGameUrl("/mv/index");
+        return <<<EOT
+        <a href="<?=$url_blog;?>">博客首页</a>
+        <a href="<?=$url_game;?>">游戏中心</a>
+EOT;
     }
 }
