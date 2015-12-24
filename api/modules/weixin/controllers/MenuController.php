@@ -75,7 +75,7 @@ class MenuController extends BaseController{
                         [
                             "type" => "view",
                             "name" => "赞助",
-                            "url"  => UrlService::buildWapUrl("/my/about",["from"=>$from,"#" => contact])
+                            "url"  => UrlService::buildWapUrl("/my/about",["from"=>$from,"#" => "contact"])
                         ]
                     ]
                 ]
