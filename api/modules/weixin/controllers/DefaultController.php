@@ -6,6 +6,7 @@ use api\modules\weixin\controllers\common\BaseController;
 use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\search\IndexSearch;
+use common\service\bat\QQService;
 use common\service\weixin\RecordService;
 
 class DefaultController extends  BaseController {
@@ -56,6 +57,10 @@ class DefaultController extends  BaseController {
             return ['type'=> "text",'data'=> $this->urlTips() ];
         }
 
+        if( substr($keyword,0,1) == "@" ){//搜歌曲
+            return $this->searchMusicByKw($keyword);
+        }
+
         return $this->getDataByKeyword($keyword);
     }
 
@@ -72,12 +77,6 @@ class DefaultController extends  BaseController {
                 switch($eventKey){
                     case "blog_original":
                         return $this->getOriginalBlog();
-                        break;
-                    case "blog_hot":
-                        return  $this->getHotBlog();
-                        break;
-                    case "book_hot":
-                        return $this->getHotBook();
                         break;
                     case "ktv":
                         $resData =  $this->songTips();
@@ -148,36 +147,24 @@ EOT;
         return ['type' => $type ,"data" => $data];
     }
 
-    private function getHotBlog(){
-        $post_list = Posts::find()
-            ->where([ 'status' => 1 ])
-            ->andWhere(['>','hot',0])
-            ->orderBy("updated_time desc")
-            ->limit(5)
-            ->all();
 
+    private function searchMusicByKw($kw){
+        $songs = QQService::search($kw);
         $list = [];
-        if( $post_list ){
-            $domain_static = \Yii::$app->params['domains']['static'];
-            $domain_m = \Yii::$app->params['domains']['m'];
-            foreach($post_list as $_item){
-                $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
-                if( $_item['image_url'] ){
-                    $tmp_image = $_item['image_url'];
-                }
+        if( $songs ){
+            foreach( $songs as $_song_info ){
                 $list[] = [
-                    "title" => $_item['title'],
-                    "description" => $_item['title'],
-                    "picurl" => $tmp_image,
-                    "url" => "{$domain_m}/default/".$_item['id']
+                    "title" => $_song_info['fsinger']." -- ".$_song_info['fsong'],
+                    "description" => '',
+                    "picurl" => $_song_info['cover_image'],
+                    "url" => $_song_info['view_url']
                 ];
             }
         }
-        $data = $list?$this->getRichXml($list):$this->help();
+        $data = $list?$this->getRichXml($list):"抱歉没有搜索到关于 {$kw} 的歌曲";
         $type = $list?"rich":"text";
         return ['type' => $type ,"data" => $data];
     }
-
 
     private function getOriginalBlog(){
         $post_list = Posts::find()
@@ -208,29 +195,6 @@ EOT;
         return ['type' => $type ,"data" => $data];
     }
 
-    private function getHotBook(){
-        $book_list = Book::find()
-            ->where([ 'status' => 1 ])
-            ->orderBy("id desc")
-            ->limit(5)
-            ->all();
-
-        $list = [];
-        if( $book_list ){
-            $domain_m = \Yii::$app->params['domains']['m'];
-            foreach($book_list as $_item){
-                $list[] = [
-                    "title" => $_item['subtitle'],
-                    "description" => $_item['subtitle'],
-                    "picurl" => $_item['origin_image_url'],
-                    "url" => "{$domain_m}/library/detail/".$_item['id']
-                ];
-            }
-        }
-        $data = $list?$this->getRichXml($list):$this->help();
-        $type = $list?"rich":"text";
-        return ['type' => $type ,"data" => $data];
-    }
 
     private function getRichXml($list){
         $article_count = count( $list );

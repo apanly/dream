@@ -2,6 +2,7 @@
 namespace common\service\bat;
 
 
+use blog\components\UrlService;
 use common\components\HttpClient;
 use common\models\games\Music;
 use common\service\BaseService;
@@ -77,7 +78,8 @@ class QQService extends  BaseService{
                     "song_author" => $_item['fsinger'],
                     "text" => $_item,
                     "format_data" => [ 'image_id' => $tmp_img_id,'mid' => $tmp_mid ],
-                    "status" => 1
+                    "status" => 1,
+                    "view_url" => UrlService::buildGameUrl("/music/info",['song_id' => $tmp_song_id])
                 ];
                 if( self::saveMusic($tmp_info) ){
                     $ret[] = $tmp_info;
