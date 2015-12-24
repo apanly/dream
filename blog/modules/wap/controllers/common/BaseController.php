@@ -45,6 +45,7 @@ class BaseController extends BaseBlogController
      * */
     protected function getLoginUrl(){
         $refer = \Yii::$app->request->getPathInfo();
+        $refer = str_replace("wap/","",$refer);
         if( isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ){
             $refer .= "@|@".str_replace("&","@@",$_SERVER['QUERY_STRING']);
         }
