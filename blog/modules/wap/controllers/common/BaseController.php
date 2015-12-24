@@ -2,10 +2,10 @@
 namespace blog\modules\wap\controllers\common;
 
 use blog\components\UrlService;
-use common\components\BaseWebController;
+use blog\components\BaseBlogController;
 use common\components\UtilHelper;
 
-class BaseController extends BaseWebController
+class BaseController extends BaseBlogController
 {
 
     protected $allowAllAction = [];
@@ -21,32 +21,52 @@ class BaseController extends BaseWebController
         $this->setTitle();
         $this->setDescription();
         $this->setKeywords();
-        if (!in_array($action->getUniqueId(), $this->allowAllAction)) {
+        $login_status = $this->checkLoginStatus();
+
+        if (!$login_status && !in_array($action->getUniqueId(), $this->allowAllAction)) {
+            if( UtilHelper::isWechat() ){
+                if(\Yii::$app->request->isAjax){
+                    $this->renderJSON([],"未登录,请返回用户中心",-302);
+                }else{
+                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl() ]);
+                    $this->redirect( $redirect_url );
+                }
+                return false;
+            }
+
 
         }
         return true;
     }
 
-    public function setKeywords($keywords = "")
-    {
-        $keywords                                   = $keywords ? $keywords : \Yii::$app->params['seo']['keywords'];
+    /*
+     * @|@ => ?
+     * @@ => &
+     * */
+    protected function getLoginUrl(){
+        $refer = \Yii::$app->request->getPathInfo();
+        if( isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ){
+            $refer .= "@|@".str_replace("&","@@",$_SERVER['QUERY_STRING']);
+        }
+        return UrlService::buildWapUrl("/".urlencode($refer));
+    }
+
+    public function setKeywords($keywords = ""){
+        $keywords  = $keywords ? $keywords : \Yii::$app->params['seo']['keywords'];
         $this->getView()->params['seo']['keywords'] = $keywords;
     }
 
-    public function setDescription($description = "")
-    {
-        $description                                   = $description ? $description : \Yii::$app->params['seo']['description'];
+    public function setDescription($description = ""){
+        $description  = $description ? $description : \Yii::$app->params['seo']['description'];
         $this->getView()->params['seo']['description'] = $description;
     }
 
 
-    public function goHome()
-    {
+    public function goHome(){
         return $this->redirect(UrlService::buildWapUrl("/defaul/index"));
     }
 
-    public function goLibraryHome()
-    {
+    public function goLibraryHome(){
         return $this->redirect(UrlService::buildWapUrl("/library/index"));
     }
 } 
