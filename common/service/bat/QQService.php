@@ -54,11 +54,15 @@ class QQService extends  BaseService{
         $ret = [];
         if( $data['code'] == 0 ){
             $song_list = $data['data']['song']['list'];
-            $song_list_keys = array_rand($song_list ,7);
-            $rand_songs = array_slice($song_list,0,1);
-            foreach( $song_list_keys as $_idx ){
-                $rand_songs[] = $song_list[$_idx];
+            $rand_songs = $song_list;
+            if( count( $song_list ) >= 7  ){
+                $song_list_keys = array_rand($song_list ,7);
+                $rand_songs = array_slice($song_list,0,1);
+                foreach( $song_list_keys as $_idx ){
+                    $rand_songs[] = $song_list[$_idx];
+                }
             }
+
 
             foreach( $rand_songs as $_item ){
                 $tmp_attr_f = explode("|",$_item['f']);
