@@ -14,7 +14,8 @@ return [
         "cdn_pic2" => "http://pic2.dr.local.com",
         "pic3" => "http://pic3.dr.local.com",
         "cdn_pic3" => "http://pic3.dr.local.com",
-        "m" => "http://m.dr.local.com"
+        "m" => "http://m.dr.local.com",
+        "cookie" => ".dr.local.com",
     ],
     "author" => [
         "nickname" => "郭大帅哥",

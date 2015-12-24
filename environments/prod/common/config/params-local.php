@@ -15,6 +15,7 @@ return [
         "pic3" => "http://pic3.vincentguo.cn",
         "cdn_pic3" => "http://cdn.pic3.yunetidc.com",
         "m"  => "http://m.vincentguo.cn",
+        "cookie" => ".vincentguo.cn",
     ],
     "author" => [
         "nickname" => "郭大帅哥",

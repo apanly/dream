@@ -63,10 +63,12 @@ class BaseWebController extends Controller
 
     protected function setCookie($name,$value,$expire = 0){
         $cookies = Yii::$app->response->cookies;
+        $domain_cookies = \Yii::$app->params['domains']['cookie'];
         $cookies->add(new \yii\web\Cookie([
             'name' => $name,
             'value' => $value,
-            'expire' => $expire? ( time() + $expire ):$expire
+            'expire' => $expire? ( time() + $expire ):$expire,
+            'domain' => $domain_cookies
         ]));
     }
 
