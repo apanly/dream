@@ -110,6 +110,11 @@ class OauthController extends BaseBlogController{
         $url_blog = UrlService::buildWapUrl("/default/index");
         $url_game = UrlService::buildGameUrl("/mv/index");
         return <<<EOT
+        <style>
+            body{
+                font-size:3em;
+            }
+        </style>
         <a href="<?=$url_blog;?>">博客首页</a>
         <a href="<?=$url_game;?>">游戏中心</a>
 EOT;
