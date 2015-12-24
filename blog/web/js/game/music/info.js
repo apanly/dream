@@ -75,13 +75,15 @@ var music__info_ops = {
             dataType:'json',
             success:function(res){
                 if( res.code == 200 ){
-                    lrc_arr = res.data.lrc.split('\n');
-                    lyc_str ="";
-                    for (i = 0; i < lrc_arr.length; i++) {
-                        lyc_str += that.lrc_template(lrc_arr[i]);
+                    if( res.data.lrc.length > 0 ){
+                        lrc_arr = res.data.lrc.split('\n');
+                        lyc_str = "";
+                        for (i = 0; i < lrc_arr.length; i++) {
+                            lyc_str += that.lrc_template(lrc_arr[i]);
 
+                        }
+                        $("#lrc_box").html(lyc_str);
                     }
-                    $("#lrc_box").html(lyc_str);
                     that.counter = $("#lrc_box")[0].getBoundingClientRect().top;
                     that.player.src = res.data.song_url;
                     that.player.play();
