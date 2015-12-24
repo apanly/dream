@@ -104,4 +104,9 @@ class OauthController extends BaseBlogController{
 
         return $this->redirect( $unvalid_url );
     }
+
+    public function actionClear(){
+        $this->removeAuthToken();
+        return $this->redirect( UrlService::buildGameUrl("/mv/index") );
+    }
 }
