@@ -263,8 +263,9 @@ EOT;
 
     private function songTips(){
         $resData = <<<EOT
-点歌，请回复“@歌曲名称或者@歌手名”
-例如“@王菲”，“@匆匆那年”
+点歌，请回复
+@歌曲名称 或 @歌手名
+如“@王菲”，“@匆匆那年”
 EOT;
         return $resData;
     }
