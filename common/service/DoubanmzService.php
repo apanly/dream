@@ -16,8 +16,8 @@ class DoubanmzService {
         if( $has_in ){
             return true;
         }
-        $tmp_ret = UploadService::uploadByUrl($url,"","pic2");
-
+        //$tmp_ret = UploadService::uploadByUrl($url,"","pic2");
+        $tmp_ret = '';
         $model_doubanmz = new Doubanmz();
         $model_doubanmz->hash_key = $hash_key;
         $model_doubanmz->title = $title;

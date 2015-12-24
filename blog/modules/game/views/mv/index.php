@@ -27,7 +27,7 @@ StaticService::includeAppJsStatic("/js/game/mv/index.js",\blog\assets\GameAsset:
             <li>
                 <div class="am-gallery-item">
                     <a href="javascript:void(0);">
-                        <img data-src="<?=$_item['src_url'];?>"  alt="<?=$_item['title'];?>"/>
+                        <img src="<?=$_item['src_url'];?>"  alt="<?=$_item['title'];?>"/>
                         <h3 class="am-gallery-title"><?=$_item['title'];?></h3>
                     </a>
                 </div>

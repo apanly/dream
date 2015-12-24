@@ -39,16 +39,10 @@ class DoubanController extends BaseController
         $data = [];
         if( $mz_list ){
             foreach( $mz_list as $_mz_info ){
-                if( $_mz_info['image_url'] ){
-                    $tmp_small_pic_url = GlobalUrlService::buildPic2Static($_mz_info['image_url'],['h' => 250]);
-                }else{
-                    $tmp_small_pic_url = $_mz_info['src_url'];
-                }
-
                 $data[] = [
                     "id" => $_mz_info["id"],
                     "title" => mb_substr( DataHelper::encode( $_mz_info["title"] ),0,10,"utf-8"),
-                    "src_url" => $tmp_small_pic_url
+                    "src_url" => $_mz_info['src_url']
                 ];
             }
         }

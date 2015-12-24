@@ -1,7 +1,7 @@
 ;
 var mv_index_ops = {
     init:function(){
-        this.adaptImage();
+        //this.adaptImage();
     },
     adaptImage:function(){
         var windowWidth = $(window).width();

@@ -33,7 +33,8 @@ class MvController extends BaseController
                 $data[] = [
                     "id" => $_mz_info["id"],
                     "title" => DataHelper::encode( $_mz_info["title"] ),
-                    "src_url" => GlobalUrlService::buildPic2Static($_mz_info['image_url'])
+                    //"src_url" => GlobalUrlService::buildPic2Static($_mz_info['image_url'])
+                    "src_url" => $_mz_info['src_url']
                 ];
             }
         }
