@@ -49,6 +49,10 @@ var music__info_ops = {
             return;
         }
         var lrc_items = $("#lrc_box").children();
+        if( lrc_items.size() < 1 ){
+            return;
+        }
+
         var st = that.st;
         var counter = that.counter;
         for (i = 0; i < lrc_items.length; i++) {

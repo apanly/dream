@@ -52,12 +52,17 @@ class MusicController extends BaseController
 
         $lrc_url = QQService::getSongLrcUrl($info['song_id']);
         $lrc_data = HttpClient::get($lrc_url);
-        $parser = xml_parser_create();
-        xml_parse_into_struct($parser, $lrc_data, $values, $index);    //解析到数组
-        xml_parser_free($parser);
+
+        $lrc = '';
+        if(substr($lrc_data,0,4) == "<?xml" ){
+            $parser = xml_parser_create();
+            xml_parse_into_struct($parser, $lrc_data, $values, $index);    //解析到数组
+            xml_parser_free($parser);
+            $lrc = isset($values[0]['value'])?$values[0]['value']:'';
+        }
 
         $data = [
-            'lrc' => $values[0]['value'],
+            'lrc' => $lrc,
             'song_url' => QQService::getSongUrl($info['song_id'],".mp3")
         ];
 
