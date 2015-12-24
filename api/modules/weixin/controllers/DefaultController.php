@@ -80,7 +80,7 @@ class DefaultController extends  BaseController {
                         return $this->getHotBook();
                         break;
                     case "ktv":
-                        return $this->songTips();
+                        $resData =  $this->songTips();
                         break;
                 }
                 break;
