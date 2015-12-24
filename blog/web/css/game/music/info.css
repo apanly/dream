@@ -1,0 +1,64 @@
+
+@-webkit-keyframes round {
+    0% {
+        -webkit-transform: rotate(0);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes round {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#music-pic {
+    border-radius: 100px;
+    height: 150px;
+    width: 150px;
+    display: block;
+    background-color: gray;
+    margin: 10px auto;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 8px 0 #0593d3;
+    -moz-animation: round 18s linear infinite;
+    animation: round 18s linear infinite;
+    animation-play-state: paused;
+
+    -webkit-animation: round 18s linear infinite;
+    -webkit-animation-play-state: paused;
+}
+#music-pic img{
+    vertical-align:middle;
+    position: relative;
+    left: 59px;
+    top: 59px;
+    display: none;
+}
+
+#music-pic.active{
+    animation-play-state: running;
+    -webkit-animation-play-state: running;
+}
+
+#lrc_box div{
+    margin-bottom: 10px;
+}
+
+#lrc_box div.active {
+    color: #0593d3;
+
+}

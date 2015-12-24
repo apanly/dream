@@ -9,7 +9,7 @@ class HttpClient
     private static $headers = [];
 
 
-    public static function get($url, $param) {
+    public static function get($url, $param =[]) {
 
         return self::curl($url, $param,"get");
     }

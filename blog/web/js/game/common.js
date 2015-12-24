@@ -6,17 +6,16 @@ var common_ops = {
     setCurrentNav: function () {
         var pathname = window.location.pathname;
 
-        idx = 1;
+        $menu = "mv";
 
         if (pathname.indexOf("/tools") > -1) {
-            idx = 2;
+            $menu = "tools";
         }
-        if (idx < 1) {
-
-            return;
+        if (pathname.indexOf("/music") > -1) {
+            $menu = "music";
         }
 
-        var target = $($(".am-navbar a").get(idx - 1));
+        var target = $($(".am-navbar #menu_"+$menu+" a").get(0));
         target.addClass("am-btn-primary");
     },
     getRequest: function () {

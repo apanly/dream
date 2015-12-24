@@ -3,14 +3,13 @@ namespace blog\modules\game\controllers\common;
 
 use blog\components\BaseBlogController;
 use blog\components\UrlService;
+use common\components\UtilHelper;
 
 
 class BaseController extends BaseBlogController
 {
 
-    protected $allowAllAction = [
-        "game/tools/index"
-    ];
+    protected $allowAllAction = [];
 
     public function __construct($id, $module, $config = [])
     {
@@ -26,18 +25,36 @@ class BaseController extends BaseBlogController
         $this->setSubTitle();
         $this->setDescription();
         $this->setKeywords();
-        if (!in_array($action->getUniqueId(), $this->allowAllAction)) {
-            if( !$this->checkLoginStatus() ){
+
+        $login_status = $this->checkLoginStatus();
+
+        if (!$login_status && !in_array($action->getUniqueId(), $this->allowAllAction)) {
+            if( UtilHelper::isWechat() ){
                 if(\Yii::$app->request->isAjax){
                     $this->renderJSON([],"未登录,请返回用户中心",-302);
                 }else{
-                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['source' => "game"]);
+                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl() ]);
                     $this->redirect( $redirect_url );
                 }
                 return false;
             }
+
+
         }
         return true;
+    }
+
+    /*
+     * @|@ => ?
+     * @@ => &
+     * */
+    protected function getLoginUrl(){
+        $refer = \Yii::$app->request->getPathInfo();
+        $type = "snsapi_base";
+        if( isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ){
+            $refer .= "@|@".str_replace("&","@@",$_SERVER['QUERY_STRING']);
+        }
+        return sprintf('/oauth/login?type=%s&refer=/%s',$type,urlencode($refer));
     }
 
     public function setTitle($title = "郭大帅哥的游戏中心"){

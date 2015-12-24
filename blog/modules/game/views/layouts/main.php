@@ -49,16 +49,22 @@ GameAsset::register($this);
 
     <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default">
         <ul class="am-navbar-nav am-cf am-avg-sm-4">
-            <li>
+            <li id="menu_mv">
                 <a href="<?= UrlService::buildGameUrl("/mv/index"); ?>" class="am-btn-default">
                     <span class="am-icon-home"></span>
                     <span class="am-navbar-label">美女</span>
                 </a>
             </li>
-            <li>
+            <li id="menu_tools">
                 <a href="<?= UrlService::buildGameUrl("/tools/index"); ?>" class="am-btn-default">
                     <span class="am-icon-paper-plane"></span>
                     <span class="am-navbar-label">工具</span>
+                </a>
+            </li>
+            <li  id="menu_music" style="display: none;">
+                <a href="<?= UrlService::buildGameUrl("/music/index"); ?>" class="am-btn-default">
+                    <span class="am-icon-music"></span>
+                    <span class="am-navbar-label">点歌</span>
                 </a>
             </li>
         </ul>
