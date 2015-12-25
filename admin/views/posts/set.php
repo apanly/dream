@@ -5,6 +5,7 @@ use \common\service\GlobalUrlService;
 StaticService::includeAppJsStatic("/js/jquery/plugins/jquery.tagsinput.min.js",\admin\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/ueditor/ueditor.config.js",\admin\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/ueditor/ueditor.all.min.js",\admin\assets\AppAsset::className());
+//StaticService::includeAppJsStatic("/ueditor/ueditor.all.js",\admin\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/ueditor/lang/zh-cn/zh-cn.js",\admin\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/posts/set.js",\admin\assets\AppAsset::className());
 ?>

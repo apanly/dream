@@ -960,6 +960,7 @@
                         src: src,
                         _src: src,
                         alt: src.substr(src.lastIndexOf('/') + 1),
+                        width:'300',
                         floatStyle: align
                     });
                 }
