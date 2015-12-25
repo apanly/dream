@@ -6,7 +6,7 @@ use api\modules\weixin\controllers\common\BaseController;
 use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\search\IndexSearch;
-use common\service\bat\QQService;
+use common\service\bat\QQMusicService;
 use common\service\weixin\RecordService;
 
 class DefaultController extends  BaseController {
@@ -149,7 +149,7 @@ EOT;
 
 
     private function searchMusicByKw($kw){
-        $songs = QQService::search($kw);
+        $songs = QQMusicService::search($kw);
         $list = [];
         if( $songs ){
             foreach( $songs as $_song_info ){

@@ -7,7 +7,7 @@ use blog\modules\game\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\components\HttpClient;
 use common\models\games\Music;
-use common\service\bat\QQService;
+use common\service\bat\QQMusicService;
 
 class MusicController extends BaseController
 {
@@ -21,7 +21,8 @@ class MusicController extends BaseController
 
         $info = Music::findOne(['song_id' => $song_id,'type' => $type,'status' => 1]);
         if( !$info ){
-            return $this->redirect( $reback_url );
+            $info = QQMusicService::getSongInfo($song_id);
+            QQMusicService::saveMusic($info);
         }
 
         $data = [
@@ -29,7 +30,7 @@ class MusicController extends BaseController
             "song_author" => DataHelper::encode( $info['song_author'] ),
             "cover_image" => $info['cover_image'],
             "song_url" => $info['song_url'],
-            "id" => $info['id']
+            "song_id" => $info['song_id']
         ];
 
         $this->setTitle("点歌台");
@@ -41,16 +42,18 @@ class MusicController extends BaseController
 
 
     public function actionLrc(){
-        $mid = intval( $this->post("mid",0) );
-        if( !$mid ){
+        $song_id = intval( $this->post("song_id",0) );
+        if( !$song_id ){
             return $this->renderJSON([],"歌曲不存在",-1);
         }
-        $info = Music::findOne(['id' => $mid,'status' => 1]);
+
+        $info = Music::findOne(['song_id' => $song_id,'status' => 1]);
         if( !$info ){
             return $this->renderJSON([],"歌曲不存在",-1);
         }
 
-        $lrc_url = QQService::getSongLrcUrl($info['song_id']);
+        /*获取歌词*/
+        $lrc_url = QQMusicService::getSongLrcUrl( $song_id );
         $lrc_data = HttpClient::get($lrc_url);
         $lrc = '';
         if(substr($lrc_data,0,5) == "<?xml" ){
@@ -62,7 +65,7 @@ class MusicController extends BaseController
 
         $data = [
             'lrc' => $lrc,
-            'song_url' => QQService::getSongUrl($info['song_id'],".mp3")
+            'song_url' => QQMusicService::getSongUrl($song_id,".mp3")
         ];
 
         return $this->renderJSON( $data );

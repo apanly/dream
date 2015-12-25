@@ -21,4 +21,4 @@ StaticService::includeAppJsStatic("/js/game/music/info.js",blog\assets\GameAsset
 
     </div>
 </div>
-<input type="hidden" id="mid" value="<?=$info["id"];?>">
+<input type="hidden" id="song_id" value="<?=$info["song_id"];?>">

@@ -75,7 +75,7 @@ var music__info_ops = {
         $.ajax({
             url:common_ops.getUrlPrefix() + "/music/lrc",
             type:'POST',
-            data:{ 'mid':$("#mid").val() },
+            data:{ 'song_id':$("#song_id").val() },
             dataType:'json',
             success:function(res){
                 if( res.code == 200 ){

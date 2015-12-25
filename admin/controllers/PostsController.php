@@ -13,10 +13,7 @@ use common\service\Constant;
 use Yii;
 use yii\helpers\Url;
 
-
-class PostsController extends BaseController
-{
-
+class PostsController extends BaseController{
     public function actionIndex(){
         $p = intval( $this->get("p",1) );
         if(!$p){
@@ -172,6 +169,7 @@ class PostsController extends BaseController
         $tags = FenCiService::getTags($content);
         return $this->renderJSON($tags);
     }
+
     public function actionOps($id){
         $id = intval($id);
         $act = trim($this->post("act","online","down-hot","go-hot"));
@@ -205,5 +203,12 @@ class PostsController extends BaseController
         return $this->renderJSON([],"操作成功!!");
     }
 
-
+    public function actionSet_new(){
+        return $this->render("set",[
+            "info" => [],
+            "posts_type" => Constant::$posts_type,
+            "status_desc" => Constant::$status_desc,
+            "original_desc" => Constant::$original_desc
+        ]);
+    }
 }
