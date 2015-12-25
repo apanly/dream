@@ -16,10 +16,18 @@ var post_set_ops = {
                 'directionalityltr', 'directionalityrtl', 'indent', '|',
                 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
                 'link', 'unlink', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertframe', 'insertcode', 'pagebreak', 'template', 'background', '|',
+                'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertframe', 'insertcode', 'pagebreak', 'template', 'background', '|',
                 'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage'],
                 ['inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols']
-            ]
+            ],
+            enableAutoSave:true,
+            saveInterval:60000,
+            elementPathEnabled:false,
+            serverUrl:'/upload/ueditor'
+        });
+
+        that.ue.addListener('beforeInsertImage', function (t,arg){
+            //alert('这是图片地址：'+arg[0].src);
         });
 
         $("#post_add_edit .save").click(function(){

@@ -870,10 +870,15 @@
                             var json = isJsonp ? r:eval('(' + r.responseText + ')');
                             if (json.state == 'SUCCESS') {
                                 _this.pushData(json.list);
-                                _this.listIndex = parseInt(json.start) + parseInt(json.list.length);
-                                if(_this.listIndex >= json.total) {
+//                                _this.listIndex = parseInt(json.start) + parseInt(json.list.length);
+//                                if(_this.listIndex >= json.total) {
+//                                    _this.listEnd = true;
+//                                }
+                                _this.listIndex  = parseInt(json.start);
+                                if( json.list.length < _this.listSize ){
                                     _this.listEnd = true;
                                 }
+
                                 _this.isLoadingData = false;
                             }
                         } catch (e) {

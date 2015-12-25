@@ -5,6 +5,10 @@
     background-image: url(../../images/icons/original.png);
 }
 
+.syntaxhighlighter .toolbar{
+    display: none;
+}
+
 #ds-thread #ds-reset .ds-powered-by{
     display: none;
 }

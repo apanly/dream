@@ -7,7 +7,12 @@ use common\models\games\Music;
 use common\service\BaseService;
 
 class BaiduMusicService extends  BaseService{
-    public static function getMusic($kw = ''){
+
+    /**
+     * 搜索还有一个接口
+     * http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.search.common&query=%E4%BD%A0%E5%A5%BD&page_size=70&callback=music.callback&.r=0.473291625501588
+     */
+    public static function search($kw = ''){
         $song_ids = [];
         if( $kw ){
             $url = "http://musicmini.baidu.com/app/search/searchList.php?qword=%s&ie=utf-8&page=1";

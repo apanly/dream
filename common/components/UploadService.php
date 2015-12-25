@@ -42,6 +42,8 @@ class UploadService extends  BaseService{
         if( $has_uploaded ){
             $domain_bucket = \Yii::$app->params['domains'][$has_uploaded['bucket']];
             return [
+                'code' => '205',
+                'hash_key' => $hash_key,
                 'url' => $domain_bucket."/".$has_uploaded['filepath'],
                 'path' => $upload_dir_pic.substr($has_uploaded['filepath'],1),
                 'uri' => $has_uploaded['filepath']
@@ -70,7 +72,9 @@ class UploadService extends  BaseService{
 
         $domain_bucket = \Yii::$app->params['domains'][$bucket];
 
-        return [
+        return[
+            'code' => 200,
+            'hash_key' => $hash_key,
             'url' => $domain_bucket."/".$upload_file_name,
             'path' => $upload_dir_pic.$upload_file_name,
             'uri' => "/{$upload_file_name}"

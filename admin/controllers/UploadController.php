@@ -4,6 +4,8 @@ namespace admin\controllers;
 
 use admin\controllers\common\BaseController;
 use common\components\UploadService;
+use common\components\UtilHelper;
+use common\models\Images;
 use common\service\GlobalUrlService;
 use common\service\ImagesService;
 use Yii;
@@ -40,6 +42,7 @@ class UploadController extends BaseController
         return $this->renderJSON([ 'url' => $display_url, 'filename' => $filename ]);
     }
 
+    /*文件管理上传文件的*/
     public function actionFile(){
         $back_url = Url::toRoute("/file/add");
 
@@ -123,6 +126,110 @@ class UploadController extends BaseController
         imagedestroy($newImg);
         imagedestroy($img);
         return $desc_path;
+    }
+
+    /*ueditor编辑器上传*/
+    public function actionUeditor(){
+        $action = $this->get("action");
+        $config_path = UtilHelper::getRootPath()."/admin/web/ueditor/upload_config.json";
+        $config = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents($config_path) ), true);
+        switch( $action ){
+            case 'config':
+                echo  json_encode($config);
+                break;
+            /* 上传图片 */
+            case 'uploadimage':
+                /* 上传涂鸦 */
+            case 'uploadscrawl':
+                /* 上传视频 */
+            case 'uploadvideo':
+                /* 上传文件 */
+            case 'uploadfile':
+                $this->uploadUeditorImage();
+                break;
+            case 'listimage':
+                $this->listUeditorImage();
+                break;
+        }
+    }
+
+    private function uploadUeditorImage(){
+        $up_target = $_FILES["upfile"];
+        if ($up_target["error"] > 0){
+            return $this->retUeditor( "上传失败!error:". $up_target["error"] );
+        }
+
+        if(!is_uploaded_file($up_target['tmp_name'])){
+            return $this->retUeditor( "非法上传文件!!" );
+        }
+
+        $type = $up_target["type"];
+        $filename = $up_target["name"];
+
+        if( !in_array($type,$this->allow_file_type) ){
+            return $this->retUeditor( "只能上传图片!!" );
+        }
+
+        $ret = UploadService::uploadByFile($filename,$up_target['tmp_name']);
+
+        if( !$ret ){
+            return $this->retUeditor( UploadService::getLastErrorMsg() );
+        }
+
+        if( isset($ret['code']) && $ret['code'] == 205 ){
+            return $this->retUeditor( "此图片已经上传过了" );
+        }
+
+        $display_url = GlobalUrlService::buildPic1Static($ret['uri'],['w' => 600]);
+        //return $this->renderJSON([ 'url' => $display_url, 'filename' => $filename ]);
+        return $this->retUeditor("SUCCESS",$display_url,$ret['hash_key'],$filename,$type,$up_target['size']);
+    }
+
+    private function listUeditorImage(){
+        $start = intval( $this->get("start",0) );
+        $page_size = intval( $this->get("size",20) );
+        $query = Images::find()->where(['bucket' => "pic1"]);
+        if( $start ){
+            $query->andWhere(['<',"id",$start]);
+        }
+        $list = $query->orderBy("id desc")->limit($page_size)->all();
+        $images = [];
+        $last_id = 0;
+        if( $list ){
+            foreach( $list as $_item){
+                $images[] = [
+                    'url' => GlobalUrlService::buildPic1Static($_item['filepath'],['w' => 600]),
+                    'mtime' => strtotime( $_item['created_time'] ),
+                    'width' => 300
+                ];
+                $last_id = $_item['id'];
+            }
+        }
+
+        header('Content-type: application/json');
+        $data = [
+            "state" => (count($images)> 0 )?'SUCCESS':'no match file',
+            "list" => $images,
+            "start" => $last_id,
+            "total" => count($images)
+        ];
+        echo  json_encode( $data );
+        exit();
+    }
+
+    private function retUeditor( $state, $url = '',$title = '',$original = '',$type = '',$size = 0){
+
+        header('Content-type: application/json');
+        $data = [
+            "state" => $state,
+            "url" => $url,
+            "title" => $title,
+            "original" => $original,
+            "type" => $type,
+            "size" => $size
+        ];
+        echo  json_encode( $data );
+        exit();
     }
 
 }
