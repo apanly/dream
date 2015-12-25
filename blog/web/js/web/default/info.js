@@ -77,8 +77,6 @@ var default_info_ops = {
         for(var i = 0; i < args.length; i++){
             result.push(args[i].replace('@', static_path + "syntaxhighlighter/scripts/"));
         }
-
-        console.log(result);
         return result
     }
 };
