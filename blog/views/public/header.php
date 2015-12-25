@@ -50,6 +50,10 @@ use \common\service\GlobalUrlService;
                                 <li>
                                     <a href="<?=UrlService::buildGameUrl("/tools/index");?>">密码生成器</a>
                                 </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?=UrlService::buildGameUrl("/music/index");?>">点歌台</a>
+                                </li>
                             </ul>
 
                         </li>

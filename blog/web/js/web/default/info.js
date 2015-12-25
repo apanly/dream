@@ -31,7 +31,7 @@ var default_info_ops = {
     syntaxHighlighter:function(){
         $("pre").each(function(){
             var tmp_class = $(this).attr("class");
-            if( tmp_class.indexOf("brush:") > -1 ){
+            if( tmp_class!= undefined && tmp_class.indexOf("brush:") > -1 ){
                 $(this).attr("class",tmp_class.replace("toolbar:false","toolbar:true"));
             }
         });

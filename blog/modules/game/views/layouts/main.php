@@ -25,7 +25,7 @@ GameAsset::register($this);
 </head>
 <body>
 <div class="am-g">
-    <header data-am-widget="header" class="am-header am-header-default">
+    <header data-am-widget="header" class="am-header am-header-default" style="display: none;">
         <div class="am-header-left am-header-nav">
             <a href="/">
                 <i class="am-header-icon am-icon-home"></i>
@@ -61,7 +61,7 @@ GameAsset::register($this);
                     <span class="am-navbar-label">工具</span>
                 </a>
             </li>
-            <li  id="menu_music" style="display: none;">
+            <li  id="menu_music">
                 <a href="<?= UrlService::buildGameUrl("/music/index"); ?>" class="am-btn-default">
                     <span class="am-icon-music"></span>
                     <span class="am-navbar-label">点歌</span>

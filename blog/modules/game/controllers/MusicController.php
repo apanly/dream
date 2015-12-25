@@ -11,6 +11,12 @@ use common\service\bat\QQMusicService;
 
 class MusicController extends BaseController
 {
+    public function actionIndex(){
+        $this->setTitle("QQ音乐资源获取");
+        $this->setSubTitle("QQ音乐资源获取");
+        return $this->render("index");
+    }
+
     public function actionInfo(){
         $song_id = $this->get("song_id",1237792);
         $reback_url = UrlService::buildWapUrl("/default/index");
