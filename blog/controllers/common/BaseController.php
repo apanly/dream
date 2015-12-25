@@ -3,6 +3,7 @@ namespace blog\controllers\common;
 
 use blog\components\UrlService;
 use common\components\UtilHelper;
+use common\service\GlobalUrlService;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;

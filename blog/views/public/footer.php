@@ -1,5 +1,6 @@
 <?php
 use common\service\CacheHelperService;
+use common\service\GlobalUrlService;
 $data = CacheHelperService::getFrontCache();
 $tags = $data['tag'];
 $post_hot = array_slice($data['post_hot'],0,5);
@@ -68,3 +69,4 @@ $post_latest = array_slice($data['post_latest'],0,5);
 
 <a href="javascript:void(0);" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 <input type="hidden" id="access_domain" value="<?=\Yii::$app->params['domains']['blog'];?>">
+<input type="hidden" id="domain_static" value="<?=GlobalUrlService::buildStaticUrl("/");?>">

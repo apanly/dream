@@ -91,7 +91,8 @@ class PostsController extends BaseController{
                     ];
                 }
             }
-            return $this->render("add",[
+            //set or add
+            return $this->render("set",[
                 "info" => $info,
                 "posts_type" => Constant::$posts_type,
                 "status_desc" => Constant::$status_desc,
@@ -201,14 +202,5 @@ class PostsController extends BaseController{
         $post_info->updated_time = date("Y-m-d H:i:s");
         $post_info->update(0);
         return $this->renderJSON([],"操作成功!!");
-    }
-
-    public function actionSet_new(){
-        return $this->render("set",[
-            "info" => [],
-            "posts_type" => Constant::$posts_type,
-            "status_desc" => Constant::$status_desc,
-            "original_desc" => Constant::$original_desc
-        ]);
     }
 }
