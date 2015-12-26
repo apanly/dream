@@ -28,7 +28,10 @@ var default_info_ops = {
             height = height * dpi;
         }
         $("iframe").each(function () {
-            $(this).attr("height", height);
+            $(this).attr("width", "100%");
+            if( $(this).attr("src").indexOf("v.qq.com/iframe") > -1 ){
+                $(this).attr("height", height);
+            }
         });
     }
 };
