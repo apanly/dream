@@ -1,5 +1,9 @@
 ;
 var common_ops = {
+    getHostUrl:function( path ){
+        var access_domain = $("#access_domain").val();
+        return access_domain + path;
+    },
     getUrlPrefix: function () {
         var pathname = window.location.pathname;
         if( pathname.indexOf("/wap") > -1 ){
