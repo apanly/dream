@@ -25,8 +25,10 @@ var default_info_ops = {
         width = (width > 1000) ? 1000 : width;
         height = Math.ceil(width * 0.4);
         $(".post-content iframe").each(function () {
-            $(this).attr("height", height);
             $(this).attr("width", "100%");
+            if( $(this).attr("src").indexOf("v.qq.com/iframe") > -1 ){
+                $(this).attr("height", height);
+            }
         });
     },
     syntaxHighlighter:function(){
