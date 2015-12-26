@@ -8,9 +8,7 @@ use common\models\health\HealthLog;
 
 class RunController extends BaseController
 {
-
-    public function actionStep()
-    {
+    public function actionStep(){
         $type       = $this->get("type", "daily");
         $total_step = 0;
 

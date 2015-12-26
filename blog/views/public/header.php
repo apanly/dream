@@ -54,6 +54,10 @@ use \common\service\GlobalUrlService;
                                 <li>
                                     <a href="<?=UrlService::buildGameUrl("/music/index");?>">点歌台</a>
                                 </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?=UrlService::buildUrl("/code/run");?>">Code Preview</a>
+                                </li>
                             </ul>
 
                         </li>

@@ -12,9 +12,23 @@ use common\service\bat\QQMusicService;
 class MusicController extends BaseController
 {
     public function actionIndex(){
+        $kw = trim( $this->get("kw","") );
+        $music_list = [];
+        if( $kw ){
+            $songs = QQMusicService::search($kw,false,[ 'page_size' => 20 ]);
+            if( $songs ){
+                foreach($songs as $_song ){
+                    $music_list[] = $_song;
+                }
+            }
+        }
+
         $this->setTitle("QQ音乐资源获取");
         $this->setSubTitle("QQ音乐资源获取");
-        return $this->render("index");
+        return $this->render("index",[
+            "music_list" => $music_list,
+            "kw" => $kw
+        ]);
     }
 
     public function actionInfo(){

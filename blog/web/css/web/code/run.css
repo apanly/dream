@@ -1,0 +1,26 @@
+
+body{
+    /*background-color: rgb(44, 52, 55);*/
+}
+.main-header{
+    height: 48px;
+}
+
+#code-box{
+    height: 100%;
+}
+
+.CodeMirror{
+    height: 100%;
+    border: 1px solid black;
+    font-size: 13px;
+}
+#preview-box {
+    height: 100%;
+}
+#preview{
+    border: 1px solid black;
+    font-size: 13px;
+    height: 100%;
+    width: 100%;
+}

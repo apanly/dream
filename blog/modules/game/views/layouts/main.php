@@ -38,7 +38,7 @@ GameAsset::register($this);
     <section>
         <?=$content;?>
     </section>
-    <?php if( isset( $this->params['current_user'] ) ):?>
+    <?php if( isset( $this->params['current_user'] ) && 1==2 ):?>
     <footer data-am-widget="footer"  class="am-footer am-footer-default">
         <div class="am-footer-miscs ">
             <p>欢迎您，<?= DataHelper::encode($this->params['current_user']['nickname']); ?></p>
@@ -50,8 +50,14 @@ GameAsset::register($this);
     <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default">
         <ul class="am-navbar-nav am-cf am-avg-sm-4">
             <li id="menu_mv">
-                <a href="<?= UrlService::buildGameUrl("/mv/index"); ?>" class="am-btn-default">
+                <a href="/" class="am-btn-default">
                     <span class="am-icon-home"></span>
+                    <span class="am-navbar-label">博客</span>
+                </a>
+            </li>
+            <li id="menu_mv">
+                <a href="<?= UrlService::buildGameUrl("/mv/index"); ?>" class="am-btn-default">
+                    <span class="am-icon-picture-o"></span>
                     <span class="am-navbar-label">美女</span>
                 </a>
             </li>

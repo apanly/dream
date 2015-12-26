@@ -8,14 +8,15 @@ use common\models\games\Music;
 use common\service\BaseService;
 
 class QQMusicService extends  BaseService{
-    public static function search($kw = ''){
+    public static function search($kw = '',$rand = true,$params = []){
         $ret = [];
         if( $kw ){
-            $url = "http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n=100&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w=%s";
-            $url = sprintf( $url,urlencode($kw) );
+            $page_size = isset($params['page_size'])?$params['page_size']:100;
+            $url = "http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n=%s&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w=%s";
+            $url = sprintf( $url,$page_size,urlencode($kw) );
             $data = trim( HttpClient::get( $url ) ) ;
             $data = @json_decode( $data,true );
-            $ret = self::buildData( $data );
+            $ret = self::buildData( $data ,$rand);
         }
         return $ret;
     }
@@ -50,12 +51,12 @@ class QQMusicService extends  BaseService{
         return true;
     }
 
-    private static function buildData( $data ){
+    private static function buildData( $data ,$rand = true ){
         $ret = [];
         if( $data['code'] == 0 ){
             $song_list = $data['data']['song']['list'];
             $rand_songs = $song_list;
-            if( count( $song_list ) >= 7  ){
+            if( $rand && count( $song_list ) >= 7  ){
                 $song_list_keys = array_rand($song_list ,7);
                 $rand_songs = array_slice($song_list,0,1);
                 foreach( $song_list_keys as $_idx ){
