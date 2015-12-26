@@ -24,8 +24,9 @@ var default_info_ops = {
         var width = $(window).width();
         width = (width > 1000) ? 1000 : width;
         height = Math.ceil(width * 0.4);
-        $("iframe").each(function () {
+        $(".post-content iframe").each(function () {
             $(this).attr("height", height);
+            $(this).attr("width", "100%");
         });
     },
     syntaxHighlighter:function(){
