@@ -12,3 +12,6 @@
 #ds-thread #ds-reset .ds-powered-by{
     display: none;
 }
+.post-content p{
+    margin-bottom: 0;
+}
