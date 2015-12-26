@@ -19,4 +19,5 @@ class PublicController extends BaseController{
 EOT;
         exit();
     }
+
 }

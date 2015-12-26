@@ -39,9 +39,9 @@ var default_info_ops = {
         });
     },
     ifram_bug:function(){
-        var width = $(document).width() - 20;
+        var width = $(document).width() - 30;
         $("iframe.iframe_bug").each(function(){
-            var url = common_ops.getHostUrl("/public/iframe") + "?width=" +width+ "&url=" + $(this).attr("src");
+            var url = common_ops.getHostUrl("/public/iframe") + "?width=" +width+ "&url=" + encodeURIComponent( $(this).attr("src") );
             $(this).attr("src",url);
             $(this).show();
         });
