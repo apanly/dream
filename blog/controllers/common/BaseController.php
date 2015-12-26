@@ -21,7 +21,8 @@ class BaseController extends Controller
     protected $ignoreRedirectAction = [
         "run/step",
         "error/error",
-        "log/add"
+        "log/add",
+        "public/iframe"
     ];
 
 
