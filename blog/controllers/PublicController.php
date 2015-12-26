@@ -14,9 +14,9 @@ class PublicController extends BaseController{
         $url = $this->get("url","");
         $data = HttpClient::get($url);
         echo <<<EOT
-        <div class='iframe_bug' style='widht:100%;'>
+        <pre class='iframe_bug' style='word-wrap: break-word; white-space: pre-wrap;width:300px;'>
             {$data}
-        </div>
+        </pre>
 EOT;
         exit();
     }
