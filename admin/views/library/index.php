@@ -1,5 +1,8 @@
 <?php
 use \admin\components\StaticService;
+StaticService::includeAppJsStatic("/js/bootstrap/bootstrap-datepicker.js", \admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/bootstrap/bootstrap-datepicker.zh-CN.min.js", \admin\assets\AppAsset::className());
+
 StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AppAsset::className());
 ?>
 <div class="page-content-wrap">
@@ -36,8 +39,11 @@ StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AppAsset:
                                         </td>
                                         <td><?=$_item['created'];?></td>
                                         <td>
-                                            <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span></td>
+                                            <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span>
+                                            <span class="label label-<?=$_item['read_status_info']['class'];?>"><?=$_item['read_status_info']['desc'];?></span>
+                                        </td>
                                         <td>
+
                                             <?php if($_item['status']):?>
                                                 <a href="<?=$_item['edit_url'];?>" class="btn btn-default btn-rounded btn-sm">
                                                     <span class="fa fa-pencil"></span>
@@ -45,6 +51,10 @@ StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AppAsset:
                                                 </a>
                                                 <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm delete" data="<?=$_item['id'];?>">
                                                     <span class="fa fa-times"></span>下架
+                                                </a>
+                                                <a href="javascript:void(0);" class="btn btn-default btn-rounded btn-sm btn-book-read" data="<?= $_item['id']; ?>" data-read-status="<?= $_item['read_status']; ?>" data-start-time="<?= $_item['read_start_time']; ?>" data-end-time="<?= $_item['read_end_time']; ?>">
+                                                    <span class="fa fa-pencil"></span>
+                                                    编辑
                                                 </a>
                                             <?php else:?>
                                                 <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm online" data="<?=$_item['id'];?>">
@@ -75,6 +85,53 @@ StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AppAsset:
                     </div>
 
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="gridSystemModalLabel">编辑图书状态</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row form-group">
+                        <div class="col-md-3 text-right">
+                            <label class="control-label">读书状态:</label>
+                        </div>
+                        <div class="col-md-9">
+                            <select class="form-control select" id="read_status">
+                                <?php foreach($read_status as $_idx => $_item):?>
+                                <option value="<?=$_idx;?>"><?=$_item["desc"];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 text-right">
+                            <label class="control-label">计划开始时间:</label>
+                        </div>
+                        <div class="col-md-9" style="z-index: 9000;">
+                            <input type="text" class="form-control datepicker"  name="read_start_time" value="<?=date("Y-m-d");?>">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 text-right">
+                            <label class="control-label">计划结束时间:</label>
+                        </div>
+                        <div class="col-md-9" style="z-index: 9000;">
+                            <input type="text" class="form-control datepicker" name="read_end_time" value="<?=date("Y-m-d");?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" name="book_id" value="0">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">保存</button>
             </div>
         </div>
     </div>

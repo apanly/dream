@@ -8,19 +8,7 @@ use Yii;
 
 class TestController extends BaseController{
     public function actionIndex(){
-        $data = [
-            "code" => 0,
-            "data" => [
-                "104795185" => "104795185|104795185|104795185"
-            ],
-            "url" => [
-                "url" => "safsfds"
-            ],
-            "url1" => [
-
-            ]
-        ];
-        var_dump( json_encode($data) );
-
+        $this->layout = false;
+        return $this->render("index");
     }
 }

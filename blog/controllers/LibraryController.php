@@ -5,6 +5,7 @@ namespace blog\controllers;
 use blog\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\library\Book;
+use common\service\Constant;
 use common\service\GlobalUrlService;
 use Yii;
 use yii\helpers\Url;
@@ -12,8 +13,7 @@ use yii\helpers\Url;
 
 class LibraryController extends BaseController
 {
-    public function actionIndex()
-    {
+    public function actionIndex(){
         $this->setTitle("郭大帅哥的图书馆");
         $p = intval($this->get("p", 1));
         if (!$p) {
@@ -47,12 +47,26 @@ class LibraryController extends BaseController
                 }
 
                 $tmp_small_pic_url = GlobalUrlService::buildPic1Static($_book['image_url'],['h' => 200]);
+
+                switch( $_book['read_status'] ){
+                    case 1:
+                        $tmp_icon_imager_url = GlobalUrlService::buildStaticUrl("/images/web/readed.png");
+                        break;
+                    case -1:
+                        $tmp_icon_imager_url = GlobalUrlService::buildStaticUrl("/images/web/reading.png");
+                        break;
+                    default:
+                        $tmp_icon_imager_url = GlobalUrlService::buildStaticUrl("/images/web/unread.png");
+                        break;
+                }
+
                 $data[] = [
                     'id'          => $_book['id'],
                     'short_title' => $tmp_title,
                     "title"       => DataHelper::encode($_book['subtitle']),
                     'author'      => $tmp_author ? $tmp_author : "&nbsp;",
                     'imager_url'  => $tmp_small_pic_url,
+                    'icon_imager_url'  => $tmp_icon_imager_url,
                     'view_url'    => Url::toRoute(["/library/info", "id" => $_book["id"]])
                 ];
             }
@@ -71,24 +85,21 @@ class LibraryController extends BaseController
         ]);
     }
 
-    public function actionDetail($id)
-    {
+    public function actionDetail($id){
         return $this->redirect(Url::toRoute(["/library/info", "id" => $id]), 301);
     }
 
-    public function actionInfo($id)
-    {
-
+    public function actionInfo($id){
         $id = intval($id);
         if (!$id) {
             return $this->goLibraryHome();
         }
+
         $book_info = Book::find()->where(['id' => $id, 'status' => 1])->one();
+
         if (!$book_info) {
             return $this->goLibraryHome();
         }
-
-        $this->setTitle($book_info['subtitle'] . " - 郭大帅哥的图书馆");
 
         $data  = [];
         $author = json_decode($book_info['creator'], true);
@@ -98,6 +109,7 @@ class LibraryController extends BaseController
         $data['publish_date'] = $book_info['publish_date'];
         $data['author'] = implode(" ~ ", $author);
         $data['tags']  = explode(",", $book_info['tags']);
+        $data['read_status_info']  = Constant::$read_desc[ $book_info['read_status'] ];
         $data['image_url']  = GlobalUrlService::buildPic1Static($book_info['image_url'],['w' => 500]);
 
         $prev_info = Book::find()
@@ -105,11 +117,14 @@ class LibraryController extends BaseController
             ->andWhere(['status' => 1])
             ->orderBy("id desc")
             ->one();
+
         $next_info = Book::find()
             ->where([">", "id", $id])
             ->andWhere(['status' => 1])
             ->orderBy("id asc")
             ->one();
+
+        $this->setTitle($book_info['subtitle'] . " - 郭大帅哥的图书馆");
 
         return $this->render("detail", [
             "info"      => $data,

@@ -9,6 +9,7 @@ use  \common\components\DataHelper;
             <h4><?= $info['name']; ?></h4>
             <section class="post-meta">
                 <span class="author">作者：<?= $info['author']; ?></span> •
+                <span class="label label-<?=$info["read_status_info"]['class'];?>"><?=$info["read_status_info"]['desc'];?></span> •
                 <span class="post-date">出版时间：<?= $info['publish_date']; ?></span>
             </section>
         </header>

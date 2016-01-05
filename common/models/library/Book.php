@@ -22,6 +22,9 @@ use Yii;
  * @property string $image_url
  * @property string $origin_image_url
  * @property integer $status
+ * @property integer $read_status
+ * @property string $read_end_time
+ * @property string $read_start_time
  * @property string $updated_time
  * @property string $created_time
  */
@@ -51,8 +54,8 @@ class Book extends \yii\db\ActiveRecord
         return [
             [['name', 'binding', 'tags', 'summary'], 'required'],
             [['name', 'summary'], 'string'],
-            [['publish_date', 'updated_time', 'created_time'], 'safe'],
-            [['status'], 'integer'],
+            [['publish_date', 'read_end_time', 'read_start_time', 'updated_time', 'created_time'], 'safe'],
+            [['status', 'read_status'], 'integer'],
             [['isbn'], 'string', 'max' => 20],
             [['bartype', 'pages'], 'string', 'max' => 10],
             [['subtitle', 'creator', 'publishing_house', 'image_url', 'origin_image_url'], 'string', 'max' => 255],
@@ -83,6 +86,9 @@ class Book extends \yii\db\ActiveRecord
             'image_url' => 'Image Url',
             'origin_image_url' => 'Origin Image Url',
             'status' => 'Status',
+            'read_status' => 'Read Status',
+            'read_end_time' => 'Read End Time',
+            'read_start_time' => 'Read Start Time',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];

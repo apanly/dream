@@ -27,4 +27,12 @@ class Constant {
         1 => ['class' => 'success','desc' => "热门"]
     ];
 
+    public static $read_desc = [
+        -2 => ['class' => 'info','desc' => "计划读"],
+        -1 => ['class' => 'info','desc' => "在读中"],
+        0 => ['class' => 'danger','desc' => "未读"],
+        1 => ['class' => 'success','desc' => "已读完"]
+    ];
+
+
 } 

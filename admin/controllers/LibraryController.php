@@ -52,8 +52,13 @@ class LibraryController extends BaseController
                     'idx' =>  $idx,
                     'id' => $_book['id'],
                     'title' => DataHelper::encode($tmp_title),
+
+                    'read_status' => $_book['read_status'],
+                    'read_status_info' => Constant::$read_desc[ $_book['read_status'] ],
+                    'read_start_time' => date("Y-m-d",strtotime( $_book['read_start_time'] ) ),
+                    'read_end_time' => date("Y-m-d",strtotime( $_book['read_end_time'] ) ),
                     'status' => $_book['status'],
-                    'status_info' => $this->status_desc[$_book['status']],
+                    'status_info' => Constant::$status_desc[$_book['status']],
                     'created' => $_book['created_time'],
                     'edit_url' => Url::toRoute("/library/detail/{$_book['id']}"),
                     'view_url' => $domains['blog'].Url::toRoute("/library/detail/{$_book['id']}")
@@ -64,6 +69,7 @@ class LibraryController extends BaseController
 
         return $this->render("index",[
             "data" => $data,
+            "read_status" => Constant::$read_desc,
             "page_info" => $page_info,
             "page_url" => "/library/index"
         ]);
@@ -119,6 +125,38 @@ class LibraryController extends BaseController
         $book_info->updated_time = date("Y-m-d H:i:s");
         $book_info->update(0);
         return $this->renderJSON([],"操作成功!!");
+    }
+
+
+    public function actionEdit($id){
+        $book_id = intval($id);
+        $read_status = intval( $this->post("read_status",0) );
+        $read_start_time = trim( $this->post("read_start_time",'') );
+        $read_end_time = trim( $this->post("read_end_time",'') );
+        $date_now = date("Y-m-d H:i:s");
+        if( !$book_id ){
+            return $this->renderJSON([],"操作数据可能不是你的吧!!",-1);
+        }
+
+        if( $read_status == -1 && ( !$read_start_time || !$read_end_time )){
+            return $this->renderJSON([],"请选择读书开始和结束时间!!",-1);
+        }
+
+        $book_info = Book::findOne(["id" => $book_id]);
+
+        if( !$book_info ){
+            return $this->renderJSON([],"操作数据可能不是你的吧!!",-1);
+        }
+
+        $book_info->read_status = $read_status;
+        $book_info->updated_time = $date_now;
+        if( $read_status == -2 ){
+            $book_info->read_start_time = $read_start_time." 00:00:00";
+            $book_info->read_end_time = $read_end_time." 23:59:59";
+        }
+        $book_info->update(0);
+
+        return $this->renderJSON([],"操作成功！！");
     }
 
 }

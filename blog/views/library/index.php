@@ -1,6 +1,5 @@
 <?php
 use \yii\helpers\Url;
-
 ?>
 <main class="col-md-12 main-content">
     <article class="post page">
@@ -11,14 +10,18 @@ use \yii\helpers\Url;
             <div class="row">
                 <?php foreach ($data as $_item): ?>
                     <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail" title="<?= $_item['title']; ?>">
-                            <img src="<?= $_item['imager_url']; ?>" style="height: 200px; width: 100%; display: block;">
+                        <div class="thumbnail" title="<?= $_item['title']; ?>" style="position: relative">
+                            <a href="<?= $_item['view_url']; ?>">
+                                <img src="<?= $_item['imager_url']; ?>" style="height: 200px; width: 100%; display: block;">
+                            </a>
+                            <img src="<?= $_item['icon_imager_url']; ?>" style="position: absolute;top: 0px;left:0px;">
 
                             <div class="caption">
                                 <h4><?= $_item['short_title']; ?></h4>
                                 <h5><?= $_item['author']; ?></h5>
-
-                                <p><a href="<?= $_item['view_url']; ?>" class="btn btn-default">查看详情</a></p>
+                                <p>
+                                    <a href="<?= $_item['view_url']; ?>" class="btn btn-default">查看详情</a>
+                                </p>
                             </div>
                         </div>
                     </div>
