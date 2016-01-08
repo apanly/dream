@@ -54,7 +54,7 @@ class MetaWeblogService extends BaseService {
         }
 
         if ($this->metaweblog_message->messageType == 'fault') {
-            $this->error = new MetaWeblog_Error($this->message->faultCode, $this->message->faultString);
+            $this->error = new MetaWeblog_Error($this->metaweblog_message->faultCode, $this->metaweblog_message->faultString);
             return false;
         }
 
