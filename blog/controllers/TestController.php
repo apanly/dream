@@ -8,9 +8,6 @@ use Yii;
 
 class TestController extends BaseController{
     public function actionIndex(){
-        //$type = "51cto";
-        //SyncBlogServince::doSync( $type ,16);
-        exit();
     }
 
 
