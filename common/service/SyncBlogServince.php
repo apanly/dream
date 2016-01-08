@@ -82,24 +82,29 @@ class SyncBlogServince extends BaseService {
 
         $sync_info = BlogSyncMapping::findOne( ['blog_id' => $blog_id] );
 
-        $is_new = true;
+        $is_edit = false;
+
         if( $sync_info && $sync_info[ self::$type_mapping[ $type] ] ){
             if( !$target->editPost(  $sync_info[ self::$type_mapping[ $type] ], $params ) ){
                 return self::_err( $target->getErrorCode()."：".$target->getErrorMessage() );
             }
             $model_blog_sync_mapping = $sync_info;
-            $is_new = false;
+            $is_edit = true;
         }else{
             if( !$target->newPost(   $params ) ){
                 return self::_err( $target->getErrorCode()."：".$target->getErrorMessage() );
             }
-            $model_blog_sync_mapping = new BlogSyncMapping();
-            $model_blog_sync_mapping->blog_id = $blog_id;
-            $model_blog_sync_mapping->created_time = $date_now;
+            if( $sync_info ){
+                $model_blog_sync_mapping = $sync_info;
+            }else{
+                $model_blog_sync_mapping = new BlogSyncMapping();
+                $model_blog_sync_mapping->blog_id = $blog_id;
+                $model_blog_sync_mapping->created_time = $date_now;
+            }
         }
 
         $sync_blog_id = $target->getResponse();
-        if( $is_new ){
+        if( !$is_edit ){
             $model_blog_sync_mapping[ self::$type_mapping[ $type ] ] = $sync_blog_id;
         }
         $model_blog_sync_mapping->updated_time = $date_now;

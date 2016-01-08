@@ -22,6 +22,7 @@ class Sync_blogController extends Blog{
 
         $date_now = date("Y-m-d H:i:s");
         foreach( $sync_list as $_item ){
+            sleep( 1 );
             $this->echoLog("--------queue_id:{$_item['id']}---------");
             $tmp_res = SyncBlogServince::doSync( $_item['type'] ,$_item['blog_id'] );
             $_item->status = $tmp_res?1:0;
