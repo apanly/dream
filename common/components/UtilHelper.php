@@ -148,4 +148,9 @@ class UtilHelper {
         $vendor_path = \Yii::$app->vendorPath;
         return dirname($vendor_path);
     }
+
+    public static function getLibPath($filepath){
+        $root_path = self::getRootPath();
+        return $root_path."/common/service/libs/".$filepath;
+    }
 } 
