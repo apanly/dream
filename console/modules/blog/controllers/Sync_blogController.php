@@ -14,7 +14,7 @@ class Sync_blogController extends Blog{
         $sync_list = BlogSyncQueue::find()
             ->where([ 'status' => -1 ])
             ->orderBy("id asc")
-            ->limit( 10 )
+            ->limit( 1 )
             ->all();
         if( !$sync_list ){
             return $this->echoLog("no data need to handle");
