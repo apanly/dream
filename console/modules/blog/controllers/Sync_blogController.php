@@ -14,7 +14,7 @@ class Sync_blogController extends Blog{
         $sync_list = BlogSyncQueue::find()
             ->where([ 'status' => -1 ])
             ->orderBy("id asc")
-            ->limit( 10 )
+            ->limit( 6 )
             ->all();
         if( !$sync_list ){
             return $this->echoLog("no data need to handle");
@@ -28,6 +28,9 @@ class Sync_blogController extends Blog{
             $_item->status = $tmp_res?1:0;
             $_item->updated_time = $date_now;
             $_item->update(0);
+            if( !$tmp_res ){
+                $this->echoLog( SyncBlogServince::getLastErrorMsg() );
+            }
         }
         return $this->echoLog(" Done ");
     }
