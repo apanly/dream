@@ -30,6 +30,7 @@ class SyncBlogServince extends BaseService {
                 $charset = "gb2312";
                 break;
             case "csdn":
+                $catlog = [];
                 return self::_err("目前还处理不了这个类型!!");
                 break;
             case "sina":
