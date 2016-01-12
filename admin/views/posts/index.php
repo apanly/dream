@@ -20,7 +20,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                     <table class="table table-bordered table-striped table-actions">
                         <thead>
                         <tr>
-                            <th>序号</th>
+                            <th>编号</th>
                             <th>标题</th>
                             <th>发布时间</th>
                             <th>状态</th>
@@ -30,7 +30,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                         <tbody>
                         <?php foreach($data as $_item):?>
                         <tr id="trow_1">
-                            <td class="text-center"><?=$_item['idx'];?></td>
+                            <td class="text-center"><?=$_item['id'];?></td>
                             <td>
                                 <a href="<?=$_item['view_url'];?>" target="_blank">
                                     <strong><?=$_item['title'];?></strong>
