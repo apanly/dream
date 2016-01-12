@@ -4,12 +4,12 @@ namespace blog\controllers;
 
 use blog\controllers\common\BaseController;
 use common\service\libs\MetaWeblogService;
-use common\service\SyncBlogServince;
+use common\service\SyncBlogService;
 use Yii;
 
 class TestController extends BaseController{
     public function actionIndex(){
-        //SyncBlogServince::doSync("blogbus",15);
+        //SyncBlogService::doSync("51cto",91);
     }
 
 

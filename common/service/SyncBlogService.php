@@ -67,6 +67,18 @@ class SyncBlogService extends BaseService {
         $title = $blog_info['title'];
 
         $content .= "<br/>原文地址：<a href=\"{$link}\">{$blog_info['title']}</a>";
+        /*加入推荐*/
+        $recommend_blogs = RecommendService::getRecommendBlog( $blog_id );
+        if( $recommend_blogs ){
+            $content .="<br/><br/><h3>智能推荐</h3><ul>";
+            foreach( $recommend_blogs as $_recommend_blog ){
+                $tmp_link = $domain_blog."/default/{$_recommend_blog['id']}.html?flag=recommend";
+                $content .="<li><a href='{$tmp_link}'>{$_recommend_blog["title"]}</a></li>";
+            }
+            $content .="</ul>";
+        }
+
+
         $content = htmlspecialchars( $content );
         $title = htmlspecialchars( $title );
         if( $charset != "utf-8" ){
