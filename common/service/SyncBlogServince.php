@@ -2,6 +2,7 @@
 namespace common\service;
 
 use common\models\metaweblog\BlogSyncMapping;
+use common\models\metaweblog\BlogSyncQueue;
 use common\models\posts\Posts;
 use common\service\libs\MetaWeblogService;
 /**
@@ -15,7 +16,7 @@ class SyncBlogServince extends BaseService {
         "sina" => "sina_id",
         "163" => "netease_id",
         "oschina" => "oschina_id",
-        "cnblogs" => "cnblogs_id",
+        "cnblogs" => "cnblogs_id"
     ];
 
     public static function doSync( $type,$blog_id ){
@@ -40,6 +41,9 @@ class SyncBlogServince extends BaseService {
             case "oschina":
                 break;
             case "cnblogs":
+                break;
+            case "chinaunix":
+                return self::_err("目前还处理不了这个类型!!");
                 break;
             default:
                 return self::_err("指定的类型无法处理!!");
@@ -115,5 +119,21 @@ class SyncBlogServince extends BaseService {
         }
         return true;
     }
+
+
+    public static function addQueue($blog_id){
+        $date_now = date("Y-m-d H:i:s");
+        foreach( self::$type_mapping as $_type => $_f ){
+            $tmp_model_blog_sync_queue = new BlogSyncQueue();
+            $tmp_model_blog_sync_queue->blog_id = $blog_id;
+            $tmp_model_blog_sync_queue->type = $_type;
+            $tmp_model_blog_sync_queue->status = -1;
+            $tmp_model_blog_sync_queue->updated_time = $date_now;
+            $tmp_model_blog_sync_queue->created_time= $date_now;
+            $tmp_model_blog_sync_queue->save(0);
+        }
+
+    }
+
 
 } 
