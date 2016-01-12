@@ -29,7 +29,7 @@ class RecommendController extends Blog{
         return $this->echoLog(" Done ");
     }
 
-    public function actionDaiy(){
+    public function actionDaily(){
         $post_list = Posts::findAll(['status' => 1]);
         foreach( $post_list as $_post_info ){
             RecommendService::calculateRecommend( $_post_info['id'] );
