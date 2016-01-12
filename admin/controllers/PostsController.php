@@ -10,6 +10,7 @@ use common\models\posts\Posts;
 use common\models\posts\PostsTags;
 use common\service\CacheHelperService;
 use common\service\Constant;
+use common\service\SyncBlogServince;
 use Yii;
 use yii\helpers\Url;
 
@@ -162,6 +163,7 @@ class PostsController extends BaseController{
         BlogService::buildTags($post_id);
 
         CacheHelperService::buildFront(true);
+        SyncBlogServince::addQueue( $post_id );
         return $this->renderJSON(['post_id' => $post_id],"博文发布成功");
     }
 
