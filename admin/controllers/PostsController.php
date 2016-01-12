@@ -163,7 +163,10 @@ class PostsController extends BaseController{
         BlogService::buildTags($post_id);
 
         CacheHelperService::buildFront(true);
-        SyncBlogServince::addQueue( $post_id );
+        if( $status ){//只有在线的才进入同步队列
+            SyncBlogServince::addQueue( $post_id );
+        }
+
         return $this->renderJSON(['post_id' => $post_id],"博文发布成功");
     }
 
