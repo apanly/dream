@@ -1,10 +1,11 @@
 <?php
 use common\service\CacheHelperService;
-use blog\components\StaticService;
-
-//StaticService::includeStaticJs("/jquery/jquery.mousewheel.min.js", \blog\assets\AppAsset::className());
-//StaticService::includeStaticJs("/jquery/jquery.tagsphere.min.js", \blog\assets\AppAsset::className());
-//StaticService::includeAppJsStatic("/js/web/public/side.js",\blog\assets\AppAsset::className());
+use \common\service\GlobalUrlService;
+$wx_urls = [
+    "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
+    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
+    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+];
 $tags = CacheHelperService::getFrontCache("tag");
 ?>
 <aside class="col-md-4 sidebar">
@@ -31,16 +32,9 @@ $tags = CacheHelperService::getFrontCache("tag");
     </div>
 
     <div class="widget">
-        <h4 class="title">电子书籍</h4>
-        <div class="content e-book">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="http://www.walu.cc/phpbook/" target="_blank">PHP扩展开发及内核应用</a>
-                </li>
-		<li class="list-group-item">
-                    <a href="http://man.chinaunix.net/develop/rfc/default.htm" target="_blank">中文RFC文档目录</a>
-                </li>
-            </ul>
+        <h4 class="title">微信服务号</h4>
+        <div class="content wechat">
+            <img title="郭大帅哥的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
         </div>
     </div>
 </aside>
