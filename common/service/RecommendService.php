@@ -4,6 +4,7 @@ namespace common\service;
 
 use common\models\posts\Posts;
 use common\models\posts\PostsRecommend;
+use common\models\posts\PostsRecommendQueue;
 
 class RecommendService extends BaseService {
 
@@ -32,7 +33,6 @@ class RecommendService extends BaseService {
         $model_posts_recommend->save(0);
     }
 
-
     public static function calculateRecommend( $blog_id ){
         $post_info = Posts::findOne(['id' => $blog_id,"status" => 1]);
         if( !$post_info ){
@@ -58,6 +58,16 @@ class RecommendService extends BaseService {
             self::setRecommend($post_info['id'],$_relate_post_info['id'],$params);
         }
         return true;
+    }
+
+    public static function addQueue($blog_id){
+        $date_now = date("Y-m-d H:i:s");
+        $model_blog_recommend_queue = new PostsRecommendQueue();
+        $model_blog_recommend_queue->blog_id = $blog_id;
+        $model_blog_recommend_queue->status = -1;
+        $model_blog_recommend_queue->updated_time = $date_now;
+        $model_blog_recommend_queue->created_time= $date_now;
+        $model_blog_recommend_queue->save(0);
     }
 
 
