@@ -7,6 +7,8 @@ use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\components\phpanalysis\FenCiService;
 use common\models\posts\Posts;
+use common\models\posts\PostsRecommend;
+use common\models\posts\PostsRecommendQueue;
 use common\models\posts\PostsTags;
 use common\service\CacheHelperService;
 use common\service\Constant;
@@ -195,7 +197,6 @@ class PostsController extends BaseController{
         switch($act){
             case "del":
                 $post_info->status = 0;
-                PostsTags::deleteAll(["posts_id" => $id]);
                 break;
             case "online":
                 $post_info->status = 1;
@@ -210,6 +211,26 @@ class PostsController extends BaseController{
 
         $post_info->updated_time = date("Y-m-d H:i:s");
         $post_info->update(0);
+
+        switch($act){
+            case "del":
+                $this->afterDel( $id );
+                break;
+            case "online":
+                $this->afterOnline( $id );
+                break;
+        }
+        
         return $this->renderJSON([],"操作成功!!");
+    }
+
+    private function afterDel( $blog_id ){
+        PostsTags::deleteAll(["posts_id" => $blog_id ]);
+        PostsRecommend::deleteAll([ 'OR',[ 'blog_id' =>$blog_id ],[ "relation_blog_id" => $blog_id] ]);
+    }
+
+    private function afterOnline( $blog_id ){
+        BlogService::buildTags( $blog_id );
+        RecommendService::addQueue( $blog_id );
     }
 }
