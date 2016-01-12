@@ -10,7 +10,7 @@ use common\models\posts\Posts;
 use common\models\posts\PostsTags;
 use common\service\CacheHelperService;
 use common\service\Constant;
-use common\service\SyncBlogServince;
+use common\service\SyncBlogService;
 use Yii;
 use yii\helpers\Url;
 
@@ -164,7 +164,7 @@ class PostsController extends BaseController{
 
         CacheHelperService::buildFront(true);
         if( $status ){//只有在线的才进入同步队列
-            SyncBlogServince::addQueue( $post_id );
+            SyncBlogService::addQueue( $post_id );
         }
 
         return $this->renderJSON(['post_id' => $post_id],"博文发布成功");

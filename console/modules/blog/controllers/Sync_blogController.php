@@ -4,7 +4,7 @@ namespace console\modules\blog\controllers;
 
 use common\models\metaweblog\BlogSyncQueue;
 use common\models\posts\Posts;
-use common\service\SyncBlogServince;
+use common\service\SyncBlogService;
 use console\modules\blog\Blog;
 
 
@@ -24,12 +24,12 @@ class Sync_blogController extends Blog{
         foreach( $sync_list as $_item ){
             sleep( 1 );
             $this->echoLog("--------queue_id:{$_item['id']}---------");
-            $tmp_res = SyncBlogServince::doSync( $_item['type'] ,$_item['blog_id'] );
+            $tmp_res = SyncBlogService::doSync( $_item['type'] ,$_item['blog_id'] );
             $_item->status = $tmp_res?1:0;
             $_item->updated_time = $date_now;
             $_item->update(0);
             if( !$tmp_res ){
-                $this->echoLog( SyncBlogServince::getLastErrorMsg() );
+                $this->echoLog( SyncBlogService::getLastErrorMsg() );
             }
         }
         return $this->echoLog(" Done ");

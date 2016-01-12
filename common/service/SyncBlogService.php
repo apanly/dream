@@ -8,7 +8,7 @@ use common\service\libs\MetaWeblogService;
 /**
  * 同步博客到各大平台
  */
-class SyncBlogServince extends BaseService {
+class SyncBlogService extends BaseService {
 
     public static $type_mapping = [
         "51cto" => "cto51_id",

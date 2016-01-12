@@ -2,19 +2,19 @@
 
 namespace blog\controllers;
 
+use blog\components\UrlService;
 use blog\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\components\UtilHelper;
 use common\models\posts\Posts;
+use common\models\posts\PostsRecommend;
 use common\service\CacheHelperService;
 use Yii;
-use yii\helpers\Url;
 
 
-class DefaultController extends BaseController
-{
-    public function actionIndex()
-    {
+class DefaultController extends BaseController{
+
+    public function actionIndex(){
         $type = intval($this->get("type", 1));
         $type = in_array($type, [1, 2, 3]) ? $type : 1;
 
@@ -59,8 +59,7 @@ class DefaultController extends BaseController
                     'author'   => $author,
                     'tags'     => $tags,
                     'date'     => date("Y年m月d日", strtotime($_post['updated_time'])),
-                    //'view_url' => Url::toRoute("/default/{$_post['id']}"),
-                    'view_url' => Url::toRoute(["/default/info", "id" => $_post['id']]),
+                    'view_url' => UrlService::buildUrl( "/default/info" ,[ "id" => $_post['id'] ] ),
                 ];
             }
         }
@@ -81,10 +80,11 @@ class DefaultController extends BaseController
             "type"      => $type,
             "hot_kws"   => array_slice($tags,0,5)
         ]);
+
     }
 
-    public function actionInfo($id)
-    {
+    public function actionInfo($id){
+
         $id = intval($id);
         if (!$id) {
             return $this->goHome();
@@ -107,7 +107,7 @@ class DefaultController extends BaseController
             "tags"     => $tags,
             'date'     => date("Y年m月d日", strtotime($post_info['updated_time'])),
             'author'   => $author,
-            "url"      => $domain_blog . Url::toRoute(["/default/info", "id" => $post_info['id']])
+            "url"      => UrlService::buildUrl("/default/info", [ "id" => $post_info['id'] ])
         ];
 
         $prev_info = Posts::find()
@@ -115,11 +115,37 @@ class DefaultController extends BaseController
             ->andWhere(['status' => 1])
             ->orderBy("id desc")
             ->one();
+
         $next_info = Posts::find()
             ->where([">", "id", $id])
             ->andWhere(['status' => 1])
             ->orderBy("id asc")
             ->one();
+
+        //推荐相关
+        $relation_blog_ids = PostsRecommend::find()
+            ->select("relation_blog_id")
+            ->where(['blog_id' => $id])
+            ->orderBy("score desc")
+            ->limit(5)
+            ->asArray()
+            ->column();
+
+        $recommend_blogs = [];
+        if( $relation_blog_ids ){
+            $relation_post_list = Posts::findAll(['id' => $relation_blog_ids, 'status' => 1]);
+            if( $relation_post_list ){
+                foreach( $relation_post_list as $_relation_blog_info ){
+                    $recommend_blogs[] = [
+                        "title" => DataHelper::encode( $_relation_blog_info['title'] ),
+                        'view_url' => UrlService::buildUrl("/default/info",[ "id" => $_relation_blog_info['id'],"flag" =>"recommend" ]),
+                    ];
+                }
+            }
+        }
+
+
+
 
         $this->setTitle($post_info['title'] . " - 郭大帅哥的博客");
         $this->setDescription($post_info['title'] . " - 郭大帅哥的博客");
@@ -128,7 +154,8 @@ class DefaultController extends BaseController
         return $this->render("detail", [
             "info"      => $data,
             "prev_info" => $prev_info,
-            "next_info" => $next_info
+            "next_info" => $next_info,
+            "recommend_blogs" => $recommend_blogs
         ]);
     }
 

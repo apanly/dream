@@ -2,6 +2,7 @@
 use  \common\components\DataHelper;
 use \blog\components\StaticService;
 use yii\helpers\Url;
+use blog\components\UrlService;
 
 /*lightbox*/
 StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\AppAsset::className());
@@ -70,20 +71,20 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
 
     <div class="prev-next-wrap clearfix">
         <?php if ($prev_info): ?>
-            <a class="btn btn-default" href="<?= Url::toRoute(["/default/info", "id" => $prev_info['id']]); ?>"><i
+            <a class="btn btn-default" href="<?= UrlService::buildUrl("/default/info", ["id" => $prev_info['id'],"flag"=>"prev" ]); ?>"><i
                     class="fa fa-angle-left fa-fw"></i> <?= DataHelper::encode($prev_info['title']); ?></a>
         <?php endif; ?>
         &nbsp;
         <?php if ($next_info): ?>
             <a class="btn btn-default"
-               href="<?= Url::toRoute(["/default/info", "id" => $next_info['id']]); ?>"><?= DataHelper::encode($next_info['title']); ?>
+               href="<?= UrlService::buildUrl("/default/info", [ "id" => $next_info['id'],"flag" => "next" ]); ?>"><?= DataHelper::encode($next_info['title']); ?>
                 <i class="fa fa-angle-right fa-fw"></i></a>
         <?php endif; ?>
     </div>
 
 
 </main>
-<?= Yii::$app->controller->renderPartial("/public/side"); ?>
+<?= Yii::$app->controller->renderPartial("/public/blog_side",[ "recommend_blogs" => $recommend_blogs]); ?>
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
