@@ -74,7 +74,7 @@ $wx_urls = [
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li style="display: none;">
                     狂神星域（订阅号）
                     <ul>
                         <li><img title="狂神星域:mystarzone" src="<?=$wx_urls['starzone'];?>"></li>

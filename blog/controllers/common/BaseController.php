@@ -22,7 +22,8 @@ class BaseController extends Controller
         "run/step",
         "error/error",
         "log/add",
-        "public/iframe"
+        "public/iframe",
+        "code/run"
     ];
 
 
