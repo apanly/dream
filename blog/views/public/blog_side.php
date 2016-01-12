@@ -1,6 +1,7 @@
 <?php
 use common\service\CacheHelperService;
 use \common\service\GlobalUrlService;
+use \blog\components\UrlService;
 $wx_urls = [
     "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
     "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
@@ -25,7 +26,7 @@ $tags = CacheHelperService::getFrontCache("tag");
         <div class="content recommend_posts">
                 <?php foreach( $recommend_blogs as $_recommend_blog_info ):?>
                 <p>
-                    <a href="<?=$_recommend_blog_info["view_url"];?>"><?=$_recommend_blog_info["title"];?></a>
+                    <a href="<?=UrlService::buildUrl("/default/info",[ "id" => $_recommend_blog_info["id"],"flag" => "recommend" ]);?>"><?=$_recommend_blog_info["title"];?></a>
                 </p>
                 <?php endforeach;?>
         </div>

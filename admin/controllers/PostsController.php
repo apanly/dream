@@ -220,7 +220,7 @@ class PostsController extends BaseController{
                 $this->afterOnline( $id );
                 break;
         }
-        
+
         return $this->renderJSON([],"操作成功!!");
     }
 

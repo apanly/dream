@@ -34,11 +34,22 @@ $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",[
             <?php endforeach;?>
         </div>
         <?php endif;?>
+        <div class="am-panel am-panel-default" style="margin-top: 10px;">
+            <div class="am-panel-hd">智能推荐</div>
+            <ul class="am-list">
+                <?php foreach( $recommend_blogs as $_recommend_blog_info ):?>
+                <li>
+                    <a href="<?=UrlService::buildWapUrl("/default/info",[ "id" => $_recommend_blog_info["id"],"flag" => "recommend" ]);?>"><?=$_recommend_blog_info["title"];?></a>
+                </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+
         <div class="am-article-bd text-right" style="display: none;">
             <i class="am-icon-btn am-warning  am-icon-thumbs-up"></i>
             喜欢
         </div>
-        <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+        <hr data-am-widget="divider" style="display: none;" class="am-divider am-divider-default"/>
         <figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout">
             <img src="<?=$wx_url;?>" alt="微信服务号：imguowei_888">
         </figure>

@@ -2,11 +2,40 @@
 namespace common\service;
 
 
+use common\components\DataHelper;
 use common\models\posts\Posts;
 use common\models\posts\PostsRecommend;
 use common\models\posts\PostsRecommendQueue;
 
 class RecommendService extends BaseService {
+
+    /*
+     * 获取相关推荐
+     * */
+    public static function getRecommendBlog( $blog_id,$page_size = 5){
+        //推荐相关
+        $relation_blog_ids = PostsRecommend::find()
+            ->select("relation_blog_id")
+            ->where(['blog_id' => $blog_id])
+            ->orderBy("score desc")
+            ->limit( $page_size )
+            ->asArray()
+            ->column();
+
+        $recommend_blogs = [];
+        if( $relation_blog_ids ){
+            $relation_post_list = Posts::findAll(['id' => $relation_blog_ids, 'status' => 1]);
+            if( $relation_post_list ){
+                foreach( $relation_post_list as $_relation_blog_info ){
+                    $recommend_blogs[] = [
+                        "title" => DataHelper::encode( $_relation_blog_info['title'] ),
+                        "id" => $_relation_blog_info['id']
+                    ];
+                }
+            }
+        }
+        return $recommend_blogs;
+    }
 
     public static function setRecommend($blog_id,$relate_blog_id,$params = []){
         $date_now = date("Y-m-d H:i:s");

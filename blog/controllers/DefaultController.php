@@ -9,6 +9,7 @@ use common\components\UtilHelper;
 use common\models\posts\Posts;
 use common\models\posts\PostsRecommend;
 use common\service\CacheHelperService;
+use common\service\RecommendService;
 use Yii;
 
 
@@ -122,31 +123,6 @@ class DefaultController extends BaseController{
             ->orderBy("id asc")
             ->one();
 
-        //推荐相关
-        $relation_blog_ids = PostsRecommend::find()
-            ->select("relation_blog_id")
-            ->where(['blog_id' => $id])
-            ->orderBy("score desc")
-            ->limit(5)
-            ->asArray()
-            ->column();
-
-        $recommend_blogs = [];
-        if( $relation_blog_ids ){
-            $relation_post_list = Posts::findAll(['id' => $relation_blog_ids, 'status' => 1]);
-            if( $relation_post_list ){
-                foreach( $relation_post_list as $_relation_blog_info ){
-                    $recommend_blogs[] = [
-                        "title" => DataHelper::encode( $_relation_blog_info['title'] ),
-                        'view_url' => UrlService::buildUrl("/default/info",[ "id" => $_relation_blog_info['id'],"flag" =>"recommend" ]),
-                    ];
-                }
-            }
-        }
-
-
-
-
         $this->setTitle($post_info['title'] . " - 郭大帅哥的博客");
         $this->setDescription($post_info['title'] . " - 郭大帅哥的博客");
         $this->setKeywords($post_info['tags'] . " - 郭大帅哥的博客");
@@ -155,7 +131,7 @@ class DefaultController extends BaseController{
             "info"      => $data,
             "prev_info" => $prev_info,
             "next_info" => $next_info,
-            "recommend_blogs" => $recommend_blogs
+            "recommend_blogs" => RecommendService::getRecommendBlog( $id )
         ]);
     }
 

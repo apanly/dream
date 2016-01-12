@@ -7,14 +7,14 @@ use blog\modules\wap\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\components\UtilHelper;
 use common\models\posts\Posts;
+use common\service\RecommendService;
 use Yii;
 
 class DefaultController extends BaseController
 {
     private $page_size = 10;
 
-    public function actionIndex()
-    {
+    public function actionIndex(){
         $type = intval($this->get("type", 1));
         $type = in_array($type, [1, 2, 3]) ? $type : 1;
 
@@ -26,8 +26,7 @@ class DefaultController extends BaseController
         ]);
     }
 
-    public function actionInfo($id)
-    {
+    public function actionInfo($id){
         $id = intval($id);
         if (!$id) {
             return $this->goHome();
@@ -58,7 +57,8 @@ class DefaultController extends BaseController
         $this->setKeywords($post_info['tags'] . " - 郭大帅哥的博客");
 
         return $this->render("info", [
-            "info" => $data
+            "info" => $data,
+            "recommend_blogs" => RecommendService::getRecommendBlog( $id )
         ]);
     }
 
