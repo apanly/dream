@@ -9,7 +9,7 @@ use Yii;
 
 class TestController extends BaseController{
     public function actionIndex(){
-        //SyncBlogService::doSync("51cto",91);
+        //SyncBlogService::doSync("chinaunix",91);
     }
 
 

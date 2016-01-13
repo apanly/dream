@@ -16,7 +16,8 @@ class SyncBlogService extends BaseService {
         "sina" => "sina_id",
         "163" => "netease_id",
         "oschina" => "oschina_id",
-        "cnblogs" => "cnblogs_id"
+        "cnblogs" => "cnblogs_id",
+        "chinaunix" => "chinaunix_id"
     ];
 
     public static function doSync( $type,$blog_id ){
@@ -43,7 +44,9 @@ class SyncBlogService extends BaseService {
             case "cnblogs":
                 break;
             case "chinaunix":
-                return self::_err("目前还处理不了这个类型!!");
+                $catlog = [
+                    "Web开发"
+                ];
                 break;
             default:
                 return self::_err("指定的类型无法处理!!");
