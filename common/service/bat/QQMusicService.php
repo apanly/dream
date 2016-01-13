@@ -23,7 +23,9 @@ class QQMusicService extends  BaseService{
 
 
     public static function saveMusic( $info ){
-
+        if( !isset( $info['song_id']) ){
+            return false;
+        }
         $date_now = date("Y-m-d H:i:s");
         $has_in = Music::findOne([ 'song_id' => $info['song_id'],'type' => $info['type'] ]);
         if( $has_in ){
