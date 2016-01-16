@@ -90,13 +90,19 @@ class RecommendService extends BaseService {
     }
 
     public static function addQueue($blog_id){
+        $has_not_handle_task = PostsRecommendQueue::findOne( ['blog_id' => $blog_id,'status' => -1 ] );
+        if( $has_not_handle_task ){
+            return true;
+        }
+
         $date_now = date("Y-m-d H:i:s");
         $model_blog_recommend_queue = new PostsRecommendQueue();
         $model_blog_recommend_queue->blog_id = $blog_id;
         $model_blog_recommend_queue->status = -1;
         $model_blog_recommend_queue->updated_time = $date_now;
         $model_blog_recommend_queue->created_time= $date_now;
-        $model_blog_recommend_queue->save(0);
+        return $model_blog_recommend_queue->save(0);
+
     }
 
 

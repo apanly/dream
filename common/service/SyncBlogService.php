@@ -139,6 +139,11 @@ class SyncBlogService extends BaseService {
     public static function addQueue($blog_id){
         $date_now = date("Y-m-d H:i:s");
         foreach( self::$type_mapping as $_type => $_f ){
+            $has_not_handle_task = BlogSyncQueue::findOne([ 'blog_id' => $blog_id,'status' => -1,'type' => $_type ]);
+            if( $has_not_handle_task ){
+                continue;
+            }
+
             $tmp_model_blog_sync_queue = new BlogSyncQueue();
             $tmp_model_blog_sync_queue->blog_id = $blog_id;
             $tmp_model_blog_sync_queue->type = $_type;
@@ -146,6 +151,7 @@ class SyncBlogService extends BaseService {
             $tmp_model_blog_sync_queue->updated_time = $date_now;
             $tmp_model_blog_sync_queue->created_time= $date_now;
             $tmp_model_blog_sync_queue->save(0);
+
         }
 
     }

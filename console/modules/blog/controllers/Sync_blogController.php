@@ -14,7 +14,7 @@ class Sync_blogController extends Blog{
         $sync_list = BlogSyncQueue::find()
             ->where([ 'status' => -1 ])
             ->orderBy("id asc")
-            ->limit( 6 )
+            ->limit( count( SyncBlogService::$type_mapping ) )
             ->all();
         if( !$sync_list ){
             return $this->echoLog("no data need to handle");
@@ -40,13 +40,13 @@ class Sync_blogController extends Blog{
         $posts_list = Posts::find()->where(['status' => 1])->orderBy("id asc")->all();
         foreach( $posts_list as $_item ){
             foreach( SyncBlogService::$type_mapping as $_type => $_f ){
-                    $model_blog_sync_queue = new BlogSyncQueue();
-                    $model_blog_sync_queue->blog_id = $_item['id'];
-                    $model_blog_sync_queue->type = $_type;
-                    $model_blog_sync_queue->updated_time = $date_now;
-                    $model_blog_sync_queue->created_time = $date_now;
-                    $model_blog_sync_queue->status = -1;
-                    $model_blog_sync_queue->save(0);
+                $model_blog_sync_queue = new BlogSyncQueue();
+                $model_blog_sync_queue->blog_id = $_item['id'];
+                $model_blog_sync_queue->type = $_type;
+                $model_blog_sync_queue->updated_time = $date_now;
+                $model_blog_sync_queue->created_time = $date_now;
+                $model_blog_sync_queue->status = -1;
+                $model_blog_sync_queue->save(0);
             }
         }
      }
