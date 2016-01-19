@@ -72,7 +72,7 @@ class SyncBlogService extends BaseService {
         $content .= "<br/>原文地址：<a href=\"{$link}\">{$blog_info['title']}</a>";
         /*相关标签*/
         if( $blog_info['tags'] ){
-            $content .="<br/><h6>标签：</h6><ul>";
+            $content .="<br/><h6>标签：</h6>";
             $tmp_tags = explode(",",$blog_info['tags'] );
             foreach( $tmp_tags as $_tmp_tag ){
                 $tmp_link = $domain_blog."/search/do?kw={$_tmp_tag}";
