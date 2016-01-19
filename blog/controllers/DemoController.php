@@ -84,7 +84,7 @@ class DemoController extends BaseController
         $user_info = User::findOne(['uid' => $cache_status]);
         $data      = [
             "nickname" => DataHelper::encode($user_info["nickname"]),
-            "email"    => $user_info['email']
+            "email"    => "apanly@163.com"
         ];
         return $this->renderJSON($data, "", 200);
     }
