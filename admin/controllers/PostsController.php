@@ -112,8 +112,8 @@ class PostsController extends BaseController{
         $status = trim($this->post("status",0));
         $original = trim($this->post("original",0));
 
-        if( mb_strlen($title,"utf-8") <= 0 ){
-            return $this->renderJSON([],"请输入博文标题",-1);
+        if( mb_strlen($title,"utf-8") <= 0 || mb_strlen($title,"utf-8") > 40  ){
+            return $this->renderJSON([],"请输入博文标题并且少于40个字符",-1);
         }
 
         if( mb_strlen($content,"utf-8") <= 0 ){
