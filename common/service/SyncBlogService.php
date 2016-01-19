@@ -70,6 +70,15 @@ class SyncBlogService extends BaseService {
         $title = $blog_info['title'];
 
         $content .= "<br/>原文地址：<a href=\"{$link}\">{$blog_info['title']}</a>";
+        /*相关标签*/
+        if( $blog_info['tags'] ){
+            $content .="<br/><h6>标签：</h6><ul>";
+            $tmp_tags = explode(",",$blog_info['tags'] );
+            foreach( $tmp_tags as $_tmp_tag ){
+                $tmp_link = $domain_blog."/search/do?kw={$_tmp_tag}";
+                $content .= "<a href='{$tmp_link}'>{$_tmp_tag}</a> &nbsp;&nbsp;";
+            }
+        }
         /*加入推荐*/
         $recommend_blogs = RecommendService::getRecommendBlog( $blog_id );
         if( $recommend_blogs ){
