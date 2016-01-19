@@ -23,7 +23,8 @@ class BaseController extends Controller
         "error/error",
         "log/add",
         "public/iframe",
-        "code/run"
+        "code/run",
+        "demo/login"
     ];
 
 
