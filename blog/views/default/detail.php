@@ -37,6 +37,10 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
         <section class="post-content">
             <p><?= $info['content']; ?></p>
         </section>
+        <div class="page-header">
+            版权声明：本文为博主原创文章，原文永久地址：<?= $info['url']; ?>
+        </div>
+
         <!-- JiaThis Button BEGIN -->
         <div class="jiathis_style_32x32 clearfix">
             <a class="jiathis_button_qzone"></a>
