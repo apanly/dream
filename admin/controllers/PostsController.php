@@ -2,6 +2,7 @@
 
 namespace admin\controllers;
 
+use admin\components\AdminUrlService;
 use admin\components\BlogService;
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
@@ -20,6 +21,9 @@ use yii\helpers\Url;
 class PostsController extends BaseController{
     public function actionIndex(){
         $p = intval( $this->get("p",1) );
+        $status = intval( $this->get("status",-1 ) );
+        $kw = trim( $this->get("kw",'') );
+
         if(!$p){
             $p = 1;
         }
@@ -28,6 +32,14 @@ class PostsController extends BaseController{
         $pagesize = 20;
 
         $query = Posts::find();
+        if( $status >= 0 ){
+            $query->andWhere([ 'status' => $status ]);
+        }
+
+        if( $kw ){
+            $query->andWhere( ['LIKE', 'title', '%' . strtr($kw, ['%' => '\%', '_' => '\_', '\\' => '\\\\']) . '%', false] );
+        }
+
         $total_count = $query->count();
         $offset = ($p - 1) * $pagesize;
         $posts_info = $query->orderBy("id desc")
@@ -67,10 +79,16 @@ class PostsController extends BaseController{
             }
         }
 
+        $search_condition = [
+            'kw' => $kw,
+            'status' => $status
+        ];
+
         return $this->render("index",[
             "data" => $data,
             "page_info" => $page_info,
-            "page_url" => "/posts/index"
+            "page_url" => AdminUrlService::buildUrl("/posts/index",$search_condition),
+            "search_condition" => $search_condition
         ]);
     }
 

@@ -1,6 +1,7 @@
 <?php
 use \yii\helpers\Url;
 use \admin\components\StaticService;
+use \admin\components\AdminUrlService;
 StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::className());
 ?>
 <div class="page-content-wrap">
@@ -13,6 +14,27 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                     <li><a href="javascript:void(0);" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                     <li><a href="<?=Url::toRoute("/posts/set");?>"><span class="fa fa-edit"></span></a></li>
                 </ul>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row stacked">
+                        <div class="col-md-6" id="search_from">
+                            <div class="input-group push-down-10">
+                                <input type="text" name="kw" class="form-control" placeholder="请输入关键字" value="<?=$search_condition["kw"];?>">
+
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary do">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="pull-right">
+                                <a href="<?=AdminUrlService::buildUrl("/posts/index",['status' => 1]);?>">正常</a>
+                                <a href="<?=AdminUrlService::buildUrl("/posts/index",['status' => 0]);?>">隐藏</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
@@ -76,15 +98,15 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::c
                     <?php if($page_info['total_page']):?>
                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                         <?php if($page_info['previous']):?>
-                        <a class="paginate_button previous" href="<?=$page_url;?>?p=1">«</a>
+                        <a class="paginate_button previous" href="<?=$page_url;?>&p=1">«</a>
                         <?php endif;?>
                         <span>
                             <?php for($pidx = $page_info['from'];$pidx <= $page_info['end'];$pidx ++ ):?>
-                            <a class="paginate_button <?php if($pidx == $page_info['current']):?> current <?php endif;?>"  data-dt-idx="<?=$pidx;?>" href="<?=$page_url;?>?p=<?=$pidx;?>"><?=$pidx;?></a>
+                            <a class="paginate_button <?php if($pidx == $page_info['current']):?> current <?php endif;?>"  data-dt-idx="<?=$pidx;?>" href="<?=$page_url;?>&p=<?=$pidx;?>"><?=$pidx;?></a>
                             <?php endfor;?>
                         </span>
                         <?php if($page_info['next']):?>
-                        <a class="paginate_button next" href="<?=$page_url;?>?p=<?=$page_info['total_page'];?>">»</a>
+                        <a class="paginate_button next" href="<?=$page_url;?>&p=<?=$page_info['total_page'];?>">»</a>
                         <?php endif;?>
                     </div>
                     <?php endif;?>

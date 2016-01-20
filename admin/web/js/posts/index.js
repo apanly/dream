@@ -4,6 +4,18 @@ var posts_index_ops = {
         this.eventBind();
     },
     eventBind:function(){
+
+        $("#search_from .do").click(function(){
+            var kw = $("#search_from input[name=kw]").val();
+            window.location.href = "/posts/index?kw=" + kw;
+        });
+
+        $("#search_from input[name=kw]").keydown(function (e) {
+            if (e.keyCode == 13) {
+                $("#search_from .do").click();
+            }
+        });
+
         $(".delete").each(function(){
             $(this).click(function(){
                 if(!confirm("确认删除吗?\r\n删除之后数据无法恢复!!")){
