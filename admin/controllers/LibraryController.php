@@ -150,7 +150,7 @@ class LibraryController extends BaseController
 
         $book_info->read_status = $read_status;
         $book_info->updated_time = $date_now;
-        if( $read_status == -2 ){
+        if( in_array($read_status, [-1,-2] ) ){
             $book_info->read_start_time = $read_start_time." 00:00:00";
             $book_info->read_end_time = $read_end_time." 23:59:59";
         }
