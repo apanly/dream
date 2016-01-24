@@ -84,6 +84,11 @@ class SearchController extends BaseController
         ]);
     }
 
+    public function actionTag(){
+        $kw = trim($this->get("kw", ""));
+        return $this->redirect( UrlService::buildUrl("/search/do",['kw' => $kw]) );
+    }
+
     public function actionSitemap()
     {
         $data        = [];
