@@ -37,8 +37,11 @@ $tags = CacheHelperService::getFrontCache("tag");
                 <li class="list-group-item">
                     <a href="http://www.walu.cc/phpbook/" target="_blank">PHP扩展开发及内核应用</a>
                 </li>
-		<li class="list-group-item">
+		        <li class="list-group-item">
                     <a href="http://man.chinaunix.net/develop/rfc/default.htm" target="_blank">中文RFC文档目录</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://bonsaiden.github.io/JavaScript-Garden/zh/" target="_blank">JavaScript 秘密花园</a>
                 </li>
             </ul>
         </div>
