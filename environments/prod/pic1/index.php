@@ -54,16 +54,17 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
     if( $w == "5201314" && $h == "5201314" ){
         switch($type){
             case 1:
-                header('content-type:image/gif');
+                header('Content-type: image/gif');
                 break;
             case 2:
-                header('content-type:image/jpg');
+                header('Content-type: image/jpg');
                 break;
             case 3:
-                header('content-type:image/png');
+                header('Content-type: image/png');
                 break;
         }
-        echo file_get_contents( $path );exit();
+        echo file_get_contents( $path );
+        exit();
     }
 
 
@@ -101,15 +102,15 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
 
     switch($type) {
         case 1:
-            header('content-type:image/gif');
+            header('Content-type: image/gif');
             imagegif($image);
             break;
         case 2:
-            header('content-type:image/jpg');
+            header('Content-type: image/jpg');
             imagejpeg($image, null, 100);
             break;
         case 3:
-            header('content-type:image/png');
+            header('Content-type: image/png');
             imagepng($image, null, 9);
             break;
     }
