@@ -63,8 +63,9 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
                 header('Content-type: image/png');
                 break;
         }
-        echo file_get_contents( $path );
-        exit();
+        $data =  file_get_contents( $path );
+        header("Content-Length: ".strlen($data) );
+        echo $data;exit();
     }
 
 
