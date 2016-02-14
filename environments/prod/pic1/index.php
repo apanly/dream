@@ -51,6 +51,22 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
 
     list($o_w, $o_h, $type) = getimagesize($path);
 
+    if( $w == "cdn" && $h == "cdn" ){
+        switch($type){
+            case 1:
+                header('content-type:image/gif');
+                break;
+            case 2:
+                header('content-type:image/jpg');
+                break;
+            case 3:
+                header('content-type:image/png');
+                break;
+        }
+        echo file_get_contents( $path );exit();
+    }
+
+
     if( $h <= 0 ){
         $w = ( $o_w > $w)?$w:$o_w;
         $h = ceil( $o_h * $w / $o_w );
@@ -126,6 +142,11 @@ function getFormat($format){
 
 $filename = $_GET['filename'];
 $format = $_GET['format'];
+
+if( isset( $_SERVER['HTTP_USER_AGENT'] ) &&  stripos($_SERVER['HTTP_USER_AGENT'],"qiniu-imgstg-spider") !== false  ){
+    $format = "w/cdn/h/cdn";
+}
+
 if( !$filename || !$format ){
     echo "params filename  and  format must be assigned";exit();
 }
