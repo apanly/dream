@@ -51,7 +51,7 @@ function resizeimage($filename,$w,$h = 0,$format = "jpg"){
 
     list($o_w, $o_h, $type) = getimagesize($path);
 
-    if( $w == "cdn" && $h == "cdn" ){
+    if( $w == "5201314" && $h == "5201314" ){
         switch($type){
             case 1:
                 header('content-type:image/gif');
@@ -144,7 +144,7 @@ $filename = $_GET['filename'];
 $format = $_GET['format'];
 
 if( isset( $_SERVER['HTTP_USER_AGENT'] ) &&  stripos($_SERVER['HTTP_USER_AGENT'],"qiniu-imgstg-spider") !== false  ){
-    $format = "w/cdn/h/cdn";
+    $format = "w/5201314/h/5201314";
 }
 
 if( !$filename || !$format ){
