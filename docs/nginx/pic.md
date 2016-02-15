@@ -17,7 +17,7 @@
         }
 
         if ( $http_user_agent ~* "qiniu-" ) {
-            set $need_crop 1;
+            set $need_crop 0;
         }
 
         if ( $need_crop = 1 ) {
