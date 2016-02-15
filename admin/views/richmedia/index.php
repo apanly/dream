@@ -45,8 +45,8 @@ StaticService::includeAppJsStatic("/js/richmedia/index.js", \admin\assets\AppAss
                             <td class="text-center"><?= $_item['idx']; ?></td>
                             <td>
                                 <?php if ($_item['type'] == "image"): ?>
-                                    <a href="<?= $_item['src_url']; ?>?format=/w/600" data-gallery="">
-                                        <img src="<?= $_item['src_url']; ?>?format=/w/100"/>
+                                    <a href="<?= $_item['big_src_url']; ?>" data-gallery="">
+                                        <img src="<?= $_item['small_src_url']; ?>"/>
                                     </a>
                                 <?php else: ?>
                                     <video class="vbox" poster="<?= $_item['thumb_url']; ?>"
