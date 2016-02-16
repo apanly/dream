@@ -92,7 +92,7 @@ class MetaWeblogService extends BaseService {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_VERBOSE, true);//命令行显示
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
+        //curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
         curl_setopt($ch, CURLOPT_ENCODING, $this->charset);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $this->xml );
