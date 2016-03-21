@@ -41,7 +41,7 @@ var mate_default_index = {
                     alert(res.msg);
                     $(_this).removeClass("am-disabled");
                     if( res.code == 200 ){
-                        window.location.href = window.location.href;
+                        window.location.href = common_ops.getUrlPrefix() + "/default/list";
                     }
                 }
             })

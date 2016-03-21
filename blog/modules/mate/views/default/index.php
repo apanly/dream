@@ -36,6 +36,7 @@ StaticService::includeAppJsStatic("/js/mate/default/index.js", \blog\assets\Mate
         <div class="am-form-group">
             <div class="am-u-sm-9 am-u-sm-offset-3">
                 <button type="button" class="am-btn am-btn-primary save">报名</button>
+                <span style="margin-left: 20px;"><a href="<?=UrlService::buildMateUrl("/default/list");?>">已报名列表</a></span>
             </div>
         </div>
         <div class="am-form-group">

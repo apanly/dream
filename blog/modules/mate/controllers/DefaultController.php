@@ -3,6 +3,7 @@
 namespace blog\modules\mate\controllers;
 
 use blog\modules\mate\controllers\common\BaseController;
+use common\components\DataHelper;
 use common\models\mate\MateList;
 
 class DefaultController extends BaseController
@@ -41,5 +42,22 @@ class DefaultController extends BaseController
         $model_mate->created_time = date("Y-m-d H:i:s");
         $model_mate->save(0);
         return $this->renderJSON([],"报名成功!!");
+    }
+
+    public function actionList(){
+        $data = [];
+        $list = MateList::find()->orderBy("id desc")->all();
+        foreach( $list as $_item ){
+
+            $data[] = [
+                "nickname" => DataHelper::encode( $_item['nickname'] ),
+                "mobile" =>  $_item['mobile']?substr_replace( $_item['mobile'],'****',3,4):"",
+                "person_num" => $_item['person_num']
+            ];
+
+        }
+        return $this->render("list",[
+            "data" => $data
+        ]);
     }
 } 

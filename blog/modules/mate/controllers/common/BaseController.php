@@ -8,7 +8,8 @@ use blog\components\UrlService;
 class BaseController extends BaseBlogController
 {
     protected $allowAllAction = [
-        "mate/default/index"
+        "mate/default/index",
+        "mate/default/list",
     ];
 
     public function __construct($id, $module, $config = [])
