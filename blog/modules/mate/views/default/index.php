@@ -10,21 +10,21 @@ StaticService::includeAppJsStatic("/js/mate/default/index.js", \blog\assets\Game
 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
     <form class="am-form am-form-horizontal" id="enrol">
         <div class="am-form-group">
-            <label for="nickname" class="am-u-sm-2 am-form-label">姓名：</label>
-            <div class="am-u-sm-10">
+            <label for="nickname" class="am-u-sm-3 am-form-label">姓名：</label>
+            <div class="am-u-sm-9">
                 <input type="text" id="nickname" name="nickname" placeholder="请输入你的真实姓名">
             </div>
         </div>
         <div class="am-form-group">
-            <label for="mobile" class="am-u-sm-2 am-form-label">手机（选填）：</label>
-            <div class="am-u-sm-10">
+            <label for="mobile" class="am-u-sm-3 am-form-label">手机（选填）：</label>
+            <div class="am-u-sm-9">
                 <input type="text" id="mobile" name="mobile" placeholder="请输入你的手机号码（此项可不填写）">
             </div>
         </div>
 
         <div class="am-form-group">
-            <label for=person_number" class="am-u-sm-2 am-form-label">人数：</label>
-            <div class="am-u-sm-10">
+            <label for=person_number" class="am-u-sm-3 am-form-label">人数：</label>
+            <div class="am-u-sm-9">
                 <select id="person_number">
                     <?php foreach( $person_number_mapping as $_person_key => $_person_title ):?>
                     <option value="<?=$_person_key;?>"> <?=$_person_title;?></option>
@@ -34,12 +34,12 @@ StaticService::includeAppJsStatic("/js/mate/default/index.js", \blog\assets\Game
         </div>
 
         <div class="am-form-group">
-            <div class="am-u-sm-10 am-u-sm-offset-2">
+            <div class="am-u-sm-9 am-u-sm-offset-3">
                 <button type="button" class="am-btn am-btn-primary save">报名</button>
             </div>
         </div>
         <div class="am-form-group">
-            <div class="am-u-sm-10 am-u-sm-offset-2">
+            <div class="am-u-sm-9 am-u-sm-offset-3">
             <ul class="am-list">
                 <li style="color: #ff0000;">1.可重复报名,以最后报名信息的为准</li>
                 <li>2.回校时间定于2016年5月1日，票请自己订购</li>
