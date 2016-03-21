@@ -2,7 +2,7 @@
 use blog\components\StaticService;
 use \blog\components\UrlService;
 use \common\service\GlobalUrlService;
-StaticService::includeAppJsStatic("/js/mate/default/index.js", \blog\assets\GameAsset::className());
+StaticService::includeAppJsStatic("/js/mate/default/index.js", \blog\assets\MateAsset::className());
 ?>
 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 am-text-center">
     <h1>2016年同学会报名<br/>T773 纯真年华 - 青春</h1>
