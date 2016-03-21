@@ -34,7 +34,7 @@ MateAsset::register($this);
         </div>
     </footer>
     <?php endif;?>
-    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default">
+    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default" style="display: none;">
         <ul class="am-navbar-nav am-cf am-avg-sm-4">
             <li>
                 <a href="<?= UrlService::buildMateUrl("/gallary/index"); ?>" class="am-btn-warning">
