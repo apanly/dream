@@ -39,7 +39,7 @@ StaticService::includeAppJsStatic("/js/mate/default/index.js", \blog\assets\Game
             </div>
         </div>
         <div class="am-form-group">
-            <div class="am-u-sm-9 am-u-sm-offset-3">
+            <div class="am-u-sm-12">
             <ul class="am-list">
                 <li style="color: #ff0000;">1.可重复报名,以最后报名信息的为准</li>
                 <li>2.回校时间定于2016年5月1日，票请自己订购</li>
