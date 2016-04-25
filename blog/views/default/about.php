@@ -10,7 +10,7 @@ $wx_urls = [
     <article class="post page">
 
         <header class="post-head">
-            <h1 class="post-title">郭大帅哥 PHP，Python 工程师</h1>
+            <h1 class="post-title">编程浪子 PHP，Python 工程师</h1>
         </header>
 
         <section class="post-content">
@@ -59,18 +59,18 @@ $wx_urls = [
                 <li>Github：<a href="https://github.com/apanly">https://github.com/apanly</a></li>
                 <li>Email：<a href="mailto:apanly@163.com">apanly@163.com</a></li>
                 <li>
-                    郭大帅哥的微信
+                    编程浪子的微信
                     <ul>
                         <li>
-                            <img title="郭大帅哥的微信" src="<?=$wx_urls['my'];?>">
+                            <img title="编程浪子的微信" src="<?=$wx_urls['my'];?>">
                         </li>
                     </ul>
                 </li>
                 <li>
-                    郭大帅哥的故事（服务号）
+                    编程浪子的故事（服务号）
                     <ul>
                         <li>
-                            <img title="郭大帅哥的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
+                            <img title="编程浪子的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
                         </li>
                     </ul>
                 </li>

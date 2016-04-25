@@ -42,7 +42,7 @@ GameAsset::register($this);
     <footer data-am-widget="footer"  class="am-footer am-footer-default">
         <div class="am-footer-miscs ">
             <p>欢迎您，<?= DataHelper::encode($this->params['current_user']['nickname']); ?></p>
-            <p>由 郭大帅哥 提供技术支持</p>
+            <p>由 编程浪子 提供技术支持</p>
         </div>
     </footer>
     <?php endif;?>
