@@ -69,7 +69,7 @@ class BaseController extends Controller
     }
 
 
-    public function setTitle($title = "郭大帅哥的博客")
+    public function setTitle($title = "编程浪子的博客")
     {
         $this->getView()->title = $title;
     }

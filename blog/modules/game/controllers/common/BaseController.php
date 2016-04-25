@@ -56,11 +56,11 @@ class BaseController extends BaseBlogController
         return UrlService::buildUrl("/".urlencode($refer));
     }
 
-    public function setTitle($title = "郭大帅哥的游戏中心"){
+    public function setTitle($title = "编程浪子的游戏中心"){
         $this->getView()->title = $title;
     }
 
-    public function setSubTitle($title = "郭大帅哥的游戏中心"){
+    public function setSubTitle($title = "编程浪子的游戏中心"){
         $this->getView()->params['subtitle'] = $title;
     }
 
