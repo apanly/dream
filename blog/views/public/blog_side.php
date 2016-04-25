@@ -35,7 +35,7 @@ $tags = CacheHelperService::getFrontCache("tag");
     <div class="widget">
         <h4 class="title">微信服务号</h4>
         <div class="content wechat">
-            <img title="郭大帅哥的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
+            <img title="编程浪子的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
         </div>
     </div>
 </aside>

@@ -19,7 +19,7 @@ var public_ops = {
         var kw = $.trim($(".sidebar #kw").val());
         if (kw.length < 1) {
             $(".sidebar #kw").focus();
-            alert("郭大帅哥提醒您\r\n请输入搜索关键字!!");
+            alert("编程浪子提醒您\r\n请输入搜索关键字!!");
             return;
         }
         window.location.href = "/search/do?kw=" + kw;

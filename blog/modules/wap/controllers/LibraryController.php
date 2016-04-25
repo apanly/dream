@@ -14,7 +14,7 @@ class LibraryController extends BaseController{
     private $page_size = 10;
 
     public function actionIndex(){
-        $this->setTitle("郭大帅哥的图书馆");
+        $this->setTitle("编程浪子的图书馆");
         $data = $this->search();
         return $this->render("index", [
             "book_list" => $this->buildItem($data),
@@ -37,7 +37,7 @@ class LibraryController extends BaseController{
             return $this->goLibraryHome();
         }
 
-        $this->setTitle($book_info['subtitle'] . " - 郭大帅哥的图书馆");
+        $this->setTitle($book_info['subtitle'] . " - 编程浪子的图书馆");
 
         $data = [];
         $author  = json_decode($book_info['creator'], true);

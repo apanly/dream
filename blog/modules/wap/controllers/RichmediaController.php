@@ -17,7 +17,7 @@ class RichmediaController extends BaseController
 
         $data = $this->search();
 
-        $this->setTitle("富媒体--郭大帅哥的生活记录");
+        $this->setTitle("富媒体--编程浪子的生活记录");
         return $this->render("index", [
             "media_list_html" => $this->buildItem($data),
             "has_next" => (count($data) < $this->page_size) ? false : true,

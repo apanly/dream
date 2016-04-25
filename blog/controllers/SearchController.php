@@ -26,7 +26,7 @@ class SearchController extends BaseController
         if (!$kw) {
             return $this->redirect("/");
         }
-        $this->setTitle($kw . " - 郭大帅哥的博客");
+        $this->setTitle($kw . " - 编程浪子的博客");
         $pagesize = 10;
         $offset   = ($p - 1) * $pagesize;
 
