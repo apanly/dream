@@ -18,7 +18,7 @@ return [
         "cookie" => ".dr.local.com",
     ],
     "author" => [
-        "nickname" => "郭大帅哥",
+        "nickname" => "编程浪子",
         "link" => "/default/about"
     ],
     'weixin' => [

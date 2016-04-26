@@ -53,7 +53,7 @@ class DataHelper {
 
 
     public static function encrypted($txt){
-        $tmp_salt = "郭大帅哥";
+        $tmp_salt = "编程浪子";
         return md5(md5($tmp_salt.$txt));
     }
 

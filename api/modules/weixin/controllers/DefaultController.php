@@ -219,7 +219,7 @@ EOT;
 
     private function help(){
         $resData = <<<EOT
-郭大帅哥没有找到你想要的东西（：
+编程浪子没有找到你想要的东西（：
 试试hadoop,mysql等等，
  也可以直接去我的网站 www.vincentguo.cn
 EOT;
@@ -233,12 +233,12 @@ EOT;
         $from = $this->getSource();
         if($from == "imguowei_888" ){
             $resData = <<<EOT
-感谢您关注郭大帅哥的故事，除了菜单还可以输入关键字，郭大帅哥会回复你的！！
+感谢您关注编程浪子的故事，除了菜单还可以输入关键字，编程浪子会回复你的！！
 EOT;
         }else{
             $resData = <<<EOT
-感谢您关注郭大帅哥的公众号
-输入关键字,郭大帅哥会回复你的！！
+感谢您关注编程浪子的公众号
+输入关键字,编程浪子会回复你的！！
 EOT;
         }
 
@@ -247,7 +247,7 @@ EOT;
 
     private function richMediaTips(){
         $resData = <<<EOT
-郭大帅哥收到您提供的多媒体信息
+编程浪子收到您提供的多媒体信息
 审核通过之后就会在博客展示！！
 EOT;
         return $resData;
@@ -255,7 +255,7 @@ EOT;
 
     private function urlTips(){
         $resData = <<<EOT
-郭大帅哥收到您提供的链接
+编程浪子收到您提供的链接
 系统会自己抓取内容,审核之后就会展示！！
 EOT;
         return $resData;
