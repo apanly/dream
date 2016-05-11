@@ -14,7 +14,7 @@ use yii\helpers\Url;
 class LibraryController extends BaseController
 {
     public function actionIndex(){
-        $this->setTitle("编程浪子的图书馆");
+        $this->setTitle("图书馆");
         $p = intval($this->get("p", 1));
         if (!$p) {
             $p = 1;
@@ -124,7 +124,7 @@ class LibraryController extends BaseController
             ->orderBy("id asc")
             ->one();
 
-        $this->setTitle($book_info['subtitle'] . " - 编程浪子的图书馆");
+        $this->setTitle($book_info['subtitle']);
 
         return $this->render("detail", [
             "info"      => $data,

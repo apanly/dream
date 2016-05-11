@@ -69,13 +69,12 @@ class BaseController extends Controller
     }
 
 
-    public function setTitle($title = "编程浪子的博客")
-    {
+    public function setTitle($title = ""){
+        $title  = $title ? $title." -- ".Yii::$app->params['seo']['title'] : Yii::$app->params['seo']['title'];
         $this->getView()->title = $title;
     }
 
-    public function setKeywords($keywords = "")
-    {
+    public function setKeywords($keywords = ""){
         $keywords  = $keywords ? $keywords : Yii::$app->params['seo']['keywords'];
         $this->getView()->params['seo']['keywords'] = $keywords;
     }

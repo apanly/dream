@@ -52,9 +52,7 @@ class DefaultController extends BaseController
             'url'     => $domain_m . UrlService::buildWapUrl("/default/info", ["id" => $post_info['id']])
         ];
 
-        $this->setTitle($post_info['title'] . " - 编程浪子的博客");
-        $this->setDescription($post_info['title'] . " - 编程浪子的博客");
-        $this->setKeywords($post_info['tags'] . " - 编程浪子的博客");
+        $this->setTitle($post_info['title']);
 
         return $this->render("info", [
             "info" => $data,

@@ -9,7 +9,8 @@ class BaseWebController extends Controller
 {
     public $enableCsrfValidation = false;
 
-    public function setTitle($title = "编程浪子的博客"){
+    public function setTitle($title = ""){
+        $title  = $title ? $title." -- ".Yii::$app->params['seo']['title'] : Yii::$app->params['seo']['title'];
         $this->getView()->title = $title;
     }
 

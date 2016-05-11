@@ -14,7 +14,7 @@ class SearchController extends BaseController{
         $data = [];
         $kw = $this->get("kw","");
         if( $kw ){
-            $this->setTitle($kw . " - 编程浪子的博客");
+            $this->setTitle($kw);
             $search_key  = ['LIKE', 'search_key', '%' . strtr($kw, ['%' => '\%', '_' => '\_', '\\' => '\\\\']) . '%', false];
             $query       = IndexSearch::find()->where($search_key);
             $list        = $query->orderBy("id desc")->all();

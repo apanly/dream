@@ -49,7 +49,7 @@ $wx_urls = [
             </li>
             <li class="am-g am-list-item-dated">
                 <a href="javascript:void(0);" class="am-list-item-hd ">
-                    工作：4年+
+                    工作：5年+
                 </a>
             </li>
             <li class="am-g am-list-item-dated">

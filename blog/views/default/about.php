@@ -16,14 +16,14 @@ $wx_urls = [
         <section class="post-content">
             <blockquote>
                 <p>
-                    作为一个技术人员，当然希望建立一个自己的小小王国。此平台主要用户记录工作笔记和生活。
+                    作为一个技术人员，当然希望建立一个自己的小小平台。此平台主要用户记录工作笔记和生活。
                 </p>
             </blockquote>
             <ul>
                 <li>姓名：郭威</li>
                 <li>坐标：上海&bull;徐汇区&bull;田林</li>
                 <li>学历：本科</li>
-                <li>工作：4年+</li>
+                <li>工作：5年+</li>
                 <li>邮箱：apanly@163.com</li>
                 <li>工作经历：
                     <ul>

@@ -123,9 +123,7 @@ class DefaultController extends BaseController{
             ->orderBy("id asc")
             ->one();
 
-        $this->setTitle($post_info['title'] . " - 编程浪子的博客");
-        $this->setDescription($post_info['title'] . " - 编程浪子的博客");
-        $this->setKeywords($post_info['tags'] . " - 编程浪子的博客");
+        $this->setTitle($post_info['title']);
 
         return $this->render("detail", [
             "info"      => $data,
@@ -135,15 +133,14 @@ class DefaultController extends BaseController{
         ]);
     }
 
-    public function actionAbout()
-    {
-        $this->setTitle("编程浪子的简介");
+    public function actionAbout(){
+        $this->setTitle("简介");
         return $this->render("about");
     }
 
     public function actionDonation()
     {
-        $this->setTitle("赞助 -- 有钱任性");
+        $this->setTitle("赞助");
         return $this->render("donation");
     }
 
