@@ -15,8 +15,7 @@ use yii\helpers\Url;
 
 class SearchController extends BaseController
 {
-    public function actionDo()
-    {
+    public function actionDo(){
         $kw = trim($this->get("kw", ""));
         $p  = intval($this->get("p", 1));
         if (!$p) {
@@ -89,11 +88,22 @@ class SearchController extends BaseController
         return $this->redirect( UrlService::buildUrl("/search/do",['kw' => $kw]) );
     }
 
-    public function actionSitemap()
-    {
+    public function actionSitemap(){
         $data        = [];
         $tags        = [];
-        $domain_blog = Yii::$app->params['domains']['blog'];
+
+
+        $type = $this->get("type","blog");
+        switch( $type ){
+            case "m":
+                $domain_host = Yii::$app->params['domains']['m'];
+                $sitemap_filename = "m_sitemap.xml";
+                break;
+            default:
+                $domain_host = Yii::$app->params['domains']['blog'];
+                $sitemap_filename = "sitemap.xml";
+                break;
+        }
 
         $index_urls = [
             "/default/index?type=1",
@@ -110,7 +120,11 @@ class SearchController extends BaseController
             if( preg_match("/^http/",$_index_url) ){
                 $tmp_url = $_index_url;
             }else{
-                $tmp_url = $domain_blog . UrlService::buildUrl($_index_url);
+                if( $type == "m" ){
+                    $tmp_url = UrlService::buildWapUrl($_index_url);
+                }else{
+                    $tmp_url = UrlService::buildUrl($_index_url);
+                }
             }
 
             $data[] = [
@@ -125,8 +139,13 @@ class SearchController extends BaseController
         $post_list = Posts::find()->where(["status" => 1])->orderBy("id desc")->all();
         if ($post_list) {
             foreach ($post_list as $_post_info) {
+                if( $type == "m" ){
+                    $tmp_url = UrlService::buildWapUrl("/default/info", ["id" => $_post_info['id']]);
+                }else{
+                    $tmp_url = UrlService::buildUrl("/default/info", ["id" => $_post_info['id']]);
+                }
                 $data[]   = [
-                    "loc"        => $domain_blog . UrlService::buildUrl("/default/info", ["id" => $_post_info['id']]),
+                    "loc"        => $tmp_url,
                     "priority"   => 1.0,
                     "lastmod"    => date("Y-m-d", strtotime($_post_info['updated_time'])),
                     "changefreq" => "daily"
@@ -139,8 +158,13 @@ class SearchController extends BaseController
         $book_list = Book::find()->where(['status' => 1])->orderBy("id desc")->all();
         if ($book_list) {
             foreach ($book_list as $_book_info) {
+                if( $type == "m" ){
+                    $tmp_url = UrlService::buildWapUrl("/library/info", ["id" => $_book_info['id']]);
+                }else{
+                    $tmp_url = UrlService::buildUrl("/library/info", ["id" => $_book_info['id']]);
+                }
                 $data[] = [
-                    "loc"        => $domain_blog . UrlService::buildUrl("/library/info", ["id" => $_book_info['id']]),
+                    "loc"        => $tmp_url,
                     "priority"   => 1.0,
                     "lastmod"    => date("Y-m-d", strtotime($_book_info['updated_time'])),
                     "changefreq" => "daily"
@@ -154,8 +178,13 @@ class SearchController extends BaseController
         $tags = array_unique($tags);
         if ($tags) {
             foreach ($tags as $_tag) {
+                if( $type == "m" ){
+                    $tmp_url = UrlService::buildWapUrl("/search/do",  ["kw" => $_tag]);
+                }else{
+                    $tmp_url = UrlService::buildUrl("/search/do",  ["kw" => $_tag]);
+                }
                 $data[] = [
-                    "loc"        => $domain_blog . UrlService::buildUrl("/search/do", ["kw" => $_tag]),
+                    "loc"        => $tmp_url,
                     "priority"   => 1.0,
                     "lastmod"    => date("Y-m-d", time()),
                     "changefreq" => "daily"
@@ -168,8 +197,9 @@ class SearchController extends BaseController
         ]);
 
         $app_root  = Yii::$app->getBasePath();
-        $file_path = $app_root . "/web/sitemap.xml";
+        $file_path = $app_root . "/web/{$sitemap_filename}";
         file_put_contents($file_path, $xml_content);
-
+        $this->layout= false;
+        return "ok";
     }
 }
