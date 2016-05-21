@@ -29,4 +29,25 @@ var access_ops = {
 };
 $(document).ready(function(){
     access_ops.init();
+
+    window.onerror = function(message, url, lineNumber,columnNo,error) {
+        var data = {
+            'message':message,
+            'url':url,
+            'error':error.stack
+        };
+        var access_domain = $("#access_domain").val();
+        if( access_domain == undefined ){
+            return;
+        }
+        $.ajax({
+            url:access_domain + "/error/capture",
+            type:'post',
+            data:data,
+            success:function(){
+
+            }
+        });
+        return true;
+    };
 });

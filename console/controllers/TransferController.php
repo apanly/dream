@@ -69,4 +69,8 @@ class TransferController extends  BaseController {
         $ret = UploadService::uploadByUrl($src_url);
         return $ret?$ret['url']:false;
     }
+
+    public function actionTest(){
+        var_dump($a);
+    }
 } 

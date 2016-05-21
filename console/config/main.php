@@ -28,6 +28,10 @@ return [
             ],
         ],
         //"urlManager" => require (__DIR__ . '/router.php'),
+        'errorHandler' => [
+            'class' => 'console\controllers\ErrorController'
+        ],
     ],
+
     'params' => $params,
 ];
