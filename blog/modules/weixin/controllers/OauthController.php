@@ -58,8 +58,8 @@ class OauthController extends BaseBlogController{
             if( !$user_info ){
                 $model_user = new User();
                 if( $sns_user_data ){
-                    $user_info->nickname = $sns_user_data['nickname'];
-                    $user_info->avatar = $sns_user_data['headimgurl'];
+                    $model_user->nickname = $sns_user_data['nickname'];
+                    $model_user->avatar = $sns_user_data['headimgurl'];
                 }else{
                     $model_user->nickname = "微信用户".substr($openid,-10);
                 }
