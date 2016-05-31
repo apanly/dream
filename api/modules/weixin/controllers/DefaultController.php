@@ -71,7 +71,7 @@ class DefaultController extends  BaseController {
                         'url' => $domain_m = \Yii::$app->params['domains']['m']."/wechat_wall/index"
                     ]
                 ];
-                return ['type' => "rich" ,"data" => $data];
+                return ['type' => "rich" ,"data" => $this->getRichXml($data)];
                 break;
         }
 
