@@ -53,11 +53,16 @@ class OauthController extends BaseBlogController{
         $reg_bind = UserOpenidUnionid::findOne(["openid" => $openid ]);
         if( !$reg_bind ){
             $date_now = date("Y-m-d H:i:s");
-            $nickname = "微信用户".substr($openid,-10);
-            $user_info  = User::findOne(['nickname' => $nickname]);
+            $unique_name = md5($openid);
+            $user_info  = User::findOne(['unique_name' => $unique_name]);
             if( !$user_info ){
                 $model_user = new User();
-                $model_user->nickname = $nickname;
+                if( $sns_user_data ){
+                    $user_info->nickname = $sns_user_data['nickname'];
+                    $user_info->avatar = $sns_user_data['headimgurl'];
+                }else{
+                    $model_user->nickname = "微信用户".substr($openid,-10);
+                }
                 $model_user->updated_time = $date_now;
                 $model_user->created_time = $date_now;
                 $model_user->save(0);

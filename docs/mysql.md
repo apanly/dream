@@ -3,6 +3,13 @@
     ALTER TABLE `user_openid_unionid` ADD `other_openid` VARCHAR(80)  NOT NULL  DEFAULT ''  COMMENT '自己公众号的openid'  AFTER `unionid`;
     ALTER TABLE `user_openid_unionid` CHANGE `openid` `openid` VARCHAR(50)  CHARACTER SET utf8  COLLATE utf8_general_ci  NOT NULL  DEFAULT ''  COMMENT '微信openid（授权openid）';
     ALTER TABLE `user` ADD `avatar` VARCHAR(500)  NOT NULL  DEFAULT ''  COMMENT '用户头像'  AFTER `nickname`;
+    ALTER TABLE `user` ADD `unique_name` VARCHAR(60)  NOT NULL  DEFAULT ''  COMMENT '唯一标识'  AFTER `nickname`;
+    update `user`  a 
+    left join user_openid_unionid b on a.uid = b.uid 
+    set a.unique_name = md5(b.openid);
+    
+    ALTER TABLE `user` ADD UNIQUE INDEX `idx_name` (`unique_name`);
+
 
 
 

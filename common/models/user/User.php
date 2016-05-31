@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $uid
  * @property string $nickname
+ * @property string $unique_name
  * @property string $avatar
  * @property string $mobile
  * @property string $updated_time
@@ -40,8 +41,10 @@ class User extends \yii\db\ActiveRecord
         return [
             [['updated_time', 'created_time'], 'safe'],
             [['nickname'], 'string', 'max' => 20],
+            [['unique_name'], 'string', 'max' => 60],
             [['avatar'], 'string', 'max' => 500],
-            [['mobile'], 'string', 'max' => 11]
+            [['mobile'], 'string', 'max' => 11],
+            [['unique_name'], 'unique']
         ];
     }
 
@@ -53,6 +56,7 @@ class User extends \yii\db\ActiveRecord
         return [
             'uid' => 'Uid',
             'nickname' => 'Nickname',
+            'unique_name' => 'Unique Name',
             'avatar' => 'Avatar',
             'mobile' => 'Mobile',
             'updated_time' => 'Updated Time',
