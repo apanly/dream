@@ -61,6 +61,20 @@ class DefaultController extends  BaseController {
             return $this->searchMusicByKw($keyword);
         }
 
+        switch( $keyword ){
+            case "上墙" :
+                $data = [
+                    [
+                        'title' => '点击授权签到',
+                        'description' => \Yii::$app->params['author']['nickname']."微信墙",
+                        'picurl' => 'http://cdn.pic1.yunetidc.com/20160531/7ba8f923c344a5af480cd76dd358e196.jpg?imageView/2/w/800',
+                        'url' => $domain_m = \Yii::$app->params['domains']['m']."/wechat_wall/index"
+                    ]
+                ];
+                return ['type' => "rich" ,"data" => $data];
+                break;
+        }
+
         return $this->getDataByKeyword($keyword);
     }
 
@@ -120,7 +134,7 @@ EOT;
         $list = [];
         if( $mixed_list ){
             $domain_static = \Yii::$app->params['domains']['static'];
-            $domain_blog = \Yii::$app->params['domains']['blog'];
+            $domain_m = \Yii::$app->params['domains']['m'];
             foreach($mixed_list as $_item){
                 $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
                 if( $_item['image'] ){
@@ -128,9 +142,9 @@ EOT;
                 }
 
                 if( $_item['post_id'] ){
-                    $tmp_url = "{$domain_blog}/default/".$_item['post_id'];
+                    $tmp_url = "{$domain_m}/default/".$_item['post_id'];
                 }else{
-                    $tmp_url = "{$domain_blog}/library/detail/".$_item['book_id'];
+                    $tmp_url = "{$domain_m}/library/".$_item['book_id'];
                 }
 
                 $list[] = [
