@@ -7,6 +7,7 @@ use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\search\IndexSearch;
 use common\service\bat\QQMusicService;
+use common\service\GlobalUrlService;
 use common\service\weixin\RecordService;
 
 class DefaultController extends  BaseController {
@@ -67,8 +68,8 @@ class DefaultController extends  BaseController {
                     [
                         'title' => '点击授权签到',
                         'description' => \Yii::$app->params['author']['nickname']."微信墙",
-                        'picurl' => 'http://cdn.pic1.yunetidc.com/20160531/7ba8f923c344a5af480cd76dd358e196.jpg?imageView/2/w/800',
-                        'url' => $domain_m = \Yii::$app->params['domains']['m']."/wechat_wall/index"
+                        'picurl' => GlobalUrlService::buildPic1Static("/20160531/7ba8f923c344a5af480cd76dd358e196.jpg",[ 'w' => 800]),
+                        'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/index")
                     ]
                 ];
                 return ['type' => "rich" ,"data" => $this->getRichXml($data)];
@@ -142,9 +143,9 @@ EOT;
                 }
 
                 if( $_item['post_id'] ){
-                    $tmp_url = "{$domain_m}/default/".$_item['post_id'];
+                    $tmp_url = GlobalUrlService::buildWapUrl("/default/info",['id' => $_item['post_id'] ]);
                 }else{
-                    $tmp_url = "{$domain_m}/library/".$_item['book_id'];
+                    $tmp_url = GlobalUrlService::buildWapUrl("/library/info",['id' => $_item['book_id'] ]);
                 }
 
                 $list[] = [
@@ -190,7 +191,6 @@ EOT;
         $list = [];
         if( $post_list ){
             $domain_static = \Yii::$app->params['domains']['static'];
-            $domain_m = \Yii::$app->params['domains']['m'];
             foreach($post_list as $_item){
                 $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
                 if( $_item['image_url'] ){
@@ -200,7 +200,7 @@ EOT;
                     "title" => $_item['title'],
                     "description" => $_item['title'],
                     "picurl" => $tmp_image,
-                    "url" => "{$domain_m}/default/".$_item['id']
+                    "url" => GlobalUrlService::buildWapUrl("/default/info",['id' => $_item['id'] ])
                 ];
             }
         }

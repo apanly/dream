@@ -19,7 +19,7 @@ class OauthController extends BaseBlogController{
         $this->setWeixinConfig();
         $type = $this->get("type","snsapi_base");
         $referer = trim( $this->get("referer",UrlService::buildWapUrl("/default/index") ));
-        $redirect_uri = GlobalUrlService::buildUrl("/weixin/oauth/token");
+        $redirect_uri = GlobalUrlService::buildBlogUrl("/weixin/oauth/token");
         $appid = $this->appid;
         $url =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$type}&state={$referer}#wechat_redirect";
         return $this->redirect($url);

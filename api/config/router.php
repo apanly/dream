@@ -4,6 +4,11 @@ return [
     'showScriptName' => false,
     'enableStrictParsing' => false,
     'rules' => [
+        [
+            'pattern' => '/<controller:\w+>/<id:\d+>',
+            'route'   => '<controller>/info',
+            'suffix'  => '.html'
+        ],
         '/<module:(weixin)>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
         '/<module:(weixin)>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
         '/<controller:\w+>/<id:\d+>' => '<controller>/info',
