@@ -18,7 +18,7 @@ class OauthController extends BaseBlogController{
     public function actionLogin(){
         $this->setWeixinConfig();
         $type = $this->get("type","snsapi_base");
-        $referer = trim( $this->get("referer",UrlService::buildWapUrl("/default/index") ));
+        $referer = trim( $this->get("referer",GlobalUrlService::buildWapUrl("/default/index") ));
         $redirect_uri = GlobalUrlService::buildBlogUrl("/weixin/oauth/token");
         $appid = $this->appid;
         $url =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$type}&state={$referer}#wechat_redirect";
@@ -43,6 +43,13 @@ class OauthController extends BaseBlogController{
         }
 
         $openid = $data['openid'];
+        $sns_user_data = [];
+        if( $data['scope'] == "snsapi_userinfo"){
+            $url = "https://api.weixin.qq.com/sns/userinfo?access_token=".$data['access_token']."&openid={$openid}&lang=zh_CN";
+            $ret = HttpClient::get($url,[]);
+            $sns_user_data = @json_decode($ret,true);
+        }
+
         $reg_bind = UserOpenidUnionid::findOne(["openid" => $openid ]);
         if( !$reg_bind ){
             $date_now = date("Y-m-d H:i:s");
@@ -66,6 +73,12 @@ class OauthController extends BaseBlogController{
             $model_bind->save(0);
         }else{
             $user_info  = User::findOne(['uid' => $reg_bind['uid'] ]);
+        }
+
+        if( $sns_user_data && ( stripos("微信用户",$user_info['nickname'] !== false ) || !$user_info['avatar'] ) ){
+            $user_info->nickname = $sns_user_data['nickname'];
+            $user_info->avatar = $sns_user_data['headimgurl'];
+            $user_info->update(0);
         }
 
         $this->createLoginStatus($user_info);

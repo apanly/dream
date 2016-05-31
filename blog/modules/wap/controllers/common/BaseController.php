@@ -28,7 +28,11 @@ class BaseController extends BaseBlogController
                 if(\Yii::$app->request->isAjax){
                     $this->renderJSON([],"未登录,请返回用户中心",-302);
                 }else{
-                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl() ]);
+                    $type = "snsapi_base";
+                    if( in_array($action->getUniqueId(),[ "wap/wechat_wall/index" ]) ){
+                        $type = "snsapi_userinfo";
+                    }
+                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl(),'type' => $type ]);
                     $this->redirect( $redirect_url );
                 }
                 return false;
