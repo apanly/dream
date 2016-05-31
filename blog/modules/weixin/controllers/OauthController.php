@@ -63,6 +63,7 @@ class OauthController extends BaseBlogController{
                 }else{
                     $model_user->nickname = "微信用户".substr($openid,-10);
                 }
+                $model_user->unique_name = $unique_name;
                 $model_user->updated_time = $date_now;
                 $model_user->created_time = $date_now;
                 $model_user->save(0);
