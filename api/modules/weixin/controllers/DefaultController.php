@@ -72,6 +72,7 @@ class DefaultController extends  BaseController {
                         'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/index",['woid' => $dataObj->FromUserName])
                     ]
                 ];
+                return ['type'=> "text",'data'=> GlobalUrlService::buildWapUrl("/wechat_wall/index",['woid' => $dataObj->FromUserName]) ];
                 return ['type' => "rich" ,"data" => $this->getRichXml($data)];
                 break;
         }
