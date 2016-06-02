@@ -69,10 +69,9 @@ class DefaultController extends  BaseController {
                         'title' => '点击授权签到',
                         'description' => \Yii::$app->params['author']['nickname']."微信墙",
                         'picurl' => GlobalUrlService::buildPic1Static("/20160531/7ba8f923c344a5af480cd76dd358e196.jpg",[ 'w' => 800]),
-                        'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/index",['woid' => $dataObj->FromUserName])
+                        'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/index",['woid' => trim($dataObj->FromUserName)])
                     ]
                 ];
-                return ['type'=> "text",'data'=> GlobalUrlService::buildWapUrl("/wechat_wall/index",['woid' => $dataObj->FromUserName]) ];
                 return ['type' => "rich" ,"data" => $this->getRichXml($data)];
                 break;
         }
