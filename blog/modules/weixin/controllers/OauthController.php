@@ -67,15 +67,15 @@ class OauthController extends BaseBlogController{
         $state = rtrim($state,"&");
 
         /*看看有没有owid:公众号wx opendid*/
-        $owid = '';
+        $woid = '';
         $question_mark_idx = stripos($state,"?");
         if( $question_mark_idx!== false ){
             $parse_str  = mb_substr($state,$question_mark_idx+1);
-            var_dump( $parse_str );
             parse_str($parse_str,$get_params);
-            var_dump( $get_params );
+            if( isset($get_params['woid']) ){
+                $woid = $get_params['woid'];
+            }
         }
-        var_dump($state);exit();
 
         $reg_bind = UserOpenidUnionid::findOne(["openid" => $openid ]);
         if( !$reg_bind ){
@@ -101,6 +101,7 @@ class OauthController extends BaseBlogController{
             $model_bind->uid = $user_info['uid'];
             $model_bind->openid = $openid;
             $model_bind->unionid = '';
+            $model_bind->other_openid = $woid;
             $model_bind->updated_time = $date_now;
             $model_bind->created_time = $date_now;
             $model_bind->save(0);
@@ -114,6 +115,10 @@ class OauthController extends BaseBlogController{
             $user_info->update(0);
         }
 
+        if( $woid && !$reg_bind['other_openid'] ){//为了修复以前的数据
+            $reg_bind->other_openid = $woid;
+            $reg_bind->update(0);
+        }
 
 
         $this->createLoginStatus($user_info);
