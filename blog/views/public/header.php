@@ -43,10 +43,10 @@ use \common\service\GlobalUrlService;
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
+                                <li style="display: none;">
                                     <a href="<?=UrlService::buildGameUrl("/mv/index");?>">美女耍流氓</a>
                                 </li>
-                                <li class="divider"></li>
+                                <li class="divider" style="display: none;"></li>
                                 <li>
                                     <a href="<?=UrlService::buildGameUrl("/tools/index");?>">密码生成器</a>
                                 </li>

@@ -55,7 +55,7 @@ GameAsset::register($this);
                     <span class="am-navbar-label">博客</span>
                 </a>
             </li>
-            <li id="menu_mv">
+            <li id="menu_mv" style="display: none;">
                 <a href="<?= UrlService::buildGameUrl("/mv/index"); ?>" class="am-btn-default">
                     <span class="am-icon-picture-o"></span>
                     <span class="am-navbar-label">美女</span>
