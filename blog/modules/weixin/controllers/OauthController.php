@@ -20,6 +20,12 @@ class OauthController extends BaseBlogController{
         $type = $this->get("type","snsapi_base");
         $referer = trim( $this->get("referer",GlobalUrlService::buildWapUrl("/default/index") ));
         $redirect_uri = GlobalUrlService::buildBlogUrl("/weixin/oauth/token");
+
+        /*微信url特殊参数处理*/
+        $referer = str_replace("from=groupmessage","",$referer);
+        $referer = str_replace("isappinstalled=0","",$referer);
+        $referer = str_replace("connect_redirect=","",$referer);
+
         $appid = $this->appid;
         $url =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$type}&state={$referer}#wechat_redirect";
         return $this->redirect($url);
@@ -49,6 +55,27 @@ class OauthController extends BaseBlogController{
             $ret = HttpClient::get($url,[]);
             $sns_user_data = @json_decode($ret,true);
         }
+
+        /*特殊处理*/
+        $state = str_replace("@@","&",urldecode($state));
+        $state = str_replace("@|@","?",urldecode($state));
+        /*微信url特殊参数处理*/
+        $state = str_replace("from=groupmessage","",$state);
+        $state = str_replace("isappinstalled=0","",$state);
+        $state = str_replace("connect_redirect=","",$state);
+        $state = rtrim($state,"?");
+        $state = rtrim($state,"&");
+
+        /*看看有没有owid:公众号wx opendid*/
+        $owid = '';
+        $question_mark_idx = stripos($state,"?");
+        if( $question_mark_idx!== false ){
+            $parse_str  = mb_substr($state,$question_mark_idx+1);
+            var_dump( $parse_str );
+            parse_str($parse_str,$get_params);
+            var_dump( $get_params );
+        }
+        var_dump($state);exit();
 
         $reg_bind = UserOpenidUnionid::findOne(["openid" => $openid ]);
         if( !$reg_bind ){
@@ -87,14 +114,9 @@ class OauthController extends BaseBlogController{
             $user_info->update(0);
         }
 
+
+
         $this->createLoginStatus($user_info);
-
-        /*特殊处理*/
-        $state = str_replace("@@","&",urldecode($state));
-        $state = str_replace("@|@","?",urldecode($state));
-        $state = rtrim($state,"?");
-        $state = rtrim($state,"&");
-
 
         $url = $state?$state:UrlService::buildWapUrl("/default/index");
         return $this->redirect($url);
