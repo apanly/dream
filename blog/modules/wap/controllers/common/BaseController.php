@@ -10,6 +10,10 @@ class BaseController extends BaseBlogController
 
     protected $allowAllAction = [];
 
+    protected $sns_allow_action = [
+        "wap/wechat_wall/index"
+    ];
+
     public function __construct($id, $module, $config = []){
         parent::__construct($id, $module, $config = []);
         $view  = \Yii::$app->view;
@@ -28,10 +32,7 @@ class BaseController extends BaseBlogController
                 if(\Yii::$app->request->isAjax){
                     $this->renderJSON([],"未登录,请返回用户中心",-302);
                 }else{
-                    $type = "snsapi_base";
-                    if( in_array($action->getUniqueId(),[ "wap/wechat_wall/index" ]) ){
-                        $type = "snsapi_userinfo";
-                    }
+                    $type = in_array($action->getUniqueId(),$this->sns_allow_action)?"snsapi_userinfo":"snsapi_base";
                     $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl(),'type' => $type ]);
                     $this->redirect( $redirect_url );
                 }
