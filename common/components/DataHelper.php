@@ -93,4 +93,8 @@ class DataHelper {
         return $ret ;
     }
 
+    public static function getAuthorName(){
+        return \Yii::$app->params['author']['nickname'];
+    }
+
 }

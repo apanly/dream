@@ -3,6 +3,7 @@
 namespace api\modules\weixin\controllers;
 
 use api\modules\weixin\controllers\common\BaseController;
+use common\components\DataHelper;
 use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\search\IndexSearch;
@@ -232,7 +233,7 @@ EOT;
 
 
     private function help(){
-        $author_nickname = \Yii::$app->params['author']['nickname'];
+        $author_nickname = DataHelper::getAuthorName();
         $resData = <<<EOT
 {$author_nickname}没有找到你想要的东西（：
 试试hadoop,mysql等等，
@@ -246,10 +247,12 @@ EOT;
      */
     private function subscribeTips(){
         $from = $this->getSource();
-        $author_nickname = \Yii::$app->params['author']['nickname'];
+        $author_nickname = DataHelper::getAuthorName();
         if($from == "imguowei_888" ){
             $resData = <<<EOT
-感谢您关注{$author_nickname}的故事，除了菜单还可以输入关键字，编程浪子会回复你的！！
+感谢您的关注，除了菜单还可以输入关键字
+回复上墙演示微信墙
+回复@关键字 搜索歌曲
 EOT;
         }else{
             $resData = <<<EOT
