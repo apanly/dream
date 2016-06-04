@@ -250,7 +250,7 @@ EOT;
         $author_nickname = DataHelper::getAuthorName();
         if($from == "imguowei_888" ){
             $resData = <<<EOT
-感谢您的关注，除了菜单还可以输入关键字
+感谢您的关注，除了菜单还可以输入关键字\n
 回复“上墙” 演示微信墙\n
 回复“@关键字” 搜索歌曲
 EOT;
@@ -265,7 +265,7 @@ EOT;
     }
 
     private function richMediaTips(){
-        $author_nickname = \Yii::$app->params['author']['nickname'];
+        $author_nickname = DataHelper::getAuthorName();
         $resData = <<<EOT
 {$author_nickname}收到您提供的多媒体信息
 审核通过之后就会在博客展示！！
@@ -274,7 +274,7 @@ EOT;
     }
 
     private function urlTips(){
-        $author_nickname = \Yii::$app->params['author']['nickname'];
+        $author_nickname = DataHelper::getAuthorName();
         $resData = <<<EOT
 {$author_nickname}收到您提供的链接
 系统会自己抓取内容,审核之后就会展示！！
