@@ -19,12 +19,14 @@ class BaseController extends BaseBlogController
         $view  = \Yii::$app->view;
         $view->params['id'] = $id;
         $this->layout  = "main";
-    }
-
-    public function beforeAction($action){
         $this->setTitle();
         $this->setDescription();
         $this->setKeywords();
+    }
+
+    public function beforeAction($action){
+
+
         $login_status = $this->checkLoginStatus();
 
         if (!$login_status && !in_array($action->getUniqueId(), $this->allowAllAction)) {
