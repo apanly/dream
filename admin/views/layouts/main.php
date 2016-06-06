@@ -66,6 +66,23 @@ AppAsset::register($this);
                     </li>
                 </ul>
             </li>
+            <li class="xn-openable menu_log">
+                <a href="javascript:void(0);">
+                    <span class="fa fa-cogs"></span><span class="xn-text">日志管理</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="<?=Url::toRoute("/log/access");?>">
+                            <span class="fa fa-heart"></span>访问日志
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=Url::toRoute("/log/app");?>">
+                            <span class="fa fa-heart"></span>错误日志
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="xn-openable menu_doubanmz">
                 <a href="javascript:void(0);">
                     <span class="fa fa-cogs"></span><span class="xn-text">豆瓣妹纸</span>

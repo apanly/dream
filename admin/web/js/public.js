@@ -26,6 +26,11 @@ var public_ops = {
             return;
         }
 
+        if( pathname.indexOf("/log") >= 0 ){
+            $(".x-navigation .menu_log").addClass("active");
+            return;
+        }
+
         if( pathname.indexOf("/douban") >= 0 ){
             $(".x-navigation .menu_doubanmz").addClass("active");
             return;
