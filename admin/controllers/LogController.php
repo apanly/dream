@@ -87,10 +87,10 @@ class LogController extends BaseController{
                     'idx' =>  $idx,
                     'app_name' => $_item_access['app_name'],
                     'request_uri' => $_item_access['request_uri'],
-                    'content' => $_item_access['content'],
+                    'content' => DataHelper::encode( $_item_access['content'] ),
                     'ua' => $_item_access['ua'],
                     'ip' => $_item_access['ip'],
-                    'cookies' => $_item_access['cookies'],
+                    'cookies' => DataHelper::encode( $_item_access['cookies']),
                     'created_time' => $_item_access['created_time']
                 ];
                 $idx++;

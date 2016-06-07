@@ -21,7 +21,7 @@ use \admin\components\StaticService;
                                     <th>错误内容</th>
                                     <th>UA</th>
                                     <th>IP</th>
-                                    <th>Cookies</th>
+<!--                                    <th>Cookies</th>-->
                                     <th>时间</th>
                                 </tr>
                                 </thead>
@@ -34,9 +34,8 @@ use \admin\components\StaticService;
                                         <td><?=$_item['content'];?> </td>
                                         <td><?=$_item['ua'];?> </td>
                                         <td><?=$_item['ip'];?> </td>
-                                        <td><?=$_item['cookies'];?> </td>
+<!--                                        <td>--><?//=$_item['cookies'];?><!-- </td>-->
                                         <td><?=$_item['created_time'];?> </td>
-
                                     </tr>
                                 <?php endforeach;?>
                                 </tbody>

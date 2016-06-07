@@ -32,7 +32,6 @@ use \admin\components\StaticService;
                                         <td><?=$_item['user_agent'];?> </td>
                                         <td><?=$_item['ip'];?> </td>
                                         <td><?=$_item['created_time'];?> </td>
-
                                     </tr>
                                 <?php endforeach;?>
                                 </tbody>

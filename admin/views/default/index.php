@@ -38,6 +38,30 @@ use yii\helpers\Url;
         <!-- END WIDGET REGISTRED -->
 
     </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title-box">
+                    <h3>访问折线图</h3>
+                </div>
+            </div>
+            <div class="panel-body padding-0">
+                每日访问人数图,用highcharts画图
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title-box">
+                    <h3>博文折线图</h3>
+                </div>
+            </div>
+            <div class="panel-body padding-0">
+                博文折线图,两根线，一个已发布的，一个待发布的
+            </div>
+        </div>
+    </div>
 </div>
 <!-- END WIDGETS -->
 </div>
