@@ -49,7 +49,7 @@ StaticService::includeAppJsStatic("/js/index.js",\admin\assets\AppAsset::classNa
                     <h3>访问折线图</h3>
                 </div>
             </div>
-            <div class="panel-body padding-0" id="access_line">
+            <div class="panel-body padding-0" id="access_line" style="height: 270px;">
                 每日访问人数图,用highcharts画图
             </div>
         </div>
@@ -61,7 +61,7 @@ StaticService::includeAppJsStatic("/js/index.js",\admin\assets\AppAsset::classNa
                     <h3>博文折线图</h3>
                 </div>
             </div>
-            <div class="panel-body padding-0">
+            <div class="panel-body padding-0" id="blog_line" style="height: 270px;">
                 博文折线图,两根线，一个已发布的，一个待发布的
             </div>
         </div>
@@ -72,4 +72,5 @@ StaticService::includeAppJsStatic("/js/index.js",\admin\assets\AppAsset::classNa
 
 <div style="display: none;" id="hidden_wrap">
     <input type="hidden" name="data_access" value='<?=json_encode($data_access);?>'>
+    <input type="hidden" name="data_blog" value='<?=json_encode($data_blog);?>'>
 </div>

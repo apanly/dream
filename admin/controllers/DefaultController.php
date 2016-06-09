@@ -7,6 +7,7 @@ use common\components\phpanalysis\FenCiService;
 use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\stat\StatAccess;
+use common\models\stat\StatBlog;
 use Yii;
 
 
@@ -74,10 +75,39 @@ class DefaultController extends BaseController
             }
         }
 
+        $stat_blog_list = StatBlog::find()
+            ->where(['>=',"date",$date_from])
+            ->andWhere(['<=',"date",$date_to])
+            ->orderBy("date asc")
+            ->asArray()
+            ->all();
+        $data_blog = [
+            "categories" => [],
+            "series" => [
+                [
+                    'name' => '已发布',
+                    'data' => []
+                ],
+                [
+                    'name' => '待发布',
+                    'data' => []
+                ]
+            ]
+        ];
+
+        if( $stat_blog_list ){
+            foreach( $stat_blog_list as $_item ){
+                $data_blog['categories'][] = $_item['date'];
+                $data_blog['series'][0]['data'][] = intval( $_item['total_post_number'] );
+                $data_blog['series'][1]['data'][] = intval( $_item['total_unpost_number'] );
+            }
+        }
+
 
         return $this->render("index",[
             "stat" =>$data,
-            "data_access" => $data_access
+            "data_access" => $data_access,
+            "data_blog" => $data_blog
         ]);
     }
 
