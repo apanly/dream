@@ -1,3 +1,6 @@
+## 20160609
+
+
 ## 20160531
     
     ALTER TABLE `user_openid_unionid` ADD `other_openid` VARCHAR(80)  NOT NULL  DEFAULT ''  COMMENT '自己公众号的openid'  AFTER `unionid`;
@@ -12,6 +15,7 @@
 
 
 
+## table schema
 
     CREATE TABLE `admin` (
       `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -25,11 +29,6 @@
       PRIMARY KEY (`uid`),
       KEY `idx_mobile` (`mobile`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-    # Dump of table blog_sync_mapping
-    # ------------------------------------------------------------
 
     CREATE TABLE `blog_sync_mapping` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -48,10 +47,6 @@
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='本站blog_id 与其他同步站点的id关系';
 
 
-
-    # Dump of table blog_sync_queue
-    # ------------------------------------------------------------
-
     CREATE TABLE `blog_sync_queue` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `blog_id` int(11) NOT NULL COMMENT '本站博客id',
@@ -62,10 +57,6 @@
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客同步队列';
 
-
-
-    # Dump of table book
-    # ------------------------------------------------------------
 
     CREATE TABLE `book` (
       `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -93,10 +84,6 @@
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-
-    # Dump of table doubanmz
-    # ------------------------------------------------------------
-
     CREATE TABLE `doubanmz` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `hash_key` varchar(32) NOT NULL DEFAULT '' COMMENT 'url md5',
@@ -110,10 +97,6 @@
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-    # Dump of table health_day
-    # ------------------------------------------------------------
-
     CREATE TABLE `health_day` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `date` int(11) NOT NULL DEFAULT '0' COMMENT '日期',
@@ -124,10 +107,6 @@
       UNIQUE KEY `idx_date` (`date`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-    # Dump of table health_log
-    # ------------------------------------------------------------
 
     CREATE TABLE `health_log` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -146,9 +125,6 @@
 
 
 
-    # Dump of table images
-    # ------------------------------------------------------------
-
     CREATE TABLE `images` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `bucket` varchar(10) NOT NULL DEFAULT 'pic1' COMMENT '图片来源',
@@ -162,9 +138,6 @@
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-    # Dump of table index_search
-    # ------------------------------------------------------------
 
     CREATE TABLE `index_search` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -182,10 +155,6 @@
       KEY `idx_post_id` (`post_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-    # Dump of table music
-    # ------------------------------------------------------------
 
     CREATE TABLE `music` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -205,10 +174,6 @@
       UNIQUE KEY `idx_song_id_type` (`song_id`,`type`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='抓取的music';
 
-
-
-    # Dump of table post_comments
-    # ------------------------------------------------------------
 
     CREATE TABLE `post_comments` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -232,11 +197,6 @@
       KEY `idx_ds_thread_id` (`ds_thread_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-    # Dump of table posts
-    # ------------------------------------------------------------
-
     CREATE TABLE `posts` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `uid` int(11) NOT NULL DEFAULT '0' COMMENT 'uid',
@@ -256,11 +216,6 @@
       KEY `idx_original` (`original`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-    # Dump of table posts_recommend
-    # ------------------------------------------------------------
-
     CREATE TABLE `posts_recommend` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `blog_id` int(11) NOT NULL DEFAULT '0',
@@ -275,11 +230,6 @@
       KEY `idx_blogid_score` (`blog_id`,`score`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-    # Dump of table posts_recommend_queue
-    # ------------------------------------------------------------
-
     CREATE TABLE `posts_recommend_queue` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `blog_id` int(11) NOT NULL DEFAULT '0',
@@ -289,11 +239,6 @@
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-    # Dump of table posts_tags
-    # ------------------------------------------------------------
-
     CREATE TABLE `posts_tags` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `posts_id` int(11) NOT NULL DEFAULT '0' COMMENT '博文id',
@@ -301,12 +246,7 @@
       PRIMARY KEY (`id`),
       UNIQUE KEY `idx_unique` (`posts_id`,`tag`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-    # Dump of table rich_media
-    # ------------------------------------------------------------
-
+    
     CREATE TABLE `rich_media` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `title` varchar(200) NOT NULL DEFAULT '' COMMENT '标题',
@@ -325,11 +265,6 @@
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='富媒体博文';
 
-
-
-    # Dump of table spider_queue
-    # ------------------------------------------------------------
-
     CREATE TABLE `spider_queue` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `url` varchar(500) NOT NULL DEFAULT '',
@@ -342,11 +277,6 @@
       KEY `idx_hash_url` (`hash_url`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='爬取文章队列表';
 
-
-
-    # Dump of table user
-    # ------------------------------------------------------------
-
     CREATE TABLE `user` (
       `uid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户uid',
       `nickname` varchar(20) NOT NULL DEFAULT '' COMMENT '用户昵称',
@@ -356,11 +286,6 @@
       PRIMARY KEY (`uid`),
       UNIQUE KEY `idx_nickname` (`nickname`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
-
-
-
-    # Dump of table user_openid_unionid
-    # ------------------------------------------------------------
 
     CREATE TABLE `user_openid_unionid` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -374,10 +299,6 @@
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户和微信信息绑定';
 
 
-
-    # Dump of table wx_history
-    # ------------------------------------------------------------
-
     CREATE TABLE `wx_history` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `from_openid` varchar(64) NOT NULL DEFAULT '' COMMENT '发送方帐号',
@@ -389,4 +310,18 @@
       `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '插入时间',
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+    
+    CREATE TABLE `stat_blog` (
+      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+      `date` date NOT NULL DEFAULT '0000-00-00' COMMENT '日期',
+      `total_post_number` int(11) NOT NULL DEFAULT '0' COMMENT '已发布博客数量',
+      `total_unpost_number` int(11) NOT NULL DEFAULT '0' COMMENT '未发布博客数量',
+      `total_original_number` int(11) NOT NULL DEFAULT '0' COMMENT '原创博客数量',
+      `total_hot_number` int(11) NOT NULL DEFAULT '0' COMMENT '热门博客数量',
+      `updated_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后更新时间',
+      `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '插入时间',
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `idx_date` (`date`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客统计表';
 
