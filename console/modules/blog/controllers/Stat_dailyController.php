@@ -2,7 +2,9 @@
 
 namespace console\modules\blog\controllers;
 
+use common\models\applog\AccessLogs;
 use common\models\posts\Posts;
+use common\models\stat\StatAccess;
 use common\models\stat\StatBlog;
 use console\modules\blog\Blog;
 use common\service\health\HealthService;
@@ -54,5 +56,40 @@ class Stat_dailyController extends Blog{
         $model_stat_blog->save( 0 );
 
 
+    }
+
+    public function actionAccess( $date = '' ){
+        $date = $date?$date:date("Y-m-d");
+        $date_now = date("Y-m-d H:i:s");
+        if( !preg_match("/^\d{4}-\d{2}-\d{2}$/",$date) ){
+            return $this->echoLog("date{$date} is illegal!!");
+        }
+
+        $this->echoLog( "stat_access date is {$date}" );
+
+        $info = StatAccess::findOne( ['date' => $date ] );
+        if( $info ){
+            $model_stat_access = $info;
+        }else{
+            $model_stat_access = new StatAccess();
+            $model_stat_access->date = $date;
+            $model_stat_access->created_time = $date_now;
+        }
+
+        $stat_count = AccessLogs::find()
+            ->where(['>=' ,'created_time',date("Y-m-d 00:00:00",strtotime($date) )])
+            ->andWhere(['<=' ,'created_time',date("Y-m-d 23:59:59",strtotime($date) )])
+            ->count();
+        $model_stat_access->total_number = $stat_count?$stat_count:0;
+
+        $stat_ip_count = AccessLogs::find()
+            ->where(['>=' ,'created_time',date("Y-m-d 00:00:00",strtotime($date) )])
+            ->andWhere(['<=' ,'created_time',date("Y-m-d 23:59:59",strtotime($date) )])
+            ->groupBy("ip")
+            ->count();
+        $model_stat_access->total_ip_number = $stat_ip_count?$stat_ip_count:0;
+        $model_stat_access->updated_time = $date_now;
+        $model_stat_access->save( 0 );
+        
     }
 }

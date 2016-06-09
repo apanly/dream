@@ -325,4 +325,15 @@
       PRIMARY KEY (`id`),
       UNIQUE KEY `idx_date` (`date`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客统计表';
+    
+    CREATE TABLE `stat_access` (
+      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+      `date` date NOT NULL DEFAULT '0000-00-00' COMMENT '日期',
+      `total_number` int(11) NOT NULL DEFAULT '0' COMMENT '当日总访问数量',
+      `total_ip_number` int(11) NOT NULL DEFAULT '0' COMMENT '当日ip总数量',
+      `updated_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后更新时间',
+      `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '插入时间',
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `idx_date` (`date`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客访问统计表';
 
