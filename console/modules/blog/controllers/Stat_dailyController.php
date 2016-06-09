@@ -90,6 +90,6 @@ class Stat_dailyController extends Blog{
         $model_stat_access->total_ip_number = $stat_ip_count?$stat_ip_count:0;
         $model_stat_access->updated_time = $date_now;
         $model_stat_access->save( 0 );
-        
+
     }
 }

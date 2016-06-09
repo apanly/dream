@@ -1,6 +1,10 @@
 <?php
 use admin\components\StaticService;
 use yii\helpers\Url;
+use \common\service\GlobalUrlService;
+StaticService::includeAppJsStatic(GlobalUrlService::buildStaticUrl("/highcharts/js/highcharts.js"),\admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/chart.js",\admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/index.js",\admin\assets\AppAsset::className());
 ?>
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
@@ -38,19 +42,19 @@ use yii\helpers\Url;
         <!-- END WIDGET REGISTRED -->
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading ui-draggable-handle">
                 <div class="panel-title-box">
                     <h3>访问折线图</h3>
                 </div>
             </div>
-            <div class="panel-body padding-0">
+            <div class="panel-body padding-0" id="access_line">
                 每日访问人数图,用highcharts画图
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading ui-draggable-handle">
                 <div class="panel-title-box">
@@ -64,4 +68,8 @@ use yii\helpers\Url;
     </div>
 </div>
 <!-- END WIDGETS -->
+</div>
+
+<div style="display: none;" id="hidden_wrap">
+    <input type="hidden" name="data_access" value='<?=json_encode($data_access);?>'>
 </div>
