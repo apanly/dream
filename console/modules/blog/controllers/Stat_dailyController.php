@@ -50,6 +50,7 @@ class Stat_dailyController extends Blog{
 
         $model_stat_blog->today_post_number = $stat_today?$stat_today:0;
 
+        $model_stat_blog->updated_time = $date_now;
         $model_stat_blog->save( 0 );
 
 
