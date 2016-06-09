@@ -14,7 +14,7 @@ class Stat_dailyController extends Blog{
      * 10 3 * * *
      */
     public function actionBlog( $date = ''){
-        $date = $date?$date:date("Y-m-d");
+        $date = $date?$date:date("Y-m-d",strtotime("-1 day"));
         $date_now = date("Y-m-d H:i:s");
         if( !preg_match("/^\d{4}-\d{2}-\d{2}$/",$date) ){
             return $this->echoLog("date{$date} is illegal!!");
