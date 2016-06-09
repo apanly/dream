@@ -45,7 +45,7 @@ class Stat_dailyController extends Blog{
 
         $stat_today = Posts::find()
             ->where(['>=' ,'created_time',date("Y-m-d 00:00:00",strtotime($date) )])
-            ->where(['<=' ,'created_time',date("Y-m-d 23:59:59",strtotime($date) )])
+            ->andWhere(['<=' ,'created_time',date("Y-m-d 23:59:59",strtotime($date) )])
             ->count();
 
         $model_stat_blog->today_post_number = $stat_today?$stat_today:0;

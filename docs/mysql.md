@@ -315,6 +315,7 @@
     CREATE TABLE `stat_blog` (
       `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
       `date` date NOT NULL DEFAULT '0000-00-00' COMMENT '日期',
+      `today_post_number` int(11) NOT NULL DEFAULT '0' COMMENT '当日发布文章数量',
       `total_post_number` int(11) NOT NULL DEFAULT '0' COMMENT '已发布博客数量',
       `total_unpost_number` int(11) NOT NULL DEFAULT '0' COMMENT '未发布博客数量',
       `total_original_number` int(11) NOT NULL DEFAULT '0' COMMENT '原创博客数量',
