@@ -40,8 +40,8 @@ class LogController extends BaseController{
 
                 $data[] = [
                     'idx' =>  $idx,
-                    'target_url' => $_item_access['target_url'],
-                    'referer' => $_item_access['referer'],
+                    'target_url' => urldecode($_item_access['target_url']),
+                    'referer' => urldecode($_item_access['referer']),
                     'user_agent' => $_item_access['user_agent'],
                     'ip' => $_item_access['ip'],
                     'created_time' => $_item_access['created_time']
