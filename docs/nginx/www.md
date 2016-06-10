@@ -7,6 +7,10 @@
         if ( $http_host  = 'vincentguo.cn' ){
         	   rewrite ^/(.*)$ http://www.vincentguo.cn/$1 permanent;
         }
+        
+        if (  $request_filename ~* "wap/robots\.txt" ) {
+               rewrite  ^/(.*)$  http://www.vincentguo.cn/robots.txt permanent;
+        }
 
         if ( $http_host ~* "^(.*?)\.vincentguo\.cn$"){
               set $domain $1;

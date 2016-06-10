@@ -18,8 +18,8 @@
         }
 
         location ~* \.(gif|jpg|jpeg|png|ico|css|js)$ {
-            rewrite ^(.*)$ /$1 break;
-            proxy_pass http://127.0.0.1:80;
+            #rewrite ^(.*)$ /$1 break;
+            #proxy_pass http://127.0.0.1:80;
         }
 
         location ^~ /debug/ {

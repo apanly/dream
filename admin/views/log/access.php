@@ -2,6 +2,11 @@
 use \yii\helpers\Url;
 use \admin\components\StaticService;
 ?>
+<style type="text/css">
+    .br{
+        word-break:break-all;
+    }
+</style>
 <div class="page-content-wrap">
     <div class="row">
         <div class="col-md-12">
@@ -28,7 +33,7 @@ use \admin\components\StaticService;
                                     <tr id="trow_1">
                                         <td class="text-center"><?=$_item['idx'];?></td>
                                         <td><?=$_item['target_url'];?> </td>
-                                        <td><?=$_item['referer'];?> </td>
+                                        <td class="br"><?=$_item['referer'];?> </td>
                                         <td><?=$_item['user_agent'];?> </td>
                                         <td><?=$_item['ip'];?> </td>
                                         <td><?=$_item['created_time'];?> </td>

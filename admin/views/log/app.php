@@ -2,6 +2,11 @@
 use \yii\helpers\Url;
 use \admin\components\StaticService;
 ?>
+<style type="text/css">
+    .br{
+        word-break:break-all;
+    }
+</style>
 <div class="page-content-wrap">
     <div class="row">
         <div class="col-md-12">
@@ -31,7 +36,7 @@ use \admin\components\StaticService;
                                         <td class="text-center"><?=$_item['idx'];?></td>
                                         <td><?=$_item['app_name'];?> </td>
                                         <td><?=$_item['request_uri'];?> </td>
-                                        <td><?=$_item['content'];?> </td>
+                                        <td class="br"><?=$_item['content'];?> </td>
                                         <td><?=$_item['ua'];?> </td>
                                         <td><?=$_item['ip'];?> </td>
 <!--                                        <td>--><?//=$_item['cookies'];?><!-- </td>-->
