@@ -68,5 +68,15 @@ $post_latest = array_slice($data['post_latest'],0,5);
 </div>
 
 <a href="javascript:void(0);" id="back-to-top"><i class="fa fa-angle-up"></i></a>
-<input type="hidden" id="access_domain" value="<?=\Yii::$app->params['domains']['blog'];?>">
-<input type="hidden" id="domain_static" value="<?=GlobalUrlService::buildStaticUrl("/");?>">
+<div class="hidden_wrap">
+    <input type="hidden" id="access_domain" value="<?=\Yii::$app->params['domains']['blog'];?>">
+    <input type="hidden" id="domain_static" value="<?=GlobalUrlService::buildStaticUrl("/");?>">
+    <ul class="friend_links">
+        <li><a href="http://imguowei.blog.51cto.com/" target="_blank">51cto</a></li>
+        <li><a href="http://blog.sina.com.cn/qytogether" target="_blank">新浪博客</a></li>
+        <li><a href="http://apanly.blog.163.com/" target="_blank">网页博客</a></li>
+        <li><a href="http://my.oschina.net/u/191158" target="_blank">开源中国博客</a></li>
+        <li><a href="http://www.cnblogs.com/apanly" target="_blank">博客园</a></li>
+        <li><a href="http://blog.chinaunix.net/uid/25568848.html" target="_blank">chinaunix</a></li>
+    </ul>
+</div>
