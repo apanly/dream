@@ -1,2 +1,3 @@
 User-agent: *
 Sitemap: http://www.vincentguo.cn/sitemap.xml
+Sitemap: http://www.vincentguo.cn/m_sitemap.xml
