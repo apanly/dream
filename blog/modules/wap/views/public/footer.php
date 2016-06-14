@@ -1,6 +1,6 @@
 <?php
 use \blog\components\UrlService;
-
+use \common\service\GlobalUrlService;
 ?>
 <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default">
     <ul class="am-navbar-nav am-cf am-avg-sm-4">
@@ -44,4 +44,4 @@ use \blog\components\UrlService;
         <i class="am-gotop-icon am-icon-chevron-up"></i>
     </a>
 </div>
-<input type="hidden" id="access_domain" value="<?=\Yii::$app->params['domains']['blog'];?>">
+<input type="hidden" id="access_domain" value="<?=GlobalUrlService::buildBlogUrl("/");?>">

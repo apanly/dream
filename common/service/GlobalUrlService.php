@@ -149,6 +149,9 @@ class GlobalUrlService {
     public static function buildBlogUrl($uri, $params = []){
         $path = Url::toRoute(array_merge([$uri], $params));
         $domain_blog = \Yii::$app->params['domains']['blog'];
+        if( UtilHelper::is_SSL() ){
+            $domain_blog = str_replace("http://","https://",$domain_blog);
+        }
         return $domain_blog.$path;
     }
 

@@ -15,7 +15,7 @@ var access_ops = {
         }
         var referer = document.referrer;
         var url = window.location.href;
-        $.ajax(access_domain + "/log/add", {
+        $.ajax(access_domain + "log/add", {
             data: {
                 'referer': referer,
                 '_': new Date().getTime()

@@ -3,6 +3,7 @@ use blog\assets\MateAsset;
 use blog\components\StaticService;
 use blog\components\UrlService;
 use  \common\components\DataHelper;
+use \common\service\GlobalUrlService;
 
 MateAsset::register($this);
 ?>
@@ -62,7 +63,7 @@ MateAsset::register($this);
             <i class="am-gotop-icon am-icon-chevron-up"></i>
         </a>
     </div>
-    <input type="hidden" id="access_domain" value="<?=\Yii::$app->params['domains']['blog'];?>">
+    <input type="hidden" id="access_domain" value="<?=GlobalUrlService::buildBlogUrl("/");?>">
 </div>
 <?php $this->endBody() ?>
 </body>
