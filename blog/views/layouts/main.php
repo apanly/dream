@@ -17,6 +17,7 @@ AppAsset::register($this);
     <meta name="keywords" content="<?= DataHelper::encode($this->params['seo']['keywords']); ?>">
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="google-site-verification" content="c_1LAxAX-8MMoXntjVS1kCu5JnGhVIlcgLT6idZpgq4" />
     <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
     <link rel="icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
 
