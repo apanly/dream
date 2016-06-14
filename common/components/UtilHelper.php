@@ -153,4 +153,21 @@ class UtilHelper {
         $root_path = self::getRootPath();
         return $root_path."/common/service/libs/".$filepath;
     }
+
+    /**
+     * 检测链接是否是SSL连接
+     * @return bool
+     */
+    public static function  is_SSL(){
+        if (!isset($_SERVER['HTTPS']))
+            return FALSE;
+        if ($_SERVER['HTTPS'] === 1){  //Apache
+            return TRUE;
+        } else if ($_SERVER['HTTPS'] === 'on') { //IIS
+            return TRUE;
+        } elseif ($_SERVER['SERVER_PORT'] == 443) { //其他
+            return TRUE;
+        }
+        return FALSE;
+    }
 } 

@@ -1,13 +1,19 @@
 <?php
 namespace common\service;
 
+use common\components\UtilHelper;
 use yii\helpers\Url;
 
 class GlobalUrlService {
     public static function buildStaticUrl($path,$params = []){
         $switch = \Yii::$app->params['switch']['cdn']['static'];
         if( $switch ){
-            $domain = \Yii::$app->params['domains']['cdn_static'];
+            if( UtilHelper::is_SSL() ){
+                $domain = \Yii::$app->params['domains']['cdn_static_https'];
+            }else{
+                $domain = \Yii::$app->params['domains']['cdn_static'];
+            }
+
         }else{
             $domain = \Yii::$app->params['domains']['static'];
         }

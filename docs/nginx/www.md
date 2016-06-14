@@ -2,33 +2,37 @@
 
     server {
         listen       80;
-        server_name  vincentguo.cn www.vincentguo.cn blog.vincentguo.cn admin.vincentguo.cn;
-
+        listen	 443 default ssl;
+        server_name  vincentguo.cn www.vincentguo.cn blog.vincentguo.cn   admin.vincentguo.cn;
+    
         if ( $http_host  = 'vincentguo.cn' ){
         	   rewrite ^/(.*)$ http://www.vincentguo.cn/$1 permanent;
         }
-        
+    
         if (  $request_filename ~* "wap/robots\.txt" ) {
                rewrite  ^/(.*)$  http://www.vincentguo.cn/robots.txt permanent;
         }
-
+    
         if ( $http_host ~* "^(.*?)\.vincentguo\.cn$"){
               set $domain $1;
         }
-
+    
         if ( $domain = 'www' ){
              set $domain 'blog';
         }
-
+    
+    
         root  /data/www/dream/$domain/web;
         #access_log  /data/logs/nginx/dream_access_$domain.log  main;
         index       index.php;
-
+    
+        ssl_certificate /data/www/https/www.vincentguo.cn_bundle.crt;
+        ssl_certificate_key /data/www/https/startssl.key;
+    
         location / {
-            expires 30d;
             try_files $uri $uri/ /index.php?$args;
         }
-
+    
         location ~ \.php$ {
             fastcgi_index  index.php;
             include   fastcgi_params;
