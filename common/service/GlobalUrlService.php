@@ -162,6 +162,9 @@ class GlobalUrlService {
         }
         $path = Url::toRoute(array_merge([$uri], $params));
         $domain_m = \Yii::$app->params['domains']['m'];
+        if( UtilHelper::is_SSL() ){
+            $domain_m = str_replace("http://","https://",$domain_m);
+        }
         return $domain_m.$path;
     }
 
@@ -169,12 +172,18 @@ class GlobalUrlService {
     public static function buildGameUrl($uri, $params = []){
         $path = Url::toRoute(array_merge(["/game" . $uri], $params));
         $domain_blog = \Yii::$app->params['domains']['blog'];
+        if( UtilHelper::is_SSL() ){
+            $domain_blog = str_replace("http://","https://",$domain_blog);
+        }
         return $domain_blog.$path;
     }
 
     public static function buildMateUrl($uri, $params = []){
         $path = Url::toRoute(array_merge(["/mate" . $uri], $params));
         $domain_blog = \Yii::$app->params['domains']['blog'];
+        if( UtilHelper::is_SSL() ){
+            $domain_blog = str_replace("http://","https://",$domain_blog);
+        }
         return $domain_blog.$path;
     }
 } 

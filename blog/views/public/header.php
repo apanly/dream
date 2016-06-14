@@ -30,13 +30,13 @@ use \common\service\GlobalUrlService;
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
                         <li <?php if ($menu == "blog"): ?> class="nav-current" <?php endif; ?>>
-                            <a href="/">文章</a>
+                            <a href="<?=GlobalUrlService::buildBlogUrl("/");?>">文章</a>
                         </li>
                         <li <?php if ($menu == "richmedia"): ?> class="nav-current" <?php endif; ?> >
-                            <a href="/richmedia/index">富媒体</a>
+                            <a href="<?=GlobalUrlService::buildBlogUrl("/richmedia/index");?>">富媒体</a>
                         </li>
                         <li <?php if ($menu == "library"): ?> class="nav-current" <?php endif; ?>>
-                            <a href="/library/index">图书馆</a>
+                            <a href="<?=GlobalUrlService::buildBlogUrl("/library/index");?>">图书馆</a>
                         </li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" >小玩意
@@ -56,7 +56,7 @@ use \common\service\GlobalUrlService;
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="<?=UrlService::buildUrl("/code/run");?>">Code Preview</a>
+                                    <a href="<?=GlobalUrlService::buildBlogUrl("/code/run");?>">Code Preview</a>
                                 </li>
                             </ul>
 
