@@ -19,7 +19,7 @@
                 proxy_pass $scheme://127.0.0.1:$server_port;
             }
     
-            location ~* \.(gif|jpg|jpeg|png|ico|css|js)$ {
+            location ~* \.(gif|jpg|jpeg|png|ico|css|js|xml)$ {
                 #rewrite ^(.*)$ /$1 break;
                 #proxy_pass http://127.0.0.1:80;
             }

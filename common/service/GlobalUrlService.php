@@ -24,7 +24,12 @@ class GlobalUrlService {
     public static function buildPic1Static($path,$params = []){
         $switch = \Yii::$app->params['switch']['cdn']['pic1'];
         if( $switch ){
-            $domain = \Yii::$app->params['domains']['cdn_pic1'];
+            if( UtilHelper::is_SSL() ){
+                $domain = \Yii::$app->params['domains']['cdn_pic1_https'];
+            }else{
+                $domain = \Yii::$app->params['domains']['cdn_pic1'];
+            }
+
         }else{
             $domain = \Yii::$app->params['domains']['pic1'];
         }
@@ -68,7 +73,12 @@ class GlobalUrlService {
 
         $switch = \Yii::$app->params['switch']['cdn'][$bucket];
         if( $switch ){
-            $domain = \Yii::$app->params['domains']['cdn_'.$bucket];
+            if( UtilHelper::is_SSL() ){
+                $domain = \Yii::$app->params['domains']['cdn_'.$bucket.'_https'];
+            }else{
+                $domain = \Yii::$app->params['domains']['cdn_'.$bucket];
+            }
+
         }else{
             $domain = \Yii::$app->params['domains'][$bucket];
         }
@@ -103,7 +113,11 @@ class GlobalUrlService {
     public static function buildPic2Static($path,$params = []){
         $switch = \Yii::$app->params['switch']['cdn']['pic2'];
         if( $switch ){
-            $domain = \Yii::$app->params['domains']['cdn_pic2'];
+            if( UtilHelper::is_SSL() ){
+                $domain = \Yii::$app->params['domains']['cdn_pic2_https'];
+            }else{
+                $domain = \Yii::$app->params['domains']['cdn_pic2'];
+            }
         }else{
             $domain = \Yii::$app->params['domains']['pic2'];
         }
