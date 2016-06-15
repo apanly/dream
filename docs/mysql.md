@@ -1,3 +1,7 @@
+## 20160615
+    ALTER TABLE `user_openid_unionid` ADD INDEX `idx_other_openid` (`other_openid`);
+
+
 ## 20160531
     
     ALTER TABLE `user_openid_unionid` ADD `other_openid` VARCHAR(80)  NOT NULL  DEFAULT ''  COMMENT '自己公众号的openid'  AFTER `unionid`;
