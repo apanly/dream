@@ -1,5 +1,5 @@
-## 20160609
-
+## 20160615
+    ALTER TABLE `wx_history` ADD INDEX `idx_type` (`type`);
 
 ## 20160531
     
