@@ -105,6 +105,7 @@ class OauthController extends BaseBlogController{
             $model_bind->updated_time = $date_now;
             $model_bind->created_time = $date_now;
             $model_bind->save(0);
+            $reg_bind = $model_bind;
         }else{
             $user_info  = User::findOne(['uid' => $reg_bind['uid'] ]);
         }
