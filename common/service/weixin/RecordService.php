@@ -2,6 +2,8 @@
 namespace common\service\weixin;
 
 
+use common\models\user\UserMessageHistory;
+use common\models\user\UserOpenidUnionid;
 use common\models\weixin\WxHistory;
 use common\service\SpiderService;
 
@@ -51,6 +53,20 @@ class RecordService {
 
         if( filter_var($content, FILTER_VALIDATE_URL) !== FALSE ){
             SpiderService::add($content);
+        }
+
+        if( in_array( $type, [ "text" ] ) ){
+            $bind_info = UserOpenidUnionid::findOne( [ 'openid' => strval($from_openid) ]  );
+            if( $bind_info ){
+                $model_message = new UserMessageHistory();
+                $model_message->uid = $bind_info['uid'];
+                $model_message->type = 1;
+                $model_message->content = $content;
+                $model_message->status = 1;
+                $model_message->updated_time = $date_now;
+                $model_message->created_time = $date_now;
+                $model_message->save(0);
+            }
         }
     }
 } 

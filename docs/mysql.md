@@ -336,4 +336,16 @@
       PRIMARY KEY (`id`),
       UNIQUE KEY `idx_date` (`date`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客访问统计表';
+    
+    CREATE TABLE `user_message_history` (
+      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+      `uid` int(11) NOT NULL DEFAULT '0' COMMENT '用户UID',
+      `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:文本 2：图片',
+      `content` varchar(255) NOT NULL DEFAULT '' COMMENT '消息内容',
+      `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '-1 待审核 0 无效 1 有效',
+      `updated_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后更新时间',
+      `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '插入时间',
+      PRIMARY KEY (`id`),
+      KEY `idx_uid_status` (`uid`,`status`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户消息表';
 
