@@ -55,13 +55,13 @@ class RecordService {
             SpiderService::add($content);
         }
 
-        if( in_array( $type, [ "text" ] ) ){
+        if( in_array( $type, [ "text" ] )  && substr($content,0,1) == "#" ){
             $bind_info = UserOpenidUnionid::findOne( [ 'other_openid' => strval($from_openid) ]  );
             if( $bind_info ){
                 $model_message = new UserMessageHistory();
                 $model_message->uid = $bind_info['uid'];
                 $model_message->type = 1;
-                $model_message->content = $content;
+                $model_message->content = ltrim($content,"#");
                 $model_message->status = 1;
                 $model_message->updated_time = $date_now;
                 $model_message->created_time = $date_now;
