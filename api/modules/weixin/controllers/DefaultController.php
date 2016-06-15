@@ -59,8 +59,14 @@ class DefaultController extends  BaseController {
             return ['type'=> "text",'data'=> $this->urlTips() ];
         }
 
-        if( substr($keyword,0,1) == "@" ){//搜歌曲
-            return $this->searchMusicByKw($keyword);
+        $cmd_tip = substr($keyword,0,1);
+        switch ( $cmd_tip ){
+            case "@"://搜歌曲
+                return $this->searchMusicByKw($keyword);
+                break;
+            case "#"://微信墙
+                return 'success';
+                break;
         }
 
         switch( $keyword ){
@@ -77,7 +83,7 @@ class DefaultController extends  BaseController {
                 break;
         }
 
-        return $this->getDataByKeyword($keyword);
+        return $this->getDataByKeyword($keyword,trim($dataObj->FromUserName));
     }
 
     private function parseEvent($dataObj){
@@ -129,14 +135,13 @@ EOT;
 
     }
 
-    private function getDataByKeyword($keyword){
+    private function getDataByKeyword($keyword,$fromUsername = ''){
 
         $search_key =  ['LIKE' ,'search_key','%'.strtr($keyword,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false];
         $mixed_list = IndexSearch::find()->where($search_key)->orderBy("id desc")->limit(5)->all();
         $list = [];
         if( $mixed_list ){
             $domain_static = \Yii::$app->params['domains']['static'];
-            $domain_m = \Yii::$app->params['domains']['m'];
             foreach($mixed_list as $_item){
                 $tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
                 if( $_item['image'] ){
@@ -144,9 +149,9 @@ EOT;
                 }
 
                 if( $_item['post_id'] ){
-                    $tmp_url = GlobalUrlService::buildWapUrl("/default/info",['id' => $_item['post_id'] ]);
+                    $tmp_url = GlobalUrlService::buildWapUrl("/default/info",['id' => $_item['post_id'],'woid' => trim($fromUsername) ]);
                 }else{
-                    $tmp_url = GlobalUrlService::buildWapUrl("/library/info",['id' => $_item['book_id'] ]);
+                    $tmp_url = GlobalUrlService::buildWapUrl("/library/info",['id' => $_item['book_id'] ,'woid' => trim($fromUsername)]);
                 }
 
                 $list[] = [
@@ -234,11 +239,12 @@ EOT;
 
     private function help(){
         $resData = <<<EOT
-没有找到你想要的东西（：\n
+没找到你想要的东西（：\n
 回复“上墙” 演示微信墙\n
-回复“@关键字” 搜索歌曲\n
+回复“@关键字”搜索歌曲\n
+回复“#xxx”发送上墙内容\n
 回复“hadoop,https”搜索博文\n
-直接访问:m.vincentguo.cn
+可访问:m.vincentguo.cn
 EOT;
         return $resData;
     }
