@@ -233,11 +233,12 @@ EOT;
 
 
     private function help(){
-        $author_nickname = DataHelper::getAuthorName();
         $resData = <<<EOT
-{$author_nickname}没有找到你想要的东西（：
-试试hadoop,mysql等等，
- 也可以直接去我的网站 www.vincentguo.cn
+没有找到你想要的东西（：\n
+回复“上墙” 演示微信墙\n
+回复“@关键字” 搜索歌曲\n
+回复“hadoop,https”搜索博文\n
+直接访问:m.vincentguo.cn
 EOT;
         return $resData;
     }

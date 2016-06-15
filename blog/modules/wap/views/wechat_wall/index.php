@@ -1,3 +1,7 @@
+<?php
+use \blog\components\StaticService;
+StaticService::includeAppJsStatic("/js/wap/wechat_wall/index.js", \blog\assets\WapAsset::className());
+?>
 <div class="am-g">
     <div class="am-u-sm-12 am-u-md-12">
         微信上墙
@@ -6,7 +10,7 @@
         <?php if( $list ):?>
         <ul class="am-comments-list am-comments-list-flip">
             <?php foreach( $list as $_item ):?>
-            <li class="am-comment">
+            <li class="am-comment" data_id="<?=$_item["id"];?>">
                 <a href="javascript:void(0);">
                     <img src="<?=$_item["avatar"];?>" alt="" class="am-comment-avatar" width="48" height="48"/>
                 </a>

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: angel
- * Date: 16/5/26
- * Time: 下午5:47
- */
 use blog\components\StaticService;
 use \blog\components\UrlService;
 use \common\components\DataHelper;

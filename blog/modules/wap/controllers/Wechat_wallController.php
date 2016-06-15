@@ -33,10 +33,11 @@ class Wechat_wallController extends BaseController{
                 }
                 $tmp_user_info = $user_mapping[ $_item['uid'] ];
                 $data[] = [
+                    "id" => $_item['id'],
                     "nickname" => DataHelper::encode( $tmp_user_info['nickname'] ),
                     "avatar" => $tmp_user_info['avatar']?$tmp_user_info['avatar']:GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
                     "content" => DataHelper::encode( $_item['content'] ),
-                    "created_time" => date("Y-m-d H:",strtotime($_item['created_time']) )
+                    "created_time" => date("Y-m-d H:i",strtotime($_item['created_time']) )
                 ];
             }
         }
@@ -47,8 +48,19 @@ class Wechat_wallController extends BaseController{
     }
 
     public function actionGetLatestMessage(){
-        $max = $this->post("id",0);
-        
+        $max_id = intval( $this->post("max_id",0) );
+        if( !$max_id ){
+            return $this->renderJSON([],"",-1);
+        }
+
+        $info = UserMessageHistory::find()
+            ->where([ 'status' => 1 ])
+            ->orderBy("id desc")
+            ->limit(1)
+            ->one();
+
+
+
     }
 
     public function actionSign(){
