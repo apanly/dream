@@ -56,7 +56,7 @@ class RecordService {
         }
 
         if( in_array( $type, [ "text" ] ) ){
-            $bind_info = UserOpenidUnionid::findOne( [ 'openid' => strval($from_openid) ]  );
+            $bind_info = UserOpenidUnionid::findOne( [ 'other_openid' => strval($from_openid) ]  );
             if( $bind_info ){
                 $model_message = new UserMessageHistory();
                 $model_message->uid = $bind_info['uid'];
