@@ -79,7 +79,7 @@ class DefaultController extends  BaseController {
                 $data = [
                     [
                         'title' => '点击授权签到',
-                        'description' => \Yii::$app->params['author']['nickname']."微信墙",
+                        'description' => \Yii::$app->params['author']['nickname']."微信墙,授权后方可上墙留言",
                         'picurl' => GlobalUrlService::buildPic1Static("/20160531/7ba8f923c344a5af480cd76dd358e196.jpg",[ 'w' => 800]),
                         'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/sign",['woid' => trim($dataObj->FromUserName)])
                     ]
