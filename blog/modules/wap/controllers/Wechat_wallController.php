@@ -22,7 +22,7 @@ class Wechat_wallController extends BaseController{
         $list = UserMessageHistory::find()
             ->where(['status' => 1 ])
             ->orderBy("id desc")
-            ->limit(10)
+            ->limit(5)
             ->all();
         $data = [];
         if( $list ){
@@ -47,7 +47,7 @@ class Wechat_wallController extends BaseController{
         ]);
     }
 
-    public function actionGetLatestMessage(){
+    public function actionGet_latest_message(){
         $max_id = intval( $this->post("max_id",0) );
         if( !$max_id ){
             return $this->renderJSON([],"",-1);
@@ -55,10 +55,44 @@ class Wechat_wallController extends BaseController{
 
         $info = UserMessageHistory::find()
             ->where([ 'status' => 1 ])
+            ->andWhere([">","id",$max_id])
             ->orderBy("id desc")
             ->limit(1)
             ->one();
 
+        if( !$info ){
+            return $this->renderJSON();
+        }
+
+        $user_info = User::findOne( ['uid' => $info['uid'] ]);
+        $data = [
+            "id" => $info['id'],
+            "nickname" => DataHelper::encode( $user_info['nickname'] ),
+            "avatar" => $user_info['avatar']?$user_info['avatar']:GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+            "content" => DataHelper::encode( $info['content'] ),
+            "created_time" => date("Y-m-d H:i",strtotime($info['created_time']) )
+        ];
+
+        $html = <<<EOT
+<li class="am-comment" data_id="{$data['id']}">
+                <a href="javascript:void(0);">
+                    <img src="{$data['avatar']}" alt="" class="am-comment-avatar" width="48" height="48"/>
+                </a>
+                <div class="am-comment-main">
+                    <header class="am-comment-hd">
+                        <div class="am-comment-meta">
+                            <a href="javascript:void(0);" class="am-comment-author">{$data['nickname']}</a>
+                            上墙于 <time>{$data['created_time']}</time>
+                        </div>
+                    </header>
+                    <div class="am-comment-bd">
+                        {$data['content']}
+                    </div>
+                </div>
+            </li>
+EOT;
+
+        return $this->renderJSON( [ 'message' => $html ] );
 
 
     }

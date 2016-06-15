@@ -1,10 +1,11 @@
 <?php
 use \blog\components\StaticService;
+use \common\components\DataHelper;
 StaticService::includeAppJsStatic("/js/wap/wechat_wall/index.js", \blog\assets\WapAsset::className());
 ?>
 <div class="am-g">
     <div class="am-u-sm-12 am-u-md-12">
-        微信上墙
+        <p class="am-text-xl am-text-center"><?=DataHelper::getAuthorName();?>微信墙</p>
     </div>
     <div class="am-u-sm-12 am-u-md-12">
         <?php if( $list ):?>
