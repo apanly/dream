@@ -7,6 +7,7 @@ use common\components\DataHelper;
 use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\search\IndexSearch;
+use common\models\user\UserOpenidUnionid;
 use common\service\bat\QQMusicService;
 use common\service\GlobalUrlService;
 use common\service\weixin\RecordService;
@@ -65,7 +66,11 @@ class DefaultController extends  BaseController {
                 return $this->searchMusicByKw($keyword);
                 break;
             case "#"://微信墙
-                return 'success';
+                $bind_info = UserOpenidUnionid::findOne( [ 'other_openid' => trim($dataObj->FromUserName) ]  );
+                if( $bind_info ){
+                    return 'success';
+                }
+                $keyword = "上墙";
                 break;
         }
 
