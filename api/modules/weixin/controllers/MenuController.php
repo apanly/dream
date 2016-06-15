@@ -61,6 +61,11 @@ class MenuController extends BaseController{
                             "type" => "view",
                             "name" => "密码生成",
                             "url"  => UrlService::buildGameUrl("/tools/index",['from' => $from])
+                        ],
+                        [
+                            "type" => "view",
+                            "name" => "微信墙",
+                            "url"  => UrlService::buildWapUrl("/wechat_wall/index",['from' => $from])
                         ]
                     ]
                 ],
