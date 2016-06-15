@@ -1,6 +1,3 @@
-## 20160615
-    ALTER TABLE `wx_history` ADD INDEX `idx_type` (`type`);
-
 ## 20160531
     
     ALTER TABLE `user_openid_unionid` ADD `other_openid` VARCHAR(80)  NOT NULL  DEFAULT ''  COMMENT '自己公众号的openid'  AFTER `unionid`;
