@@ -122,7 +122,7 @@ class UtilHelper {
      * 判断是pc 还是 手机
      */
     public static function isPC(){
-        $ug= $_SERVER['HTTP_USER_AGENT'];
+        $ug= isset( $_SERVER['HTTP_USER_AGENT'] )?$_SERVER['HTTP_USER_AGENT']:'';
         $clientkeywords = array('nokia', 'sony', 'ericsson', 'mot', 'samsung', 'htc', 'sgh', 'lg', 'sharp', 'sie-','philips', 'panasonic', 'alcatel', 'lenovo', 'iphone', 'ipod', 'blackberry', 'meizu','android', 'netfront', 'symbian', 'ucweb', 'windowsce', 'palm', 'operamini','operamobi', 'opera mobi', 'openwave', 'nexusone', 'cldc', 'midp', 'wap', 'mobile'
         );
         if(preg_match("/(".implode('|',$clientkeywords).")/i",$ug)
