@@ -9,7 +9,9 @@ use Yii;
 
 class TestController extends BaseController{
     public function actionIndex(){
-        //SyncBlogService::doSync("chinaunix",91);
+
+        $qzone = "364054110@qzone.qq.com";
+
     }
 
 

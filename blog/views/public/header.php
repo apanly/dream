@@ -39,6 +39,33 @@ use \common\service\GlobalUrlService;
                             <a href="<?=GlobalUrlService::buildBlogUrl("/library/index");?>">图书馆</a>
                         </li>
                         <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" >项目
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 21 ]);?>">二维码登录</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 132 ]);?>">微信墙</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 96 ]);?>">私人github</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 80 ]);?>">QQ音乐</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 91 ]);?>">metaweblog</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" >小玩意
                                 <span class="caret"></span>
                             </a>
