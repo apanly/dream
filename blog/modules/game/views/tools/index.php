@@ -1,10 +1,11 @@
 <?php
 use blog\components\StaticService;
 use \blog\components\UrlService;
-
 StaticService::includeAppJsStatic("/js/game/tools/index.js", \blog\assets\GameAsset::className());
 ?>
-<div class="am-container" id="gene_password">
+<?= Yii::$app->controller->renderPartial("/tools/tab.php",[ 'current' => 'gene_pwd' ]); ?>
+
+<div class="am-container" id="gene_password" style="margin-top: 10px;">
     <table class="am-table am-table-bordered am-table-radius am-table-striped">
         <tr>
             <td>所用字符</td>

@@ -25,6 +25,12 @@ class ToolsController extends BaseController
         ]);
     }
 
+    public function actionStrlen(){
+        $this->setTitle("字符串长度计算器");
+        $this->setSubTitle("字符串长度计算器");
+        return $this->render("strlen");
+    }
+
     private function gene_password( $s_options,$length = 16 ) {
         $options = [
             1 => "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",

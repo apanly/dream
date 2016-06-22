@@ -33,6 +33,18 @@ var tools_index_ops = {
                 }
             })
         });
+
+        $("#strlen .am-btn").click( function(){
+            var content = $("#strlen textarea[name=content]").val();
+            $("#strlen .strlen_tip").html("共计：" + content.length + "个字符");
+        });
+
+        $("#strlen textarea[name=content]").keydown( function(){
+            $("#strlen .am-btn").click();
+        } );
+        $("#strlen textarea[name=content]").keyup( function(){
+            $("#strlen .am-btn").click();
+        } );
     }
 };
 
