@@ -31,6 +31,12 @@ class ToolsController extends BaseController
         return $this->render("strlen");
     }
 
+    public function actionJson_format(){
+        $this->setTitle("JSON格式化");
+        $this->setSubTitle("JSON格式化");
+        return $this->render("json_format");
+    }
+
     private function gene_password( $s_options,$length = 16 ) {
         $options = [
             1 => "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",

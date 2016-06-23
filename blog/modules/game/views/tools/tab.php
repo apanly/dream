@@ -8,6 +8,10 @@ $items = [
 	'strlen' => [
 		'title' => '字符长度',
 		'url' => GlobalUrlService::buildGameUrl("/tools/strlen")
+	],
+	'json_format' => [
+		'title' => 'JSON格式化',
+		'url' => GlobalUrlService::buildGameUrl("/tools/json_format")
 	]
 ];
 ?>
