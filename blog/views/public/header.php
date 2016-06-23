@@ -1,6 +1,7 @@
 <?php
 use \blog\components\UrlService;
 use \common\service\GlobalUrlService;
+$project_list = Yii::$app->params['project']
 ?>
 <header class="main-header" style="background-image: url(<?=GlobalUrlService::buildStaticUrl("/images/web/banner_bg.jpg");?>)">
     <div class="container">
@@ -43,27 +44,13 @@ use \common\service\GlobalUrlService;
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
+                                <?php foreach($project_list as $_project_key => $_project_info ):?>
                                 <li>
-                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 21 ]);?>">二维码登录</a>
+                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => $_project_info['id'] ]);?>"><?=$_project_info['title'];?></a>
                                 </li>
                                 <li class="divider"></li>
-                                <li>
-                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 132 ]);?>">微信墙</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 96 ]);?>">私人github</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 80 ]);?>">QQ音乐</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="<?=UrlService::buildUrl("/default/info",['id' => 91 ]);?>">metaweblog</a>
-                                </li>
+                                <?php endforeach;;?>
                             </ul>
-
                         </li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" >小玩意
