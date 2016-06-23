@@ -66,6 +66,14 @@ $project_list = Yii::$app->params['project']
                                 </li>
                                 <li class="divider"></li>
                                 <li>
+                                    <a href="<?=UrlService::buildGameUrl("/tools/strlen");?>">字符长度统计</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?=UrlService::buildGameUrl("/tools/json_format");?>">JSON格式化</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
                                     <a href="<?=UrlService::buildGameUrl("/music/index");?>">点歌台</a>
                                 </li>
                                 <li class="divider"></li>
