@@ -33,7 +33,7 @@ class ErrorController extends BaseController{
         $message = $this->post("message","");
         $error = $this->post("error","");
         $err_msg = "JS ERROR：[url:{$referer}],[js_file:{$url}],[error:{$message}],[error_info:{$error}]";
-        ApplogService::addErrorLog("app-js",$referer,$err_msg);
+        AppLogService::addErrorLog("app-js",$referer,$err_msg);
     }
 
 
