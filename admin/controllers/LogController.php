@@ -99,7 +99,7 @@ class LogController extends BaseController{
         return $this->render("app",[
             "data" => $data,
             "page_info" => $page_info,
-            "page_url" => "/log/access"
+            "page_url" => "/log/app"
         ]);
     }
 
