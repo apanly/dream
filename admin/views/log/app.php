@@ -4,11 +4,6 @@ use \admin\components\StaticService;
 use \admin\components\AdminUrlService;
 StaticService::includeAppJsStatic("/js/log/app.js",\admin\assets\AppAsset::className());
 ?>
-<style type="text/css">
-    .br{
-        word-break:break-all; width:200px; overflow:auto;
-    }
-</style>
 <div class="page-content-wrap">
     <div class="row">
         <div class="col-md-12">
