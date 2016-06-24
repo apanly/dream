@@ -349,4 +349,16 @@
       PRIMARY KEY (`id`),
       KEY `idx_uid_status` (`uid`,`status`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户消息表';
+    
+    CREATE TABLE `account` (
+      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+      `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
+      `account` varchar(100) NOT NULL DEFAULT '' COMMENT '账号',
+      `pwd` varchar(2000) NOT NULL DEFAULT '' COMMENT '通行证密码',
+      `description` varchar(1000) NOT NULL DEFAULT '' COMMENT '描述',
+      `updated_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后一次更新时间',
+      `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+      PRIMARY KEY (`id`),
+      KEY `idx_title` (`title`)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='账户列表';
 

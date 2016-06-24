@@ -50,9 +50,12 @@ class LogController extends BaseController{
                 $idx++;
             }
         }
+
+        $search_conditions = [];
         return $this->render("access",[
             "data" => $data,
             "page_info" => $page_info,
+            'search_conditions' => $search_conditions,
             "page_url" => "/log/access"
         ]);
     }

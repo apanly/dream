@@ -38,6 +38,14 @@ AppAsset::register($this);
                     <li><a href="<?=Url::toRoute("/posts/comments");?>"><span class="fa fa-square-o"></span> 评论管理</a></li>
                 </ul>
             </li>
+            <li class="xn-openable menu_account">
+                <a href="javascript:void(0);">
+                    <span class="fa fa-cogs"></span><span class="xn-text">账号管理</span>
+                </a>
+                <ul>
+                    <li><a href="<?=Url::toRoute("/account/index");?>"><span class="fa fa-heart"></span>账号列表</a></li>
+                </ul>
+            </li>
             <li class="xn-openable menu_richmedia">
                 <a href="javascript:void(0);">
                     <span class="fa fa-cogs"></span><span class="xn-text">多媒体管理</span>

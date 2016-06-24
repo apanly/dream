@@ -10,6 +10,10 @@ var public_ops = {
             $(".x-navigation .menu_posts").addClass("active");
             return;
         }
+        if( pathname.indexOf("/account") >= 0 ){
+            $(".x-navigation .menu_account").addClass("active");
+            return;
+        }
 
         if( pathname.indexOf("/richmedia") >= 0 ){
             $(".x-navigation .menu_richmedia").addClass("active");
