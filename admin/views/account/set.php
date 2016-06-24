@@ -26,7 +26,12 @@ use common\components\DataHelper;
 						<div class="form-group">
 							<label class="col-md-3  control-label">密码：</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" name="pwd" value="">
+								<div class="input-group">
+									<input type="text" class="form-control" name="pwd" value="">
+									<span class="input-group-btn">
+										<button class="btn btn-default gene_pwd" type="button">生成密码!</button>
+                                	</span>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">

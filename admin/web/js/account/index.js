@@ -94,6 +94,21 @@ var account_index_ops = {
                 }
             });
         } );
+
+        $("#set_account_wrap .gene_pwd").unbind("click").click( function(){
+            $.ajax({
+                url:'/account/gene_pwd',
+                type:'post',
+                dataType:'json',
+                success:function( res ){
+                    if( res.code == 200 ){
+                        $("#set_account_wrap input[name=pwd]").val( res.data.pwd );
+                    }else{
+                        alert( res.msg );
+                    }
+                }
+            });
+        } );
     }
 };
 

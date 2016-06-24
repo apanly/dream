@@ -3,6 +3,7 @@
 namespace blog\modules\game\controllers;
 
 use blog\modules\game\controllers\common\BaseController;
+use common\components\UtilHelper;
 
 class ToolsController extends BaseController
 {
@@ -21,7 +22,7 @@ class ToolsController extends BaseController
         }
 
         return $this->renderJSON([
-            "pwd" => $this->gene_password($s_options,$pass_length)
+            "pwd" => UtilHelper::gene_password($s_options,$pass_length)
         ]);
     }
 

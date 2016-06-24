@@ -185,4 +185,22 @@ class UtilHelper {
         }
         return $mask_str;
     }
+
+    public static function gene_password( $s_options,$length = 16 ) {
+        $options = [
+            1 => "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+            2 => "!@#$%^&*"
+        ];
+        $chars = "";
+        foreach( $s_options as $_option ){
+            $chars .= $options[$_option];
+        }
+
+        $password = '';
+        for ( $i = 0; $i < $length; $i++ ){
+            $password .= $chars[ mt_rand(0, strlen($chars) - 1) ];
+        }
+
+        return $password;
+    }
 } 

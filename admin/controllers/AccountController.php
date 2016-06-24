@@ -95,6 +95,13 @@ class AccountController extends BaseController{
         return $this->renderJSON([],"操作成功！！");
     }
 
+    public function actionGene_pwd(){
+        if( !Yii::$app->request->isPost ){
+            return $this->renderJSON([],"系统繁忙，请稍后重试",-1);
+        }
+
+        return $this->renderJSON([ 'pwd' => UtilHelper::gene_password([1,2]) ]);
+    }
 
     private function decrypt( $txt ){
         $txt = base64_decode($txt);
