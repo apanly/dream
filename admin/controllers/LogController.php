@@ -11,6 +11,7 @@ use Yii;
 
 
 class LogController extends BaseController{
+
     public function actionAccess(){
         $p = intval( $this->get("p",1) );
         if(!$p){
@@ -56,7 +57,15 @@ class LogController extends BaseController{
         ]);
     }
 
+    private $log_type_mapping = [
+        1 => 'app-blog',
+        2 => 'app-js'
+    ];
+
     public function actionApp(){
+        $type = intval( $this->get("type",0) );
+        $log_type_mapping = $this->log_type_mapping;
+
         $p = intval( $this->get("p",1) );
         if(!$p){
             $p = 1;
@@ -65,6 +74,11 @@ class LogController extends BaseController{
         $data = [];
         $pagesize = 20;
         $query = AppLogs::find();
+
+        if( isset( $log_type_mapping[ $type ] ) ){
+            $query->andWhere([ 'app_name' =>  $log_type_mapping[ $type ] ]);
+        }
+
         $total_count = $query->count();
         $offset = ($p - 1) * $pagesize;
         $access_list = $query->orderBy("id desc")
@@ -96,10 +110,16 @@ class LogController extends BaseController{
                 $idx++;
             }
         }
+
+        $search_conditions = [
+            'type' => $type
+        ];
         return $this->render("app",[
             "data" => $data,
             "page_info" => $page_info,
-            "page_url" => "/log/app"
+            "page_url" => "/log/app",
+            'search_conditions' => $search_conditions,
+            'log_type_mapping' => $log_type_mapping
         ]);
     }
 
