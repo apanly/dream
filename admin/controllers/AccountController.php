@@ -4,6 +4,7 @@ namespace admin\controllers;
 
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
+use common\components\UtilHelper;
 use common\models\admin\Account;
 use \Yii;
 
@@ -21,7 +22,7 @@ class AccountController extends BaseController{
                     'idx' =>  $idx,
                     'id' => $_item['id'],
                     'title' => DataHelper::encode($_item['title']),
-                    'account' => DataHelper::encode($_item['account']),
+                    'account' => DataHelper::encode( UtilHelper::maskStr($_item['account'],3,4)),
                     'pwd' => $tmp_decrypt_pwd,
                     'description' => DataHelper::encode($_item['description']),
                 ];

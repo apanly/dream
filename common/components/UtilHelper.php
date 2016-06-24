@@ -170,4 +170,19 @@ class UtilHelper {
         }
         return FALSE;
     }
+
+    /*遮住几位*/
+    public static function maskStr( $string,$from=3,$len=0,$mask_char='*' ){
+        $mask_str = mb_substr($string,0,$from);
+        $strlen = mb_strlen($string,'UTF-8');
+        if($from + $len >= $strlen)
+        {
+            $mask_str .= str_repeat($mask_char,($strlen-$from)>=0 ? ($strlen-$from) : 0);
+        }
+        else
+        {
+            $mask_str .= str_repeat($mask_char,$len).mb_substr($string,($from+$len));
+        }
+        return $mask_str;
+    }
 } 
