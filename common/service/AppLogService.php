@@ -20,9 +20,10 @@ class AppLogService extends BaseService {
         $line = $error->getLine();
         $host = isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:"";
         $uri = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:"";
+        $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
         $url = $host.$uri;
 
-        $err_msg = $msg . " [file: {$file}][line: {$line}][err code:$code.][url:{$url}][post:".http_build_query($_POST)."]";
+        $err_msg = $msg . " [file: {$file}][line: {$line}][err code:$code.][url:{$url}][referer:{$referer}][post:".http_build_query($_POST)."]";
         $model_app_logs = new AppLogs();
         $model_app_logs->app_name = \Yii::$app->id;
         $model_app_logs->request_uri = $uri;
