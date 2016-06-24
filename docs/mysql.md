@@ -361,4 +361,22 @@
       PRIMARY KEY (`id`),
       KEY `idx_title` (`title`)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='账户列表';
+    
+    CREATE TABLE `admin_access_log` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `target_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '类型1：admin',
+      `target_id` int(11) NOT NULL DEFAULT '0' COMMENT '类型为1：admin.id',
+      `act_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '动作类型：1登录  2:访问',
+      `login_name` varchar(50) NOT NULL DEFAULT '' COMMENT '账号',
+      `refer_url` varchar(255) NOT NULL DEFAULT '' COMMENT '当前访问的refer',
+      `target_url` varchar(255) NOT NULL DEFAULT '' COMMENT '访问的url',
+      `query_params` varchar(1000) NOT NULL DEFAULT '' COMMENT 'get和post参数',
+      `ua` varchar(255) NOT NULL DEFAULT '' COMMENT '访问ua',
+      `ip` varchar(32) NOT NULL DEFAULT '' COMMENT '访问ip',
+      `note` varchar(1000) NOT NULL DEFAULT '' COMMENT 'json格式备注字段',
+      `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1：成功 0 失败',
+      `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (`id`),
+      KEY `idx_type_name_status` (`target_type`,`login_name`,`status`)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='admin端访问记录表';
 

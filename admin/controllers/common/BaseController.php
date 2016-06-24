@@ -1,6 +1,7 @@
 <?php
 namespace admin\controllers\common;
 
+use admin\components\AccessLogService;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;
@@ -8,8 +9,7 @@ use yii\log\FileTarget;
 use \yii\helpers\Url;
 use common\models\user\Admin;
 
-class BaseController extends Controller
-{
+class BaseController extends Controller{
     public $enableCsrfValidation = false;
     protected  $salt = "g0ptPkTxZ#mIjD7@";
     protected  $auth_cookie_name = "cool_boy";
@@ -26,10 +26,11 @@ class BaseController extends Controller
         $view = Yii::$app->view;
         $view->params['id'] = $id;
         $view->params['copyright'] = Yii::$app->params['Copyright'];
+        $this->setTitle();
     }
 
     public function beforeAction($action) {
-        $this->setTitle();
+
         if (!in_array($action->getUniqueId(), $this->allowAllAction )) {
             if(!$this->checkLoginStatus()){
                 if(Yii::$app->request->isAjax){
@@ -40,6 +41,14 @@ class BaseController extends Controller
                 return false;
             }
         }
+
+        $params = [
+            'target_type' => 1,
+            'target_id' =>  $this->current_user?$this->current_user['uid']:0,
+            'act_type' => 2,
+            'status' => 1
+        ];
+        AccessLogService::recordAccess_log( $params );
         return true;
     }
 

@@ -2,12 +2,12 @@
 
 namespace admin\controllers;
 
+use admin\components\AccessLogService;
 use admin\controllers\common\BaseController;
 use Yii;
 use common\models\user\Admin;
 
-class AuthController extends BaseController
-{
+class AuthController extends BaseController{
 
     public function actionIndex(){
         $this->layout = false;
@@ -29,14 +29,26 @@ class AuthController extends BaseController
         }
 
         $user_info = Admin::findOne(['mobile' => $mobile]);
+        $params = [
+            'target_type' => 1,
+            'target_id' => 0,
+            'act_type' => 1,
+            'status' => 0,
+            'login_name' => $mobile
+        ];
+
         if(!$user_info){
+            AccessLogService::recordAccess_log( $params );
             return $this->renderJSON([],"请输入正确的手机号码和密码!",-1);
         }
 
         if(!$user_info->ckeckPassword($passwd)){
+            AccessLogService::recordAccess_log( $params );
             return $this->renderJSON([],"请输入正确的手机号码和密码!",-1);
         }
-
+        
+        $params['status'] = 1;
+        AccessLogService::recordAccess_log( $params );
         $this->createLoginStatus($user_info);
         return $this->renderJSON(['url' => "/"]);
     }
