@@ -106,35 +106,48 @@ class SearchController extends BaseController
         }
 
         $index_urls = [
-            "/default/index?type=1",
-            "/default/index?type=2",
-            "/default/index?type=3",
-            "/library/index",
-            "/richmedia/index",
-            "/default/donation",
-            "/default/about",
-            "http://m.vincentguo.cn"
+            'm' => [
+                "/default/index?type=1",
+                "/default/index?type=2",
+                "/default/index?type=3",
+                "/library/index",
+                "/richmedia/index",
+                "/my/about",
+                "http://www.vincentguo.cn"
+            ],
+            'blog' => [
+                "/default/index?type=1",
+                "/default/index?type=2",
+                "/default/index?type=3",
+                "/library/index",
+                "/richmedia/index",
+                "/default/donation",
+                "/default/about",
+                "http://m.vincentguo.cn"
+            ]
+
         ];
 
-        foreach ($index_urls as $_index_url) {
-            if( preg_match("/^http/",$_index_url) ){
-                $tmp_url = $_index_url;
-            }else{
-                if( $type == "m" ){
-                    $tmp_url = UrlService::buildWapUrl($_index_url);
+        if( isset( $index_urls[ $type ] ) ){
+            foreach ($index_urls[ $type ] as $_index_url) {
+                if( preg_match("/^http/",$_index_url) ){
+                    $tmp_url = $_index_url;
                 }else{
-                    $tmp_url = UrlService::buildUrl($_index_url);
+                    if( $type == "m" ){
+                        $tmp_url = UrlService::buildWapUrl($_index_url);
+                    }else{
+                        $tmp_url = UrlService::buildUrl($_index_url);
+                    }
                 }
+
+                $data[] = [
+                    "loc"        => $tmp_url,
+                    "priority"   => 1.0,
+                    "lastmod"    => date("Y-m-d"),
+                    "changefreq" => "daily"
+                ];
             }
-
-            $data[] = [
-                "loc"        => $tmp_url,
-                "priority"   => 1.0,
-                "lastmod"    => date("Y-m-d"),
-                "changefreq" => "daily"
-            ];
         }
-
 
         $post_list = Posts::find()->where(["status" => 1])->orderBy("id desc")->all();
         if ($post_list) {
