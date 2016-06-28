@@ -26,17 +26,13 @@ class GameAsset extends AssetBundle
     ];
     public function registerAssetFiles($view){
         $this->css = [
-            GlobalUrlService::buildStaticUrl("/amazeui/css/amazeui.css"),
             GlobalUrlService::buildStaticUrl("/amazeui/css/amazeui.min.css"),
             'css/game/common.css',
         ];
         $this->js = [
             GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
-            GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.min.js"),
-            GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.ie8polyfill.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.ie8polyfill.min.js"),
-            GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.widgets.helper.js"),
             GlobalUrlService::buildStaticUrl("/amazeui/js/amazeui.widgets.helper.min.js"),
             'js/game/common.js',
             "js/access.js",
