@@ -73,15 +73,13 @@ class MenuService
 					]
 				]
 			],
-			'donation'  => [
-				'title' => '赞助',
-				'url'   => GlobalUrlService::buildBlogUrl("/default/donation")
-			],
 			'about'     => [
 				'title' => '关于',
 				'url'   => GlobalUrlService::buildBlogUrl("/default/about")
 			]
 		];
+
+
 		return $menu;
 	}
 } 
