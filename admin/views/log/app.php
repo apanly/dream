@@ -27,7 +27,7 @@ StaticService::includeAppJsStatic("/js/log/app.js",\admin\assets\AppAsset::class
                 <div class="panel-body">
                     <div class="table-responsive">
                         <?php if($data):?>
-                            <table class="table table-bordered table-hover no-footer" role="grid">
+                            <table class="table table-bordered no-footer" role="grid">
                                 <thead>
                                 <tr>
                                     <th>序号</th>

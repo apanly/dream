@@ -2,6 +2,7 @@
 var public_ops = {
     init: function () {
         this.eventBind();
+        this.backToTop();
     },
     eventBind: function () {
         var that = this;
@@ -23,6 +24,20 @@ var public_ops = {
             return;
         }
         window.location.href = "/search/do?kw=" + kw;
+    },
+    backToTop: function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        $('#back-to-top').on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 1000);
+            return false;
+        });
     }
 };
 $(document).ready(function () {

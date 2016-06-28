@@ -1037,3 +1037,21 @@ pre {
     height: 30px;
     line-height: 30px;
 }
+
+/*custom*/
+.icon-original {
+    width: 32px;
+    height: 32px;
+    background-image: url(../../images/icons/original.png);
+}
+
+.syntaxhighlighter .toolbar{
+    display: none;
+}
+
+#ds-thread #ds-reset .ds-powered-by{
+    display: none;
+}
+.post-content p{
+    margin-bottom: 0;
+}

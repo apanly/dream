@@ -20,10 +20,8 @@ var themeApp = {
         $('.post').fitVids();
     },
     sidebarConfig: function () {
-//        $('.main-content').addClass('col-md-push-4');
-//        $('.sidebar').addClass('col-md-pull-8');
-    },
-    recentPost: function () {
+       $('.main-content').addClass('col-md-push-4');
+       $('.sidebar').addClass('col-md-pull-8');
     },
     highlighter: function () {
         $('pre code').each(function (i, block) {
@@ -45,14 +43,13 @@ var themeApp = {
         });
     },
     init: function () {
-        themeApp.featuredMedia();
-        themeApp.responsiveIframe();
-        themeApp.sidebarConfig();
-        themeApp.recentPost();
-        themeApp.highlighter();
+        //themeApp.featuredMedia();
+        //themeApp.responsiveIframe();
+        //themeApp.sidebarConfig();
+        //themeApp.highlighter();
         themeApp.backToTop();
     }
-}
+};
 
 /*===========================
  2. Initialization
