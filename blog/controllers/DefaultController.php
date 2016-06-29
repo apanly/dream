@@ -2,6 +2,7 @@
 
 namespace blog\controllers;
 
+use blog\components\BlogUtilService;
 use blog\components\UrlService;
 use blog\controllers\common\BaseController;
 use common\components\DataHelper;
@@ -10,6 +11,7 @@ use common\models\posts\Posts;
 use common\models\posts\PostsRecommend;
 use common\service\CacheHelperService;
 use common\service\RecommendService;
+use console\modules\blog\Blog;
 use Yii;
 
 
@@ -136,6 +138,13 @@ class DefaultController extends BaseController{
     public function actionAbout(){
         $this->setTitle("简介");
         return $this->render("about");
+    }
+
+    public function actionChangeLog(){
+        $this->setTitle("更新日志");
+        return $this->render("changelog",[
+            'list' => BlogUtilService::getChangeLog()
+        ]);
     }
 
 }

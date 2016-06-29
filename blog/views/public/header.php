@@ -1,7 +1,7 @@
 <?php
 use \blog\components\UrlService;
 use \common\service\GlobalUrlService;
-$menu = \blog\components\MenuService::blogMenu();
+$menu_list = \blog\components\BlogUtilService::blogMenu();
 ?>
 <header class="main-header" style="background-image: url(<?=GlobalUrlService::buildStaticUrl("/images/web/banner_bg.jpg");?>)">
     <div class="container">
@@ -24,7 +24,7 @@ $menu = \blog\components\MenuService::blogMenu();
             <div class="col-sm-12">
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
-                        <?php foreach( $menu as $_menu_key => $_menu_info ):?>
+                        <?php foreach( $menu_list as $_menu_key => $_menu_info ):?>
                             <?php if( isset($_menu_info['sub_menu']) ):?>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" ><?=$_menu_info['title'];?>

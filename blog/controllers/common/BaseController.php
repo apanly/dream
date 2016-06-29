@@ -148,7 +148,9 @@ class BaseController extends Controller
     public function getMenu()
     {
         $url = \Yii::$app->request->url;
+
         if (strpos($url, '/about') !== false) return 'about';
+        if (strpos($url, '/change-log') !== false) return 'changelog';
         if (strpos($url, '/donation') !== false) return 'donation';
         if (strpos($url, '/library') !== false) return 'library';
         if (strpos($url, '/richmedia') !== false) return 'richmedia';
