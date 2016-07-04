@@ -12,10 +12,8 @@ use \yii\caching\FileCache;
 use Yii;
 
 
-class DemoController extends BaseController
-{
-    public function actionScan()
-    {
+class DemoController extends BaseController {
+    public function actionScan(){
         $key  = $this->getCookie("qrcode", "");
         $flag = false;
         if (!$key) {
@@ -37,8 +35,7 @@ class DemoController extends BaseController
         return $this->render("scan");
     }
 
-    public function actionQrcode()
-    {
+    public function actionQrcode(){
         $key     = $this->getCookie("qrcode", "no");
         $domains = Yii::$app->params['domains'];
         $url     = $domains["blog"] . "/demo/login?key={$key}";
@@ -47,8 +44,7 @@ class DemoController extends BaseController
         exit();
     }
 
-    public function actionLogin()
-    {
+    public function actionLogin(){
         $key = trim($this->get("key", ""));
         if (!$key || $key == "no") {
             return $this->renderJSON([], "扫描登录失败!", -1);
@@ -64,8 +60,7 @@ class DemoController extends BaseController
         return $this->renderJSON([], "", 200);
     }
 
-    public function actionDologin()
-    {
+    public function actionDologin(){
         $key = trim($this->getCookie("qrcode", ""));
         if (!$key || $key == "no") {
             return $this->renderJSON([], "扫描登录失败!{$key}", -1);
@@ -107,8 +102,7 @@ class DemoController extends BaseController
 
     }
 
-    private function getCache($key)
-    {
+    private function getCache($key){
         $cache = new FileCache();
         $data  = $cache[$key];
         if (!$data) {
@@ -126,8 +120,7 @@ class DemoController extends BaseController
 
     }
 
-    private function existCache($key)
-    {
+    private function existCache($key){
         $cache = new FileCache();
         $data  = $cache[$key];
         if (!$data) {

@@ -9,9 +9,7 @@ use Yii;
 
 class TestController extends BaseController{
     public function actionIndex(){
-
-        $qzone = "364054110@qzone.qq.com";
-
+        return $this->render("index");
     }
 
 
