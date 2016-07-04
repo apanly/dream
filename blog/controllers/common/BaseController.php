@@ -24,7 +24,10 @@ class BaseController extends Controller
         "log/add",
         "public/iframe",
         "code/run",
-        "demo/login"
+        "demo/login",
+        "default/change-log",
+        "default/donation",
+        "default/about",
     ];
 
 

@@ -10,6 +10,7 @@ use common\components\UtilHelper;
 use common\models\posts\Posts;
 use common\models\posts\PostsRecommend;
 use common\service\CacheHelperService;
+use common\service\GlobalUrlService;
 use common\service\RecommendService;
 use console\modules\blog\Blog;
 use Yii;
@@ -138,6 +139,10 @@ class DefaultController extends BaseController{
     public function actionAbout(){
         $this->setTitle("简介");
         return $this->render("about");
+    }
+
+    public function actionDonation(){
+        return $this->redirect( GlobalUrlService::buildBlogUrl("/default/about") );
     }
 
     public function actionChangeLog(){
