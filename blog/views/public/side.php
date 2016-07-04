@@ -1,11 +1,9 @@
 <?php
 use common\service\CacheHelperService;
 use blog\components\StaticService;
-
-//StaticService::includeStaticJs("/jquery/jquery.mousewheel.min.js", \blog\assets\AppAsset::className());
-//StaticService::includeStaticJs("/jquery/jquery.tagsphere.min.js", \blog\assets\AppAsset::className());
-//StaticService::includeAppJsStatic("/js/web/public/side.js",\blog\assets\AppAsset::className());
 $tags = CacheHelperService::getFrontCache("tag");
+$menu_list = \blog\components\BlogUtilService::blogMenu();
+$project_list = $menu_list['project'];
 ?>
 <aside class="col-md-4 sidebar">
     <div class="widget">
@@ -27,6 +25,19 @@ $tags = CacheHelperService::getFrontCache("tag");
                     <a href="/search/do?kw=<?=$_tag;?>"><?=$_tag;?></a>
                 <?php endforeach;?>
             <?php endif;?>
+        </div>
+    </div>
+
+    <div class="widget">
+        <h4 class="title"><?=$project_list['title'];?>Demo</h4>
+        <div class="content e-book">
+            <ul class="list-group">
+                <?php foreach($project_list['sub_menu'] as $_submenu_key => $_submenu_info ):?>
+                    <li class="list-group-item">
+                        <a href="<?=$_submenu_info['url'];?>"><?=$_submenu_info['title'];?></a>
+                    </li>
+                <?php endforeach;;?>
+            </ul>
         </div>
     </div>
 
