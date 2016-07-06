@@ -11,6 +11,23 @@ var common_ops = {
         }
         return "";
     },
+    buildWapUrl:function( path ,params){
+        var pathname = window.location.pathname;
+        var prefix = "";
+        if( pathname.indexOf("/wap") > -1 ){
+            prefix =  "/wap"
+        }
+        var url =  prefix +  path;
+        var _paramUrl = '';
+        if( params ){
+            _paramUrl = Object.keys(params).map(function(k) {
+                return [encodeURIComponent(k), encodeURIComponent(params[k])].join("=");
+            }).join('&');
+            _paramUrl = "?"+_paramUrl;
+        }
+        return url+_paramUrl
+
+    },
     setCurrentNav: function () {
         var pathname = window.location.pathname;
 

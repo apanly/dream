@@ -24,7 +24,7 @@ return [
         ],
         'weixin' => [
             'class' => 'blog\modules\weixin\WeixinModule'
-        ],
+        ]
     ],
     'components'          => [
         'log'          => [

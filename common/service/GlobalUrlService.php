@@ -16,6 +16,9 @@ class GlobalUrlService {
 
         }else{
             $domain = \Yii::$app->params['domains']['static'];
+            if( stripos($domain,"http") === false ){
+                $domain = "http:".$domain;
+            }
         }
         $path = Url::toRoute(array_merge([$path],$params));
         return $domain.$path;
