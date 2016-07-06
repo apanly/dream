@@ -24,7 +24,7 @@ class DefaultController extends AuthController{
         $ret = [];
         if( $list ){
             foreach( $list as $_info ){
-                $tmp_image_url = GlobalUrlService::buildStaticUrl("/images/web/blog_default.jpg");
+                $tmp_image_url = GlobalUrlService::buildStaticUrl("/images/web/blog_default.jpg")."?imageView2/1/w/320/h/210/interlace/1";
                 if( $_info['image_url'] ){
                     //$tmp_image_url = $_info['image_url'];
                 }
