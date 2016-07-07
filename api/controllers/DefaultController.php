@@ -24,9 +24,13 @@ class DefaultController extends AuthController{
         $ret = [];
         if( $list ){
             foreach( $list as $_info ){
-                $tmp_image_url = GlobalUrlService::buildStaticUrl("/images/web/blog_default.jpg")."?imageView2/1/w/320/h/210/interlace/1";
+                $tmp_image_url = GlobalUrlService::buildStaticUrl("/images/web/blog_default.jpg");
                 if( $_info['image_url'] ){
-                    //$tmp_image_url = $_info['image_url'];
+                    $tmp_image_url = $_info['image_url'];
+                }
+                $tmp_pos_idx = stripos($tmp_image_url,"?");
+                if( $tmp_pos_idx !== false ){
+                    $tmp_image_url = substr($tmp_image_url,0,$tmp_pos_idx);
                 }
                 $ret[] = [
                     'title' => $_info['title'],
@@ -37,5 +41,9 @@ class DefaultController extends AuthController{
             }
         }
         return $this->renderJSON([ 'list' => $ret ]);
+    }
+
+    public function actionBlog(){
+        $p = $this->get("p",1);
     }
 }
