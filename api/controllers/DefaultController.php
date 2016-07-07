@@ -61,6 +61,10 @@ class DefaultController extends AuthController{
                 if( $_post['image_url'] ){
                     $tmp_image_url = $_post['image_url'];
                 }
+                $tmp_pos_idx = stripos($tmp_image_url,"?");
+                if( $tmp_pos_idx !== false ){
+                    $tmp_image_url = substr($tmp_image_url,0,$tmp_pos_idx);
+                }
                 $tmp_tags = explode(",", $_post['tags']);
                 $data[] = [
                     'title' => $_post['title'],
