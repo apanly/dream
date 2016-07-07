@@ -57,12 +57,16 @@ class DefaultController extends AuthController{
 
         if ($posts_info) {
             foreach ($posts_info as $_post) {
+                $tmp_image_url = GlobalUrlService::buildStaticUrl("/images/web/blog_default_list.jpg");
+                if( $_post['image_url'] ){
+                    $tmp_image_url = $_post['image_url'];
+                }
                 $tmp_tags = explode(",", $_post['tags']);
                 $data[] = [
                     'title' => $_post['title'],
                     'content' => UtilHelper::blog_short($_post['content'], 100),
                     "tags" => $tmp_tags,
-                    'image_url' => $_post['image_url'],
+                    'image_url' => $tmp_image_url,
                     'id' => $_post['id'],
                 ];
             }
