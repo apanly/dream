@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use common\components\DataHelper;
 use common\components\UtilHelper;
 
 use common\models\posts\Posts;
@@ -77,5 +78,31 @@ class DefaultController extends AuthController{
         }
 
         return $this->renderJSON([ 'list' => $data ]);
+    }
+
+    public function actionInfo(){
+        $id = intval( $this->post("id",0) );
+        if( !$id ){
+            return $this->renderJSON([],"指定博文不存在",-1);
+        }
+
+        $post_info = Posts::find()->where([ 'status' => 1,'id' => $id ])->one();
+        if( !$post_info ){
+            return $this->renderJSON([],"指定博文不存在",-1);
+        }
+
+        $tmp_tags = explode(",", $post_info['tags']);
+
+        $info = [
+            'author' => [
+                'name' => DataHelper::getAuthorName()
+            ],
+            'title' => $post_info['title'],
+            'content' => $post_info['content'],
+            "tags" => $tmp_tags,
+            'updated_time' => date("Y-m-d H:i",strtotime( $post_info['updated_time'] ) ),
+        ];
+
+        return $this->renderJSON([ 'info' => $info ]);
     }
 }
