@@ -43,7 +43,31 @@ class DefaultController extends AuthController{
         return $this->renderJSON([ 'list' => $ret ]);
     }
 
+    private $page_size = 10;
     public function actionBlog(){
         $p = $this->get("p",1);
+        $offset = ($p - 1) * $this->page_size;
+
+        $query = Posts::find()->where(['status' => 1]);
+        $posts_info = $query->orderBy("id desc")
+            ->offset($offset)
+            ->limit($this->page_size)
+            ->all();
+        $data  = [];
+
+        if ($posts_info) {
+            foreach ($posts_info as $_post) {
+                $tmp_tags = explode(",", $_post['tags']);
+                $data[] = [
+                    'title' => $_post['title'],
+                    'content' => UtilHelper::blog_short($_post['content'], 100),
+                    "tags" => $tmp_tags,
+                    'image_url' => $_post['image_url'],
+                    'id' => $_post['id'],
+                ];
+            }
+        }
+
+        return $this->renderJSON([ 'list' => $data ]);
     }
 }
