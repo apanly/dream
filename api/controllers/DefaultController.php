@@ -6,6 +6,7 @@ use blog\controllers\RichmediaController;
 use common\components\DataHelper;
 use common\components\UtilHelper;
 
+use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\posts\RichMedia;
 use common\service\GlobalUrlService;
@@ -113,7 +114,6 @@ class DefaultController extends AuthController{
         $p = intval($this->get("p", 1));
         $offset = ($p - 1) * $this->page_size;
 
-
         $query = RichMedia::find()->where(['status' => 1,'type' =>'image' ]);
         $rich_media_list = $query->orderBy("id desc")
             ->offset($offset)
@@ -126,6 +126,29 @@ class DefaultController extends AuthController{
                 $data[] = [
                     'image_url' => GlobalUrlService::buildPic1Static($_rich_info['src_url']),
                     'title'  => $_rich_info['address']?$_rich_info['address']:':('
+                ];
+            }
+        }
+        return $this->renderJSON([ 'list' => $data ]);
+    }
+
+    public function actionBook(){
+        $p = intval($this->get("p", 1));
+        $offset = ($p - 1) * $this->page_size;
+
+        $query = Book::find()->where(['status' => 1 ]);
+        $books = $query->orderBy("id desc")
+            ->offset($offset)
+            ->limit($this->page_size)
+            ->all();
+
+        $data = [];
+        if ($books) {
+            foreach ($books as $_book) {
+                $data[] = [
+                    'id' => $_book['id'],
+                    'image_url' => GlobalUrlService::buildPic1Static($_book['image_url']),
+                    'title'  => $_book['subtitle']
                 ];
             }
         }
