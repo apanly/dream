@@ -2,10 +2,12 @@
 
 namespace api\controllers;
 
+use blog\controllers\RichmediaController;
 use common\components\DataHelper;
 use common\components\UtilHelper;
 
 use common\models\posts\Posts;
+use common\models\posts\RichMedia;
 use common\service\GlobalUrlService;
 use Yii;
 use api\controllers\common\AuthController;
@@ -104,5 +106,33 @@ class DefaultController extends AuthController{
         ];
 
         return $this->renderJSON([ 'info' => $info ]);
+    }
+
+
+    public function actionMedia(){
+        $p = intval($this->get("p", 1));
+        $offset = ($p - 1) * $this->page_size;
+
+
+        $query = RichMedia::find()->where(['status' => 1,'type' =>'image' ]);
+        $rich_media_list = $query->orderBy("id desc")
+            ->offset($offset)
+            ->limit($this->page_size)
+            ->all();
+
+        $data = [];
+        if ($rich_media_list) {
+            foreach ($rich_media_list as $_rich_info) {
+                $data[] = [
+                    'image_url' => GlobalUrlService::buildPic1Static($_rich_info['src_url']),
+                    'address'  => $_rich_info['address']?$_rich_info['address']:':('
+                ];
+            }
+        }
+        return $this->renderJSON([ 'list' => $data ]);
+    }
+
+    public function actionUpdate(){
+        return $this->renderJSON([ 'status' => 1 ]);
     }
 }
