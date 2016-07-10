@@ -125,7 +125,7 @@ class DefaultController extends AuthController{
             foreach ($rich_media_list as $_rich_info) {
                 $data[] = [
                     'image_url' => GlobalUrlService::buildPic1Static($_rich_info['src_url']),
-                    'address'  => $_rich_info['address']?$_rich_info['address']:':('
+                    'title'  => $_rich_info['address']?$_rich_info['address']:':('
                 ];
             }
         }
