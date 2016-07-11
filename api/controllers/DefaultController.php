@@ -106,9 +106,14 @@ class DefaultController extends AuthController{
             'updated_time' => date("Y-m-d H:i",strtotime( $post_info['updated_time'] ) ),
         ];
 
-        return $this->renderJSON([ 'info' => $info ]);
-    }
+        $share_info = [
+            'title' => $post_info['title'],
+            'content' => mb_substr($post_info['content'],0,200),
+            'url' => GlobalUrlService::buildWapUrl("/default/info",[ 'id' => $post_info['id'] ])
+        ];
 
+        return $this->renderJSON([ 'info' => $info,'share_info' => $share_info ]);
+    }
 
     public function actionMedia(){
         $p = intval($this->get("p", 1));
