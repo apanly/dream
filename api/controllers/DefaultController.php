@@ -2,7 +2,6 @@
 
 namespace api\controllers;
 
-use blog\controllers\RichmediaController;
 use common\components\DataHelper;
 use common\components\UtilHelper;
 
@@ -108,7 +107,7 @@ class DefaultController extends AuthController{
 
         $share_info = [
             'title' => $post_info['title'],
-            'content' => mb_substr($post_info['content'],0,200),
+            'content' => UtilHelper::blog_short($post_info['content'],200),
             'url' => GlobalUrlService::buildWapUrl("/default/info",[ 'id' => $post_info['id'] ])
         ];
 
