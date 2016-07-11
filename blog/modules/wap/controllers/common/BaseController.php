@@ -26,7 +26,7 @@ class BaseController extends BaseBlogController
 
     public function beforeAction($action){
 
-
+        return true;
         $login_status = $this->checkLoginStatus();
 
         if (!$login_status && !in_array($action->getUniqueId(), $this->allowAllAction)) {
