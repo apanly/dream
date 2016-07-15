@@ -95,12 +95,14 @@ class DefaultController extends AuthController{
 
         $tmp_tags = explode(",", $post_info['tags']);
 
+        $content = str_replace($post_info['content'],"brush:bash;toolbar:false","prettyprint linenums");
+
         $info = [
             'author' => [
                 'name' => DataHelper::getAuthorName()
             ],
             'title' => $post_info['title'],
-            'content' => $post_info['content'],
+            'content' => $content,
             "tags" => $tmp_tags,
             'updated_time' => date("Y-m-d H:i",strtotime( $post_info['updated_time'] ) ),
         ];
