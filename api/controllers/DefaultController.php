@@ -95,7 +95,7 @@ class DefaultController extends AuthController{
 
         $tmp_tags = explode(",", $post_info['tags']);
 
-        $content = str_replace("brush:bash;toolbar:false","prettyprint linenums",$post_info['content']);
+        $content = preg_replace("/brush:(\w+);toolbar:false/","prettyprint linenums",$post_info['content']);
 
         $info = [
             'author' => [
