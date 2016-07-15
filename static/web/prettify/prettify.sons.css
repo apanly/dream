@@ -4,7 +4,6 @@
  * Alex Ford of CodeTunnel:
  * http://CodeTunnel.com/blog/post/71/google-code-prettify-obsidian-theme
  */
-
 .str
 {
     color: #EC7600;
@@ -52,7 +51,18 @@
 pre.prettyprint
 {
     border: 0px solid #888;
+    white-space:pre;
 }
+ol {
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
 ol.linenums
 {
     margin-top: 0;
