@@ -41,10 +41,12 @@ class DefaultController extends BaseController
         $domain_m = Yii::$app->params['domains']['m'];
         $author      = Yii::$app->params['author'];
 
+        $content = preg_replace("/brush:(\w+);toolbar:false/","prettyprint linenums",$post_info['content']);
+
         $data = [
             "id"      => $post_info['id'],
             "title"   => $post_info['title'],
-            "content" => $post_info['content'],
+            "content" => $content,
             "tags"    => $tags,
             "author"  => $author,
             'updated_date'    => date("Y.m.d", strtotime($post_info['updated_time'])),

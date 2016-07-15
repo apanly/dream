@@ -7,7 +7,7 @@ var default_info_ops = {
         this.ifram_bug();//手机端专门修复的
     },
     eventBind: function () {
-
+        prettyPrint();
     },
     adaptVideo: function () {
         var width = $(window).width();

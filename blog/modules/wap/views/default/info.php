@@ -5,11 +5,19 @@ use \blog\components\UrlService;
 StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\WapAsset::className());
 StaticService::includeStaticJs("/jquery/lightbox2/js/lightbox.min.js",\blog\assets\WapAsset::className());
 
+StaticService::includeStaticCss("/prettify/prettify.sons.css",\blog\assets\WapAsset::className());
+StaticService::includeStaticJs("/prettify/prettify.js",\blog\assets\WapAsset::className());
+
 StaticService::includeAppJsStatic("/js/wap/default/info.js", \blog\assets\WapAsset::className());
 //StaticService::includeStaticJs("/js/duoshuo/duoshuo.js", \blog\assets\WapAsset::className());
 
 $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",['w' => 300]);
 ?>
+<style type="text/css">
+    .prettyprint .linenums{
+        padding-left:3em;
+    }
+</style>
 <div class="am-paragraph am-paragraph-default">
     <article class="am-article">
         <div class="am-article-hd">
