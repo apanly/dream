@@ -13,11 +13,6 @@ StaticService::includeAppJsStatic("/js/wap/default/info.js", \blog\assets\WapAss
 
 $wx_url = GlobalUrlService::buildStaticUrl("/images/weixin/m_imguowei_888.gif",['w' => 300]);
 ?>
-<style type="text/css">
-    .prettyprint .linenums{
-        padding-left:3em;
-    }
-</style>
 <div class="am-paragraph am-paragraph-default">
     <article class="am-article">
         <div class="am-article-hd">
