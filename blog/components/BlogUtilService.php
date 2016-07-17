@@ -90,8 +90,15 @@ class BlogUtilService {
 
 		$list = [
 			[
+				'date' => '2016-07-17',
+				'title' => '博客V1.4上线',
+				'content' => '<ol>
+<li>博文详情加入扫一扫手机阅读</li>
+</ol>'
+			],
+			[
 				'date' => '2016-07-05',
-				'title' => '开始开发混合App',
+				'title' => '开发混合App',
 				'content' => '<ol>
 <li>使用HBuilder开发混合App</li>
 </ol>'
