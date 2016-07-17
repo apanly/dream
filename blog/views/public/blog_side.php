@@ -33,6 +33,13 @@ $tags = CacheHelperService::getFrontCache("tag");
     </div>
 
     <div class="widget">
+        <h4 class="title">扫一扫手机阅读</h4>
+        <div class="content m_qrcode">
+            <img title="扫一扫手机阅读" src="<?=GlobalUrlService::buildBlogUrl("/default/qrcode",[ "qr_text" => $qr_text ]);?>">
+        </div>
+    </div>
+
+    <div class="widget">
         <h4 class="title">微信服务号</h4>
         <div class="content wechat">
             <img title="编程浪子的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">

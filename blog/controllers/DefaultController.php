@@ -13,6 +13,8 @@ use common\service\CacheHelperService;
 use common\service\GlobalUrlService;
 use common\service\RecommendService;
 use console\modules\blog\Blog;
+use dosamigos\qrcode\lib\Enum;
+use dosamigos\qrcode\QrCode;
 use Yii;
 
 
@@ -150,6 +152,13 @@ class DefaultController extends BaseController{
         return $this->render("changelog",[
             'list' => BlogUtilService::getChangeLog()
         ]);
+    }
+
+    public function actionQrcode(){
+        $qr_text = $this->get("qr_text",GlobalUrlService::buildBlogUrl("/"));
+        header('Content-type: image/png');
+        QrCode::png($qr_text,false,Enum::QR_ECLEVEL_H,5,0,false);
+        exit();
     }
 
 }

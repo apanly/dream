@@ -3,6 +3,7 @@ use  \common\components\DataHelper;
 use \blog\components\StaticService;
 use yii\helpers\Url;
 use blog\components\UrlService;
+use \common\service\GlobalUrlService;
 
 /*lightbox*/
 StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\AppAsset::className());
@@ -88,7 +89,7 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
 
 
 </main>
-<?= Yii::$app->controller->renderPartial("/public/blog_side",[ "recommend_blogs" => $recommend_blogs]); ?>
+<?= Yii::$app->controller->renderPartial("/public/blog_side",[ "recommend_blogs" => $recommend_blogs,"qr_text" => GlobalUrlService::buildWapUrl("/default/info",[  'id' => $info['id'] ]) ]); ?>
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
