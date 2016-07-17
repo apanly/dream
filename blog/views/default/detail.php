@@ -67,7 +67,7 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
                 </div>
             </footer>
         <?php endif; ?>
-
+        <?= Yii::$app->controller->renderPartial("/default/donation.php"); ?>
         <!-- 多说评论框 start -->
         <div class="ds-thread" data-thread-key="<?= $info['id']; ?>" data-title="<?= $info['title']; ?>"
              data-url="<?= $info['url']; ?>"></div>
