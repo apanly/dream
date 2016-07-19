@@ -38,11 +38,15 @@ class LogController extends BaseController{
         if($access_list){
             $idx = 1;
             foreach($access_list as $_item_access ){
+                $tmp_referer = urldecode($_item_access['referer']);
+                if( stripos($tmp_referer,"baidu.com") !== false ){
+                    $tmp_referer = @iconv("GBK","UTF-8",$tmp_referer);
+                }
 
                 $data[] = [
                     'idx' =>  $idx,
                     'target_url' => urldecode($_item_access['target_url']),
-                    'referer' => urldecode($_item_access['referer']),
+                    'referer' => $tmp_referer,
                     'user_agent' => $_item_access['user_agent'],
                     'ip' => $_item_access['ip'],
                     'created_time' => $_item_access['created_time']
