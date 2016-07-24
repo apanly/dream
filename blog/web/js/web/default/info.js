@@ -34,7 +34,6 @@ var default_info_ops = {
         }
 
         $("article .post-content img").each(function(){
-            $(this).hide();
             $(this).attr("title","点击查看大图");
             $(this).attr("alt","点击查看大图");
             var image_url = $(this).attr("src");
@@ -42,11 +41,11 @@ var default_info_ops = {
             wrap_width = dpi?(wrap_width*dpi):wrap_width;
             $(this).attr("width",wrap_width  );
             $(this).attr("src",image_url.replace(/\/w\/\d+/,"/w/" + wrap_width ) );
-
             image_url = image_url.replace(/\/w\/\d+/,"/w/" + picwidth);
             var target = $('<a class="zoom" href="'+image_url+'" data-lightbox="roadtrip"></a>');
             $( this).clone(true).appendTo(target);
             target.insertBefore(  $(this) );
+            $(this).hide();
         });
         lightbox.option({
             'resizeDuration': 200,
