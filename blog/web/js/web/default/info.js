@@ -21,6 +21,7 @@ var default_info_ops = {
         });
     },
     adaptImage:function(){
+        var that = this;
         var windowWidth = $(window).width();
         var dpi = window.devicePixelRatio;
         var width = windowWidth;
@@ -36,6 +37,10 @@ var default_info_ops = {
             $(this).attr("title","点击查看大图");
             $(this).attr("alt","点击查看大图");
             var image_url = $(this).attr("src");
+            var wrap_width = that.calPicWidth( $("article.post").width() );
+            $(this).attr("width",wrap_width  );
+            $(this).attr("src",image_url.replace(/\/w\/\d+/,"/w/" + wrap_width ) );
+
             image_url = image_url.replace(/\/w\/\d+/,"/w/" + picwidth);
             var target = $('<a class="zoom" href="'+image_url+'" data-lightbox="roadtrip"></a>');
             $( this).clone(true).appendTo(target);

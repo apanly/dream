@@ -10,7 +10,11 @@ use \common\service\GlobalUrlService;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
     <link href="<?=StaticService::buildStaticUrl("css/login/index.css");?>" rel='stylesheet' type='text/css'/>
-
+    <style type="text/css">
+        input:-webkit-autofill {
+            -webkit-box-shadow : 0 0 0px 1000px none inset ;
+        }
+    </style>
 </head>
 <body>
 <h2>&nbsp;</h2>
