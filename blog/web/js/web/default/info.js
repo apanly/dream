@@ -38,6 +38,7 @@ var default_info_ops = {
             $(this).attr("alt","点击查看大图");
             var image_url = $(this).attr("src");
             var wrap_width = that.calPicWidth( $("article.post").width() );
+            wrap_width = dpi?(wrap_width*dpi):wrap_width;
             $(this).attr("width",wrap_width  );
             $(this).attr("src",image_url.replace(/\/w\/\d+/,"/w/" + wrap_width ) );
 
