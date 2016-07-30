@@ -6,7 +6,7 @@ StaticService::includeAppCssStatic("/css/wap/wechat_wall/sign.css",\blog\assets\
 StaticService::includeAppJsStatic("http://res.wx.qq.com/open/js/jweixin-1.0.0.js",\blog\assets\MarketAsset::className());
 StaticService::includeAppJsStatic("/js/wap/wechat_wall/sign.js",\blog\assets\MarketAsset::className());
 ?>
-<div class="user_info">
+<div class="user_info" <?php if( !$user_info):?> style="display: none;" <?php endif;?>>
     <p><img src="<?=$user_info['avatar']?>" alt="" /></p>
     <p><?=DataHelper::encode($user_info['nickname'])?></p>
 </div>

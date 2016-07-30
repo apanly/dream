@@ -26,23 +26,23 @@ class BaseController extends BaseBlogController
 
     public function beforeAction($action){
 
-        return true;
-        $login_status = $this->checkLoginStatus();
-
-        if (!$login_status && !in_array($action->getUniqueId(), $this->allowAllAction)) {
-            if( UtilHelper::isWechat() ){
-                if(\Yii::$app->request->isAjax){
-                    $this->renderJSON([],"未登录,请返回用户中心",-302);
-                }else{
-                    $type = in_array($action->getUniqueId(),$this->sns_allow_action)?"snsapi_userinfo":"snsapi_base";
-                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl(),'type' => $type ]);
-                    $this->redirect( $redirect_url );
-                }
-                return false;
-            }
-
-
-        }
+//微信账号被封了
+//        $login_status = $this->checkLoginStatus();
+//
+//        if (!$login_status && !in_array($action->getUniqueId(), $this->allowAllAction)) {
+//            if( UtilHelper::isWechat() ){
+//                if(\Yii::$app->request->isAjax){
+//                    $this->renderJSON([],"未登录,请返回用户中心",-302);
+//                }else{
+//                    $type = in_array($action->getUniqueId(),$this->sns_allow_action)?"snsapi_userinfo":"snsapi_base";
+//                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl(),'type' => $type ]);
+//                    $this->redirect( $redirect_url );
+//                }
+//                return false;
+//            }
+//
+//
+//        }
         return true;
     }
 

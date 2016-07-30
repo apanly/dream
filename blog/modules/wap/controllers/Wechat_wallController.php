@@ -5,6 +5,7 @@ use blog\modules\wap\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\user\User;
 use common\models\user\UserMessageHistory;
+use common\models\user\UserOpenidUnionid;
 use common\models\weixin\WxHistory;
 use common\service\GlobalUrlService;
 
@@ -98,6 +99,36 @@ EOT;
     }
 
     public function actionSign(){
+
+        /*初始化用户*/
+        $woid = $this->get("woid",'');
+        if( $woid ){
+            $date_now = date("Y-m-d H:i:s");
+            $bind_info = UserOpenidUnionid::findOne( [ 'other_openid' => strval($woid) ]  );
+            if( !$bind_info ){
+                $unique_name = md5($woid);
+                $user_info  = User::findOne(['unique_name' => $unique_name]);
+                if( !$user_info ){
+                    $model_user = new User();
+                    $model_user->nickname = "微信用户".substr($woid,-10);
+                    $model_user->unique_name = $unique_name;
+                    $model_user->updated_time = $date_now;
+                    $model_user->created_time = $date_now;
+                    $model_user->save(0);
+                    $user_info = $model_user;
+                }
+
+                $model_bind = new UserOpenidUnionid();
+                $model_bind->uid = $user_info['uid'];
+                $model_bind->openid = $woid;
+                $model_bind->unionid = '';
+                $model_bind->other_openid = $woid;
+                $model_bind->updated_time = $date_now;
+                $model_bind->created_time = $date_now;
+                $model_bind->save(0);
+            }
+        }
+
         return $this->render("sign",[
             "user_info" => $this->current_user
         ]);

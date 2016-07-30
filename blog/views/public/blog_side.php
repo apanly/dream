@@ -10,7 +10,7 @@ $wx_urls = [
 $tags = CacheHelperService::getFrontCache("tag");
 ?>
 <aside class="col-md-4 sidebar">
-    <div class="widget">
+    <div class="widget hide">
         <h4 class="title">搜索</h4>
         <div class="content search">
             <div class="input-group">
@@ -31,14 +31,18 @@ $tags = CacheHelperService::getFrontCache("tag");
                 <?php endforeach;?>
         </div>
     </div>
+    <div class="widget hide">
+        <h4 class="title">阅读目录</h4>
+        <div class="content" id="content">
 
+        </div>
+    </div>
     <div class="widget">
         <h4 class="title">扫一扫手机阅读</h4>
         <div class="content m_qrcode">
             <img title="扫一扫手机阅读" src="<?=GlobalUrlService::buildBlogUrl("/default/qrcode",[ "qr_text" => $qr_text ]);?>">
         </div>
     </div>
-
     <div class="widget">
         <h4 class="title">微信服务号</h4>
         <div class="content wechat">

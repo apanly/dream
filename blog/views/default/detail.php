@@ -20,10 +20,34 @@ StaticService::includeAppJsStatic("/js/web/default/info.js", \blog\assets\AppAss
 StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964", \blog\assets\AppAsset::className());
 ?>
+<style type="text/css">
+    #menuIndex ol, ul {
+        /*/list-style-position: outside;*/
+        list-style:none;
+        margin:0;
+        padding: 0;
+    }
+
+    #menuIndex .h3{
+        margin-top:5px;
+        margin-bottom:5px;
+        font-size:1em;
+        margin-left:10px;
+    }
+    #menuIndex .h2{
+        font-size:1.2em;
+    }
+    #menuIndex ul li a{
+        padding-left: 10px;
+    }
+    #menuIndex ul li.active a{
+        border-left: 2px solid #0099ff;
+
+    }
+</style>
 <main class="col-md-8 main-content">
     <article class="post tag-zhuti tag-static-page tag-customize-page">
         <header class="post-head">
-
             <h1 class="post-title"><?= $info['title']; ?></h1>
             <section class="post-meta">
                 <span class="author">作者：<a

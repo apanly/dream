@@ -2,6 +2,7 @@
 namespace common\service\weixin;
 
 
+use common\models\user\User;
 use common\models\user\UserMessageHistory;
 use common\models\user\UserOpenidUnionid;
 use common\models\weixin\WxHistory;
@@ -57,6 +58,29 @@ class RecordService {
 
         if( in_array( $type, [ "text" ] )  && substr($content,0,1) == "#" ){
             $bind_info = UserOpenidUnionid::findOne( [ 'other_openid' => strval($from_openid) ]  );
+            if( !$bind_info ){
+                $unique_name = md5($from_openid);
+                $user_info  = User::findOne(['unique_name' => $unique_name]);
+                if( !$user_info ){
+                    $model_user = new User();
+                    $model_user->nickname = "微信用户".substr($from_openid,-10);
+                    $model_user->unique_name = $unique_name;
+                    $model_user->updated_time = $date_now;
+                    $model_user->created_time = $date_now;
+                    $model_user->save(0);
+                    $user_info = $model_user;
+                }
+
+                $model_bind = new UserOpenidUnionid();
+                $model_bind->uid = $user_info['uid'];
+                $model_bind->openid = $from_openid;
+                $model_bind->unionid = '';
+                $model_bind->other_openid = $from_openid;
+                $model_bind->updated_time = $date_now;
+                $model_bind->created_time = $date_now;
+                $model_bind->save(0);
+            }
+
             if( $bind_info ){
                 $model_message = new UserMessageHistory();
                 $model_message->uid = $bind_info['uid'];

@@ -106,9 +106,74 @@ var default_info_ops = {
             result.push(args[i].replace('@', static_path + "syntaxhighlighter/scripts/"));
         }
         return result
+    },
+};
+
+var contents_ops = {
+    initHeading:function(){
+        var h2 = [];
+        var h3 = [];
+        var h2index = 0;
+        //获取DOM中h2,h3标签
+        $.each($('h2,h3'),function(index,item){
+            if(item.tagName.toLowerCase() == 'h2'){
+                var h2item = {};
+                h2item.name = $(item).text();
+                h2item.id = 'menuIndex'+index;
+                h2.push(h2item);
+                h2index++;
+            }else{
+                var h3item = {};
+                h3item.name = $(item).text();
+                h3item.id = 'menuIndex'+index;
+                if(h2index-1<0){
+                    alert('2货别在使用h2标签之前使用h3标签');
+                }
+                if(!h3[h2index-1]){
+                    h3[h2index-1] = [];
+                }
+                h3[h2index-1].push(h3item);
+            }
+            item.id = 'menuIndex' + index;
+        });
+        return {h2:h2,h3:h3}
+    },
+    genTmpl:function(){
+        //开始拼接
+        var tmpl = '<ul>';
+        var heading = this.initHeading();
+        var h2 = heading.h2;
+        var h3 = heading.h3;
+        for(var i=0;i<h2.length;i++){
+            tmpl += '<li><a href="javascript:void(0);" data-id="'+h2[i].id+'">'+h2[i].name+'</a></li>';
+            if(h3[i]){
+                for(var j=0;j<h3[i].length;j++){
+                    tmpl += '<li class="h3"><a href="javascript:void(0);" data-id="'+h3[i][j].id+'">'+h3[i][j].name+'</a></li>';
+                }
+            }
+        }
+        tmpl += '</ul>';
+        return tmpl;
+    },
+    getIndex:function(){
+        var tmpl = this.genTmpl();
+        //创建div标签
+        var indexCon = '<div id="menuIndex" class="sidenav"></div>';
+        //加载到页面中
+        $('#content').append(indexCon);
+        $('#menuIndex').append($(tmpl)).delegate('a','click',function(e){
+            var selector = $(this).attr('data-id') ? '#'+$(this).attr('data-id') : 'h1';
+            var scrollNum = $(selector).offset().top;
+            $('body, html').animate({ scrollTop: scrollNum - 15 }, 300, 'linear');
+            $('#menuIndex ul li').removeClass("active");
+            $(this).parent().addClass("active");
+        });
+
+
     }
 };
 
 $(document).ready(function () {
     default_info_ops.init();
+    //contents_ops.getIndex();
 });
