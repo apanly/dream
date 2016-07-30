@@ -102,7 +102,16 @@ EOT;
 
         /*初始化用户*/
         $woid = $this->get("woid",'');
+
+        $wx_user_info = [
+            'avatar' => GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+            'nickname' => '匿名'
+        ];
+
         if( $woid ){
+
+            $wx_user_info['nickname'] = "微信用户".substr($woid,-10);;
+
             $date_now = date("Y-m-d H:i:s");
             $bind_info = UserOpenidUnionid::findOne( [ 'other_openid' => strval($woid) ]  );
             if( !$bind_info ){
@@ -126,11 +135,13 @@ EOT;
                 $model_bind->updated_time = $date_now;
                 $model_bind->created_time = $date_now;
                 $model_bind->save(0);
+
+
             }
         }
 
         return $this->render("sign",[
-            "user_info" => $this->current_user
+            "user_info" => $wx_user_info
         ]);
     }
 } 
