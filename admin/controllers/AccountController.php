@@ -22,7 +22,8 @@ class AccountController extends BaseController{
                     'idx' =>  $idx,
                     'id' => $_item['id'],
                     'title' => DataHelper::encode($_item['title']),
-                    'account' => DataHelper::encode( UtilHelper::maskStr($_item['account'],3,4)),
+                    //'account' => DataHelper::encode( UtilHelper::maskStr($_item['account'],3,4)),
+                    'account' => DataHelper::encode( $_item['account'] ),
                     'pwd' => $tmp_decrypt_pwd,
                     'description' => DataHelper::encode($_item['description']),
                 ];
