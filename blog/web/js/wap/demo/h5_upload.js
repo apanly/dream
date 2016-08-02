@@ -41,6 +41,8 @@ var demo_h5_upload_ops = {
         img.src = res;
     },
     upload:function( image_data ){
+        /*上次方法屏蔽了*/
+        return;
         $.ajax({
             url:common_ops.buildWapUrl("/demo/h5_upload"),
             type:'POST',

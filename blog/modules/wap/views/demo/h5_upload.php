@@ -7,7 +7,7 @@ StaticService::includeAppJsStatic("/js/wap/demo/h5_upload.js", \blog\assets\WapA
 <div class="am-paragraph am-paragraph-default">
 	<article class="am-article">
 		<div class="am-article-hd">
-			<h1 class="am-article-title">Demo标题</h1>
+			<h1 class="am-article-title">H5上传和拍照</h1>
 		</div>
 		<hr data-am-widget="divider"  class="am-divider am-divider-default"/>
 		<div class="am-article-bd  ">
