@@ -31,9 +31,7 @@ WapAsset::register($this);
     <?= Yii::$app->controller->renderPartial("/public/footer"); ?>
 </div>
 <?php $this->endBody() ?>
-<div style="display:none">
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259302647'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1259302647%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
-</div>
+<?php echo \Yii::$app->view->renderFile("@blog/views/public/stat.php");?>
 </body>
 </html>
 <?php $this->endPage() ?>
