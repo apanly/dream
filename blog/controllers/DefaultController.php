@@ -102,18 +102,19 @@ class DefaultController extends BaseController{
         }
 
 
-        $domain_blog = Yii::$app->params['domains']['blog'];
-        $author      = Yii::$app->params['author'];
-        $tags        = explode(",", $post_info['tags']);
-        $data        = [
-            "id"       => $post_info['id'],
-            "title"    => $post_info['title'],
-            "content"  => $post_info['content'],
+        $author = Yii::$app->params['author'];
+        $tags  = explode(",", $post_info['tags']);
+        $content = preg_replace("/brush:(\w+);toolbar:false/","prettyprint linenums",$post_info['content']);
+
+        $data = [
+            "id"  => $post_info['id'],
+            "title" => $post_info['title'],
+            "content"  => $content,
             "original" => $post_info['original'],
-            "tags"     => $tags,
-            'date'     => date("Y年m月d日", strtotime($post_info['updated_time'])),
-            'author'   => $author,
-            "url"      => UrlService::buildUrl("/default/info", [ "id" => $post_info['id'] ])
+            "tags" => $tags,
+            'date' => date("Y年m月d日", strtotime($post_info['updated_time'])),
+            'author' => $author,
+            "url"  => UrlService::buildUrl("/default/info", [ "id" => $post_info['id'] ])
         ];
 
         $prev_info = Posts::find()
