@@ -31,6 +31,11 @@ var post_set_ops = {
         });
 
         $("#post_add_edit .save").click(function(){
+            if( $(this).hasClass("disabled") ){
+                alert("请不要重复提交");
+                return false;
+            }
+
             if(!that.inputCheck()){
                 return false;
             }
@@ -89,6 +94,9 @@ var post_set_ops = {
         return true;
     },
     dataSubmit:function(){
+        var _this = $("#post_add_edit .save");
+        $(_this).addClass("disabled");
+
         var post_id = $.trim($("#post_add_edit input[name=post_id]").val() );
         var title = $.trim( $("#post_add_edit input[name=title]").val() );
         var content  = $.trim( this.ue.getContent() );
@@ -112,6 +120,7 @@ var post_set_ops = {
             dataType:'json',
             success:function(res){
                 alert(res.msg);
+                $(_this).removeClass("disabled");
                 if(res.code == 200){
                     window.location.href = "/posts/set?id="+res.data.post_id;
                 }

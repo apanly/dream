@@ -90,6 +90,14 @@ class BlogUtilService {
 
 		$list = [
 			[
+				'date' => '2016-08-05',
+				'title' => '博客V1.4.1上线',
+				'content' => '<ol>
+<li>博文详情代码高亮插件：prettify</li>
+<li>博文图片自适应排除一些非CDN图片</li>
+</ol>'
+			],
+			[
 				'date' => '2016-07-17',
 				'title' => '博客V1.4上线',
 				'content' => '<ol>
