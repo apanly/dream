@@ -34,9 +34,13 @@ var default_info_ops = {
         }
 
         $("article .post-content img").each(function(){
+            var image_url = $(this).attr("src");
+            if( image_url.indexOf("/default/qrcode") > 0  ){
+                return true;
+            }
+
             $(this).attr("title","点击查看大图");
             $(this).attr("alt","点击查看大图");
-            var image_url = $(this).attr("src");
             var wrap_width = that.calPicWidth( $("article.post").width() );
             wrap_width = dpi?(wrap_width*dpi):wrap_width;
             $(this).attr("width",wrap_width  );
