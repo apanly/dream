@@ -44,6 +44,12 @@ class BlogUtilService {
 					[
 						'title' => 'metaweblog',
 						'url'   => UrlService::buildUrl("/default/info", ['id' => 91])
+					],[
+						'title' => 'H5拍照上传',
+						'url'   => UrlService::buildUrl("/default/info", ['id' => 150])
+					],[
+						'title' => '条形码和二维码',
+						'url'   => UrlService::buildUrl("/default/info", ['id' => 150])
 					]
 				]
 			],
@@ -89,6 +95,13 @@ class BlogUtilService {
 	public static function getChangeLog(){
 
 		$list = [
+			[
+				'date' => '2016-08-08',
+				'title' => '博客V1.4.2上线',
+				'content' => '<ol>
+<li>增加条形码和二维码DEMO</li>
+</ol>'
+			],
 			[
 				'date' => '2016-08-05',
 				'title' => '博客V1.4.1上线',
