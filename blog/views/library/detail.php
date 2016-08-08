@@ -1,6 +1,6 @@
 <?php
 use  \common\components\DataHelper;
-
+use \common\service\GlobalUrlService;
 ?>
 <main class="col-md-12 main-content">
     <article class="post tag-zhuti tag-static-page tag-customize-page">
@@ -16,8 +16,10 @@ use  \common\components\DataHelper;
 
 
         <section class="post-content">
-            <p style="text-align: center;">
+            <p style="text-align: center;position: relative">
                 <img src="<?= $info['image_url']; ?>"/>
+                <br/>
+                <img src="<?=GlobalUrlService::buildBlogUrl("/default/barcode",[ 'barcode' => $info['isbn'],'type' => 'isbn' ]);?>">
             </p>
 
             <p><?= $info['summary']; ?></p>

@@ -11,8 +11,7 @@ use Yii;
 use yii\helpers\Url;
 
 
-class LibraryController extends BaseController
-{
+class LibraryController extends BaseController{
     public function actionIndex(){
         $this->setTitle("图书馆");
         $p = intval($this->get("p", 1));
@@ -20,12 +19,10 @@ class LibraryController extends BaseController
             $p = 1;
         }
 
-        $data     = [];
+        $data = [];
         $pagesize = 20;
         $offset   = ($p - 1) * $pagesize;
-
-
-        $query       = Book::find()->where(['status' => 1]);
+        $query  = Book::find()->where(['status' => 1]);
         $total_count = $query->count();
 
         $books = $query->orderBy("id desc")
@@ -61,10 +58,10 @@ class LibraryController extends BaseController
                 }
 
                 $data[] = [
-                    'id'          => $_book['id'],
+                    'id'  => $_book['id'],
                     'short_title' => $tmp_title,
-                    "title"       => DataHelper::encode($_book['subtitle']),
-                    'author'      => $tmp_author ? $tmp_author : "&nbsp;",
+                    "title"  => DataHelper::encode($_book['subtitle']),
+                    'author'  => $tmp_author ? $tmp_author : "&nbsp;",
                     'imager_url'  => $tmp_small_pic_url,
                     'icon_imager_url'  => $tmp_icon_imager_url,
                     'view_url'    => Url::toRoute(["/library/info", "id" => $_book["id"]])
@@ -111,6 +108,7 @@ class LibraryController extends BaseController
         $data['tags']  = explode(",", $book_info['tags']);
         $data['read_status_info']  = Constant::$read_desc[ $book_info['read_status'] ];
         $data['image_url']  = GlobalUrlService::buildPic1Static($book_info['image_url'],['w' => 500]);
+        $data['isbn'] = $book_info['isbn'];
 
         $prev_info = Book::find()
             ->where(["<", "id", $id])
