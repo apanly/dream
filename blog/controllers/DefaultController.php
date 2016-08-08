@@ -5,6 +5,7 @@ namespace blog\controllers;
 use blog\components\BlogUtilService;
 use blog\components\UrlService;
 use blog\controllers\common\BaseController;
+use common\components\barcode\BarCodeService;
 use common\components\DataHelper;
 use common\components\UtilHelper;
 use common\models\posts\Posts;
@@ -160,6 +161,22 @@ class DefaultController extends BaseController{
         header('Content-type: image/png');
         QrCode::png($qr_text,false,Enum::QR_ECLEVEL_H,5,0,false);
         exit();
+    }
+
+    private $barcode_mapping = [
+        'ean13' => 'BCGean13',
+        'isbn' => 'BCGisbn'
+    ];
+
+    public function actionBarcode(){
+        $barcode = $this->get("barcode","");
+        $type = $this->get("type","BCGcode39");
+        $barcode_class = "BCGcode39";
+        if( isset( $this->barcode_mapping[$type] ) ){
+            $barcode_class =$this->barcode_mapping[$type];
+        }
+
+        BarCodeService::create(  $barcode,$barcode_class  );
     }
 
 }
