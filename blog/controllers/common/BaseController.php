@@ -28,7 +28,10 @@ class BaseController extends Controller
         "default/change-log",
         "default/donation",
         "default/about",
-        "test/index"
+        "test/index",
+        'default/qrcode',
+        'default/barcode'
+
     ];
 
 
