@@ -100,6 +100,7 @@ class BlogUtilService {
 				'title' => '博客V1.4.2上线',
 				'content' => '<ol>
 <li>增加条形码和二维码DEMO</li>
+<li>图书馆书籍详情加入ISBN条形码</li>
 </ol>'
 			],
 			[
