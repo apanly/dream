@@ -49,7 +49,7 @@ class BlogUtilService {
 						'url'   => UrlService::buildUrl("/default/info", ['id' => 150])
 					],[
 						'title' => '条形码和二维码',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 150])
+						'url'   => UrlService::buildUrl("/default/info", ['id' => 152])
 					]
 				]
 			],
