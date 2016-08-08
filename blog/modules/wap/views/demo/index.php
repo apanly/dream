@@ -35,17 +35,11 @@ use \common\service\GlobalUrlService;
 					</a>
 				</li>
 				<li>
-					<a href="<?= GlobalUrlService::buildWapUrl("/demo/scan_code", ['#' => 'qrcode']); ?>">
-						<i  class="am-icon-qrcode am-icon-fw"></i> 生成二维码
-					</a>
-				</li>
-				<li>
-					<a href="<?= GlobalUrlService::buildWapUrl("/demo/scan_code", ['#' => 'barcode']); ?>">
-						<i class="am-icon-barcode am-icon-fw"></i> 生成条形码
+					<a href="<?= GlobalUrlService::buildWapUrl("/demo/scan_code"); ?>">
+						<i  class="am-icon-qrcode am-icon-fw"></i> 生成条形码和二维码
 					</a>
 				</li>
 			</ul>
 		</div>
 	</div>
-
 </div>

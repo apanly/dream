@@ -16,6 +16,10 @@ $wifi = 'WIFI:T:WPA;S:ChuangJia-2F-B;P:123456789';
 $sms = 'smsto:8613774355074:你好，二维码发短信';
 $tel = "tel:13774355074";
 ?>
+<ol class="am-breadcrumb">
+	<li><a href="<?=GlobalUrlService::buildWapUrl("/demo/index");?>">Demo列表</a></li>
+	<li class="am-active">条形码和二维码</li>
+</ol>
 <div class="am-g">
 	<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
 		<section class="am-panel am-panel-default">

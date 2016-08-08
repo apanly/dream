@@ -1,8 +1,13 @@
 <?php
 use \blog\components\StaticService;
 use \common\components\DataHelper;
+use \common\service\GlobalUrlService;
 StaticService::includeAppJsStatic("/js/wap/wechat_wall/index.js", \blog\assets\WapAsset::className());
 ?>
+<ol class="am-breadcrumb">
+    <li><a href="<?=GlobalUrlService::buildWapUrl("/demo/index");?>">Demo列表</a></li>
+    <li class="am-active">微信墙</li>
+</ol>
 <div class="am-g">
     <div class="am-u-sm-12 am-u-md-12">
         <p class="am-text-xl am-text-center"><?=DataHelper::getAuthorName();?>微信墙</p>
