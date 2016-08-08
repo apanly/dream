@@ -44,6 +44,9 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
     .post-content pre{
         background:#000;
     }
+    ol.linenums{
+        margin-left:20px;
+    }
 </style>
 <main class="col-md-8 main-content">
     <article class="post tag-zhuti tag-static-page tag-customize-page">
