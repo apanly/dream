@@ -75,9 +75,6 @@ class DefaultController extends  BaseController {
         }
 
         switch( $keyword ){
-            case "ktv":
-                return ['type'=> "text",'data'=> $this->songTips() ];
-                break;
             case "上墙" :
                 $data = [
                     [
