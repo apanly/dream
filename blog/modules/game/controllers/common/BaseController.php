@@ -26,21 +26,22 @@ class BaseController extends BaseBlogController
         $this->setDescription();
         $this->setKeywords();
 
-        $login_status = $this->checkLoginStatus();
-
-        if (!$login_status && !in_array($action->getUniqueId(), $this->allowAllAction)) {
-            if( UtilHelper::isWechat() ){
-                if(\Yii::$app->request->isAjax){
-                    $this->renderJSON([],"未登录,请返回用户中心",-302);
-                }else{
-                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl() ]);
-                    $this->redirect( $redirect_url );
-                }
-                return false;
-            }
-
-
-        }
+        //微信被封了
+//        $login_status = $this->checkLoginStatus();
+//
+//        if (!$login_status && !in_array($action->getUniqueId(), $this->allowAllAction)) {
+//            if( UtilHelper::isWechat() ){
+//                if(\Yii::$app->request->isAjax){
+//                    $this->renderJSON([],"未登录,请返回用户中心",-302);
+//                }else{
+//                    $redirect_url = UrlService::buildUrl("/weixin/oauth/login",['referer' =>  $this->getLoginUrl() ]);
+//                    $this->redirect( $redirect_url );
+//                }
+//                return false;
+//            }
+//
+//
+//        }
         return true;
     }
 
