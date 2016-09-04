@@ -1,1 +1,0 @@
-<input type="file" accept="image/*;" capture="camera" style="width: 300px;height: 50px;" >

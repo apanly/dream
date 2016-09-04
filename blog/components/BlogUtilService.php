@@ -79,12 +79,18 @@ class BlogUtilService {
 				]
 			],
 			'about'     => [
+
 				'title' => '关于',
-				'url'   => GlobalUrlService::buildBlogUrl("/default/about")
-			],
-			'changelog'     => [
-				'title' => '更新日志',
-				'url'   => GlobalUrlService::buildBlogUrl("/default/change-log")
+				'sub_menu' => [
+					[
+						'title' => '关于',
+						'url'   => GlobalUrlService::buildBlogUrl("/default/about")
+					],[
+						'title' => '更新日志',
+						'url'   => GlobalUrlService::buildBlogUrl("/default/change-log")
+					]
+				]
+
 			]
 		];
 
