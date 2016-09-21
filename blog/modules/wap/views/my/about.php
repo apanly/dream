@@ -116,15 +116,9 @@ $wx_urls = [
         <ul class="am-list">
             <li class="am-g am-list-item-dated">
                 <a href="javascript:void(0);" class="am-list-item-hd ">
-                    上海奥智 PHP开发
-                </a>
-                <span class="am-list-date">2010年10月 ~ 2011年06月</span>
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="javascript:void(0);" class="am-list-item-hd ">
                     上海新浪 PHP开发
                 </a>
-                <span class="am-list-date">2011年06月 ~ 2012年03月</span>
+                <span class="am-list-date">2010年10月 ~ 2012年03月</span>
             </li>
             <li class="am-g am-list-item-dated">
                 <a href="javascript:void(0);" class="am-list-item-hd ">

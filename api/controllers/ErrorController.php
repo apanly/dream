@@ -6,7 +6,7 @@ use common\components\CommonException;
 use Yii;
 use yii\log\FileTarget;
 
-class ErrorController extends yii\web\Controller
+class ErrorController extends \yii\web\Controller
 {
     public function actionError() {
 
@@ -32,7 +32,7 @@ class ErrorController extends yii\web\Controller
             $code = -1;
             $msg = "系统错误，请稍后重试";
         }
-        $this->goHome();
+        return $this->goHome();
     }
 }
 
