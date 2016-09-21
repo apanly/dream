@@ -14,13 +14,13 @@ class BlogUtilService {
 				'title' => '文章',
 				'url'   => GlobalUrlService::buildBlogUrl("/")
 			],
-			'richmedia' => [
-				'title' => '富媒体',
-				'url'   => GlobalUrlService::buildBlogUrl("/richmedia/index")
-			],
 			'library'   => [
 				'title' => '图书馆',
 				'url'   => GlobalUrlService::buildBlogUrl("/library/index")
+			],
+			'donation'   => [
+				'title' => '赞助',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/donation")
 			],
 			'project'   => [
 				'title'    => '项目',
@@ -83,8 +83,11 @@ class BlogUtilService {
 				'title' => '关于',
 				'sub_menu' => [
 					[
-						'title' => '关于',
+						'title' => '我',
 						'url'   => GlobalUrlService::buildBlogUrl("/default/about")
+					],[
+						'title' => '富媒体',
+						'url'   => GlobalUrlService::buildBlogUrl("/richmedia/index")
 					],[
 						'title' => '更新日志',
 						'url'   => GlobalUrlService::buildBlogUrl("/default/change-log")

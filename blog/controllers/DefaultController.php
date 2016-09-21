@@ -146,7 +146,8 @@ class DefaultController extends BaseController{
     }
 
     public function actionDonation(){
-        return $this->redirect( GlobalUrlService::buildBlogUrl("/default/about") );
+        $this->setTitle("感谢每一位支持的好朋友~~");
+        return $this->render("donation");
     }
 
     public function actionChangeLog(){
