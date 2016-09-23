@@ -94,7 +94,11 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
                 </div>
             </footer>
         <?php endif; ?>
-        <?= Yii::$app->controller->renderPartial("/default/donation.php"); ?>
+        <footer class="post-footer clearfix">
+            <div class="pull-left">
+                <img title="支付宝赞助" src="<?=GlobalUrlService::buildStaticUrl("/images/pay/pay.jpg");?>" style="max-width: 500px;" height="300">
+            </div>
+        </footer>
         <!-- 多说评论框 start -->
         <div class="ds-thread" data-thread-key="<?= $info['id']; ?>" data-title="<?= $info['title']; ?>"
              data-url="<?= $info['url']; ?>"></div>
