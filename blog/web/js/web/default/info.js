@@ -39,22 +39,47 @@ var default_info_ops = {
                 return true;
             }
 
-            $(this).attr("title","点击查看大图");
-            $(this).attr("alt","点击查看大图");
+
             var wrap_width = that.calPicWidth( $("article.post").width() );
             wrap_width = dpi?(wrap_width*dpi):wrap_width;
             $(this).attr("width",wrap_width  );
             $(this).attr("src",image_url.replace(/\/w\/\d+/,"/w/" + wrap_width ) );
             image_url = image_url.replace(/\/w\/\d+/,"/w/" + picwidth);
-            var target = $('<a class="zoom" href="'+image_url+'" data-lightbox="roadtrip"></a>');
+
+            //以前使用lightbox换掉了
+            //var target = $('<a class="zoom" href="'+image_url+'" data-lightbox="roadtrip"></a>');
+
+            var img_title = $(this).attr("title");
+            img_title = ( img_title != undefined && img_title.length > 1 )?img_title:'';
+
+            var target = $('<a class="fancybox" rel="gallery1" href="'+image_url+'" title="'+img_title+'"></a>');
+
+            $(this).attr("title","点击查看大图");
+            $(this).attr("alt","点击查看大图");
+
             $( this).clone(true).appendTo(target);
             target.insertBefore(  $(this) );
             $(this).hide();
         });
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true
-        })
+
+        // lightbox.option({
+        //     'resizeDuration': 200,
+        //     'wrapAround': true
+        // });
+
+        $(".fancybox").fancybox({
+            openEffect	: 'none',
+            closeEffect	: 'none',
+            nextClick: true,
+            helpers: {
+                title : {
+                    type : 'inside'
+                }
+            },
+            afterLoad : function() {
+                this.title = '图库 ' + (this.index + 1) + ' / ' + this.group.length + (this.title ? ' - ' + this.title : '');
+            }
+        });
     },
     calPicWidth:function(width){
         var tmp_int = Math.ceil(width/50);
@@ -68,7 +93,7 @@ var default_info_ops = {
             result.push(args[i].replace('@', static_path + "syntaxhighlighter/scripts/"));
         }
         return result
-    },
+    }
 };
 
 var contents_ops = {

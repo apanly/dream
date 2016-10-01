@@ -6,8 +6,12 @@ use blog\components\UrlService;
 use \common\service\GlobalUrlService;
 
 /*lightbox*/
-StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\AppAsset::className());
-StaticService::includeStaticJs("/jquery/lightbox2/js/lightbox.min.js",\blog\assets\AppAsset::className());
+//StaticService::includeStaticCss("/jquery/lightbox2/css/lightbox.css",\blog\assets\AppAsset::className());
+//StaticService::includeStaticJs("/jquery/lightbox2/js/lightbox.min.js",\blog\assets\AppAsset::className());
+
+/*fancy*/
+StaticService::includeStaticCss("/jquery/fancy/jquery.fancybox.css",\blog\assets\AppAsset::className());
+StaticService::includeStaticJs("/jquery/fancy/jquery.fancybox.pack.js",\blog\assets\AppAsset::className());
 
 /*prettify*/
 StaticService::includeStaticCss("/prettify/prettify.sons.css",\blog\assets\AppAsset::className());
