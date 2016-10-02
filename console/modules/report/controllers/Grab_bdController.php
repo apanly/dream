@@ -21,8 +21,11 @@ class Grab_bdController extends Stat_utilController{
             $this->echoLog( HttpClient::getLastErrorMsg() );
             return;
         }
-
-        $this->save2File("keywordlist_bd_{$date}_".date("YmdHis").".csv" ,$ret);
+        $params = [
+            'type' => 1,
+            'source' => 1
+        ];
+        $this->save2File("keywordlist_bd_{$date}_".date("YmdHis").".csv" ,$ret,$params);
     }
 
 }

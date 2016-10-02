@@ -25,6 +25,11 @@ class Grab_umengController extends Stat_utilController{
             $this->echoLog( HttpClient::getLastErrorMsg() );
             return;
         }
-        $this->save2File( "keywordlist_umeng_{$date}".date("YmdHis").".csv" ,$ret);
+        $params = [
+            'type' => 1,
+            'source' => 2
+        ];
+
+        $this->save2File( "keywordlist_umeng_{$date}".date("YmdHis").".csv" ,$ret,$params);
     }
 }
