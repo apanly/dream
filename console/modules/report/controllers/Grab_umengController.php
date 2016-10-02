@@ -27,7 +27,8 @@ class Grab_umengController extends Stat_utilController{
         }
         $params = [
             'type' => 1,
-            'source' => 2
+            'action' => 2,
+            'date' => $date
         ];
 
         $this->save2File( "keywordlist_umeng_{$date}".date("YmdHis").".csv" ,$ret,$params);

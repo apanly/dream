@@ -4,6 +4,7 @@ namespace console\modules\report\controllers;
 
 use common\models\report\ReportAnalyseFiles;
 use common\models\report\ReportAuthHistory;
+use common\models\report\ReportDailyKeywords;
 use yii\console\Controller;
 
 class Stat_utilController extends Controller{
@@ -42,11 +43,12 @@ class Stat_utilController extends Controller{
     }
 
     protected function save2File( $filename,$data,$params ){
-        if( file_put_contents( $this->getSavePath().$filename ,$data ) ){
+        if( file_put_contents( $this->getSaveDirPath().$filename ,$data ) ){
             $model_report_file = new ReportAnalyseFiles();
             $model_report_file->type = isset( $params['type'] )?$params['type']:0;
-            $model_report_file->source = isset( $params['source'] )?$params['source']:0;
+            $model_report_file->action = isset( $params['action'] )?$params['action']:0;
             $model_report_file->file_path = $filename;
+            $model_report_file->date = isset( $params['date'] )?$params['date']:'0000-00-00';
             $model_report_file->status = -1;
             $model_report_file->updated_time = date("Y-m-d H:i:s");
             $model_report_file->created_time = $model_report_file->updated_time;
@@ -55,7 +57,40 @@ class Stat_utilController extends Controller{
         return false;
     }
 
-    protected function getSavePath(){
+    protected function saveDailyKeyword( $params ){
+        if( !$params || !isset( $params['type'] ) || !isset( $params['date'] ) || !isset($params['word']) ){
+            return false;
+        }
+        $date_now = date("Y-m-d H:i:s");
+        $uniq_key = md5( implode("_",[ $params['type'],$params['date'],$params['word']  ]) );
+
+        $info = ReportDailyKeywords::findOne(['uniq_key' => $uniq_key ]);
+
+        if( $info ){
+            $model_report_keyword = $info;
+        }else{
+            $model_report_keyword = new ReportDailyKeywords();
+            $model_report_keyword->uniq_key = $uniq_key;
+            $model_report_keyword->created_time =$date_now;
+        }
+
+        foreach( $params as $_key => $_val ){
+            $model_report_keyword[ $_key  ] = $_val;
+        }
+        $model_report_keyword->updated_time = $date_now;
+        return $model_report_keyword->save(0);
+    }
+
+    protected function getSaveDirPath(){
         return \Yii::$app->params['report']['dir_path'];
+    }
+
+    protected function buildFilePath( $filepath ){
+        return $this->getSaveDirPath().$filepath;
+    }
+
+    protected function checkHasFileByDate( $type,$date ){
+        $has_get = ReportAnalyseFiles::find()->where([ 'type' => $type,'date' => $date ])->count();
+        return $has_get?true:false;
     }
 }

@@ -5,25 +5,26 @@ namespace common\models\report;
 use Yii;
 
 /**
- * This is the model class for table "report_analyse_files".
+ * This is the model class for table "report_daily_keywords".
  *
  * @property integer $id
  * @property integer $type
- * @property integer $action
- * @property string $file_path
  * @property string $date
- * @property integer $status
+ * @property string $word
+ * @property string $uniq_key
+ * @property integer $click_number
+ * @property integer $display_number
  * @property string $updated_time
  * @property string $created_time
  */
-class ReportAnalyseFiles extends \yii\db\ActiveRecord
+class ReportDailyKeywords extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'report_analyse_files';
+        return 'report_daily_keywords';
     }
 
     /**
@@ -40,10 +41,11 @@ class ReportAnalyseFiles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type'], 'required'],
-            [['type', 'action', 'status'], 'integer'],
+            [['type', 'click_number', 'display_number'], 'integer'],
             [['date', 'updated_time', 'created_time'], 'safe'],
-            [['file_path'], 'string', 'max' => 100],
+            [['word'], 'string', 'max' => 100],
+            [['uniq_key'], 'string', 'max' => 32],
+            [['uniq_key'], 'unique'],
         ];
     }
 
@@ -55,10 +57,11 @@ class ReportAnalyseFiles extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'type' => 'Type',
-            'action' => 'Action',
-            'file_path' => 'File Path',
             'date' => 'Date',
-            'status' => 'Status',
+            'word' => 'Word',
+            'uniq_key' => 'Uniq Key',
+            'click_number' => 'Click Number',
+            'display_number' => 'Display Number',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];
