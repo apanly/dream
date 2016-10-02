@@ -1,12 +1,14 @@
 <?php
 
 namespace common\components;
+use common\service\BaseService;
 use Yii;
 
-class HttpClient
-{
+class HttpClient  extends  BaseService{
 
     private static $headers = [];
+
+    private static $cookie = null;
 
 
     public static function get($url, $param =[]) {
@@ -49,6 +51,10 @@ class HttpClient
             curl_setopt ($curl, CURLOPT_HTTPHEADER , $headerArr );  //构造IP
         }
 
+        if( self::$cookie ){
+            curl_setopt($curl, CURLOPT_COOKIE, self::$cookie);
+        }
+
 
         // post处理
         if ($method == 'post')
@@ -77,11 +83,20 @@ class HttpClient
         $calculate_time_span = microtime(true) - $calculate_time1;
         $log = \Yii::$app->getRuntimePath().DIRECTORY_SEPARATOR.'curl.log';
         file_put_contents($log,date('Y-m-d H:i:s')." [ time:{$calculate_time_span} ] url: {$url} \nmethod: {$method} \ndata: ".json_encode($param)." \nresult: {$info} \nerrorno: {$_errno} error: {$_error} \n",FILE_APPEND);
+
+        if( $_error ){
+            return self::_err( $_error );
+        }
+
         return $info;
     }
 
     public static function setHeader($header){
          self::$headers = $header;
+    }
+
+    public static function setCookie( $cookie ){
+        self::$cookie = $cookie;
     }
 
 

@@ -16,6 +16,9 @@ return [
         'blog' => [
             'class' => 'console\modules\blog\BlogModule'
         ],
+        'report' => [
+            'class' => 'console\modules\report\ReportModule'
+        ]
 
     ],
     'components' => [
