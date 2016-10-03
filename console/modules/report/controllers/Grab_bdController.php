@@ -14,13 +14,19 @@ class Grab_bdController extends Stat_utilController{
     public function actionKeywords( $param_date = 'Today' ){
         $date = date('Y-m-d', strtotime($param_date));
         if( $this->checkHasFileByDate( 1,$date ) ){
-            return $this->echoLog("has file,date:{$date} ");
+            //return $this->echoLog("has file,date:{$date} ");
         }
 
         $cookie = $this->getAuthCookie( 1 );
         $url = "http://zhanzhang.baidu.com/keywords/keywordlist?site=http%3A%2F%2Fwww.vincentguo.cn%2F&range={$date}&download=true&searchItem=";
         HttpClient::setCookie( $cookie );
         $ret = HttpClient::get( $url );
+
+        if( stripos( $ret,'Too many downloads' ) !== false ){//错误了
+            $this->echoLog( $ret );
+            return;
+        }
+
         if( !$ret ){
             $this->echoLog( HttpClient::getLastErrorMsg() );
             return;

@@ -14,6 +14,7 @@ use Yii;
  * @property string $uniq_key
  * @property integer $click_number
  * @property integer $display_number
+ * @property string $params
  * @property string $updated_time
  * @property string $created_time
  */
@@ -45,6 +46,7 @@ class ReportDailyKeywords extends \yii\db\ActiveRecord
             [['date', 'updated_time', 'created_time'], 'safe'],
             [['word'], 'string', 'max' => 100],
             [['uniq_key'], 'string', 'max' => 32],
+            [['params'], 'string', 'max' => 2000],
             [['uniq_key'], 'unique'],
         ];
     }
@@ -62,6 +64,7 @@ class ReportDailyKeywords extends \yii\db\ActiveRecord
             'uniq_key' => 'Uniq Key',
             'click_number' => 'Click Number',
             'display_number' => 'Display Number',
+            'params' => 'Params',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];
