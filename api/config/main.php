@@ -15,6 +15,9 @@ return [
     'modules' => [
         'weixin'=>[
             'class' =>'api\modules\weixin\WeixinModule'
+        ],
+        'emoticon'=>[
+            'class' =>'api\modules\emoticon\EmoticonModule'
         ]
     ],
     'components' => [

@@ -127,6 +127,10 @@ class GlobalUrlService {
         $weight = isset($params['w'])?$params['w']:0;
         $height = isset($params['h'])?$params['h']:0;
 
+        if( substr($path,0,1) != "/" ){
+            $path = "/".$path;
+        }
+
         $url = $domain.$path;
         if( !$height && !$weight ){
             return $url;
@@ -134,11 +138,11 @@ class GlobalUrlService {
 
         if( $switch ){
             if( $height && $weight ){
-                $url .= "?imageView2/1/w/{$weight}/h/{$height}/interlace/1";
+                $url .= "?imageView2/2/w/{$weight}/h/{$height}/interlace/1";
             }else if( $weight ){
-                $url .= "?imageView/2/w/{$weight}";
+                $url .= "?imageView2/2/w/{$weight}";
             }else if( $height ){
-                $url .= "?imageView/2/h/{$height}";
+                $url .= "?imageView2/2/h/{$height}";
             }
         }else{
             if( $height && $weight ){

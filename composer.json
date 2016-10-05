@@ -25,7 +25,8 @@
     "wrep/notificato": "~1.1",
     "2amigos/yii2-qrcode-helper": "~1.0",
     "fxp/composer-asset-plugin": "~1.0",
-    "phpoffice/phpexcel": "1.8.0"
+    "phpoffice/phpexcel": "1.8.0",
+    "bupt1987/html-parser": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

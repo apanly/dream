@@ -18,8 +18,10 @@ return [
         ],
         'report' => [
             'class' => 'console\modules\report\ReportModule'
+        ],
+        'emoticon' => [
+            'class' => 'console\modules\emoticon\EmoticonModule'
         ]
-
     ],
     'components' => [
         'log' => [
