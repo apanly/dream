@@ -14,4 +14,8 @@ class MyController extends BaseController{
     public function actionWechat(){
         return $this->redirect( UrlService::buildWapUrl("/my/about#contact") );
     }
+
+    public function actionEmoticon(){
+        return $this->render("emoticon");
+    }
 } 

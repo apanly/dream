@@ -9,7 +9,6 @@ use common\service\GlobalUrlService;
 
 class DefaultController extends  BaseController {
 
-
     public function actionIndex(){
         header('Access-Control-Allow-Origin:*');
         $p = intval( $this->get("p",1) );
@@ -34,7 +33,6 @@ class DefaultController extends  BaseController {
         }
         return $this->renderJSON( $data );
     }
-
 
     public function actionInfo(  ){
         header('Access-Control-Allow-Origin:*');
@@ -104,6 +102,13 @@ class DefaultController extends  BaseController {
         ];
 
         return $this->renderJSON( $data );
+    }
+
+    public function actionFind(){
+        $mapping = [
+            
+        ];
+        return $mapping;
     }
 
     public function actionQueue(){
