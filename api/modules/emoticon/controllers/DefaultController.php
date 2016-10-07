@@ -162,6 +162,11 @@ class DefaultController extends BaseController
 				"icon" => GlobalUrlService::buildStaticUrl("/app/cjdbq/smiling_girl.png"),
 				"title" => '最新笑话',
 				"url" => 'http://m.budejie.com/text/'
+			],
+			[
+				"icon" => GlobalUrlService::buildStaticUrl("/images/icon.png"),
+				"title" => '编程浪子',
+				"url" => 'http://m.vincentguo.cn'
 			]
 		];
 		return $this->renderJSON($mapping);
