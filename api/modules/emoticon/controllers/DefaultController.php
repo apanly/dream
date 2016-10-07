@@ -127,4 +127,15 @@ class DefaultController extends  BaseController {
         }
         return $this->renderJSON();
     }
+
+    public function actionUpdate() {
+        $data = [
+            'versionCode' => 28,
+            'versionName' => '0.0.2',
+            'msg' => "1.界面美化
+            2.性能优化，更流畅
+            3.减少了更新框弹出时间",
+            'apk' => 'http://www.turtletl.com/android-debug.apk'];
+        return $this->renderJSON($data);
+    }
 } 
