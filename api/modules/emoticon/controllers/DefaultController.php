@@ -109,6 +109,7 @@ class DefaultController extends  BaseController {
     }
 
     public function actionFind(){
+        header('Access-Control-Allow-Origin:*');
         $mapping = [
             
         ];
@@ -116,6 +117,7 @@ class DefaultController extends  BaseController {
     }
 
     public function actionQueue(){
+        header('Access-Control-Allow-Origin:*');
         $url = trim( $this->post("url","") );
         if( !$url ){
             return $this->renderJSON([],'no illage param url ~~',-1);
@@ -129,6 +131,7 @@ class DefaultController extends  BaseController {
     }
 
     public function actionUpdate() {
+        header('Access-Control-Allow-Origin:*');
         $data = [
             'versionCode' => 28,
             'versionName' => '0.0.2',
