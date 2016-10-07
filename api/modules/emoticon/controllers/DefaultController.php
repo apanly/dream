@@ -138,7 +138,8 @@ class DefaultController extends  BaseController {
             'msg' => "1.界面美化
             2.性能优化，更流畅
             3.减少了更新框弹出时间",
-            'apk' => 'http://www.turtletl.com/android-debug.apk'];
+            'apk' => 'http://cdn.static.yunetidc.com/app/dream_blog/dream_blog_v1.0.apk'
+        ];
         return $this->renderJSON($data);
     }
 } 
