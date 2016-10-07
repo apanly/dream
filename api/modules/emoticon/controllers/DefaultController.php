@@ -133,7 +133,7 @@ class DefaultController extends  BaseController {
     public function actionUpdate() {
         header('Access-Control-Allow-Origin:*');
         $data = [
-            'versionCode' => 28,
+            'versionCode' => '1.0',
             'versionName' => '0.0.2',
             'msg' => "1.界面美化
             2.性能优化，更流畅
