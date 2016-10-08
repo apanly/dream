@@ -71,7 +71,7 @@ class DefaultController extends BaseController
 			'id'        => $info['id'],
 			'url'       => GlobalUrlService::buildPic2Static($info['url'], ['w' => $w]),
 			'file_name' => $info['url'],
-			'small_url' => GlobalUrlService::buildPic2Static($info['url'], ['w' => 100]),
+			'small_url' => GlobalUrlService::buildPic2Static($info['url'], ['w' => 100,'h' => 100]),
 			'share_url' => GlobalUrlService::buildPic2Static($info['url'], ['w' => 200]),
 		];
 
@@ -81,7 +81,7 @@ class DefaultController extends BaseController
 					'id'        => $_item['id'],
 					'url'       => GlobalUrlService::buildPic2Static($_item['url'], ['w' => $w]),
 					'file_name' => $_item['url'],
-					'small_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 100]),
+					'small_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 100,'h' => 100]),
 					'share_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 200])
 				];
 			}
@@ -95,7 +95,7 @@ class DefaultController extends BaseController
 					'id'        => $_item['id'],
 					'url'       => GlobalUrlService::buildPic2Static($_item['url'], ['w' => $w]),
 					'file_name' => $_item['url'],
-					'small_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 100]),
+					'small_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 100,'h' => 100]),
 					'share_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 200])
 				];
 			}
