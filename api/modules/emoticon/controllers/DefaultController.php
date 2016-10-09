@@ -77,9 +77,9 @@ class DefaultController extends BaseController
 
 		if ($pre_list) {
 			foreach ($pre_list as $_item) {
-				$thunb_images[] = [
-					'id'        => $_item['id'],
-					'url'       => GlobalUrlService::buildPic2Static($_item['url'], ['w' => $w]),
+				$thunb_images[ $_item['id'] ] = [
+					'id' => $_item['id'],
+					'url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => $w]),
 					'file_name' => $_item['url'],
 					'small_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 100,'h' => 100]),
 					'share_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 200])
@@ -87,26 +87,21 @@ class DefaultController extends BaseController
 			}
 		}
 
-		$thunb_images[] = $current_image;
+		$thunb_images[ $info['id'] ]  = $current_image;
 
 		if ($next_list) {
 			foreach ($next_list as $_item) {
-				$thunb_images[] = [
-					'id'        => $_item['id'],
-					'url'       => GlobalUrlService::buildPic2Static($_item['url'], ['w' => $w]),
+				$thunb_images[ $_item['id'] ] = [
+					'id' => $_item['id'],
+					'url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => $w]),
 					'file_name' => $_item['url'],
 					'small_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 100,'h' => 100]),
 					'share_url' => GlobalUrlService::buildPic2Static($_item['url'], ['w' => 200])
 				];
 			}
 		}
-
-		$data = [
-			'current' => $current_image,
-			'gallary' => $thunb_images
-		];
-
-		return $this->renderJSON($data);
+		
+		return $this->renderJSON( $thunb_images );
 	}
 
 
