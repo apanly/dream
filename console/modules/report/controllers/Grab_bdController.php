@@ -7,6 +7,8 @@ use common\components\HttpClient;
 class Grab_bdController extends Stat_utilController{
     /*
      * 百度的统计
+     * 百度统计地址：http://tongji.baidu.com/web/21698230/trend/time?siteId=9585019&flag=month
+     * zhanzhang.baidu.com 是站长工具了
      * php yii report/grab_bd/keywords
      * 需要获取
      * 1：关键次
