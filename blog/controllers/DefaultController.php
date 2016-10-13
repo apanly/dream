@@ -106,6 +106,7 @@ class DefaultController extends BaseController{
         $author = Yii::$app->params['author'];
         $tags  = explode(",", $post_info['tags']);
         $content = preg_replace("/brush:(\w+);toolbar:false/","prettyprint linenums",$post_info['content']);
+        $content = str_replace("<pre>","<pre class='prettyprint linenums'>",$content);
 
         $data = [
             "id"  => $post_info['id'],
