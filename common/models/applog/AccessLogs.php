@@ -12,6 +12,7 @@ use Yii;
  * @property string $target_url
  * @property string $user_agent
  * @property string $ip
+ * @property string $uuid
  * @property string $created_time
  */
 class AccessLogs extends \yii\db\ActiveRecord
@@ -42,7 +43,8 @@ class AccessLogs extends \yii\db\ActiveRecord
             [['referer'], 'string', 'max' => 300],
             [['target_url'], 'string', 'max' => 500],
             [['user_agent'], 'string', 'max' => 200],
-            [['ip'], 'string', 'max' => 128]
+            [['ip'], 'string', 'max' => 128],
+            [['uuid'], 'string', 'max' => 100],
         ];
     }
 
@@ -57,6 +59,7 @@ class AccessLogs extends \yii\db\ActiveRecord
             'target_url' => 'Target Url',
             'user_agent' => 'User Agent',
             'ip' => 'Ip',
+            'uuid' => 'Uuid',
             'created_time' => 'Created Time',
         ];
     }

@@ -1,13 +1,15 @@
 <?php
 namespace blog\components;
 
+use common\components\UtilHelper;
+use common\service\Constant;
 use Yii;
 use \common\models\user\User;
 
 class BaseBlogController extends \common\components\BaseWebController{
 
     public $auth_cookie_name = "m_vincentguo";
-    public  $salt = "cr5s6fwPKgKrSvpTNd971ea8fbc47";
+    public $salt = "cr5s6fwPKgKrSvpTNd971ea8fbc47";
     public $current_user = null;
 
     public function checkLoginStatus(){
@@ -40,4 +42,12 @@ class BaseBlogController extends \common\components\BaseWebController{
     public function geneAuthToken($uid,$nickname){
         return md5($this->salt."-{$uid}-{$nickname}");
     }
+
+	public function setUUID(){
+		$this->setCookie( Constant::$uuid_cookie_name,UtilHelper::gene_guid() );
+	}
+
+	public function getUUID(){
+		return $this->getCookie(Constant::$uuid_cookie_name,'' );
+	}
 }

@@ -42,6 +42,9 @@ class BaseController extends BaseBlogController
 //
 //
 //        }
+		if( !$this->getUUID() ){
+			$this->setUUID();
+		}
         return true;
     }
 

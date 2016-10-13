@@ -34,5 +34,7 @@ class Constant {
         1 => ['class' => 'success','desc' => "已读完"]
     ];
 
+	public static $uuid_cookie_name = "vuuid";
+
 
 } 

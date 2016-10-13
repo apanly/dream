@@ -7,8 +7,6 @@ use common\components\UtilHelper;
 
 class BaseController extends BaseBlogController {
 
-    private $cookie_uuid = 'm_uuid';
-
     protected $allowAllAction = [];
 
     protected $sns_allow_action = [
@@ -82,13 +80,5 @@ class BaseController extends BaseBlogController {
     public function goLibraryHome(){
         return $this->redirect(UrlService::buildWapUrl("/library/index"));
     }
-    
-    
-    public function setUUID(){
-        $this->setCookie( $this->cookie_uuid,UtilHelper::gene_guid() );
-    }
 
-    public function getUUID(){
-        return $this->getCookie( $this->cookie_uuid,'' );
-    }
 } 
