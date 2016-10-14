@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $referer
  * @property string $target_url
+ * @property integer $blog_id
  * @property string $user_agent
  * @property string $ip
  * @property string $uuid
@@ -39,6 +40,7 @@ class AccessLogs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['blog_id'], 'integer'],
             [['created_time'], 'safe'],
             [['referer'], 'string', 'max' => 300],
             [['target_url'], 'string', 'max' => 500],
@@ -57,6 +59,7 @@ class AccessLogs extends \yii\db\ActiveRecord
             'id' => 'ID',
             'referer' => 'Referer',
             'target_url' => 'Target Url',
+            'blog_id' => 'Blog ID',
             'user_agent' => 'User Agent',
             'ip' => 'Ip',
             'uuid' => 'Uuid',
