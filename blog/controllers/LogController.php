@@ -15,7 +15,7 @@ class LogController extends BaseController{
         $target_url = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"";
         if( $target_url ){
 			$blog_id = 0;
-			preg_match("/\/default\/(\d+)(.html)?$/",$target_url,$matches);
+			preg_match("/\/default\/(\d+)(.html)?/",$target_url,$matches);
 			if( $matches && count( $matches ) >= 2  ){
 				$blog_id = $matches[1];
 			}
