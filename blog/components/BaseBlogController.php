@@ -44,7 +44,7 @@ class BaseBlogController extends \common\components\BaseWebController{
     }
 
 	public function setUUID(){
-		$this->setCookie( Constant::$uuid_cookie_name,UtilHelper::gene_guid() );
+		$this->setCookie( Constant::$uuid_cookie_name,UtilHelper::gene_guid() , 60 * 60 * 24 * 30 );
 	}
 
 	public function getUUID(){
