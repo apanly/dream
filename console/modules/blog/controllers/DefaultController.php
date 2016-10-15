@@ -3,6 +3,7 @@
 namespace console\modules\blog\controllers;
 
 use common\models\applog\AccessLogs;
+use common\models\posts\Posts;
 use console\modules\blog\Blog;
 use common\service\health\HealthService;
 
@@ -12,20 +13,22 @@ class DefaultController extends Blog{
     }
 
     public function actionFixAccessLog(){
-    	$list = AccessLogs::find()->orderBy([ 'id' => SORT_ASC ])->all();
-		foreach( $list as $_item){
-			$tmp_blog_id = 0;
-			preg_match("/\/default\/(\d+)(.html)?/",$_item['target_url'],$matches);
-			if( $matches && count( $matches ) >= 2  ){
-				$tmp_blog_id = $matches[1];
+    	$stat_list = AccessLogs::find()
+			->select([ 'blog_id','count(*) as counter' ])
+			->where([ '>','blog_id',0 ])
+			->groupBy("blog_id")
+			->asArray()
+			->all();
+		foreach( $stat_list as $_item ){
+			if( $_item['blog_id'] < 0 ){
+				continue;
 			}
-
-			if( $_item['referer'] ){
-				$tmp_source = parse_url( $_item['referer'] ,PHP_URL_HOST );
-				$_item->source = $tmp_source;
+			$this->echoLog( $_item['blog_id'].":".$_item['counter'] );
+			$blog_info = Posts::findOne([ 'id' => $_item['blog_id'] ]);
+			if( $blog_info ){
+				$blog_info->view_count =  $_item['counter'];
+				$blog_info->update(0);
 			}
-			$_item->blog_id = $tmp_blog_id;
-			$_item->update(0);
 		}
 	}
 }
