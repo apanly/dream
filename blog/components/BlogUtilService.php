@@ -105,6 +105,14 @@ class BlogUtilService {
 
 		$list = [
 			[
+				'date' => '2016-10-15',
+				'title' => '博客V1.4.3上线',
+				'content' => '<ol>
+<li>增加文章阅读量展示</li>
+<li>修改热门博文列表</li>
+</ol>'
+			],
+			[
 				'date' => '2016-08-08',
 				'title' => '博客V1.4.2上线',
 				'content' => '<ol>

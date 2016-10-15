@@ -45,7 +45,8 @@ class CacheHelperService {
 
 
             $post_hot = Posts::find()
-                ->where(['status' => 1,'hot' => 1])
+                ->where(['status' => 1])
+				->orderBy([ 'view_count' => SORT_DESC ])
                 ->limit(10)
                 ->all();
             if( $post_hot ){
@@ -60,6 +61,7 @@ class CacheHelperService {
 
             $post_origin = Posts::find()
                 ->where(['status' => 1,'original' => 1])
+				->orderBy([ 'id' => SORT_DESC ])
                 ->limit(10)
                 ->all();
             if( $post_origin ){
@@ -74,7 +76,7 @@ class CacheHelperService {
 
             $post_latest = Posts::find()
                 ->where(['status' => 1])
-                ->orderBy("id desc")
+				->orderBy([ 'id' => SORT_DESC ])
                 ->limit(10)
                 ->all();
             if( $post_latest ){
