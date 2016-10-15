@@ -19,10 +19,11 @@ class DefaultController extends BaseController
         $type = in_array($type, [1, 2, 3]) ? $type : 1;
 
         $data = $this->search(['p' => 1, 'type' => $type]);
+
         return $this->render("index", [
             "post_list_html" => $this->buildItem($data),
-            "has_next"       => (count($data) < $this->page_size) ? false : true,
-            "type"           => $type
+            "has_next" => (count($data) < $this->page_size) ? false : true,
+            "type"  => $type
         ]);
     }
 
@@ -79,25 +80,28 @@ class DefaultController extends BaseController
 
     private function search($params = [])
     {
-        $p    = isset($params['p']) ? $params['p'] : 1;
+        $p = isset($params['p']) ? $params['p'] : 1;
         $type = isset($params['type']) ? $params['type'] : 1;
 
         $offset = ($p - 1) * $this->page_size;
-
         $query = Posts::find()->where(['status' => 1]);
 
-        if ($type == 2) {
-            $query->andWhere(['>', 'hot', 0]);
-        }
-        if ($type == 3) {
-            $query->andWhere(['original' => 1]);
-        }
+		switch ( $type ){
+			case 2:
+				$query->orderBy( [ 'view_count' => SORT_DESC ] );
+				break;
+			case 3:
+				$query->andWhere(['original' => 1]);
+				$query->orderBy( [ 'id' => SORT_DESC ] );
+				break;
+			default:
+				$query->orderBy( [ 'id' => SORT_DESC ] );
+				break;
+		}
 
-        $posts_info = $query->orderBy("id desc")
-            ->offset($offset)
-            ->limit($this->page_size)
-            ->all();
-        $data       = [];
+		$posts_info = $query->offset($offset)->limit($this->page_size)->all();
+
+        $data  = [];
         if ($posts_info) {
             foreach ($posts_info as $_post) {
                 $tmp_tags = explode(",", $_post['tags']);

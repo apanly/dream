@@ -36,20 +36,23 @@ class DefaultController extends BaseController{
 
 
         $query = Posts::find()->where(['status' => 1]);
-        if ($type == 2) {
-            $query->andWhere([">", "hot", 0]);
-        }
 
-        if ($type == 3) {
-            $query->andWhere(['original' => 1]);
-        }
+		switch ( $type ){
+			case 2:
+				$query->orderBy( [ 'view_count' => SORT_DESC ] );
+				break;
+			case 3:
+				$query->andWhere(['original' => 1]);
+				$query->orderBy( [ 'id' => SORT_DESC ] );
+				break;
+			default:
+				$query->orderBy( [ 'id' => SORT_DESC ] );
+				break;
+		}
 
         $total_count = $query->count();
 
-        $posts_info = $query->orderBy("id desc")
-            ->offset($offset)
-            ->limit($pagesize)
-            ->all();
+        $posts_info = $query->offset($offset)->limit($pagesize)->all();
 
         if ($posts_info) {
             $idx    = 1;
