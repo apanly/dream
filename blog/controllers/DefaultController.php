@@ -59,16 +59,17 @@ class DefaultController extends BaseController{
             $author = Yii::$app->params['author'];
             foreach ($posts_info as $_post) {
                 $tmp_content = UtilHelper::blog_summary($_post['content'], 105);
-                $tags        = explode(",", $_post['tags']);
+                $tags = explode(",", $_post['tags']);
                 $data[]      = [
-                    'idx'      => $idx,
-                    'id'       => $_post['id'],
-                    'title'    => DataHelper::encode($_post['title']),
-                    'content'  => nl2br($tmp_content),
+                    'idx' => $idx,
+                    'id' => $_post['id'],
+                    'title'  => DataHelper::encode($_post['title']),
+                    'content' => nl2br($tmp_content),
                     'original' => $_post['original'],
-                    'author'   => $author,
-                    'tags'     => $tags,
-                    'date'     => date("Y年m月d日", strtotime($_post['updated_time'])),
+                    'view_count' => $_post['view_count'],
+                    'author' => $author,
+                    'tags'  => $tags,
+                    'date'  => date("Y.m.d", strtotime($_post['updated_time'])),
                     'view_url' => UrlService::buildUrl( "/default/info" ,[ "id" => $_post['id'] ] ),
                 ];
             }
@@ -116,8 +117,9 @@ class DefaultController extends BaseController{
             "title" => $post_info['title'],
             "content"  => $content,
             "original" => $post_info['original'],
+			'view_count' => $post_info['view_count'],
             "tags" => $tags,
-            'date' => date("Y年m月d日", strtotime($post_info['updated_time'])),
+            'date' => date("Y.m.d", strtotime($post_info['updated_time'])),
             'author' => $author,
             "url"  => UrlService::buildUrl("/default/info", [ "id" => $post_info['id'] ])
         ];

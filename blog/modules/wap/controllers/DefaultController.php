@@ -38,17 +38,18 @@ class DefaultController extends BaseController
             return $this->goHome();
         }
 
-        $tags        = explode(",", $post_info['tags']);
+        $tags  = explode(",", $post_info['tags']);
         $domain_m = Yii::$app->params['domains']['m'];
-        $author      = Yii::$app->params['author'];
+        $author  = Yii::$app->params['author'];
 
         $content = preg_replace("/brush:(\w+);toolbar:false/","prettyprint linenums",$post_info['content']);
 
         $data = [
-            "id"      => $post_info['id'],
-            "title"   => $post_info['title'],
+            "id" => $post_info['id'],
+            "title"  => $post_info['title'],
+			'view_count' => $post_info['view_count'],
             "content" => $content,
-            "tags"    => $tags,
+            "tags"  => $tags,
             "author"  => $author,
             'updated_date'    => date("Y.m.d", strtotime($post_info['updated_time'])),
             'created_date'    => date("Y.m.d", strtotime($post_info['created_time'])),

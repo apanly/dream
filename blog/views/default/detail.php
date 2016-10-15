@@ -62,7 +62,8 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
                 <?php if ($info['original']): ?>
                     <span class="label label-success">原创</span>&bull;
                 <?php endif; ?>
-                <time class="post-date"><?= $info['date']; ?></time>
+                <time class="post-date"><?= $info['date']; ?></time>&bull;
+                <span class="author"><?=$info['view_count'];?>次阅读</span>
             </section>
         </header>
 

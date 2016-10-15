@@ -51,7 +51,8 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
                         <?php if ($_item['original']): ?>
                             <span class="label label-success">原创</span>&bull;
                         <?php endif; ?>
-                        <time class="post-date"><?= $_item['date']; ?></time>
+                        <time class="post-date"><?= $_item['date']; ?></time>&bull;
+                        <span class="author"><?=$_item['view_count'];?>次阅读</span>
                     </div>
                 </div>
                 <div class="post-content">
