@@ -81,7 +81,7 @@ class Stat_dailyController extends Stat_utilController{
 		$date_int = date("Ymd",strtotime( $date ) );
 		$date_now = date("Y-m-d H:i:s");
 		foreach( $list as $_item ){
-			$tmp_uuid = $_item['source'];
+			$tmp_uuid = $_item['uuid'];
 			$tmp_total_number = $_item['total_number'];
 			$tmp_info = StatDailyUuid::find()
 				->where([ 'date' => $date_int,'uuid' => $tmp_uuid ])
