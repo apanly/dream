@@ -20,10 +20,9 @@ class LogController extends BaseController{
 				$blog_id = $matches[1];
 			}
 
-			$tmp_source = '';
+			$tmp_source = 'direct';
 			if( $referer ){
 				$tmp_source = parse_url( $referer ,PHP_URL_HOST );
-				$tmp_source = $tmp_source;
 			}
 
         	$uuid = $this->getUUID();

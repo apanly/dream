@@ -163,6 +163,13 @@ class DefaultController extends BaseController{
         ]);
     }
 
+    public function actionApp(){
+		$this->setTitle("App下载页面");
+		return $this->render("app",[
+			'list' => BlogUtilService::getChangeLog()
+		]);
+	}
+
     public function actionQrcode(){
         $qr_text = $this->get("qr_text",GlobalUrlService::buildBlogUrl("/"));
         header('Content-type: image/png');
