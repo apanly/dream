@@ -1,6 +1,7 @@
 <?php
 use \yii\helpers\Url;
 use \admin\components\StaticService;
+use \admin\components\AdminUrlService;
 StaticService::includeAppJsStatic("/js/bootstrap/bootstrap-datepicker.js",\admin\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/bootstrap/bootstrap-datepicker.zh-CN.min.js",\admin\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/log/uuid.js",\admin\assets\AppAsset::className());
@@ -56,7 +57,11 @@ StaticService::includeAppJsStatic("/js/log/uuid.js",\admin\assets\AppAsset::clas
 									<tr>
 										<td class="text-center"><?=$_item['idx'];?></td>
 										<td><?=$_item['date'];?> </td>
-										<td><?=$_item['uuid'];?> </td>
+										<td>
+											<a target="_blank" href="<?=AdminUrlService::buildUrl("/log/access",[ 'uuid' => $_item['uuid'] ]);?>">
+												<?=$_item['uuid'];?>
+											</a>
+										</td>
 										<td><?=$_item['total_number'];?> </td>
 									</tr>
 								<?php endforeach;?>

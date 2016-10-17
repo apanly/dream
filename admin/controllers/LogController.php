@@ -15,6 +15,10 @@ use Yii;
 class LogController extends BaseController{
 	private $page_size = 20;
     public function actionAccess(){
+		$date_from = $this->get("date_from",date("Y-m-01") );
+		$date_to = $this->get("date_to",date("Y-m-d") );
+		$source = trim( $this->get("source","") );
+		$uuid = trim( $this->get("uuid",""));
         $p = intval( $this->get("p",1) );
         if(!$p){
             $p = 1;
@@ -22,6 +26,21 @@ class LogController extends BaseController{
 
         $data = [];
         $query = AccessLogs::find();
+		if( $date_from ){
+			$query->andWhere([ '>=','created_time',$date_from.' 00:00:00' ]);
+		}
+		if( $date_from ){
+			$query->andWhere([ '<=','created_time',$date_to." 23:59:59" ]);
+		}
+
+		if( $source ){
+			$query->andWhere([ 'source' => $source ]);
+		}
+
+		if( $uuid ){
+			$query->andWhere([ 'uuid' => $uuid ]);
+		}
+
         $total_count = $query->count();
         $offset = ($p - 1) * $this->page_size;
         $access_list = $query->orderBy("id desc")
@@ -56,12 +75,17 @@ class LogController extends BaseController{
             }
         }
 
-        $search_conditions = [];
+		$search_conditions = [
+			'date_from' => $date_from,
+			'date_to' => $date_to,
+			'source' => $source,
+			'uuid' => $uuid
+		];
+
         return $this->render("access",[
             "data" => $data,
             "page_info" => $page_info,
-            'search_conditions' => $search_conditions,
-            "page_url" => "/log/access"
+            'search_conditions' => $search_conditions
         ]);
     }
 
