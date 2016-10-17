@@ -76,12 +76,22 @@ AppAsset::register($this);
             </li>
             <li class="xn-openable menu_log">
                 <a href="javascript:void(0);">
-                    <span class="fa fa-cogs"></span><span class="xn-text">日志管理</span>
+                    <span class="fa fa-cogs"></span><span class="xn-text">统计管理</span>
                 </a>
                 <ul>
                     <li>
                         <a href="<?=Url::toRoute("/log/access");?>">
                             <span class="fa fa-heart"></span>访问日志
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=Url::toRoute("/log/uuid");?>">
+                            <span class="fa fa-heart"></span>UUID统计
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=Url::toRoute("/log/source");?>">
+                            <span class="fa fa-heart"></span>来源统计
                         </a>
                     </li>
                     <li>

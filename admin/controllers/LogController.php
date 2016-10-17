@@ -6,12 +6,14 @@ use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\applog\AccessLogs;
 use common\models\applog\AppLogs;
+use common\models\applog\StatDailyAccessSource;
+use common\models\applog\StatDailyUuid;
 use common\service\GlobalUrlService;
 use Yii;
 
 
 class LogController extends BaseController{
-
+	private $page_size = 20;
     public function actionAccess(){
         $p = intval( $this->get("p",1) );
         if(!$p){
@@ -19,18 +21,17 @@ class LogController extends BaseController{
         }
 
         $data = [];
-        $pagesize = 20;
         $query = AccessLogs::find();
         $total_count = $query->count();
-        $offset = ($p - 1) * $pagesize;
+        $offset = ($p - 1) * $this->page_size;
         $access_list = $query->orderBy("id desc")
             ->offset($offset)
-            ->limit($pagesize)
+            ->limit( $this->page_size )
             ->all();
 
         $page_info = DataHelper::ipagination([
             "total_count" => $total_count,
-            "pagesize" => $pagesize,
+            "pagesize" => $this->page_size,
             "page" => $p,
             "display" => 10
         ]);
@@ -63,6 +64,94 @@ class LogController extends BaseController{
             "page_url" => "/log/access"
         ]);
     }
+
+    public function actionUuid(){
+	$p = intval( $this->get("p",1) );
+	if(!$p){
+		$p = 1;
+	}
+
+	$data = [];
+	$query = StatDailyUuid::find();
+	$total_count = $query->count();
+	$offset = ($p - 1) * $this->page_size;
+	$list = $query->orderBy("id desc")
+		->offset($offset)
+		->limit( $this->page_size )
+		->all();
+
+	$page_info = DataHelper::ipagination([
+		"total_count" => $total_count,
+		"pagesize" => $this->page_size,
+		"page" => $p,
+		"display" => 10
+	]);
+
+	if($list){
+		$idx = 1;
+		foreach($list as $_item ){
+
+			$data[] = [
+				'idx' =>  $idx,
+				'date' => $_item['date'],
+				'uuid' => $_item['uuid'],
+				'total_number' => $_item['total_number']
+			];
+			$idx++;
+		}
+	}
+
+	$search_conditions = [];
+	return $this->render("uuid",[
+		"data" => $data,
+		"page_info" => $page_info,
+		'search_conditions' => $search_conditions
+	]);
+}
+
+	public function actionSource(){
+		$p = intval( $this->get("p",1) );
+		if(!$p){
+			$p = 1;
+		}
+
+		$data = [];
+		$query = StatDailyAccessSource::find();
+		$total_count = $query->count();
+		$offset = ($p - 1) * $this->page_size;
+		$list = $query->orderBy("id desc")
+			->offset($offset)
+			->limit( $this->page_size )
+			->all();
+
+		$page_info = DataHelper::ipagination([
+			"total_count" => $total_count,
+			"pagesize" => $this->page_size,
+			"page" => $p,
+			"display" => 10
+		]);
+
+		if($list){
+			$idx = 1;
+			foreach($list as $_item ){
+
+				$data[] = [
+					'idx' =>  $idx,
+					'date' => $_item['date'],
+					'source' => $_item['source'],
+					'total_number' => $_item['total_number']
+				];
+				$idx++;
+			}
+		}
+
+		$search_conditions = [];
+		return $this->render("source",[
+			"data" => $data,
+			"page_info" => $page_info,
+			'search_conditions' => $search_conditions
+		]);
+	}
 
     private $log_type_mapping = [
         1 => 'app-blog',
