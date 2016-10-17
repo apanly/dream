@@ -68,6 +68,8 @@ class LogController extends BaseController{
                     'target_url' => urldecode($_item_access['target_url']),
                     'referer' => $tmp_referer,
                     'user_agent' => $_item_access['user_agent'],
+                    'source' => $_item_access['source'],
+                    'uuid' => $_item_access['uuid'],
                     'ip' => $_item_access['ip'],
                     'created_time' => $_item_access['created_time']
                 ];

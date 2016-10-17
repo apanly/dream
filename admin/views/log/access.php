@@ -48,8 +48,10 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AppAsset::cl
                                 <tr>
                                     <th>序号</th>
                                     <th>目标URL</th>
-                                    <th>来源URL</th>
-                                    <th>UA</th>
+<!--                                    <th>来源URL</th>-->
+                                    <th>来源</th>
+                                    <th>UUID<th>
+<!--                                    <th>UA</th>-->
                                     <th>IP</th>
                                     <th>时间</th>
                                 </tr>
@@ -60,8 +62,10 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AppAsset::cl
                                         <tr>
                                             <td class="text-center"><?=$_item['idx'];?></td>
                                             <td><?=$_item['target_url'];?> </td>
-                                            <td><?=$_item['referer'];?> </td>
-                                            <td><?=$_item['user_agent'];?> </td>
+                                            <td><?=$_item['source'];?> </td>
+                                            <td><?=$_item['uuid'];?> </td>
+<!--                                            <td>--><?//=$_item['referer'];?><!-- </td>-->
+<!--                                            <td>--><?//=$_item['user_agent'];?><!-- </td>-->
                                             <td><?=$_item['ip'];?> </td>
                                             <td><?=$_item['created_time'];?> </td>
                                         </tr>
