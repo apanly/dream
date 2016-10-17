@@ -66,63 +66,26 @@ class LogController extends BaseController{
     }
 
     public function actionUuid(){
-	$p = intval( $this->get("p",1) );
-	if(!$p){
-		$p = 1;
-	}
+    	$date_from = $this->get("date_from",date("Y-m-d") );
+    	$date_to = $this->get("date_to",date("Y-m-d") );
 
-	$data = [];
-	$query = StatDailyUuid::find();
-	$total_count = $query->count();
-	$offset = ($p - 1) * $this->page_size;
-	$list = $query->orderBy("id desc")
-		->offset($offset)
-		->limit( $this->page_size )
-		->all();
-
-	$page_info = DataHelper::ipagination([
-		"total_count" => $total_count,
-		"pagesize" => $this->page_size,
-		"page" => $p,
-		"display" => 10
-	]);
-
-	if($list){
-		$idx = 1;
-		foreach($list as $_item ){
-
-			$data[] = [
-				'idx' =>  $idx,
-				'date' => $_item['date'],
-				'uuid' => $_item['uuid'],
-				'total_number' => $_item['total_number']
-			];
-			$idx++;
-		}
-	}
-
-	$search_conditions = [];
-	return $this->render("uuid",[
-		"data" => $data,
-		"page_info" => $page_info,
-		'search_conditions' => $search_conditions
-	]);
-}
-
-	public function actionSource(){
 		$p = intval( $this->get("p",1) );
 		if(!$p){
 			$p = 1;
 		}
 
-		$data = [];
-		$query = StatDailyAccessSource::find();
+
+		$query = StatDailyUuid::find();
+		if( $date_from ){
+			$query->andWhere([ '>=','date',date("Ymd",strtotime( $date_from ) ) ]);
+		}
+		if( $date_from ){
+			$query->andWhere([ '<=','date',date("Ymd",strtotime( $date_to ) ) ]);
+		}
+
 		$total_count = $query->count();
 		$offset = ($p - 1) * $this->page_size;
-		$list = $query->orderBy("id desc")
-			->offset($offset)
-			->limit( $this->page_size )
-			->all();
+		$list = $query->orderBy("id desc")->offset($offset)->limit( $this->page_size )->all();
 
 		$page_info = DataHelper::ipagination([
 			"total_count" => $total_count,
@@ -130,7 +93,61 @@ class LogController extends BaseController{
 			"page" => $p,
 			"display" => 10
 		]);
+		$data = [];
+		if($list){
+			$idx = 1;
+			foreach($list as $_item ){
 
+				$data[] = [
+					'idx' =>  $idx,
+					'date' => $_item['date'],
+					'uuid' => $_item['uuid'],
+					'total_number' => $_item['total_number']
+				];
+				$idx++;
+			}
+		}
+
+		$search_conditions = [
+			'date_from' => $date_from,
+			'date_to' => $date_to,
+		];
+		return $this->render("uuid",[
+			"data" => $data,
+			"page_info" => $page_info,
+			'search_conditions' => $search_conditions
+		]);
+	}
+
+	public function actionSource(){
+		$date_from = $this->get("date_from",date("Y-m-d") );
+		$date_to = $this->get("date_to",date("Y-m-d") );
+
+		$p = intval( $this->get("p",1) );
+		if(!$p){
+			$p = 1;
+		}
+
+
+		$query = StatDailyAccessSource::find();
+		if( $date_from ){
+			$query->andWhere([ '>=','date',date("Ymd",strtotime( $date_from ) ) ]);
+		}
+		if( $date_from ){
+			$query->andWhere([ '<=','date',date("Ymd",strtotime( $date_to ) ) ]);
+		}
+
+		$total_count = $query->count();
+		$offset = ($p - 1) * $this->page_size;
+		$list = $query->orderBy("id desc")->offset($offset)->limit( $this->page_size )->all();
+
+		$page_info = DataHelper::ipagination([
+			"total_count" => $total_count,
+			"pagesize" => $this->page_size,
+			"page" => $p,
+			"display" => 10
+		]);
+		$data = [];
 		if($list){
 			$idx = 1;
 			foreach($list as $_item ){
@@ -145,7 +162,10 @@ class LogController extends BaseController{
 			}
 		}
 
-		$search_conditions = [];
+		$search_conditions = [
+			'date_from' => $date_from,
+			'date_to' => $date_to,
+		];
 		return $this->render("source",[
 			"data" => $data,
 			"page_info" => $page_info,
