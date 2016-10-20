@@ -17,6 +17,13 @@ StaticService::includeAppJsStatic("/js/richmedia/index.js", \admin\assets\AdminA
 <div class="row">
     <div class="row-in">
         <div class="columns-24">
+			<?php echo \Yii::$app->view->renderFile("@admin/views/common/richmedia_tab.php", ['current' => 'index']); ?>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="row-in">
+        <div class="columns-24">
             <table class="table-1">
                 <thead>
                 <tr>
