@@ -35,7 +35,7 @@ class RichmediaController extends BaseController
 
         $page_info = DataHelper::ipagination([
             "total_count" => $total_count,
-            "pagesize" => $pagesize,
+            "page_size" => $pagesize,
             "page" => $p,
             "display" => 10
         ]);
@@ -66,8 +66,7 @@ class RichmediaController extends BaseController
 
         return $this->render("index",[
             "data" => $data,
-            "page_info" => $page_info,
-            "page_url" => "/richmedia/index"
+            "page_info" => $page_info
         ]);
     }
 

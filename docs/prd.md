@@ -3,6 +3,9 @@
 * 菜单和 多媒体公用
 * 相册主要展示手机的各类整理过的照片(相当于回忆)
 
+### 第四期
+* admin后台UI改版(http://anchoradmin.com/)
+
 ### 第三期
 * 迁移到七牛CDN
 
@@ -32,3 +35,4 @@
 * http://www.lanecn.com/menu/main/mid-12
 * [第一字体](http://www.diyiziti.com/Builder/58)
 * [bootstrap 后台模板](https://www.freshdesignweb.com/free-bootstrap-admin-templates/)
+* [ remark bootstrap admin 模板](http://getbootstrapadmin.com/remark/)

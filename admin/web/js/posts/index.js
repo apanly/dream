@@ -6,8 +6,7 @@ var posts_index_ops = {
     eventBind:function(){
 
         $("#search_from .do").click(function(){
-            var kw = $("#search_from input[name=kw]").val();
-            window.location.href = "/posts/index?kw=" + kw;
+            $("#search_from").submit();
         });
 
         $("#search_from input[name=kw]").keydown(function (e) {
@@ -36,6 +35,7 @@ var posts_index_ops = {
                 });
             });
         });
+
         $(".online").each(function(){
             $(this).click(function(){
                 var post_id = $(this).attr("data");
@@ -43,42 +43,6 @@ var posts_index_ops = {
                     url:'/posts/ops/' + post_id,
                     type:'POST',
                     data:{'act':'online'},
-                    dataType:'json',
-                    success:function(res){
-                        alert(res.msg);
-                        if(res.code == 200){
-                            window.location.href = window.location.href;
-                        }
-                    }
-                });
-            });
-        });
-
-        $(".go-hot").each(function(){
-            $(this).click(function(){
-                var post_id = $(this).attr("data");
-                $.ajax({
-                    url:'/posts/ops/' + post_id,
-                    type:'POST',
-                    data:{'act':'go-hot'},
-                    dataType:'json',
-                    success:function(res){
-                        alert(res.msg);
-                        if(res.code == 200){
-                            window.location.href = window.location.href;
-                        }
-                    }
-                });
-            });
-        });
-
-        $(".down-hot").each(function(){
-            $(this).click(function(){
-                var post_id = $(this).attr("data");
-                $.ajax({
-                    url:'/posts/ops/' + post_id,
-                    type:'POST',
-                    data:{'act':'down-hot'},
                     dataType:'json',
                     success:function(res){
                         alert(res.msg);

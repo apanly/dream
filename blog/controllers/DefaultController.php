@@ -77,7 +77,7 @@ class DefaultController extends BaseController{
 
         $page_info = DataHelper::ipagination([
             "total_count" => $total_count,
-            "pagesize"    => $pagesize,
+            "page_size"    => $pagesize,
             "page"        => $p,
             "display"     => 5
         ]);

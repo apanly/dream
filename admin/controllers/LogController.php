@@ -13,7 +13,6 @@ use Yii;
 
 
 class LogController extends BaseController{
-	private $page_size = 20;
     public function actionAccess(){
 		$date_from = $this->get("date_from",date("Y-m-01") );
 		$date_to = $this->get("date_to",date("Y-m-d") );
@@ -50,7 +49,7 @@ class LogController extends BaseController{
 
         $page_info = DataHelper::ipagination([
             "total_count" => $total_count,
-            "pagesize" => $this->page_size,
+            "page_size" => $this->page_size,
             "page" => $p,
             "display" => 10
         ]);
@@ -115,7 +114,7 @@ class LogController extends BaseController{
 
 		$page_info = DataHelper::ipagination([
 			"total_count" => $total_count,
-			"pagesize" => $this->page_size,
+			"page_size" => $this->page_size,
 			"page" => $p,
 			"display" => 10
 		]);
@@ -169,7 +168,7 @@ class LogController extends BaseController{
 
 		$page_info = DataHelper::ipagination([
 			"total_count" => $total_count,
-			"pagesize" => $this->page_size,
+			"page_size" => $this->page_size,
 			"page" => $p,
 			"display" => 10
 		]);
@@ -204,7 +203,7 @@ class LogController extends BaseController{
         2 => 'app-js'
     ];
 
-    public function actionApp(){
+    public function actionError(){
         $type = intval( $this->get("type",0) );
         $log_type_mapping = $this->log_type_mapping;
 
@@ -214,7 +213,6 @@ class LogController extends BaseController{
         }
 
         $data = [];
-        $pagesize = 20;
         $query = AppLogs::find();
 
         if( isset( $log_type_mapping[ $type ] ) ){
@@ -222,15 +220,15 @@ class LogController extends BaseController{
         }
 
         $total_count = $query->count();
-        $offset = ($p - 1) * $pagesize;
+        $offset = ($p - 1) * $this->page_size;
         $access_list = $query->orderBy("id desc")
             ->offset($offset)
-            ->limit($pagesize)
+            ->limit( $this->page_size )
             ->all();
 
         $page_info = DataHelper::ipagination([
             "total_count" => $total_count,
-            "pagesize" => $pagesize,
+            "page_size" => $this->page_size,
             "page" => $p,
             "display" => 10
         ]);
@@ -256,10 +254,10 @@ class LogController extends BaseController{
         $search_conditions = [
             'type' => $type
         ];
-        return $this->render("app",[
+
+        return $this->render("error",[
             "data" => $data,
             "page_info" => $page_info,
-            "page_url" => "/log/app",
             'search_conditions' => $search_conditions,
             'log_type_mapping' => $log_type_mapping
         ]);

@@ -2,118 +2,89 @@
 use \yii\helpers\Url;
 use \admin\components\StaticService;
 use \admin\components\AdminUrlService;
-StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset::className());
 ?>
-<div class="page-content-wrap">
 <div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading ui-draggable-handle">
-                <h3 class="panel-title">文章列表</h3>
-                <ul class="panel-controls">
-                    <li><a href="javascript:void(0);" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                    <li><a href="<?=Url::toRoute("/posts/set");?>"><span class="fa fa-edit"></span></a></li>
-                </ul>
+    <div class="row-in">
+        <form id="search_from">
+            <div class="columns-3">
+                <select class="select-1" name="status">
+                    <option value="-1">请选择状态</option>
+                    <option value="1"  <?php if( $search_conditions['status']  == 1):?> selected <?php endif;?>>正常</option>
+                    <option value="0"  <?php if( $search_conditions['status']  == 0):?> selected <?php endif;?>>删除</option>
+                </select>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row stacked">
-                        <div class="col-md-6" id="search_from">
-                            <div class="input-group push-down-10">
-                                <input type="text" name="kw" class="form-control" placeholder="请输入关键字" value="<?=$search_condition["kw"];?>">
-
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary do">Search</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="pull-right">
-                                <a href="<?=AdminUrlService::buildUrl("/posts/index",['status' => 1]);?>">正常</a>
-                                <a href="<?=AdminUrlService::buildUrl("/posts/index",['status' => 0]);?>">隐藏</a>
-                            </div>
-                        </div>
-                    </div>
+            <div class="columns-8">
+                <div class="input-wrap">
+                    <input type="text" class="input-1"  name="kw" placeholder="请输入关键字" value="<?=$search_conditions["kw"];?>">
                 </div>
             </div>
-            <div class="panel-body">
-                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                    <?php if($data):?>
-                    <table class="table table-bordered table-striped table-actions">
-                        <thead>
-                        <tr>
-                            <th>编号</th>
-                            <th>标题</th>
-                            <th>发布时间</th>
-                            <th>状态</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach($data as $_item):?>
-                        <tr id="trow_1">
-                            <td class="text-center"><?=$_item['id'];?></td>
-                            <td>
-                                <a href="<?=$_item['view_url'];?>" target="_blank">
-                                    <strong><?=$_item['title'];?></strong>
-                                </a>
-                            </td>
-                            <td><?=$_item['created'];?></td>
-                            <td>
-                                <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span>
-                                <span class="label label-<?=$_item['original_info']['class'];?>"><?=$_item['original_info']['desc'];?></span>
-                                <span class="label label-<?=$_item['hot_info']['class'];?>"><?=$_item['hot_info']['desc'];?></span>
-                            </td>
-                            <td>
-
-                                <a href="<?=$_item['edit_url'];?>" class="btn btn-default btn-rounded btn-sm">
-                                    <span class="fa fa-pencil"></span>
-                                    编辑
-                                </a>
-                                <?php if($_item['status']):?>
-                                <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm delete" data="<?=$_item['id'];?>">
-                                    <span class="fa fa-times"></span>隐藏
-                                </a>
-                                <?php else:?>
-                                    <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm online" data="<?=$_item['id'];?>">
-                                        <span class="fa fa-history"></span>展示
-                                    </a>
-                                <?php endif;?>
-                                <?php if($_item['hot']):?>
-                                    <a href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm down-hot" data="<?=$_item['id'];?>">
-                                        <span class="fa fa-thumbs-down" ></span>下热门
-                                    </a>
-                                <?php else:?>
-                                    <a href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm go-hot" data="<?=$_item['id'];?>">
-                                        <span class="fa fa-thumbs-up"></span>上热门
-                                    </a>
-                                <?php endif;?>
-
-                            </td>
-                        </tr>
-                        <?php endforeach;?>
-                        </tbody>
-                    </table>
-                    <?php endif;?>
-                    <?php if($page_info['total_page']):?>
-                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                        <?php if($page_info['previous']):?>
-                        <a class="paginate_button previous" href="<?=$page_url;?>&p=1">«</a>
-                        <?php endif;?>
-                        <span>
-                            <?php for($pidx = $page_info['from'];$pidx <= $page_info['end'];$pidx ++ ):?>
-                            <a class="paginate_button <?php if($pidx == $page_info['current']):?> current <?php endif;?>"  data-dt-idx="<?=$pidx;?>" href="<?=$page_url;?>&p=<?=$pidx;?>"><?=$pidx;?></a>
-                            <?php endfor;?>
-                        </span>
-                        <?php if($page_info['next']):?>
-                        <a class="paginate_button next" href="<?=$page_url;?>&p=<?=$page_info['total_page'];?>">»</a>
-                        <?php endif;?>
-                    </div>
-                    <?php endif;?>
-                </div>
-
+            <div class="columns-5">
+                <input type="button" value="搜索" class="do btn-tiny">
+                <a href="javascript:void(0);" class="color-theme">清空条件</a>
             </div>
+
+        </form>
+
+    </div>
+</div>
+<div class="row">
+    <div class="row-in">
+        <div class="columns-24">
+            <table class="table-1">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>标题</th>
+                    <th>发布时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($data as $_item):?>
+                    <tr id="trow_1">
+                        <td class="text-center"><?=$_item['id'];?></td>
+                        <td>
+                            <a href="<?=$_item['view_url'];?>" target="_blank">
+                                <strong><?=$_item['title'];?></strong>
+                            </a>
+                        </td>
+                        <td><?=$_item['created'];?></td>
+                        <td>
+                            <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span>
+                            <span class="label label-<?=$_item['original_info']['class'];?>"><?=$_item['original_info']['desc'];?></span>
+                        </td>
+                        <td>
+                            <a href="<?=$_item['edit_url'];?>" class="">
+                                <i class="icon_club">&#xe610;</i>
+                            </a>
+                            <?php if($_item['status']):?>
+                                <a  href="javascript:void(0);" class="delete" data="<?=$_item['id'];?>">
+                                    <i class="icon_club">&#xe611;</i>
+                                </a>
+                            <?php else:?>
+                                <a  href="javascript:void(0);" class="online" data="<?=$_item['id'];?>">
+                                    <i class="icon_club">&#xe626;</i>
+                                </a>
+                            <?php endif;?>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="row-in">
+        <div class="columns-24 text-right">
+            <?php echo \Yii::$app->view->renderFile("@admin/views/common/pagination_v1.php",[
+                'pages' => $page_info,
+                'url' => '/posts/index',
+                'search_conditions' => $search_conditions,
+                'current_page_count' => count($data)
+            ]);?>
+        </div>
+    </div>
 </div>

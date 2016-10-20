@@ -1,0 +1,131 @@
+<?php
+use yii\helpers\Html;
+use admin\assets\AdminAsset;
+use admin\components\AdminUrlService;
+use \common\service\GlobalUrlService;
+
+AdminAsset::register($this);
+?>
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<link rel="icon" href="<?= GlobalUrlService::buildStaticUrl("/images/icon.png"); ?>" type="image/x-icon"/>
+	<title><?= Html::encode($this->title) ?></title>
+	<?php $this->head() ?>
+	<?php $this->beginBody() ?>
+</head>
+<body>
+<div class="page_wrap">
+	<div class="box_wrap open">
+		<div class="box_left_nav">
+			<h1 class="logo">
+				<a href="http://www.styd.cn">
+					<span>
+						<img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>"/>
+					</span>
+				</a>
+			</h1>
+			<h2 class="version"><?= Html::encode($this->title) ?></h2>
+			<ul class="menu_list">
+				<li class="menu_dashboard">
+					<a href="<?=AdminUrlService::buildUrl("/default/index");?>">
+						<i class="icon_club">&#xe604;</i><span>Dashboard</span>
+					</a>
+				</li>
+				<li class="menu_posts">
+					<a href="<?=AdminUrlService::buildUrl("/posts/index");?>">
+						<i class="icon_club">&#xe604;</i><span>文章</span>
+					</a>
+				</li>
+				<li class="menu_account">
+					<a href="<?=AdminUrlService::buildUrl("/account/index");?>">
+						<i class="icon_club">&#xe603;</i><span>账号</span>
+					</a>
+				</li>
+				<li class="menu_richmedia">
+					<a href="<?=AdminUrlService::buildUrl("/richmedia/index");?>">
+						<i class="icon_club">&#xe606;</i><span>多媒体</span></a>
+				</li>
+				<li class="menu_library">
+					<a href="<?=AdminUrlService::buildUrl("/library/index");?>">
+						<i class="icon_club">&#xe60b;</i><span>图书</span>
+					</a>
+				</li>
+				<li class="menu_files">
+					<a href="<?=AdminUrlService::buildUrl("/file/index");?>">
+						<i class="icon_club">&#xe600;</i><span>文件</span>
+					</a>
+				</li>
+				<li class="menu_stat">
+					<a href="<?=AdminUrlService::buildUrl("/log/access");?>">
+						<i class="icon_club">&#xe608;</i><span>统计</span>
+					</a>
+				</li>
+				<li class="menu_girl">
+					<a href="<?=AdminUrlService::buildUrl("/douban/mz");?>">
+						<i class="icon_club">&#xe601;</i><span>豆瓣</span>
+					</a>
+				</li>
+			</ul>
+			<span class="menu_switch">
+				<i class="icon_club">&#xe602;</i>
+				<i class="icon_club arrow_left">&#xe60e;</i>
+			</span>
+		</div>
+		<div class="box_main">
+			<div class="box_top">
+				<div class="row">
+					<div class="row-in">
+						<div class="columns-24">
+							<div class="top_right hastips">
+								<div class="search_box">
+									<input type="text" placeholder="请输入博文关键字" class="search_input" id="top_search"/>
+									<a href="javascript:void(0);" class="icon_club" id="top_search_icon">&#xe607;</a>
+								</div>
+								<a href="javascript:void(0);" class="icon_club setting" data-tip="设置">&#xe605;</a>
+								<a href="javascript:void(0);" class="icon_club user has-panel" data-panel="user_menu">
+									<img src="" alt="80*80"/>
+								</a>
+								<ul class="user_menu hide">
+									<li class="user_profile border">
+										<p class="icon_club user">
+											<img
+												src=""
+												alt="80*80"/>
+										</p>
+										<p class="t1"><label class="t2">管理员名字</label></p>
+										<p class="t3">管理员名字</p>
+										<a href="javascript:void(0);" class="user_edit hide">编辑</a>
+									</li>
+									<li class="each border">
+										<a href="javascript:void(0);"><i
+												class="icon_club">&#xe610;</i>修改密码</a>
+									</li>
+									<li class="each">
+										<a href="javascript:void(0);"><i
+												class="icon_club">&#xe618;</i>退出</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content_wrap">
+				<?php echo $content ?>
+			</div>
+		</div>
+	</div>
+	<div class="footer_wrap">
+		<div class="inner">
+			Copyright&nbsp;&copy;&nbsp;<?=date("Y");?>&nbsp;&nbsp;
+			<a href="http://www.vincentguo.cn/" target="_blank"><?= Html::encode($this->title) ?></a>
+		</div>
+	</div>
+</div>
+<?php $this->endBody() ?>
+</body>
+</html>
+<?php $this->endPage() ?>

@@ -11,6 +11,7 @@ use common\models\user\Admin;
 
 class BaseController extends Controller{
     public $enableCsrfValidation = false;
+	protected  $page_size = 30;
     protected  $salt = "g0ptPkTxZ#mIjD7@";
     protected  $auth_cookie_name = "cool_boy";
     protected  $current_user  ;
@@ -20,6 +21,19 @@ class BaseController extends Controller{
         "auth/login"
     ];
 
+	protected  $new_ui_urls = [
+		'default/index',
+		'posts/index',
+		'account/index',
+		'richmedia/index',
+		'library/index',
+		'file/index',
+		'log/access',
+		'log/uuid',
+		'log/source',
+		'log/error',
+		'douban/mz',
+	];
 
     public function __construct($id, $module, $config = []){
         parent::__construct($id, $module, $config = []);
@@ -31,6 +45,10 @@ class BaseController extends Controller{
 
     public function beforeAction($action) {
 
+		if ( in_array($action->getUniqueId(), $this->new_ui_urls )) {
+			$this->layout = "v1";
+		}
+
         if (!in_array($action->getUniqueId(), $this->allowAllAction )) {
             if(!$this->checkLoginStatus()){
                 if(Yii::$app->request->isAjax){
@@ -41,6 +59,9 @@ class BaseController extends Controller{
                 return false;
             }
         }
+
+		$view = Yii::$app->view;
+		$view->params['current_user'] = $this->current_user;
 
         $params = [
             'target_type' => 1,

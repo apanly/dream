@@ -57,41 +57,51 @@ class DataHelper {
         return md5(md5($tmp_salt.$txt));
     }
 
-    public static function ipagination($params){
-        $ret = [
-            'previous' => true,
-            'next' => true,
-            'from' => 0,
-            'end' => 0,
-            'total_page' => 0,
-            'current' => 0
-        ];
-        $total = (int)$params['total_count'];
-        $pageSize = (int)$params['pagesize'];
-        $page = (int)$params['page'];
-        $display = (int)$params['display'];
-        $totalPage = (int) ceil($total / $pageSize);
-        if($page <= 1){
-            $ret['previous'] = false;
-        }
-        if($page>= $totalPage){
-            $ret['next'] = false;
-        }
-        $semi = (int) ceil($display/2);
-        if($page - $semi > 0){
-            $ret['from'] = $page - $semi;
-        }else{
-            $ret['from'] = 1;
-        }
-        if($page + $semi <= $totalPage){
-            $ret['end'] = $page + $semi;
-        }else{
-            $ret['end'] = $totalPage;
-        }
-        $ret['total_page'] = $totalPage;
-        $ret['current'] = $page;
-        return $ret ;
-    }
+	/**
+	 *分页
+	 */
+	public static function ipagination($params)
+	{
+		$ret = [
+			'previous'  => true,
+			'next'      => true,
+			'from'      => 0,
+			'end'       => 0,
+			'totalPage' => 0,
+			'total_page' => 0,
+			'current'   => 0,
+			'page_size' => intval( $params['page_size'] )
+		];
+		$total     = (int)$params['total_count'];
+		$pageSize  = (int)$params['page_size'];
+		$page      = (int)$params['page'];
+		$display   = (int)$params['display'];
+		$totalPage = (int)ceil($total / $pageSize);
+		$totalPage = $totalPage?$totalPage:1;
+
+		if ($page <= 1) {
+			$ret['previous'] = false;
+		}
+		if ($page >= $totalPage) {
+			$ret['next'] = false;
+		}
+		$semi = (int)ceil($display / 2);
+		if ($page - $semi > 0) {
+			$ret['from'] = $page - $semi;
+		} else {
+			$ret['from'] = 1;
+		}
+		if ($page + $semi <= $totalPage) {
+			$ret['end'] = $page + $semi;
+		} else {
+			$ret['end'] = $totalPage;
+		}
+		$ret['total_count'] = $total;
+		$ret['totalPage'] = $totalPage;
+		$ret['total_page'] = $totalPage;
+		$ret['current']   = $page;
+		return $ret;
+	}
 
     public static function getAuthorName(){
         return \Yii::$app->params['author']['nickname'];

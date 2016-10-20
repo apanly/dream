@@ -1,0 +1,93 @@
+// plugins/index
+.plugin_list{
+  .clearfix;
+  .plugin_links{
+    .d-b;
+    .s(170px,240px);
+    .fl-l;
+    .mg(0 24px 24px 0);
+    .pd(17px);
+    .pos-r;
+    .ov-h;
+    border-radius: 10px;
+    border: 1px solid #f2f2f2;
+    box-sizing: border-box;
+    &:hover{
+      box-shadow: 2px 2px 10px rgba(153, 153, 153, 0.25);
+      .transform(scale(1.02));
+      .transition(transform .3s ease-in-out);
+    }
+    .icon{
+      .d-b;
+      .w(99px,99px);
+      .pos-a;
+      left: 34px;
+      top: 24px;
+    }
+    .title{
+      .fz(16px);
+      .c(#666);
+      .ta-c;
+      .fw-n;
+      .mg(50px 0 12px);
+      .pd-t(75px);
+      .s(134px,108px);
+      .bg(#f7f6f6);
+      box-sizing: border-box;
+      border-radius: 10px;
+      &::before,
+      &::after{
+        content: "";
+        .d-b;
+        .pos-a;
+      }
+    }
+    .intro{
+      .fz(12px);
+      .c(#999);
+      .lh(14px);
+      .h(28px);
+      .mg(0);
+      .tov-l(2);
+    }
+    .status{
+      .d-b;
+      position: absolute;
+      top: -5px;
+      right: -23px;
+      border-bottom: 36px solid #f73338;
+      border-left: 36px solid transparent;
+      border-right: 36px solid transparent;
+      .transform(rotate(45deg));
+      &::after{
+        .pos-a;
+        left: -18px;
+        top: 19px;
+        .d-b;
+        .w(36px);
+        .fz(10px);
+        .c(#ffffcc);
+        .ta-c;
+        font-style: normal;
+      }
+      &.paid{
+        &::after{
+          content: "收费版";
+        }
+      }
+      &.activated{
+        border-bottom-color: #66cc66;
+        &::after{
+          content: "已开通";
+        }
+      }
+      &.unactivated{
+        border-bottom-color: #999;
+        &::after{
+          .c(#f2f2f2);
+          content: "未开通";
+        }
+      }
+    }
+  }
+}

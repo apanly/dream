@@ -24,6 +24,40 @@ class GlobalUrlService {
         return $domain.$path;
     }
 
+	public static function buildStaticPic($path,$params = []){
+		$switch = \Yii::$app->params['switch']['cdn']['static'];
+		if( $switch ){
+			if( UtilHelper::is_SSL() ){
+				$domain = \Yii::$app->params['domains']['cdn_static_https'];
+			}else{
+				$domain = \Yii::$app->params['domains']['cdn_static'];
+			}
+		}else{
+			$domain = \Yii::$app->params['domains']['static'];
+			if( stripos($domain,"http") === false ){
+				$domain = "http:".$domain;
+			}
+		}
+		$weight = isset($params['w'])?$params['w']:0;
+		$height = isset($params['h'])?$params['h']:0;
+
+		$url = $domain.$path;
+		if( !$height && !$weight ){
+			return $url;
+		}
+
+		if( $switch ){
+			if( $height && $weight ){
+				$url .= "?imageView2/1/w/{$weight}/h/{$height}/interlace/1";
+			}else if( $weight ){
+				$url .= "?imageView/2/w/{$weight}";
+			}else if( $height ){
+				$url .= "?imageView/2/h/{$height}";
+			}
+		}
+		return $url;
+	}
+
     public static function buildPic1Static($path,$params = []){
         $switch = \Yii::$app->params['switch']['cdn']['pic1'];
         if( $switch ){

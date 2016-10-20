@@ -21,7 +21,7 @@ use yii\helpers\Url;
 class PostsController extends BaseController{
     public function actionIndex(){
         $p = intval( $this->get("p",1) );
-        $status = intval( $this->get("status",-1 ) );
+        $status = intval( $this->get("status",-1) );
         $kw = trim( $this->get("kw",'') );
 
         if(!$p){
@@ -29,7 +29,6 @@ class PostsController extends BaseController{
         }
 
         $data = [];
-        $pagesize = 20;
 
         $query = Posts::find();
         if( $status >= 0 ){
@@ -41,15 +40,15 @@ class PostsController extends BaseController{
         }
 
         $total_count = $query->count();
-        $offset = ($p - 1) * $pagesize;
+        $offset = ($p - 1) * $this->page_size;
         $posts_info = $query->orderBy("id desc")
             ->offset($offset)
-            ->limit($pagesize)
+            ->limit( $this->page_size )
             ->all();
 
         $page_info = DataHelper::ipagination([
             "total_count" => $total_count,
-            "pagesize" => $pagesize,
+            "page_size" => $this->page_size,
             "page" => $p,
             "display" => 10
         ]);
@@ -79,7 +78,7 @@ class PostsController extends BaseController{
             }
         }
 
-        $search_condition = [
+        $search_conditions = [
             'kw' => $kw,
             'status' => $status
         ];
@@ -87,8 +86,7 @@ class PostsController extends BaseController{
         return $this->render("index",[
             "data" => $data,
             "page_info" => $page_info,
-            "page_url" => AdminUrlService::buildUrl("/posts/index",$search_condition),
-            "search_condition" => $search_condition
+            "search_conditions" => $search_conditions
         ]);
     }
 

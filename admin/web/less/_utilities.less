@@ -1,0 +1,496 @@
+.hide{
+  .d-n;
+}
+.show{
+  .d-b;
+}
+.clear{
+  .h(0);
+  .lh(0);
+  .fz(0);
+  .d-b;
+  clear:both;
+}
+before,after{
+  .clear;
+}
+.clearfix{
+  &:before,&:after{
+    content:'';
+    .clear;
+  }
+  *zoom:1;
+}
+.no-select{
+  -moz-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  -khtml-user-select:none;
+  user-select:none;
+}
+.overflow-scroll{
+  overflow:scroll;
+}
+.overflow-hidden{
+  overflow: hidden;
+}
+.bordered{
+  border:1px solid #e6e6e6;
+}
+.radius{
+  border-radius:3px;
+}
+.full-width{
+  width:100%!important;
+}
+
+.pull-left{
+  float:left!important;
+}
+.pull-right{
+  float:right!important;
+}
+
+.box-1{
+  border:1px solid #e6e6e6;
+  .pd(20px 10px);
+  .mg-t(15px);
+}
+.box-1a{
+  .box-1;
+  .pd(50px 10px);
+  .ta-c;
+}
+.box-1b{
+  border:1px solid #e6e6e6;
+  .pd(20px 10px);
+}
+.box-1c{
+  .pd(20px 10px);
+  .bg(#eee);
+}
+.box-1d{
+  border:1px solid #e6e6e6;
+  .pd(10px);
+  .mg-t(15px);
+}
+.box-1e{
+  .pd(15px 15px 0 15px);
+  .bg(#eee);
+}
+.box-1f{
+  .pd(15px 15px 0 15px);
+  border:1px solid #e6e6e6;
+}
+.box-2{
+  .pd(15px);
+  .pos-r;
+}
+.box-2a{
+  .pd(10px 15px);
+}
+.box-2b{
+  .pd(0 15px);
+  .pos-r;
+}
+.box-3{
+  border:1px solid #e6e6e6;
+  .mg-b(15px);
+}
+.box-3a{
+  border:1px solid #e6e6e6;
+}
+.box-4{
+  .pd(30px 20px 10px 20px);
+}
+.box-5{
+  .pd(15px 20px 5px 20px);
+}
+.box-6{
+  .pd(0 10px);
+}
+//.box-*
+//.box-*1 边框
+//box-a
+.box-a{
+  .pd(10px 15px);
+  .mg-b(15px);
+}
+.box-a1{
+  .box-a;
+  .bordered;
+}
+//box-aa
+.box-aa{
+  .pd(10px 15px 0 15px);
+  .mg-b(15px);
+}
+.box-aa1{
+  .box-aa;
+  .bordered;
+}
+//box-b
+.box-b{
+  .pd(15px);
+  .mg-b(15px);
+}
+.box-b1{
+  .box-b;
+  .bordered;
+}
+.box-ba{
+  .pd(15px 15px 0 15px);
+  .mg-b(15px);
+}
+.box-ba1{
+  .box-ba;
+  .bordered;
+}
+//box-c
+.box-c{
+  .pd(20px 15px);
+  .mg-b(15px);
+}
+.box-c1{
+  .box-c;
+  .bordered;
+}
+.box-ca{
+  .pd(20px 15px 5px 15px);
+  .mg-b(15px);
+}
+.box-ca1{
+  .box-ca;
+  .bordered;
+}
+//box-d
+.box-d{
+  .pd(15px 25px);
+  .mg-b(15px);
+}
+.box-d1{
+  .box-d;
+  .bordered;
+}
+.box-da{
+  .pd(15px 25px 0 25px);
+  .mg-b(15px);
+}
+.box-da1{
+  .box-da;
+  .bordered;
+}
+//box-e
+.box-e{
+  .pd(30px 15px);
+  .mg-b(15px);
+}
+//box-f
+.box-f{
+  .pd(50px 15px);
+  .mg-b(15px);
+}
+.box-f1{
+  .box-f;
+  .bordered;
+}
+.box-fa{
+  .pd(50px 15px 35px 15px);
+  .mg-b(15px);
+}
+.box-fa1{
+  .box-fa;
+  .bordered;
+}
+//title
+.title-1{
+  .fz(12px);
+  .fw-n;
+  .pd(0 5px 15px 5px);
+  border-bottom:1px solid #e6e6e6;
+  .mg-b(15px);
+}
+.title-2{
+  .fz(13px);
+  .fw-n;
+  .c(#4c4c4c);
+  .mg-b(15px);
+}
+.title-3{
+  .title-3a;
+  .bg(#fafafa);
+  border-bottom:1px solid #e6e6e6;
+}
+.title-3a{
+  .h(50px);
+  h2,p{
+    .h(50px);
+    .lh(50px);
+    .fz(13px);
+    .fw-n;
+  }
+  p{
+    .fz(12px);
+  }
+  h2{
+    .pd-l(20px);
+  }
+  i{
+    .mg(13px 12px 0 0);
+    .c(#697a8e);
+    &:hover{
+      .c(#666);
+    }
+  }
+}
+.title-main,.title-sub{
+  .fz(12px);
+  .lh(1);
+  .fw-n;
+  .c(#4c4c4c);
+  .pd(0 5px 2px 5px);
+  .mg-b(13px);
+  border-left: 3px solid #05abef;
+}
+.title-main{
+  .fz(13px);
+}
+.text-1{
+  .fz(14px);
+  .mg-b(15px);
+}
+.text-1a{
+  .text-1;
+  .c(#bfbfbf);
+}
+.text-2{
+  .fz(12px);
+  .mg-b(15px);
+}
+.text-2a{
+  .text-2;
+  .c(#bfbfbf);
+}
+.text-2b{
+  .fz(12px);
+}
+.text-3{
+  .fz(13px);
+  .mg-b(15px);
+}
+.text-3a{
+  .fz(13px);
+}
+.text-wrap-1{
+  .pd(15px 15px 0 15px);
+  p{
+    .mg-b(15px);
+  }
+}
+.text-wrap-2{
+  .pd(15px 15px 5px 15px);
+  p{
+    .mg-b(10px);
+  }
+}
+.list-wrap-1{
+  p{
+    min-height:32px;
+    .lh(32px);
+    .mg-b(15px);
+  }
+}
+.text-below{
+  .pos-r;
+  top:-8px;
+  .c(#808080);
+}
+
+.right{
+  .ta-r;
+}
+.centered{
+  .ta-c;
+}
+.text-left{
+  .ta-l;
+}
+.text-right{
+  .ta-r;
+}
+.pointer{
+  .cur-p;
+}
+.cursor-default{
+  cursor: default!important;
+}
+.cursor-auto{
+  cursor: auto!important;
+}
+.vertical-top{
+  vertical-align: top;
+}
+.vertical-middle{
+  vertical-align: middle;
+}
+.opacity-0{
+  opacity:0;
+  filter:alpha(opacity=0);
+}
+.opacity-68{
+  opacity:0.68;
+  filter:alpha(opacity=68);
+}
+.opacity-80{
+  opacity:0.8;
+  filter:alpha(opacity=80);
+}
+.opacity-bg{
+  .pos-a;
+  .s(100%,30px);
+  .bg(#000);
+  .opacity-68;
+  bottom:0;
+  left:0;
+  .z(1);
+}
+.opacity-text{
+  .pos-a;
+  .s(100%,30px);
+  .lh(30px);
+  .ta-c;
+  left:0;
+  bottom:0;
+  .z(2);
+  .c(#fff);
+  .fz(12px);
+}
+.relative{
+  .pos-r;
+}
+.mg-t0{
+  margin-top:0!important;
+}
+.mg-5{
+  margin-top:5px!important;
+}
+.mg-t10{
+  margin-top:10px!important;
+}
+.mg-t15{
+  margin-top:15px!important;
+}
+.mg-t20{
+  margin-top:20px!important;
+}
+.mg-t30{
+  margin-top:30px!important;
+}
+.mg-t50{
+  margin-top:50px!important;
+}
+.mg-r0{
+  margin-right:0!important;
+}
+.mg-r5{
+  margin-right:5px!important;
+}
+.mg-r10{
+  margin-right:10px!important;
+}
+.mg-b0{
+  margin-bottom:0!important;
+}
+.mg-b5{
+  margin-bottom:5px!important;
+}
+.mg-b10{
+  margin-bottom:10px!important;
+}
+.mg-b15{
+  margin-bottom:15px!important;
+}
+.mg-b20{
+  margin-bottom:20px!important;
+}
+.mg-b30{
+  margin-bottom:30px!important;
+}
+.mg-b50{
+  margin-bottom:50px!important;
+}
+.mg-l0{
+  margin-left:0!important;
+}
+.mg-l5{
+  margin-left:5px!important;
+}
+.mg-l10{
+  margin-left:10px!important;
+}
+.mg-l15{
+  margin-left:15px!important;
+}
+.bd-0{
+  border:0!important;
+}
+.bd-b0{
+  border-bottom:0!important;
+}
+.bd-l0{
+  border-left:0!important;
+}
+.bd-t0{
+  border-top:0!important;
+}
+.bd-r0{
+  border-right:0!important;
+}
+.pd-0{
+  padding:0!important;
+}
+.pd-l0{
+  padding-left: 0!important;
+}
+.pd-l10{
+  .pd-l(10px);
+}
+.pd-r0{
+  padding-right: 0!important;
+}
+.pd-r10{
+  .pd-r(10px);
+}
+.pd-lr10{
+  .pd-l(10px);
+  .pd-r(10px);
+}
+
+
+.hr-1{
+  .s(100%,1px);
+  .bg(#e6e6e6);
+  .mg-b(15px);
+}
+.hr-2{
+  .s(100%,1px);
+  .bg(#e6e6e6);
+  .mg-t(10px);
+  .mg-b(10px);
+}
+.qr-1{
+  max-width:100%;
+  max-height:100%;
+  .d-b;
+  .mg(10px auto 0 auto);
+}
+.line-wrap{
+  .fl-l;
+  .w(100%);
+}
+//loading
+.loading-1{
+  min-height:50px;
+  background:url('http://static.s.rrr.me/201606201411/loading.gif') no-repeat center center;
+  background-size:18px;
+}
