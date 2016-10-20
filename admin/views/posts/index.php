@@ -6,6 +6,13 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
 ?>
 <div class="row">
     <div class="row-in">
+        <div class="columns-24">
+			<?php echo \Yii::$app->view->renderFile("@admin/views/common/posts_tab.php", ['current' => 'index']); ?>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="row-in">
         <form id="search_from">
             <div class="columns-3">
                 <select class="select-1" name="status">

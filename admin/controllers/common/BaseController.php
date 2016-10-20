@@ -24,6 +24,7 @@ class BaseController extends Controller{
 	protected  $new_ui_urls = [
 		'default/index',
 		'posts/index',
+		'posts/set',
 		'account/index',
 		'richmedia/index',
 		'library/index',

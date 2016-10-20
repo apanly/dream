@@ -23,6 +23,7 @@ var post_set_ops = {
             enableAutoSave:true,
             saveInterval:60000,
             elementPathEnabled:false,
+            zIndex:4,
             serverUrl:'/upload/ueditor'
         });
 
@@ -30,18 +31,6 @@ var post_set_ops = {
             //alert('这是图片地址：'+arg[0].src);
         });
 
-        $("#post_add_edit .save").click(function(){
-            if( $(this).hasClass("disabled") ){
-                alert("请不要重复提交");
-                return false;
-            }
-
-            if(!that.inputCheck()){
-                return false;
-            }
-            that.dataSubmit();
-            return false;
-        });
         $(".get_tags").click(function(){
             var content  = $.trim( that.ue.getContent() );
             $.ajax({
@@ -59,78 +48,83 @@ var post_set_ops = {
                 }
             });
         });
-    },
-    inputCheck:function(){
-        var title = $.trim( $("#post_add_edit input[name=title]").val() );
-        var content  = $.trim( this.ue.getContent() );
-        var tags = $.trim( $("#post_add_edit input[name=tags]").val() );
-        var type = $.trim($("#type").val());
-        var status = $.trim($("#status").val());
-        var original = $.trim($("#original").val());
 
-        if(title.length <= 0){
-            alert("请输入博文标题!!");
-            $("#post_add_edit input[name=title]").focus();
-            return false;
-        }
-
-        if(content.length <= 10){
-            alert("请输入更多点博文内容!!");
-            $("#post_add_edit .summernote").focus();
-            return false;
-        }
-
-        if(tags.length <= 0){
-            alert("请输入博文tags!!");
-            $("#post_add_edit input[name=tags]").focus();
-            return false;
-        }
-
-        if( type == undefined || parseInt(type) <= 0){
-            alert("请选择类型!!");
-            return false;
-        }
-
-        return true;
-    },
-    dataSubmit:function(){
-        var _this = $("#post_add_edit .save");
-        $(_this).addClass("disabled");
-
-        var post_id = $.trim($("#post_add_edit input[name=post_id]").val() );
-        var title = $.trim( $("#post_add_edit input[name=title]").val() );
-        var content  = $.trim( this.ue.getContent() );
-        var tags = $.trim( $("#post_add_edit input[name=tags]").val() );
-        var type = $.trim($("#type").val());
-        var status = $.trim($("#status").val());
-        var original = $.trim($("#original").val());
-        data = {
-            id:post_id,
-            title:title,
-            content:content,
-            tags:tags,
-            type:type,
-            status:status,
-            original:original
-        };
-        $.ajax({
-            url:'/posts/set',
-            data:data,
-            type:'POST',
-            dataType:'json',
-            success:function(res){
-                alert(res.msg);
-                $(_this).removeClass("disabled");
-                if(res.code == 200){
-                    window.location.href = "/posts/set?id="+res.data.post_id;
-                }
+        $("#post_add_edit .save").click(function(){
+            var btn_target = $(this);
+            if( btn_target.hasClass("disabled") ){
+                $.alert("正在保存，请不要重复提交~~");
+                return false;
             }
+
+            var title_target = $("#post_add_edit input[name=title]");
+            var title_val = $.trim( title_target.val() );
+            var content  = $.trim( that.ue.getContent() );
+            var tags_val = $.trim( $("#post_add_edit input[name=tags]").val() );
+            var type_target = $("#type");
+            var type_val = $.trim( type_target.val() );
+            var status_target = $("#status");
+            var status_val = $.trim( status_target.val() );
+            var original_target = $("#original");
+            var original_val = $.trim( original_target.val() );
+
+            if( title_val.length <= 0){
+                title_target.tip("请输入博文标题~~");
+                return false;
+            }
+
+            if( content.length <= 10){
+                $.alert("请输入更多点博文内容~~");
+                return false;
+            }
+
+            if( tags_val.length <= 0){
+                $.alert("请输入博文tags~~");
+                return false;
+            }
+
+            if( type_val == undefined || parseInt( type_val ) <= 0){
+                type_target.tip("请选择类型~~");
+                return false;
+            }
+
+            btn_target.addClass("disabled");
+
+            var data = {
+                id: $.trim($("#post_add_edit input[name=post_id]").val() ),
+                title:title_val,
+                content:content,
+                tags:tags_val,
+                type:type_val,
+                status:status_val,
+                original:original_val
+            };
+            $.ajax({
+                url:'/posts/set',
+                data:data,
+                type:'POST',
+                dataType:'json',
+                success:function(res){
+                    btn_target.removeClass("disabled");
+                    var callback = {};
+                    if(res.code == 200){
+                        callback = {
+                            ok:function(){
+                                window.location.href = "/posts/set?id="+res.data.post_id;
+                            },
+                            cancel:function(){
+                                window.location.href = "/posts/set?id="+res.data.post_id;
+                            }
+                        }
+                    }
+                    $.alert(res.msg,callback);
+                }
+            });
         });
     },
     initPlugins:function(){
         $("#post_add_edit input[name=tags]").tagsInput({
             width:'auto',
-            height:30,
+            height:60,
             onAddTag:function(tag){
             },
             onRemoveTag:function(tag){

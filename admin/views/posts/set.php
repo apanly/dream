@@ -2,97 +2,103 @@
 use \yii\helpers\Url;
 use \admin\components\StaticService;
 use \common\service\GlobalUrlService;
-StaticService::includeAppJsStatic("/js/jquery/plugins/jquery.tagsinput.min.js",\admin\assets\AppAsset::className());
-StaticService::includeAppJsStatic("/ueditor/ueditor.config.js",\admin\assets\AppAsset::className());
-StaticService::includeAppJsStatic("/ueditor/ueditor.all.min.js",\admin\assets\AppAsset::className());
-//StaticService::includeAppJsStatic("/ueditor/ueditor.all.js",\admin\assets\AppAsset::className());
-StaticService::includeAppJsStatic("/ueditor/lang/zh-cn/zh-cn.js",\admin\assets\AppAsset::className());
-StaticService::includeAppJsStatic("/js/posts/set.js",\admin\assets\AppAsset::className());
+
+StaticService::includeAppCssStatic("components/jquery_tags_input/jquery.tagsinput.min.css",\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic("/components/jquery_tags_input/jquery.tagsinput.min.js",\admin\assets\AdminAsset::className());
+
+StaticService::includeAppJsStatic("/ueditor/ueditor.config.js",\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic("/ueditor/ueditor.all.min.js",\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic("/ueditor/lang/zh-cn/zh-cn.js",\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic("/js/posts/set.js",\admin\assets\AdminAsset::className());
 ?>
-
-<div class="page-content-wrap">
-    <div class="row">
-        <div class="col-md-12">
-            <form class="form-horizontal" id="post_add_edit">
-                <div class="panel panel-default">
-                    <div class="panel-heading ui-draggable-handle">
-                        <h3 class="panel-title"><strong>写文章</strong></h3>
-
-                        <ul class="panel-controls">
-                            <?php if($info):?>
-                                <a href="<?=$info["view_url"];?>" target="_blank">预览文章</a>
-                            <?php endif;?>
-                            <a href="<?=Url::toRoute("/posts/index");?>" >文章列表</a>
-                        </ul>
+<div class="row">
+    <div class="row-in">
+        <div class="columns-24">
+			<?php echo \Yii::$app->view->renderFile("@admin/views/common/posts_tab.php", ['current' => 'set']); ?>
+        </div>
+    </div>
+</div>
+<div class="row" id="post_add_edit">
+    <div class="row-in">
+        <div class="columns-18">
+            <div class="row">
+                <div class="row-in">
+                    <div class="columns-3 text-right">
+                        <label class="label-name inline"><i class="mark">*</i>标题</label>
                     </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-9">
-                                <div class="form-group">
-                                    <label class="col-md-1 col-xs-12 control-label">标题</label>
-                                    <div class="col-md-11 col-xs-12">
-                                        <input type="text" class="form-control" name="title" value="<?=$info?$info['title']:'';?>"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-1 col-xs-12 control-label">内容</label>
-                                    <div class="col-md-11 col-xs-12">
-                                        <textarea  id="editor" name="content" style="height: 300px;"><?=$info?$info['content']:'';?></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-1 col-xs-12 control-label">标签</label>
-                                    <div class="col-md-10 col-xs-12">
-                                        <input type="text" class="form-control" name="tags" value="<?=$info?$info['tags']:'';?>"/>
-                                    </div>
-                                    <div class="col-md-1 col-xs-12">
-                                        <a class="get_tags" href="javascript:void(0);">获取tags</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">类型</label>
-                                    <div class="col-md-9 col-xs-12">
-                                        <select name="type" id="type" class="form-control">
-                                            <option value="0">请选择</option>
-                                            <?php foreach($posts_type as $_key => $_type):?>
-                                                <option value="<?=$_key;?>" <?php if($info && $_key == $info['type']):?> selected <?php endif;?> ><?=$_type;?></option>
-                                            <?php endforeach;?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">状态</label>
-                                    <div class="col-md-9 col-xs-12">
-                                        <select name="status" id="status" class="form-control">
-                                            <?php foreach( $status_desc as $_key => $_item):?>
-                                                <option value="<?=$_key;?>"  <?php if($info && $_key == $info['status']):?> selected <?php endif;?> ><?=$_item["desc"];?></option>
-                                            <?php endforeach;?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">原创</label>
-                                    <div class="col-md-9 col-xs-12">
-                                        <select name="original" id="original" class="form-control">
-                                            <?php foreach( $original_desc as $_key => $_item):?>
-                                                <option value="<?=$_key;?>"  <?php if($info && $_key == $info['original']):?> selected <?php endif;?> ><?=$_item["desc"];?></option>
-                                            <?php endforeach;?>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
+                    <div class="columns-21">
+                        <div class="input-wrap">
+                            <input type="text" class="input-1" name="title" value="<?=$info?$info['title']:'';?>"/>
                         </div>
                     </div>
-                    <div class="panel-footer">
-                        <input type="hidden" name="post_id" value="<?=$info?$info['id']:0;?>">
-                        <button class="btn btn-primary pull-right save">保存</button>
+                    <div class="columns-3 text-right">
+                        <label class="label-name inline"><i class="mark">*</i>内容</label>
+                    </div>
+                    <div class="columns-21">
+                        <div class="box-c1 bg-gray">
+                            <textarea  id="editor" name="content" style="height: 300px;"><?=$info?$info['content']:'';?></textarea>
+                        </div>
+                    </div>
+                    <div class="columns-3 text-right">
+                        <label class="label-name inline"><i class="mark">*</i>标签</label>
+                    </div>
+                    <div class="columns-18">
+                        <div class="input-wrap">
+                            <input type="text" class="input-1" name="tags" value="<?=$info?$info['tags']:'';?>"/>
+                        </div>
+                    </div>
+                    <div class="columns-3">
+                        <button type="button" class="btn-tiny mg-b0 get_tags">获取tags</button>
                     </div>
                 </div>
-            </form>
+            </div>
+        </div>
+        <div class="columns-6">
+            <div class="row">
+                <div class="row-in">
+                    <div class="columns-8 text-right">
+                        <label class="label-name inline"><i class="mark">*</i>类型</label>
+                    </div>
+                    <div class="columns-16">
+                        <div class="select-wrap">
+                            <select name="type" id="type" class="select-1">
+                                <option value="0">请选择</option>
+								<?php foreach($posts_type as $_key => $_type):?>
+                                    <option value="<?=$_key;?>" <?php if($info && $_key == $info['type']):?> selected <?php endif;?> ><?=$_type;?></option>
+								<?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="columns-8 text-right">
+                        <label class="label-name inline"><i class="mark">*</i>状态</label>
+                    </div>
+                    <div class="columns-16">
+                        <div class="select-wrap">
+                            <select name="status" id="status" class="select-1">
+								<?php foreach( $status_desc as $_key => $_item):?>
+                                    <option value="<?=$_key;?>"  <?php if($info && $_key == $info['status']):?> selected <?php endif;?> ><?=$_item["desc"];?></option>
+								<?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="columns-8 text-right">
+                        <label class="label-name inline"><i class="mark">*</i>原创</label>
+                    </div>
+                    <div class="columns-16">
+                        <div class="select-wrap">
+                            <select name="original" id="original" class="select-1">
+								<?php foreach( $original_desc as $_key => $_item):?>
+                                    <option value="<?=$_key;?>"  <?php if($info && $_key == $info['original']):?> selected <?php endif;?> ><?=$_item["desc"];?></option>
+								<?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="columns-16 offset-8">
+                        <input type="hidden" name="post_id" value="<?=$info?$info['id']:0;?>">
+                        <input type="button" value="保存" class="btn-small save">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
