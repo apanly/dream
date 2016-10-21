@@ -20,6 +20,8 @@ use Yii;
  * @property string $client_device
  * @property string $ip
  * @property string $uuid
+ * @property integer $client_width
+ * @property integer $client_height
  * @property string $created_time
  */
 class AccessLogs extends \yii\db\ActiveRecord
@@ -46,7 +48,7 @@ class AccessLogs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['blog_id'], 'integer'],
+            [['blog_id', 'client_width', 'client_height'], 'integer'],
             [['created_time'], 'safe'],
             [['referer'], 'string', 'max' => 300],
             [['target_url'], 'string', 'max' => 500],
@@ -78,6 +80,8 @@ class AccessLogs extends \yii\db\ActiveRecord
             'client_device' => 'Client Device',
             'ip' => 'Ip',
             'uuid' => 'Uuid',
+            'client_width' => 'Client Width',
+            'client_height' => 'Client Height',
             'created_time' => 'Created Time',
         ];
     }

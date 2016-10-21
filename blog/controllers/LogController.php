@@ -15,6 +15,7 @@ use Yii;
 class LogController extends BaseController{
     public function actionAdd(){
         $referer = trim( $this->get("referer","") );
+        $screen = trim( $this->get("screen","") );
         $target_url = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"";
         if( $target_url ){
 			$blog_id = 0;
@@ -38,6 +39,7 @@ class LogController extends BaseController{
 			$model_ac_log->blog_id = $blog_id;
 			$model_ac_log->source = $tmp_source?$tmp_source:'';
             $model_ac_log->user_agent = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:"";
+
             if( $model_ac_log->user_agent ){
 				$tmp_browser = new Browser( $model_ac_log->user_agent );
 				$tmp_os = new Os( $model_ac_log->user_agent );
@@ -50,6 +52,17 @@ class LogController extends BaseController{
 			}
             $model_ac_log->ip = UtilHelper::getClientIP();
 			$model_ac_log->uuid = $uuid;
+
+			if( $screen ){
+				list( $client_width, $client_height ) = explode("/",$screen );
+				if( $client_width ){
+					$model_ac_log->client_width = $client_width;
+				}
+				if( $client_height ){
+					$model_ac_log->client_height = $client_height;
+				}
+			}
+
             $model_ac_log->created_time = date("Y-m-d H:i:s");
             $model_ac_log->save();
 

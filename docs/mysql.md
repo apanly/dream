@@ -4,6 +4,11 @@
     ALTER TABLE `access_logs` ADD `client_device` VARCHAR(20)  NOT NULL  DEFAULT ''  COMMENT '客户端设备'  AFTER `client_os`;
     ALTER TABLE `access_logs` ADD `client_browser_version` VARCHAR(40)  NOT NULL  DEFAULT ''  COMMENT '浏览器版本号'  AFTER `client_browser`;
     ALTER TABLE `access_logs` ADD `client_os_version` VARCHAR(40)  NOT NULL  DEFAULT ''  COMMENT '操作系统版本号'  AFTER `client_os`;
+    ALTER TABLE `access_logs` ADD `client_width` INT(11)  NOT NULL  DEFAULT '0'  COMMENT '分辨率宽度'  AFTER `uuid`;
+    ALTER TABLE `access_logs` ADD `client_height` INT(11)  NOT NULL  DEFAULT '0'  COMMENT '分辨率高度'  AFTER `client_width`;
+    ALTER TABLE `stat_daily_access_source` ADD UNIQUE INDEX `idx_date_source` (`date`, `source`);
+    ALTER TABLE `stat_daily_uuid` ADD UNIQUE INDEX `idx_date_uuid` (`date`, `uuid`);
+    ALTER TABLE `stat_daily_os` ADD UNIQUE INDEX `idx_date_client_os` (`date`, `client_os`);
 
 
 ## 20160615
@@ -375,7 +380,7 @@
       `target_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '类型1：admin',
       `target_id` int(11) NOT NULL DEFAULT '0' COMMENT '类型为1：admin.id',
       `act_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '动作类型：1登录  2:访问',
-      `login_name` varchar(50) NOT NULL DEFAULT '' COMMENT '账号',
+      `login_name` varchar(50) NOT NULL DEFAULT '' COMMENT '账号',s
       `refer_url` varchar(255) NOT NULL DEFAULT '' COMMENT '当前访问的refer',
       `target_url` varchar(255) NOT NULL DEFAULT '' COMMENT '访问的url',
       `query_params` varchar(1000) NOT NULL DEFAULT '' COMMENT 'get和post参数',
@@ -387,4 +392,15 @@
       PRIMARY KEY (`id`),
       KEY `idx_type_name_status` (`target_type`,`login_name`,`status`)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='admin端访问记录表';
+    
+    CREATE TABLE `stat_daily_os` (
+      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+      `client_os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统名称',
+      `date` int(11) NOT NULL DEFAULT '0' COMMENT '日期',
+      `total_number` int(11) NOT NULL DEFAULT '0' COMMENT '当日总次数',
+      `updated_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后一次更新时间',
+      `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '插入时间',
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `idx_date_client_os` (`date`,`client_os`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='操作系统 日统计';
 

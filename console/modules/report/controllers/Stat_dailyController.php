@@ -4,6 +4,7 @@ namespace console\modules\report\controllers;
 
 use common\models\applog\AccessLogs;
 use common\models\stat\StatDailyAccessSource;
+use common\models\stat\StatDailyOs;
 use common\models\stat\StatDailyUuid;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
@@ -101,6 +102,57 @@ class Stat_dailyController extends Stat_utilController{
 			}
 			$tmp_model_info->total_number = $tmp_total_number;
 			$tmp_model_info->created_time = $date_now;
+			$tmp_model_info->save(0);
+		}
+
+		return $this->echoLog("it's over~~");
+	}
+
+	/*
+	 * php yii report/stat_daily/os
+	 * */
+	public function actionOs( $date = '' ){
+		$date = $date?$date:date("Y-m-d");
+		if( !preg_match("/^\d{4}-\d{2}-\d{2}$/",$date) ){
+			return $this->echoLog("param date format error,2016-04-28");
+		}
+
+		$time_from = date("Y-m-d 00:00:00",strtotime( $date ) );
+		$time_to = date("Y-m-d 23:59:59",strtotime( $date ) );
+
+		$list = AccessLogs::find()
+			->select([ 'client_os','COUNT(*) as total_number' ])
+			->where([ '>=','created_time',$time_from ])
+			->andWhere([ '<=','created_time',$time_to ])
+			->groupBy("client_os")
+			->asArray()
+			->all();
+
+		if( !$list ){
+			return $this->echoLog('no data to handle~~');
+		}
+
+		$date_int = date("Ymd",strtotime( $date ) );
+		$date_now = date("Y-m-d H:i:s");
+		foreach( $list as $_item ){
+			$tmp_client_os = $_item['client_os'];
+			if( !$tmp_client_os ){
+				continue;
+			}
+			$tmp_total_number = $_item['total_number'];
+			$tmp_info = StatDailyOs::find()
+				->where([ 'date' => $date_int,'client_os' => $tmp_client_os ])
+				->one();
+			if( $tmp_info ){
+				$tmp_model_info = $tmp_info;
+			}else{
+				$tmp_model_info = new StatDailyOs();
+				$tmp_model_info->date = $date_int;
+				$tmp_model_info->client_os = $tmp_client_os;
+				$tmp_model_info->created_time = $date_now;
+			}
+			$tmp_model_info->total_number = $tmp_total_number;
+			$tmp_model_info->updated_time = $date_now;
 			$tmp_model_info->save(0);
 		}
 

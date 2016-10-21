@@ -14,11 +14,11 @@ var access_ops = {
             return;
         }
         var referer = document.referrer;
-        var url = window.location.href;
         $.ajax(access_domain + "log/add", {
             data: {
                 'referer': referer,
-                '_': new Date().getTime()
+                '_': new Date().getTime(),
+                'screen': screen.width + "/"  + screen.height
             },
             dataType: 'jsonp',
             crossDomain: true,
