@@ -1,26 +1,26 @@
 <?php
 
-namespace common\models\applog;
+namespace common\models\stat;
 
 use Yii;
 
 /**
- * This is the model class for table "stat_daily_uuid".
+ * This is the model class for table "stat_daily_access_source".
  *
  * @property integer $id
- * @property string $uuid
+ * @property string $source
  * @property integer $date
  * @property integer $total_number
  * @property string $created_time
  */
-class StatDailyUuid extends \yii\db\ActiveRecord
+class StatDailyAccessSource extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'stat_daily_uuid';
+        return 'stat_daily_access_source';
     }
 
     /**
@@ -39,7 +39,7 @@ class StatDailyUuid extends \yii\db\ActiveRecord
         return [
             [['date', 'total_number'], 'integer'],
             [['created_time'], 'safe'],
-            [['uuid'], 'string', 'max' => 100],
+            [['source'], 'string', 'max' => 50],
         ];
     }
 
@@ -50,7 +50,7 @@ class StatDailyUuid extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'uuid' => 'Uuid',
+            'source' => 'Source',
             'date' => 'Date',
             'total_number' => 'Total Number',
             'created_time' => 'Created Time',

@@ -34,6 +34,41 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                 </div>
             </div>
         </div>
+        <div class="columns-12">
+            <div class="box-1">
+                <div class="row">
+                    <div class="row-in">
+                        <h2 class="columns-24 title-1">来路域名Top10</h2>
+                        <div class="columns-24">
+                           <table class="table-1">
+                               <thead>
+                                   <tr>
+                                       <th>域名</th>
+                                       <th>次数</th>
+                                       <th>占比</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                               <?php if( $source_list_top ):?>
+                                   <?php foreach( $source_list_top as $_item ):?>
+                                    <tr class="centered">
+                                        <td><?=$_item["source"];?></td>
+                                        <td><?=$_item["total_number"];?></td>
+                                        <td>--</td>
+                                    </tr>
+                                    <?php endforeach;?>
+                               <?php else:?>
+                                   <tr>
+                                       <td colspan="3">暂无</td>
+                                   </tr>
+                               <?php endif;?>
+                               </tbody>
+                           </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="columns-24">
             <div class="box-1">
                 <div class="row">

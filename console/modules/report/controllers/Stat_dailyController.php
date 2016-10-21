@@ -3,8 +3,8 @@ namespace console\modules\report\controllers;
 
 
 use common\models\applog\AccessLogs;
-use common\models\applog\StatDailyAccessSource;
-use common\models\applog\StatDailyUuid;
+use common\models\stat\StatDailyAccessSource;
+use common\models\stat\StatDailyUuid;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use Sinergi\BrowserDetector\Device;

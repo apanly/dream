@@ -6,8 +6,8 @@ use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\applog\AccessLogs;
 use common\models\applog\AppLogs;
-use common\models\applog\StatDailyAccessSource;
-use common\models\applog\StatDailyUuid;
+use common\models\stat\StatDailyAccessSource;
+use common\models\stat\StatDailyUuid;
 use common\service\GlobalUrlService;
 use Yii;
 

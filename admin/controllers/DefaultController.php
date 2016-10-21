@@ -8,6 +8,7 @@ use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\stat\StatAccess;
 use common\models\stat\StatBlog;
+use common\models\stat\StatDailyAccessSource;
 use Yii;
 
 
@@ -104,10 +105,16 @@ class DefaultController extends BaseController
         }
 
 
+        /*今日来源域名top10*/
+		$source_list_top = StatDailyAccessSource::find()->where([ 'date' => date("Y-m-d") ])
+			->orderBy([ 'total_number' => SORT_DESC ])
+			->all();
+
         return $this->render("index",[
             "stat" =>$data,
             "data_access" => $data_access,
-            "data_blog" => $data_blog
+            "data_blog" => $data_blog,
+			'source_list_top' => $source_list_top
         ]);
     }
 
