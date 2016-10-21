@@ -43,7 +43,9 @@ class LogController extends BaseController{
 				$tmp_os = new Os( $model_ac_log->user_agent );
 				$tmp_device = new Device( $model_ac_log->user_agent );
 				$model_ac_log->client_browser = $tmp_browser->getName()?$tmp_browser->getName():'';
+				$model_ac_log->client_browser_version = $tmp_browser->getVersion()?$tmp_browser->getVersion():'';
 				$model_ac_log->client_os = $tmp_os->getName()?$tmp_os->getName():'';
+				$model_ac_log->client_os_version = $tmp_os->getVersion()?$tmp_os->getVersion():'';
 				$model_ac_log->client_device = $tmp_device->getName()?$tmp_device->getName():'';
 			}
             $model_ac_log->ip = UtilHelper::getClientIP();

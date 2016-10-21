@@ -14,7 +14,9 @@ use Yii;
  * @property string $source
  * @property string $user_agent
  * @property string $client_browser
+ * @property string $client_browser_version
  * @property string $client_os
+ * @property string $client_os_version
  * @property string $client_device
  * @property string $ip
  * @property string $uuid
@@ -51,6 +53,7 @@ class AccessLogs extends \yii\db\ActiveRecord
             [['source', 'uuid'], 'string', 'max' => 100],
             [['user_agent'], 'string', 'max' => 200],
             [['client_browser'], 'string', 'max' => 50],
+            [['client_browser_version', 'client_os_version'], 'string', 'max' => 40],
             [['client_os', 'client_device'], 'string', 'max' => 20],
             [['ip'], 'string', 'max' => 128],
         ];
@@ -69,7 +72,9 @@ class AccessLogs extends \yii\db\ActiveRecord
             'source' => 'Source',
             'user_agent' => 'User Agent',
             'client_browser' => 'Client Browser',
+            'client_browser_version' => 'Client Browser Version',
             'client_os' => 'Client Os',
+            'client_os_version' => 'Client Os Version',
             'client_device' => 'Client Device',
             'ip' => 'Ip',
             'uuid' => 'Uuid',

@@ -2,7 +2,8 @@
     ALTER TABLE `access_logs` ADD `client_browser` VARCHAR(50)  NOT NULL  DEFAULT ''  COMMENT '浏览器'  AFTER `user_agent`;
     ALTER TABLE `access_logs` ADD `client_os` VARCHAR(20)  NOT NULL  DEFAULT ''  COMMENT '客户端操作系统'  AFTER `client_browser`;
     ALTER TABLE `access_logs` ADD `client_device` VARCHAR(20)  NOT NULL  DEFAULT ''  COMMENT '客户端设备'  AFTER `client_os`;
-
+    ALTER TABLE `access_logs` ADD `client_browser_version` VARCHAR(40)  NOT NULL  DEFAULT ''  COMMENT '浏览器版本号'  AFTER `client_browser`;
+    ALTER TABLE `access_logs` ADD `client_os_version` VARCHAR(40)  NOT NULL  DEFAULT ''  COMMENT '操作系统版本号'  AFTER `client_os`;
 
 
 ## 20160615
