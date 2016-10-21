@@ -3,7 +3,7 @@ var common_ops = {
     init:function(){
         this.eventBind();
         this.setMenuIconHighLight();
-        this.autoComplete();
+        //this.autoComplete();
     },
     eventBind:function(){
         //文本框失去焦点时隐藏tip提示层
@@ -23,59 +23,44 @@ var common_ops = {
 
         var nav_name = null;
 
-        if(  pathname.indexOf("/club/recept") > -1  ){
-            nav_name = "recept";
+        if(  pathname.indexOf("/default/") > -1  ){
+            nav_name = "dashboard";
         }
 
-        if(  pathname.indexOf("/club/member") > -1  ){
-            nav_name = "member";
+        if(  pathname.indexOf("/posts/") > -1  ){
+            nav_name = "posts";
         }
 
-        if(  pathname.indexOf("/import/member") > -1  ){
-            nav_name = "member";
+        if(  pathname.indexOf("/account/") > -1  ){
+            nav_name = "account";
         }
 
-        if(  pathname.indexOf("/club/course") > -1  ){
-            nav_name = "course";
+        if(  pathname.indexOf("/richmedia/") > -1  ){
+            nav_name = "richmedia";
         }
 
-        if(  pathname.indexOf("/club/product") > -1  ){
-            nav_name = "product";
+        if(  pathname.indexOf("/library/") > -1  ){
+            nav_name = "library";
         }
 
-        if(  pathname.indexOf("/import/contract") > -1  ){
-            nav_name = "product";
+        if(  pathname.indexOf("/file/") > -1  ){
+            nav_name = "files";
         }
 
-        if(  pathname.indexOf("/club/staff") > -1  ){
-            nav_name = "staff";
-        }
-
-        if( pathname.indexOf("club/rbac") > -1 ){
-            nav_name = "staff";
-        }
-
-        if(  pathname.indexOf("/club/stat") > -1  ){
+        if(  pathname.indexOf("/log/") > -1  ){
             nav_name = "stat";
         }
 
-        if(  pathname.indexOf("/club/finance") > -1  ){
-            nav_name = "finance";
+        if( pathname.indexOf("/douban/") > -1 ){
+            nav_name = "girl";
         }
 
-        if(  pathname.indexOf("/club/plugins") > -1 || pathname == '/club/setting/sms' ){
-            nav_name = "plugins";
-        }
-
-        if(  pathname.indexOf("/club/shop") > -1  ){
-            nav_name = "shop";
-        }
 
         if( nav_name == null ){
             return;
         }
 
-        $(".box_left_nav .menu_list li."+nav_name).addClass("current");
+        $(".box_left_nav .menu_list li.menu_"+nav_name).addClass("current");
     },
     buildAdminUrl:function( path ,params){
         var url =   path;

@@ -36,7 +36,7 @@ use \common\service\GlobalUrlService;
 <div class="copy-rights">
     <p><?=$copyright;?></p>
 </div>
-<script type="text/javascript" src="<?=StaticService::buildStaticUrl("/js/jquery/jquery.min.js");?>"></script>
+<script type="text/javascript" src="<?=StaticService::buildStaticUrl("/js/jquery/jquery-1.12.3.min.js");?>"></script>
 <script type="text/javascript" src="<?=StaticService::buildStaticUrl("/js/login/index.js");?>"></script>
 </body>
 </html>

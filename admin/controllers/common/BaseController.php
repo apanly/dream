@@ -27,7 +27,6 @@ class BaseController extends Controller{
         $view = Yii::$app->view;
         $view->params['id'] = $id;
         $view->params['copyright'] = Yii::$app->params['Copyright'];
-		$this->layout = "v1";
         $this->setTitle();
     }
 

@@ -4,6 +4,7 @@ namespace admin\controllers;
 
 use admin\controllers\common\BaseController;
 use admin\controllers\common\AdminException;
+use common\service\AppLogService;
 use Yii;
 use yii\log\FileTarget;
 
@@ -35,5 +36,14 @@ class ErrorController extends BaseController
         }
         $this->goHome();
     }
+
+	public function actionCapture(){
+		$referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
+		$url = $this->post("url","");
+		$message = $this->post("message","");
+		$error = $this->post("error","");
+		$err_msg = "JS ERROR：[url:{$referer}],[js_file:{$url}],[error:{$message}],[error_info:{$error}]";
+		AppLogService::addErrorLog("app-admin",$referer,$err_msg);
+	}
 }
 

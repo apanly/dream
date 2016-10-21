@@ -1,164 +1,127 @@
 <?php
 use yii\helpers\Html;
-use admin\assets\AppAsset;
-use admin\components\StaticService;
+use admin\assets\AdminAsset;
+use admin\components\AdminUrlService;
 use \common\service\GlobalUrlService;
-use yii\helpers\Url;
-AppAsset::register($this);
+
+AdminAsset::register($this);
+$seo_title = Yii::$app->params['seo']['title'];
+$domain_blog = Yii::$app->params['domains']['blog'];
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html class="no-js">
 <head>
-    <title><?= Html::encode($this->title) ?></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
-    <?php $this->head() ?>
-    <?php $this->beginBody() ?>
+	<meta charset="utf-8">
+	<link rel="icon" href="<?= GlobalUrlService::buildStaticUrl("/images/icon.png"); ?>" type="image/x-icon"/>
+	<title><?= Html::encode($this->title) ?></title>
+	<?php $this->head() ?>
+	<?php $this->beginBody() ?>
 </head>
 <body>
-<div class="page-container">
-    <div class="page-sidebar">
-        <ul class="x-navigation">
-            <?= Yii::$app->controller->renderPartial("/public/user_info");?>
-            <li class="menu_dashboard">
-                <a href="<?=Url::toRoute("/default/index");?>">
-                    <span class="fa fa-desktop"></span>
-                    <span class="xn-text">Dashboard</span>
-                </a>
-            </li>
-            <li class="xn-openable menu_posts">
-                <a href="javascript:void(0);">
-                    <span class="fa fa-cogs"></span><span class="xn-text">文章管理</span>
-                </a>
-                <ul>
-                    <li><a href="<?=Url::toRoute("/posts/index");?>"><span class="fa fa-heart"></span>文章列表</a></li>
-                    <li><a href="<?=Url::toRoute("/posts/comments");?>"><span class="fa fa-square-o"></span> 评论管理</a></li>
-                </ul>
-            </li>
-            <li class="xn-openable menu_account">
-                <a href="javascript:void(0);">
-                    <span class="fa fa-cogs"></span><span class="xn-text">账号管理</span>
-                </a>
-                <ul>
-                    <li><a href="<?=Url::toRoute("/account/index");?>"><span class="fa fa-heart"></span>账号列表</a></li>
-                </ul>
-            </li>
-            <li class="xn-openable menu_richmedia">
-                <a href="javascript:void(0);">
-                    <span class="fa fa-cogs"></span><span class="xn-text">多媒体管理</span>
-                </a>
-                <ul>
-                    <li><a href="<?=Url::toRoute("/richmedia/index");?>"><span class="fa fa-heart"></span>多媒体列表</a></li>
-                </ul>
-            </li>
-            <li class="xn-openable menu_library">
-                <a href="javascript:void(0);">
-                    <span class="fa fa-cogs"></span><span class="xn-text">图书管理</span>
-                </a>
-                <ul>
-                    <li><a href="<?=Url::toRoute("/library/index");?>"><span class="fa fa-heart"></span>图书列表</a></li>
-                </ul>
-            </li>
-            <li class="xn-openable menu_file">
-                <a href="javascript:void(0);">
-                    <span class="fa fa-cogs"></span><span class="xn-text">文件管理</span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="<?=Url::toRoute("/file/index");?>">
-                            <span class="fa fa-heart"></span>文件列表
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="xn-openable menu_log">
-                <a href="javascript:void(0);">
-                    <span class="fa fa-cogs"></span><span class="xn-text">统计管理</span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="<?=Url::toRoute("/log/access");?>">
-                            <span class="fa fa-heart"></span>访问日志
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?=Url::toRoute("/log/uuid");?>">
-                            <span class="fa fa-heart"></span>UUID统计
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?=Url::toRoute("/log/source");?>">
-                            <span class="fa fa-heart"></span>来源统计
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?=Url::toRoute("/log/app");?>">
-                            <span class="fa fa-heart"></span>错误日志
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="xn-openable menu_doubanmz">
-                <a href="javascript:void(0);">
-                    <span class="fa fa-cogs"></span><span class="xn-text">豆瓣妹纸</span>
-                </a>
-                <ul>
-                    <li><a href="<?=Url::toRoute("/douban/mz");?>"><span class="fa fa-heart"></span>妹纸列表</a></li>
-                </ul>
-            </li>
-        </ul>
-        <!-- END X-NAVIGATION -->
-    </div>
-    <div class="page-content">
-
-        <!-- START X-NAVIGATION VERTICAL -->
-        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
-            <!-- TOGGLE NAVIGATION -->
-            <li class="xn-icon-button">
-                <a href="javascript:void(0);" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
-            </li>
-            <!-- END TOGGLE NAVIGATION -->
-            <!-- SEARCH -->
-            <li class="xn-search">
-                <form role="form">
-                    <input type="text" name="search" placeholder="Search..."/>
-                </form>
-            </li>
-            <!-- END SEARCH -->
-            <!-- SIGN OUT -->
-            <li class="xn-icon-button pull-right">
-                <a href="<?=Url::toRoute("/auth/loginout");?>" class="mb-control"><span class="fa fa-sign-out"></span></a>
-            </li>
-            <!-- END SIGN OUT -->
-            <!-- MESSAGES -->
-            <li class="xn-icon-button pull-right">
-                <a href="javascript:void(0);"><span class="fa fa-comments"></span></a>
-                <div class="informer informer-danger">4</div>
-            </li>
-            <!-- END MESSAGES -->
-            <!-- TASKS -->
-            <li class="xn-icon-button pull-right">
-                <a href="javascript:void(0);"><span class="fa fa-tasks"></span></a>
-
-                <div class="informer informer-warning">3</div>
-            </li>
-            <!-- END TASKS -->
-        </ul>
-        <!-- END X-NAVIGATION VERTICAL -->
-    <?php echo $content; ?>
-    </div>
+<div class="page_wrap">
+	<div class="box_wrap open">
+		<div class="box_left_nav">
+			<div class="logo centered">
+                <div class="avatar-1">
+                    <img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>" alt="100*100">
+                </div>
+			</div>
+			<h2 class="version"><?= $seo_title;?></h2>
+			<ul class="menu_list">
+				<li class="menu_dashboard">
+					<a href="<?=AdminUrlService::buildUrl("/default/index");?>">
+						<i class="icon_club">&#xe604;</i><span>Dashboard</span>
+					</a>
+				</li>
+				<li class="menu_posts">
+					<a href="<?=AdminUrlService::buildUrl("/posts/index");?>">
+						<i class="icon_club">&#xe604;</i><span>文章</span>
+					</a>
+				</li>
+				<li class="menu_account">
+					<a href="<?=AdminUrlService::buildUrl("/account/index");?>">
+						<i class="icon_club">&#xe603;</i><span>账号</span>
+					</a>
+				</li>
+				<li class="menu_richmedia">
+					<a href="<?=AdminUrlService::buildUrl("/richmedia/index");?>">
+						<i class="icon_club">&#xe606;</i><span>多媒体</span></a>
+				</li>
+				<li class="menu_library">
+					<a href="<?=AdminUrlService::buildUrl("/library/index");?>">
+						<i class="icon_club">&#xe60b;</i><span>图书</span>
+					</a>
+				</li>
+				<li class="menu_files">
+					<a href="<?=AdminUrlService::buildUrl("/file/index");?>">
+						<i class="icon_club">&#xe600;</i><span>文件</span>
+					</a>
+				</li>
+				<li class="menu_stat">
+					<a href="<?=AdminUrlService::buildUrl("/log/access");?>">
+						<i class="icon_club">&#xe608;</i><span>统计</span>
+					</a>
+				</li>
+				<li class="menu_girl">
+					<a href="<?=AdminUrlService::buildUrl("/douban/mz");?>">
+						<i class="icon_club">&#xe601;</i><span>豆瓣</span>
+					</a>
+				</li>
+			</ul>
+			<span class="menu_switch">
+				<i class="icon_club">&#xe602;</i>
+				<i class="icon_club arrow_left">&#xe60e;</i>
+			</span>
+		</div>
+		<div class="box_main">
+			<div class="box_top">
+				<div class="row">
+					<div class="row-in">
+						<div class="columns-24">
+							<div class="top_right hastips">
+								<div class="search_box">
+									<input type="text" placeholder="请输入博文关键字" class="search_input" id="top_search"/>
+									<a href="javascript:void(0);" class="icon_club" id="top_search_icon">&#xe607;</a>
+								</div>
+								<a href="javascript:void(0);" class="icon_club setting" data-tip="设置">&#xe605;</a>
+								<a href="javascript:void(0);" class="icon_club user has-panel" data-panel="user_menu">
+									<img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>" alt="80*80"/>
+								</a>
+								<ul class="user_menu hide">
+									<li class="user_profile border">
+										<p class="icon_club user">
+                                            <img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>" alt="80*80"/>
+										</p>
+										<p class="t1"><label class="t2"><?=$this->params['current_user']["mobile"];?></label></p>
+										<p class="t3"><label class="t2"><?=$this->params['current_user']["nickname"];?></p>
+<!--										<a href="javascript:void(0);" class="user_edit">编辑</a>-->
+									</li>
+									<li class="each border">
+										<a href="javascript:void(0);"><i  class="icon_club">&#xe610;</i>修改密码</a>
+									</li>
+									<li class="each">
+										<a href="<?=AdminUrlService::buildUrl("/auth/loginout");?>"><i class="icon_club">&#xe618;</i>退出</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content_wrap">
+				<?php echo $content ?>
+			</div>
+		</div>
+	</div>
+	<div class="footer_wrap">
+		<div class="inner">
+			Copyright&nbsp;&copy;&nbsp;<?=date("Y");?>&nbsp;&nbsp;
+			<a href="<?=$domain_blog;?>" target="_blank"><?= $seo_title;?></a>
+		</div>
+	</div>
 </div>
 <?php $this->endBody() ?>
-
-<script src="/js/public.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
-
-
-
-
-

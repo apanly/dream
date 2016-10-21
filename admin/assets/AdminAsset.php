@@ -13,15 +13,15 @@ class AdminAsset extends AssetBundle{
 	public function registerAssetFiles($view){
 		$this->css = [
 			'css/component/scrollbar.min.css',
-			'css/common_v2.css'
+			'css/common.css'
 		];
 		$this->js = [
-			'js/jquery_v1/jquery-1.12.3.min.js',
+			'js/jquery/jquery-1.12.3.min.js',
 			'js/component/jquery.mCustomScrollbar.js',
 			'js/component/jquery.mousewheel.min.js',
-			"js/jquery_v1/jquery-ui.min.js",
+			"js/jquery/jquery-ui.min.js",
 			'js/core.min.js',
-			'js/common_v2.js'
+			'js/common.js'
 		];
 		parent::registerAssetFiles($view);
 	}
