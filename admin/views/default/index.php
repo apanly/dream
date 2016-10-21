@@ -38,32 +38,7 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
             <div class="box-1">
                 <div class="row">
                     <div class="row-in">
-                        <h2 class="columns-24 title-1">来路域名Top10</h2>
-                        <div class="columns-24">
-                           <table class="table-1">
-                               <thead>
-                                   <tr>
-                                       <th>域名</th>
-                                       <th>次数</th>
-                                       <th>占比</th>
-                                   </tr>
-                               </thead>
-                               <tbody>
-                               <?php if( $source_list_top ):?>
-                                   <?php foreach( $source_list_top as $_item ):?>
-                                    <tr class="centered">
-                                        <td><?=$_item["source"];?></td>
-                                        <td><?=$_item["total_number"];?></td>
-                                        <td>--</td>
-                                    </tr>
-                                    <?php endforeach;?>
-                               <?php else:?>
-                                   <tr>
-                                       <td colspan="3">暂无</td>
-                                   </tr>
-                               <?php endif;?>
-                               </tbody>
-                           </table>
+                        <div class="columns-24" id="source_chart">
                         </div>
                     </div>
                 </div>
@@ -91,22 +66,11 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                 </div>
             </div>
         </div>
-        <div class="columns-24">
-            <div class="box-1">
-                <div class="row">
-                    <div class="row-in">
-                        <div class="columns-24" id="blog_line" style="height: 270px;">
-                            博文折线图,两根线，一个已发布的，一个待发布的
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
 <div class="hide" id="hidden_wrap">
     <input type="hidden" name="data_access" value='<?=json_encode($data_access);?>'>
-    <input type="hidden" name="data_blog" value='<?=json_encode($data_blog);?>'>
     <input type="hidden" name="data_client_os" value='<?=json_encode($data_client_os);?>'>
+    <input type="hidden" name="data_source" value='<?=json_encode($data_source);?>'>
 </div>

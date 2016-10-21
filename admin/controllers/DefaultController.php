@@ -108,12 +108,28 @@ class DefaultController extends BaseController
 
         /*今日来源域名top10*/
         $ignore_source = ["direct","www.vincentguo.cn","m.vincentguo.cn" ];
-		$source_list_top = StatDailyAccessSource::find()
+        $data_source = [
+			'series' => [
+				[
+					'data' => []
+				]
+			]
+		];
+		$source_list = StatDailyAccessSource::find()
 			->where([ 'date' => date("Ymd") ])
 			->andWhere([ 'not in','source',$ignore_source ])
 			->orderBy([ 'total_number' => SORT_DESC ])
-			->limit( 10 )
+			->asArray()
 			->all();
+		if( $source_list ){
+			$total_number = array_sum(  array_column($source_list,"total_number") );
+			foreach( $source_list as $_item ){
+				$data_source['series'][0]['data'][] =[
+					'name' => $_item['source'],
+					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) )
+				];
+			}
+		}
 		/*操作系统*/
 		$data_client_os = [
 			'series' => [
@@ -142,7 +158,7 @@ class DefaultController extends BaseController
             "data_access" => $data_access,
             "data_blog" => $data_blog,
             "data_client_os" => $data_client_os,
-			'source_list_top' => $source_list_top
+			'data_source' => $data_source
         ]);
     }
 
