@@ -18,9 +18,10 @@ var access_ops = {
             data: {
                 'referer': referer,
                 '_': new Date().getTime(),
-                'screen': screen.width + "/"  + screen.height
+                'screen': $(window).width() + "/"  + $(window).height()
             },
             dataType: 'jsonp',
+
             crossDomain: true,
             success: function(data) {
             }
