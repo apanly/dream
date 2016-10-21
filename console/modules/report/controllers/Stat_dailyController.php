@@ -113,9 +113,9 @@ class Stat_dailyController extends Stat_utilController{
 			$tmp_browser = new Browser( $_item['user_agent'] );
 			$tmp_os = new Os( $_item['user_agent'] );
 			$tmp_device = new Device( $_item['user_agent'] );
-			$_item->client_browser = $tmp_browser;
-			$_item->client_os = $tmp_os;
-			$_item->client_device = $tmp_device;
+			$_item->client_browser = $tmp_browser->getName();
+			$_item->client_os = $tmp_os->getName();
+			$_item->client_device = $tmp_device->getName();
 			$_item->update(0);
 		}
 	}
