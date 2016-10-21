@@ -2,6 +2,7 @@
 namespace admin\controllers\common;
 
 use admin\components\AccessLogService;
+use admin\components\AdminUrlService;
 use yii\web\Controller;
 use Yii;
 use yii\web\HttpException;
@@ -21,47 +22,24 @@ class BaseController extends Controller{
         "auth/login"
     ];
 
-	protected  $new_ui_urls = [
-		'default/index',
-		'posts/index',
-		'posts/set',
-		'account/index',
-		'account/set',
-		'richmedia/index',
-		'library/index',
-		'library/info',
-		'file/index',
-		'file/upload',
-		'log/access',
-		'log/uuid',
-		'log/source',
-		'log/error',
-		'douban/mz',
-	];
-
     public function __construct($id, $module, $config = []){
         parent::__construct($id, $module, $config = []);
         $view = Yii::$app->view;
         $view->params['id'] = $id;
         $view->params['copyright'] = Yii::$app->params['Copyright'];
+		$this->layout = "v1";
         $this->setTitle();
     }
 
     public function beforeAction($action) {
-
-		if ( in_array($action->getUniqueId(), $this->new_ui_urls )) {
-			$this->layout = "v1";
-		}
-
-        if (!in_array($action->getUniqueId(), $this->allowAllAction )) {
-            if(!$this->checkLoginStatus()){
-                if(Yii::$app->request->isAjax){
-                    $this->renderJSON([],"未登录,请返回用户中心",-302);
-                }else{
-                    return $this->redirect( "/auth/index");
-                }
-                return false;
-            }
+    	$login_status = $this->checkLoginStatus();
+        if ( !$login_status &&  !in_array($action->getUniqueId(), $this->allowAllAction ) ) {
+			if(Yii::$app->request->isAjax){
+				$this->renderJSON([],"未登录,请返回用户中心",-302);
+			}else{
+				$this->redirect( AdminUrlService::buildUrl("/auth/index") );
+			}
+			return false;
         }
 
 		$view = Yii::$app->view;

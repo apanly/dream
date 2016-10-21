@@ -1,8 +1,8 @@
 <?php
 use \yii\helpers\Url;
 use \admin\components\StaticService;
-StaticService::includeAppJsStatic("/js/bootstrap/bootstrap-datepicker.js",\admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/js/bootstrap/bootstrap-datepicker.zh-CN.min.js",\admin\assets\AdminAsset::className());
+StaticService::includeAppCssStatic("/components/datetimepicker/jquery.datetimepicker.min.css",\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic("/components/datetimepicker/jquery.datetimepicker.full.min.js",\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::className());
 ?>
 <div class="row">
@@ -14,8 +14,8 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::
 </div>
 <div class="row">
     <div class="row-in">
-        <form id="search_from">
-            <div class="columns-4">
+        <form id="search_conditions">
+            <div class="columns-5">
                 <div class="row">
                     <div class="row-in">
                         <div class="columns-6">
@@ -32,7 +32,7 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::
                 </div>
 
             </div>
-            <div class="columns-3">
+            <div class="columns-4">
                 <div class="row">
                     <div class="row-in">
                         <div class="columns-4 text-left">
@@ -51,7 +51,6 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::
                 <input type="hidden" name="source" value="<?=$search_conditions['source'];?>">
                 <input type="hidden" name="uuid" value="<?=$search_conditions['uuid'];?>">
                 <input type="submit" value="搜索" class="do btn-tiny">
-                <a href="javascript:void(0);" class="color-theme">清空条件</a>
             </div>
         </form>
 

@@ -5,6 +5,8 @@ use admin\components\AdminUrlService;
 use \common\service\GlobalUrlService;
 
 AdminAsset::register($this);
+$seo_title = Yii::$app->params['seo']['title'];
+$domain_blog = Yii::$app->params['domains']['blog'];
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -20,14 +22,12 @@ AdminAsset::register($this);
 <div class="page_wrap">
 	<div class="box_wrap open">
 		<div class="box_left_nav">
-			<h1 class="logo">
-				<a href="http://www.styd.cn">
-					<span>
-						<img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>"/>
-					</span>
-				</a>
-			</h1>
-			<h2 class="version"><?= Html::encode($this->title) ?></h2>
+			<div class="logo centered">
+                <div class="avatar-1">
+                    <img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>" alt="100*100">
+                </div>
+			</div>
+			<h2 class="version"><?= $seo_title;?></h2>
 			<ul class="menu_list">
 				<li class="menu_dashboard">
 					<a href="<?=AdminUrlService::buildUrl("/default/index");?>">
@@ -86,26 +86,22 @@ AdminAsset::register($this);
 								</div>
 								<a href="javascript:void(0);" class="icon_club setting" data-tip="设置">&#xe605;</a>
 								<a href="javascript:void(0);" class="icon_club user has-panel" data-panel="user_menu">
-									<img src="" alt="80*80"/>
+									<img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>" alt="80*80"/>
 								</a>
 								<ul class="user_menu hide">
 									<li class="user_profile border">
 										<p class="icon_club user">
-											<img
-												src=""
-												alt="80*80"/>
+                                            <img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>" alt="80*80"/>
 										</p>
-										<p class="t1"><label class="t2">管理员名字</label></p>
-										<p class="t3">管理员名字</p>
-										<a href="javascript:void(0);" class="user_edit hide">编辑</a>
+										<p class="t1"><label class="t2"><?=$this->params['current_user']["mobile"];?></label></p>
+										<p class="t3"><label class="t2"><?=$this->params['current_user']["nickname"];?></p>
+<!--										<a href="javascript:void(0);" class="user_edit">编辑</a>-->
 									</li>
 									<li class="each border">
-										<a href="javascript:void(0);"><i
-												class="icon_club">&#xe610;</i>修改密码</a>
+										<a href="javascript:void(0);"><i  class="icon_club">&#xe610;</i>修改密码</a>
 									</li>
 									<li class="each">
-										<a href="javascript:void(0);"><i
-												class="icon_club">&#xe618;</i>退出</a>
+										<a href="<?=AdminUrlService::buildUrl("/auth/loginout");?>"><i class="icon_club">&#xe618;</i>退出</a>
 									</li>
 								</ul>
 							</div>
@@ -121,7 +117,7 @@ AdminAsset::register($this);
 	<div class="footer_wrap">
 		<div class="inner">
 			Copyright&nbsp;&copy;&nbsp;<?=date("Y");?>&nbsp;&nbsp;
-			<a href="http://www.vincentguo.cn/" target="_blank"><?= Html::encode($this->title) ?></a>
+			<a href="<?=$domain_blog;?>" target="_blank"><?= $seo_title;?></a>
 		</div>
 	</div>
 </div>

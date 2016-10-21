@@ -62,27 +62,35 @@ var richmedia_index_ops = {
             });
         });
 
-        $(".btn-address").each(function(){
-            $(this).click(function(){
-                $('.modal input[name=media-id]').val( $(this).attr("data") );
-                $('.modal input[name=address]').val( $(this).attr("data-address") );
-                $('.modal').modal()
+        $(".edit_address").click(function(){
+            $('#pop_layer_wrap input[name=media-id]').val( $(this).attr("data") );
+            $('#pop_layer_wrap input[name=address]').val( $(this).attr("data-address") );
+            $.lay.open({
+                'content':$('#pop_layer_wrap'),
+                'title':'编辑地址',
+                'shadeClose':false
             });
         });
 
-        $(".modal .btn-primary").click(function(){
-            var media_id = $('.modal input[name=media-id]').val();
-            var address = $('.modal input[name=address]').val();
+        $("#pop_layer_wrap .save").click(function(){
+            var media_id = $('#pop_layer_wrap input[name=media-id]').val();
+            var address = $('#pop_layer_wrap input[name=address]').val();
             $.ajax({
-                url:'/richmedia/edit/' + media_id,
+                url:common_ops.buildAdminUrl('/richmedia/edit/' + media_id),
                 type:'POST',
                 data:{'address':address},
                 dataType:'json',
                 success:function(res){
-                    alert(res.msg);
+                    var callback = {};
                     if(res.code == 200){
-                        window.location.href = window.location.href;
+                        callback = {
+                            'ok':function( ){
+                                window.location.href = window.location.href;
+                            }
+                        };
+
                     }
+                    $.alert(res.msg,callback);
                 }
             });
         });

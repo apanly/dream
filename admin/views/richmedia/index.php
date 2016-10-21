@@ -38,7 +38,7 @@ StaticService::includeAppJsStatic("/js/richmedia/index.js", \admin\assets\AdminA
                 <tbody>
                 <?php if( $data ):?>
                     <?php foreach ($data as $_item): ?>
-                        <tr id="trow_1">
+                        <tr class="centered">
                             <td class="text-center"><?= $_item['idx']; ?></td>
                             <td>
                                 <?php if ($_item['type'] == "image"): ?>
@@ -61,27 +61,20 @@ StaticService::includeAppJsStatic("/js/richmedia/index.js", \admin\assets\AdminA
                                     class="label label-<?= $_item['status_info']['class']; ?>"><?= $_item['status_info']['desc']; ?></span>
                             </td>
                             <td>
-                                <a href="javascript:void(0);" class="btn btn-default btn-rounded btn-sm btn-address" data="<?= $_item['id']; ?>" data-address="<?= $_item['address']; ?>">
-                                    <span class="fa fa-pencil"></span>
-                                    编辑
+                                <a href="javascript:void(0);" class="edit_address" data="<?= $_item['id']; ?>" data-address="<?= $_item['address']; ?>">
+                                    <i class="icon_club hastip" data-tip="编辑">&#xe610;</i>
                                 </a>
                                 <?php if ($_item['status']): ?>
-                                    <a href="javascript:void(0);"
-                                       class="btn btn-danger btn-rounded btn-sm delete"
-                                       data="<?= $_item['id']; ?>">
-                                        <span class="fa fa-times"></span>隐藏
+                                    <a href="javascript:void(0);"  class="delete"  data="<?= $_item['id']; ?>">
+                                        <i class="icon_club hastip" data-tip="隐藏">&#xe629;</i>
                                     </a>
                                 <?php else: ?>
-                                    <a href="javascript:void(0);"
-                                       class="btn btn-danger btn-rounded btn-sm online"
-                                       data="<?= $_item['id']; ?>">
-                                        <span class="fa fa-history"></span>展示
+                                    <a href="javascript:void(0);" class="online" data="<?= $_item['id']; ?>">
+                                        <i class="icon_club hastip" data-tip="展示">&#xe626;</i>
                                     </a>
                                 <?php endif; ?>
-                                <a href="javascript:void(0);"
-                                   class="btn btn-danger btn-rounded btn-sm goaway"
-                                   data="<?= $_item['id']; ?>">
-                                    <span class="fa fa-times"></span>雪藏
+                                <a href="javascript:void(0);" class="goaway" data="<?= $_item['id']; ?>">
+                                    <i class="icon_club hastip" data-tip="删除">&#xe611;</i>
                                 </a>
                             </td>
                         </tr>
@@ -107,24 +100,20 @@ StaticService::includeAppJsStatic("/js/richmedia/index.js", \admin\assets\AdminA
     </div>
 </div>
 
-
-<div class="modal fade hide" role="dialog" aria-labelledby="gridSystemModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="gridSystemModalLabel">编辑地址</h4>
+<div class="hide lay-small" id="pop_layer_wrap">
+    <div class="row mg-t15">
+        <div class="row-in">
+            <div class="columns-6 text-right">
+                <label class="label-name inline"><i class="mark">*</i>编辑地址：</label>
             </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <input type="text" name="address" class="form-control" value=""/>
-                    </div>
+            <div class="columns-17">
+                <div class="input-wrap">
+                    <input type="text" class="input-1"  name="address" value="">
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="columns-18 offset-6">
                 <input type="hidden" name="media-id" value="0">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn-small save">保存</button>
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
 </div>
 <div class="row">
     <div class="row-in">
-        <form id="search_from">
+        <form id="search_conditions">
             <div class="columns-3">
                 <select class="select-1" name="status">
                     <option value="-1">请选择状态</option>
@@ -28,7 +28,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
             </div>
             <div class="columns-5">
                 <input type="button" value="搜索" class="do btn-tiny">
-                <a href="javascript:void(0);" class="color-theme">清空条件</a>
+                <a href="javascript:void(0);" class="color-theme  clear_search mg-l10">清空条件</a>
             </div>
 
         </form>
@@ -68,11 +68,11 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                             </a>
                             <?php if($_item['status']):?>
                                 <a  href="javascript:void(0);" class="delete" data="<?=$_item['id'];?>">
-                                    <i class="icon_club">&#xe611;</i>
+                                    <i class="icon_club hastip" data-tip="隐藏">&#xe611;</i>
                                 </a>
                             <?php else:?>
                                 <a  href="javascript:void(0);" class="online" data="<?=$_item['id'];?>">
-                                    <i class="icon_club">&#xe626;</i>
+                                    <i class="icon_club hastip" data-tip="展示">&#xe626;</i>
                                 </a>
                             <?php endif;?>
                         </td>

@@ -43,20 +43,18 @@ StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AdminAsse
                             <td>
 
                                 <?php if($_item['status']):?>
-                                    <a href="<?=$_item['edit_url'];?>" class="btn btn-default btn-rounded btn-sm">
-                                        <span class="fa fa-pencil"></span>
-                                        详情
+                                    <a href="<?=$_item['edit_url'];?>">
+                                        <i class="icon_club hastip" data-tip="查看详情">&#xe616;</i>
                                     </a>
-                                    <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm delete" data="<?=$_item['id'];?>">
-                                        <span class="fa fa-times"></span>下架
+                                    <a  href="javascript:void(0);" class="delete" data="<?=$_item['id'];?>">
+                                        <i class="icon_club hastip" data-tip="隐藏">&#xe611;</i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-default btn-rounded btn-sm btn-book-read" data="<?= $_item['id']; ?>" data-read-status="<?= $_item['read_status']; ?>" data-start-time="<?= $_item['read_start_time']; ?>" data-end-time="<?= $_item['read_end_time']; ?>">
-                                        <span class="fa fa-pencil"></span>
-                                        编辑
+                                    <a href="javascript:void(0);" class="btn-book-read" data="<?= $_item['id']; ?>">
+                                        <i class="icon_club">&#xe610;</i>
                                     </a>
                                 <?php else:?>
-                                    <a  href="javascript:void(0);" class="btn btn-danger btn-rounded btn-sm online" data="<?=$_item['id'];?>">
-                                        <span class="fa fa-history"></span>上架
+                                    <a  href="javascript:void(0);" class="online" data="<?=$_item['id'];?>">
+                                        <i class="icon_club hastip" data-tip="展示">&#xe626;</i>
                                     </a>
                                 <?php endif;?>
                             </td>

@@ -1,10 +1,11 @@
 ;
-var log_uuid_ops = {
+var log_source_ops = {
     init:function(){
         this.eventBind();
         this.datetimepickerComponent();
     },
     eventBind:function(){
+
     },
     datetimepickerComponent:function(){
         $.datetimepicker.setLocale('zh');
@@ -12,14 +13,14 @@ var log_uuid_ops = {
             scrollInput:false,
             scrollMonth:false,
             scrollTime:false,
-            timepicker:false,
+            timepicker:true,
             dayOfWeekStart : 1,
             lang:'zh',
             todayButton:true,//回到今天
             defaultSelect:true,
             step:5,
             defaultDate:new Date().Format('yyyy-MM-dd'),
-            format:'Y-m-d',//格式化显示
+            format:'Y-m-d H:i',//格式化显示
             onChangeDateTime:function(dp,$input){
                 //alert($input.val())
             }
@@ -30,5 +31,5 @@ var log_uuid_ops = {
 };
 
 $(document).ready( function(){
-    log_uuid_ops.init();
+    log_source_ops.init();
 });

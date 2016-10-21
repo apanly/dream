@@ -5,13 +5,18 @@ var posts_index_ops = {
     },
     eventBind:function(){
 
-        $("#search_from .do").click(function(){
-            $("#search_from").submit();
+        $("#search_conditions .do").click(function(){
+            $("#search_conditions").submit();
         });
 
-        $("#search_from input[name=kw]").keydown(function (e) {
+        $("#search_conditions .clear_search").click( function(){
+            $("#search_conditions select[name=status]").val(-1);
+            $("#search_conditions input[name=kw]").val('');
+        });
+
+        $("#search_conditions input[name=kw]").keydown(function (e) {
             if (e.keyCode == 13) {
-                $("#search_from .do").click();
+                $("#search_conditions .do").click();
             }
         });
 

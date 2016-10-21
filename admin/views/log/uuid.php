@@ -2,8 +2,8 @@
 use \yii\helpers\Url;
 use \admin\components\StaticService;
 use \admin\components\AdminUrlService;
-StaticService::includeAppJsStatic("/js/bootstrap/bootstrap-datepicker.js",\admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/js/bootstrap/bootstrap-datepicker.zh-CN.min.js",\admin\assets\AdminAsset::className());
+StaticService::includeAppCssStatic("/components/datetimepicker/jquery.datetimepicker.min.css",\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic("/components/datetimepicker/jquery.datetimepicker.full.min.js",\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic("/js/log/uuid.js",\admin\assets\AdminAsset::className());
 ?>
 <div class="row">
@@ -15,7 +15,7 @@ StaticService::includeAppJsStatic("/js/log/uuid.js",\admin\assets\AdminAsset::cl
 </div>
 <div class="row">
     <div class="row-in">
-        <form id="search_from">
+        <form id="search_conditions">
             <div class="columns-4">
                 <div class="row">
                     <div class="row-in">
@@ -50,7 +50,6 @@ StaticService::includeAppJsStatic("/js/log/uuid.js",\admin\assets\AdminAsset::cl
             </div>
             <div class="columns-5">
                 <input type="submit" value="搜索" class="do btn-tiny">
-                <a href="javascript:void(0);" class="color-theme">清空条件</a>
             </div>
         </form>
 
