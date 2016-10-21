@@ -1,3 +1,10 @@
+## 20161021
+    ALTER TABLE `access_logs` ADD `client_browser` VARCHAR(50)  NOT NULL  DEFAULT ''  COMMENT '浏览器'  AFTER `user_agent`;
+    ALTER TABLE `access_logs` ADD `client_os` VARCHAR(20)  NOT NULL  DEFAULT ''  COMMENT '客户端操作系统'  AFTER `client_browser`;
+    ALTER TABLE `access_logs` ADD `client_device` VARCHAR(20)  NOT NULL  DEFAULT ''  COMMENT '客户端设备'  AFTER `client_os`;
+
+
+
 ## 20160615
     ALTER TABLE `user_openid_unionid` ADD INDEX `idx_other_openid` (`other_openid`);
 

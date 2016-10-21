@@ -5,6 +5,9 @@ namespace console\modules\report\controllers;
 use common\models\applog\AccessLogs;
 use common\models\applog\StatDailyAccessSource;
 use common\models\applog\StatDailyUuid;
+use Sinergi\BrowserDetector\Browser;
+use Sinergi\BrowserDetector\Os;
+use Sinergi\BrowserDetector\Device;
 
 class Stat_dailyController extends Stat_utilController{
 	/*
@@ -102,5 +105,18 @@ class Stat_dailyController extends Stat_utilController{
 		}
 
 		return $this->echoLog("it's over~~");
+	}
+
+	public function actionTest(){
+		$list = AccessLogs::find()->orderBy([ 'id' => SORT_ASC ])->all();
+		foreach( $list as $_item ){
+			$tmp_browser = new Browser( $_item['user_agent'] );
+			$tmp_os = new Os( $_item['user_agent'] );
+			$tmp_device = new Device( $_item['user_agent'] );
+			$_item->client_browser = $tmp_browser;
+			$_item->client_os = $tmp_os;
+			$_item->client_device = $tmp_device;
+			$_item->update(0);
+		}
 	}
 }

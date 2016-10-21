@@ -3,7 +3,8 @@ var chart_ops = {
     drawLine:function( data ){
         $('#'+data.target).highcharts({
             chart:{
-                height:270
+                height:270,
+                type:'spline'
             },
             title: {
                 text: data.title,
@@ -41,7 +42,8 @@ var chart_ops = {
             tooltip: {
                 formatter:function () {
                     var s = '<b>' +data.categories[this.x] + '</b>';
-
+                    var weekArray = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                    s += '<br/>' + weekArray[ new Date( data.categories[this.x] ).getDay() ];
                     $.each(this.points, function () {
                         s += '<br/>' + this.series.name + ': ' + this.y + '次';
                     });
