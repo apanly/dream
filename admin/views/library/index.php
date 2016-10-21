@@ -8,6 +8,13 @@ StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AdminAsse
 <div class="row">
     <div class="row-in">
         <div class="columns-24">
+			<?php echo \Yii::$app->view->renderFile("@admin/views/common/library_tab.php", ['current' => 'index']); ?>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="row-in">
+        <div class="columns-24">
             <table class="table-1">
                 <thead>
                 <tr>
@@ -21,7 +28,7 @@ StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AdminAsse
                 <tbody>
                 <?php if( $data ):?>
                     <?php foreach ($data as $_item): ?>
-                        <tr>
+                        <tr class="centered">
                             <td class="text-center"><?=$_item['idx'];?></td>
                             <td>
                                 <a href="<?=$_item['view_url'];?>" target="_blank">
@@ -76,50 +83,6 @@ StaticService::includeAppJsStatic("/js/library/index.js",\admin\assets\AdminAsse
     </div>
 </div>
 
+<div class="hide lay-small" id="pop_layer_wrap">
 
-<div class="modal hide" role="dialog" aria-labelledby="gridSystemModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="gridSystemModalLabel">编辑图书状态</h4>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row form-group">
-                        <div class="col-md-3 text-right">
-                            <label class="control-label">读书状态:</label>
-                        </div>
-                        <div class="col-md-9">
-                            <select class="form-control select" id="read_status">
-                                <?php foreach($read_status as $_idx => $_item):?>
-                                <option value="<?=$_idx;?>"><?=$_item["desc"];?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-3 text-right">
-                            <label class="control-label">计划开始时间:</label>
-                        </div>
-                        <div class="col-md-9" style="z-index: 9000;">
-                            <input type="text" class="form-control datepicker"  name="read_start_time" value="<?=date("Y-m-d");?>">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-3 text-right">
-                            <label class="control-label">计划结束时间:</label>
-                        </div>
-                        <div class="col-md-9" style="z-index: 9000;">
-                            <input type="text" class="form-control datepicker" name="read_end_time" value="<?=date("Y-m-d");?>">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <input type="hidden" name="book_id" value="0">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">保存</button>
-            </div>
-        </div>
-    </div>
 </div>

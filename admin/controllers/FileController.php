@@ -9,8 +9,7 @@ use common\service\GlobalUrlService;
 use Yii;
 
 
-class FileController extends BaseController
-{
+class FileController extends BaseController{
     public function actionIndex(){
         $p = intval( $this->get("p",1) );
         if(!$p){
@@ -57,10 +56,10 @@ class FileController extends BaseController
         ]);
     }
 
-    public function actionAdd(){
+    public function actionUpload(){
         $request = Yii::$app->request;
         if( $request->isGet ){
-            return $this->render("add");
+            return $this->render("upload");
         }
     }
 }

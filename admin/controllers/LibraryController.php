@@ -2,6 +2,7 @@
 
 namespace admin\controllers;
 
+use admin\components\AdminUrlService;
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\library\Book;
@@ -18,6 +19,7 @@ class LibraryController extends BaseController
         0 => ['class' => 'danger','desc' => "隐藏"],
         1 => ['class' => 'success','desc' => "正常"]
     ];
+
     public function actionIndex(){
         $p = intval( $this->get("p",1) );
         if(!$p){
@@ -52,7 +54,6 @@ class LibraryController extends BaseController
                     'idx' =>  $idx,
                     'id' => $_book['id'],
                     'title' => DataHelper::encode($tmp_title),
-
                     'read_status' => $_book['read_status'],
                     'read_status_info' => Constant::$read_desc[ $_book['read_status'] ],
                     'read_start_time' => date("Y-m-d",strtotime( $_book['read_start_time'] ) ),
@@ -60,7 +61,7 @@ class LibraryController extends BaseController
                     'status' => $_book['status'],
                     'status_info' => Constant::$status_desc[$_book['status']],
                     'created' => $_book['created_time'],
-                    'edit_url' => Url::toRoute("/library/detail/{$_book['id']}"),
+                    'edit_url' => AdminUrlService::buildUrl("/library/info",[ "id" => $_book['id'] ]),
                     'view_url' => $domains['blog'].Url::toRoute("/library/detail/{$_book['id']}")
                 ];
                 $idx++;
@@ -75,15 +76,17 @@ class LibraryController extends BaseController
         ]);
     }
 
-    public function actionDetail($id){
+    public function actionInfo($id){
         $id = intval($id);
         if(!$id){
             return $this->goHome();
         }
+
         $book_info = Book::find()->where(['id' => $id])->one();
         if(!$book_info){
             return $this->goHome();
         }
+
         $data = [];
         $author = json_decode($book_info['creator'],true);
         $data['name'] = DataHelper::encode($book_info['name']);
@@ -94,7 +97,7 @@ class LibraryController extends BaseController
         $data['tags'] = explode(",",$book_info['tags']);
         $data['image_url'] = $book_info['origin_image_url'];
 
-        return $this->render("detail",[
+        return $this->render("info",[
             "info" => $data
         ]);
     }
@@ -128,8 +131,25 @@ class LibraryController extends BaseController
     }
 
 
-    public function actionEdit($id){
-        $book_id = intval($id);
+    public function actionSet(){
+    	if( Yii::$app->request->isGet ){
+			$book_id = intval( $this->get("id",0) );
+			if( !$book_id ){
+				return $this->renderJSON([],"指定数据不存在~~",-1);
+			}
+
+			$book_info = Book::findOne(["id" => $book_id]);
+			if( !$book_info ){
+				return $this->renderJSON([],"指定数据不存在~~",-1);
+			}
+
+    		$content_html = $this->renderPartial("set",[
+    			"info" => $book_info,
+				'read_status' => Constant::$read_desc
+			]);
+			return $this->renderJSON([ 'form_wrap' => $content_html ]);
+		}
+        $book_id = intval( $this->post("id",0) );
         $read_status = intval( $this->post("read_status",0) );
         $read_start_time = trim( $this->post("read_start_time",'') );
         $read_end_time = trim( $this->post("read_end_time",'') );

@@ -4,6 +4,13 @@ StaticService::includeAppJsStatic("/js/douban/mz.js",\admin\assets\AdminAsset::c
 ?>
 <div class="row">
     <div class="row-in">
+        <div class="columns-24">
+			<?php echo \Yii::$app->view->renderFile("@admin/views/common/db_tab.php", ['current' => 'index']); ?>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="row-in">
 		<?php if( $mz_list ):?>
 		<?php foreach( $mz_list as $_mz_info ):?>
             <div class="columns-6">
@@ -12,7 +19,7 @@ StaticService::includeAppJsStatic("/js/douban/mz.js",\admin\assets\AdminAsset::c
                         <div class="avatar-3">
                             <div class="inner" style="height: 347px;width: 240px;overflow:hidden;">
                                 <img src="<?=$_mz_info['src_url'];?>" alt="<?=$_mz_info['title'];?>" />
-      s                      </div>
+                            </div>
                         </div>
 
                     </div>

@@ -2,8 +2,8 @@
 use \admin\components\AdminUrlService;
 $mapping = [
 	"index" => [
-		'title' => "多媒体列表",
-		"url" => AdminUrlService::buildUrl("/richmedia/index"),
+		'title' => "图书列表",
+		"url" => AdminUrlService::buildUrl("/library/index"),
 		"status" => 1
 	]
 ];

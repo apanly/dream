@@ -32,8 +32,11 @@ class HttpClient  extends  BaseService{
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_CERTINFO , true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_VERBOSE, true);
 
-        if( isset( Yii::$app->params['curl'] ) && isset(Yii::$app->params['curl']['timeout']) ){
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);//函数中加入下面这条语句
+
+		if( isset( Yii::$app->params['curl'] ) && isset(Yii::$app->params['curl']['timeout']) ){
             curl_setopt($curl, CURLOPT_TIMEOUT, Yii::$app->params['curl']['timeout']);
         }else{
             curl_setopt($curl, CURLOPT_TIMEOUT, 5);
@@ -46,7 +49,7 @@ class HttpClient  extends  BaseService{
         if(!empty(self::$headers)){
             $headerArr = [];
             foreach( self::$headers as $n => $v ) {
-                $headerArr[] = $n .':' . $v;
+                $headerArr[] = $n .': ' . $v;
             }
             curl_setopt ($curl, CURLOPT_HTTPHEADER , $headerArr );  //构造IP
         }

@@ -7,10 +7,7 @@ use common\components\UploadService;
 use common\components\UtilHelper;
 use common\models\Images;
 use common\service\GlobalUrlService;
-use common\service\ImagesService;
-use Yii;
-use common\models\user\User;
-use yii\helpers\Url;
+use \admin\components\AdminUrlService;
 
 class UploadController extends BaseController
 {
@@ -44,14 +41,14 @@ class UploadController extends BaseController
 
     /*文件管理上传文件的*/
     public function actionFile(){
-        $back_url = Url::toRoute("/file/add");
+		$call_back_target = 'window.parent.upload';
 
         if ($_FILES["rich_media"]["error"] > 0){
-            return $this->renderJS("上传失败!error:". $_FILES["rich_media"]["error"],$back_url);
+			return "<script type='text/javascript'>{$call_back_target}.error('"."上传失败!error:". $_FILES["rich_media"]["error"]."');</script>";
         }
 
         if(!is_uploaded_file($_FILES['rich_media']['tmp_name'])){
-            return $this->renderJS("非法上传文件",$back_url);
+			return "<script type='text/javascript'>{$call_back_target}.error('非法上传文件');</script>";
         }
 
         $type = $_FILES["rich_media"]["type"];
@@ -59,22 +56,19 @@ class UploadController extends BaseController
         $file_size = $_FILES["rich_media"]["size"];
 
         if( !in_array($type,$this->allow_file_type) ){
-            return $this->renderJS("只能上传图片",$back_url);
+			return "<script type='text/javascript'>{$call_back_target}.error('只能上传图片');</script>";
         }
 
         if( ( $file_size / 1024 / 1024 ) > 2 ){
-            return $this->renderJS("图片不能大约2M",$back_url);
+			return "<script type='text/javascript'>{$call_back_target}.error('图片不能大约2M');</script>";
         }
-
-
 
         $ret = UploadService::uploadByFile($filename,$_FILES['rich_media']['tmp_name']);
         if( !$ret ){
-            return $this->renderJS(UploadService::getLastErrorMsg(),$back_url);
+			return "<script type='text/javascript'>{$call_back_target}.error('".UploadService::getLastErrorMsg()."');</script>";
         }
 
-        return $this->renderJS("上传成功！！",$back_url);
-
+		return "<script type='text/javascript'>{$call_back_target}.success('上传成功');</script>";
     }
 
     /**

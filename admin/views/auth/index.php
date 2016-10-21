@@ -9,7 +9,7 @@ use \common\service\GlobalUrlService;
     <title>管理后台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
-    <link href="<?=StaticService::buildStaticUrl("css/login/index.css");?>" rel='stylesheet' type='text/css'/>
+    <link href="<?=StaticService::buildStaticUrl("/css/login/index.css");?>" rel='stylesheet' type='text/css'/>
     <style type="text/css">
         input:-webkit-autofill {
             -webkit-box-shadow : 0 0 0px 1000px none inset ;
@@ -27,7 +27,7 @@ use \common\service\GlobalUrlService;
     </div>
     <div class="clear"></div>
     <div class="avtar">
-        <img src="<?=StaticService::buildStaticUrl("images/login/avatar.png");?>"/>
+        <img src="<?=StaticService::buildStaticUrl("/images/login/avatar.png");?>"/>
     </div>
     <input type="text" class="text" name="mobile" placeholder="请输入手机号码" autocomplete="off" >
     <div class="key"><input type="password" name="passwd" placeholder="请输入密码"></div>
@@ -36,7 +36,7 @@ use \common\service\GlobalUrlService;
 <div class="copy-rights">
     <p><?=$copyright;?></p>
 </div>
-<script type="text/javascript" src="<?=StaticService::buildStaticUrl("js/jquery/jquery.min.js");?>"></script>
-<script type="text/javascript" src="<?=StaticService::buildStaticUrl("js/login/index.js");?>"></script>
+<script type="text/javascript" src="<?=StaticService::buildStaticUrl("/js/jquery/jquery.min.js");?>"></script>
+<script type="text/javascript" src="<?=StaticService::buildStaticUrl("/js/login/index.js");?>"></script>
 </body>
 </html>

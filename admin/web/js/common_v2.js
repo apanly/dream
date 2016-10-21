@@ -77,8 +77,8 @@ var common_ops = {
 
         $(".box_left_nav .menu_list li."+nav_name).addClass("current");
     },
-    buildClubUrl:function( path ,params){
-        var url =  "/club" + path;
+    buildAdminUrl:function( path ,params){
+        var url =   path;
         var _paramUrl = '';
         if( params ){
             _paramUrl = Object.keys(params).map(function(k) {
@@ -120,7 +120,7 @@ var common_ops = {
         $("#top_search").autocomplete({
             source: function( request, response ) {
                 $.ajax({
-                    url: common_ops.buildClubUrl("/search/member"),
+                    url: common_ops.buildAdminUrl("/search/member"),
                     dataType: "json",
                     data:{q: request.term,top: 1},//top=1区分是否是top搜索栏
                     success: function( res ) {
@@ -153,7 +153,7 @@ var common_ops = {
         //是否阻止弹窗的默认关闭事件
         var preventClose = params.hasOwnProperty('preventClose')?params['preventClose']:false;
         $.ajax({
-            url:common_ops.buildClubUrl(url),
+            url:common_ops.buildAdminUrl(url),
             type:request_method,
             data:data,
             dataType:'json',

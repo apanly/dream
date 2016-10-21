@@ -1,9 +1,13 @@
 <?php
-use \yii\helpers\Url;
-use \admin\components\StaticService;
 use \admin\components\AdminUrlService;
-StaticService::includeAppJsStatic("/js/account/index.js",\admin\assets\AdminAsset::className());
 ?>
+<div class="row">
+    <div class="row-in">
+        <div class="columns-24">
+			<?php echo \Yii::$app->view->renderFile("@admin/views/common/account_tab.php", ['current' => 'index']); ?>
+        </div>
+    </div>
+</div>
 <div class="row">
 	<div class="row-in">
 		<div class="columns-24">
@@ -28,7 +32,7 @@ StaticService::includeAppJsStatic("/js/account/index.js",\admin\assets\AdminAsse
 							<td><?=$_item['pwd'];?></td>
 							<td><?=$_item['description'];?></td>
 							<td>
-								<a href="javascript:void(0);" class="edit" data="<?=$_item['id'];?>">
+								<a href="<?=AdminUrlService::buildUrl("/account/set",[ 'account_id' => $_item['id']  ]);?>" class="edit">
 									<i class="icon_club">&#xe610;</i>
 								</a>
 							</td>

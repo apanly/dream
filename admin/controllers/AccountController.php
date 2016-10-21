@@ -25,7 +25,7 @@ class AccountController extends BaseController{
                     //'account' => DataHelper::encode( UtilHelper::maskStr($_item['account'],3,4)),
                     'account' => DataHelper::encode( $_item['account'] ),
                     'pwd' => $tmp_decrypt_pwd,
-                    'description' => DataHelper::encode($_item['description']),
+                    'description' => nl2br( DataHelper::encode($_item['description']) ),
                 ];
                 $idx++;
             }
@@ -41,13 +41,14 @@ class AccountController extends BaseController{
             $account_id = intval( $this->get("account_id",0) );
             $info = [];
             if( $account_id ){
-                $info = Account::findOne( ['id' => $account_id] );
+                $info = Account::find()->where( ['id' => $account_id] )->asArray()->one();
+                if( $info  ){
+					$info['pwd'] = $this->decrypt( $info['pwd'] );
+				}
+
             }
 
-            $form_html = $this->renderPartial("set",[
-                'info' => $info
-            ]);
-            return $this->renderJSON([ 'form_wrap' => $form_html ]);
+            return $this->render("set",[ 'info' => $info ]);
         }
 
         $account_id = intval( $this->post("account_id",0) );

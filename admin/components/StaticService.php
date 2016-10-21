@@ -28,6 +28,6 @@ class StaticService {
     }
     public static function buildStaticUrl($path){
         $release_version = defined("RELEASE_VERSION")?RELEASE_VERSION:"20150731141600";
-        return "/".$path."?version={$release_version}";
+        return $path."?version={$release_version}";
     }
 } 

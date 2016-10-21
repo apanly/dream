@@ -8,12 +8,12 @@ use yii\helpers\Url;
 </li>
 <li class="xn-profile">
     <a href="javascript:void(0);" class="profile-mini">
-        <img src="<?= StaticService::buildStaticUrl("images/users/my.jpg") ?>"/>
+        <img src="<?= StaticService::buildStaticUrl("/images/users/my.jpg") ?>"/>
     </a>
 
     <div class="profile">
         <div class="profile-image">
-            <img src="<?= StaticService::buildStaticUrl("images/users/my.jpg") ?>" />
+            <img src="<?= StaticService::buildStaticUrl("/images/users/my.jpg") ?>" />
         </div>
         <div class="profile-data">
             <div class="profile-data-name">郭威</div>
