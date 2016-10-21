@@ -106,7 +106,10 @@ class DefaultController extends BaseController
 
 
         /*今日来源域名top10*/
-		$source_list_top = StatDailyAccessSource::find()->where([ 'date' => date("Ymd") ])
+        $ignore_source = ["direct","www.vincentguo.cn","m.vincentguo.cn" ];
+		$source_list_top = StatDailyAccessSource::find()
+			->where([ 'date' => date("Ymd") ])
+			->andWhere([ 'not in','source',$ignore_source ])
 			->orderBy([ 'total_number' => SORT_DESC ])
 			->limit( 10 )
 			->all();
