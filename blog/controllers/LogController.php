@@ -6,6 +6,9 @@ use blog\controllers\common\BaseController;
 use common\components\UtilHelper;
 use common\models\applog\AccessLogs;
 use common\models\posts\Posts;
+use Sinergi\BrowserDetector\Browser;
+use Sinergi\BrowserDetector\Os;
+use Sinergi\BrowserDetector\Device;
 use Yii;
 
 
@@ -35,6 +38,14 @@ class LogController extends BaseController{
 			$model_ac_log->blog_id = $blog_id;
 			$model_ac_log->source = $tmp_source?$tmp_source:'';
             $model_ac_log->user_agent = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:"";
+            if( $model_ac_log->user_agent ){
+				$tmp_browser = new Browser( $model_ac_log->user_agent );
+				$tmp_os = new Os( $model_ac_log->user_agent );
+				$tmp_device = new Device( $model_ac_log->user_agent );
+				$model_ac_log->client_browser = $tmp_browser->getName()?$tmp_browser->getName():'';
+				$model_ac_log->client_os = $tmp_os->getName()?$tmp_os->getName():'';
+				$model_ac_log->client_device = $tmp_device->getName()?$tmp_device->getName():'';
+			}
             $model_ac_log->ip = UtilHelper::getClientIP();
 			$model_ac_log->uuid = $uuid;
             $model_ac_log->created_time = date("Y-m-d H:i:s");
