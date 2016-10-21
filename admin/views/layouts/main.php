@@ -27,7 +27,9 @@ $domain_blog = Yii::$app->params['domains']['blog'];
                     <img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>" alt="100*100">
                 </div>
 			</div>
-			<h2 class="version"><?= $seo_title;?></h2>
+			<h2 class="version">
+                <a target="_blank" class="color-theme" href="<?=$domain_blog;?>"><?= $seo_title;?></a>
+            </h2>
 			<ul class="menu_list">
 				<li class="menu_dashboard">
 					<a href="<?=AdminUrlService::buildUrl("/default/index");?>">

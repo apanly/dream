@@ -19,7 +19,6 @@ class AdminAsset extends AssetBundle{
 			'js/jquery/jquery-1.12.3.min.js',
 			'js/component/jquery.mCustomScrollbar.js',
 			'js/component/jquery.mousewheel.min.js',
-			"js/jquery/jquery-ui.min.js",
 			'js/core.min.js',
 			'js/common.js'
 		];
