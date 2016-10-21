@@ -64,5 +64,40 @@ var chart_ops = {
             },
             series: data.series
         });
+    },
+    drawPie:function( data ){
+        $('#'+data.target).highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                height:270
+            },
+            title: {
+                text: data.title,
+                align:"left"
+            },
+            credits: {
+                enabled:false
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: <br/>{point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: data.series
+        });
     }
 };

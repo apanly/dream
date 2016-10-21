@@ -115,18 +115,34 @@ class DefaultController extends BaseController
 			->limit( 10 )
 			->all();
 		/*操作系统*/
-		$os_list_top = StatDailyOs::find()
+		$data_client_os = [
+			'series' => [
+				[
+					'data' => []
+				]
+			]
+		];
+		$os_list = StatDailyOs::find()
 			->where([ 'date' => date("Ymd") ])
 			->orderBy([ 'total_number' => SORT_DESC ])
-			->limit( 10 )
+			->asArray()
 			->all();
+		if( $os_list ){
+			$total_number = array_sum(  array_column($os_list,"total_number") );
+			foreach( $os_list as $_item ){
+				$data_client_os['series'][0]['data'][] =[
+					'name' => $_item['client_os'],
+					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) )
+				];
+			}
+		}
 
         return $this->render("index",[
             "stat" =>$data,
             "data_access" => $data_access,
             "data_blog" => $data_blog,
-			'source_list_top' => $source_list_top,
-			'os_list_top' => $os_list_top,
+            "data_client_os" => $data_client_os,
+			'source_list_top' => $source_list_top
         ]);
     }
 

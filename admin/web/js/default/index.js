@@ -3,6 +3,7 @@ var default_index_ops = {
     init:function(){
         this.drawAccessLine();
         this.drawBlogLine();
+        this.drawClentOsPie();
     },
     drawAccessLine:function(){
         var data_access = $("#hidden_wrap input[name=data_access]").val();
@@ -33,6 +34,20 @@ var default_index_ops = {
             'series':data_blog.series
         };
         chart_ops.drawLine( data );
+    },
+    drawClentOsPie:function(){
+        var data_client_os = $("#hidden_wrap input[name=data_client_os]").val();
+        if( data_client_os.length < 1 ){
+            return ;
+        }
+        data_client_os = eval('('+ data_client_os +')');
+        console.log(  data_client_os.series );
+        data = {
+            'title':'操作系统',
+            'target':'client_os_chart',
+            'series':data_client_os.series
+        };
+        chart_ops.drawPie( data );
     }
 };
 

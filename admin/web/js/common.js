@@ -212,7 +212,7 @@ $(document).ready(function(){
  * 正式代码如果有console.log
  * 提交到错误平台
  * **/
-if( window.console && window.location.hostname.indexOf("rrr.test") <= -1 ){
+if( window.console && window.location.hostname.indexOf("dr.local.com") <= -1 ){
     window.console.log = function( msg ){
         var data = {
             'message':msg,
