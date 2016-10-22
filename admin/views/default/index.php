@@ -12,10 +12,14 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
             <div class="box-1">
                 <div class="row">
                     <div class="row-in">
-                        <h2 class="columns-24 title-1">博文信息</h2>
-                        <div class="columns-24">
+                        <h2 class="columns-24 title-1">统计信息</h2>
+                        <div class="columns-12">
                             <div class="widget-int num-count">博文总数：<?=$stat["posts"]["total"];?></div>
                             <div class="widget-int num-count">正常博文：<?=$stat["posts"]["total_valid"];?></div>
+                        </div>
+                        <div class="columns-12">
+                            <div class="widget-int num-count">图书总数：<?=$stat["library"]["total"];?></div>
+                            <div class="widget-int num-count">展示图书：<?=$stat["library"]["total_valid"];?></div>
                         </div>
                     </div>
                 </div>
@@ -25,10 +29,8 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
             <div class="box-1">
                 <div class="row">
                     <div class="row-in">
-                        <h2 class="columns-24 title-1">图书信息</h2>
-                        <div class="columns-24">
-                            <div class="widget-int num-count">图书总数：<?=$stat["library"]["total"];?></div>
-                            <div class="widget-int num-count">展示图书：<?=$stat["library"]["total_valid"];?></div>
+                        <div class="columns-24" id="client_browser_chart">
+
                         </div>
                     </div>
                 </div>
@@ -73,4 +75,5 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
     <input type="hidden" name="data_access" value='<?=json_encode($data_access);?>'>
     <input type="hidden" name="data_client_os" value='<?=json_encode($data_client_os);?>'>
     <input type="hidden" name="data_source" value='<?=json_encode($data_source);?>'>
+    <input type="hidden" name="data_client_browser" value='<?=json_encode($data_client_browser);?>'>
 </div>

@@ -9,6 +9,7 @@ use common\models\posts\Posts;
 use common\models\stat\StatAccess;
 use common\models\stat\StatBlog;
 use common\models\stat\StatDailyAccessSource;
+use common\models\stat\StatDailyBrowser;
 use common\models\stat\StatDailyOs;
 use Yii;
 
@@ -25,16 +26,9 @@ class DefaultController extends BaseController
         $total_posts = Posts::find()->count();
         $total_valid_posts = Posts::find()->where(['status' => 1])->count();
 
-        $today_date = date("Y-m-d");
-        $today_post = Posts::find()
-            ->where([">=","created_time",$today_date." 00:00:00"])
-            ->andWhere(["<=","created_time",$today_date." 23:23:59"])
-            ->count();
-
         $data['posts'] = [
             "total" => $total_posts,
-            "total_valid" => $total_valid_posts,
-            "today" => $today_post
+            "total_valid" => $total_valid_posts
         ];
 
 
@@ -106,7 +100,7 @@ class DefaultController extends BaseController
         }
 
 
-        /*今日来源域名top10*/
+        /*今日来源域名*/
         $ignore_source = ["direct","www.vincentguo.cn","m.vincentguo.cn" ];
         $data_source = [
 			'series' => [
@@ -153,12 +147,37 @@ class DefaultController extends BaseController
 			}
 		}
 
+		/*浏览器统计*/
+		$data_client_browser = [
+			'series' => [
+				[
+					'data' => []
+				]
+			]
+		];
+
+		$client_browser_list = StatDailyBrowser::find()
+			->where([ 'date' => date("Ymd") ])
+			->orderBy([ 'total_number' => SORT_DESC ])
+			->asArray()
+			->all();
+		if( $client_browser_list ){
+			$total_number = array_sum(  array_column($client_browser_list,"total_number") );
+			foreach( $client_browser_list as $_item ){
+				$data_client_browser['series'][0]['data'][] =[
+					'name' => $_item['client_browser'],
+					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) )
+				];
+			}
+		}
+
         return $this->render("index",[
             "stat" =>$data,
             "data_access" => $data_access,
             "data_blog" => $data_blog,
             "data_client_os" => $data_client_os,
-			'data_source' => $data_source
+			'data_source' => $data_source,
+			'data_client_browser' => $data_client_browser
         ]);
     }
 

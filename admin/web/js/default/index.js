@@ -4,6 +4,7 @@ var default_index_ops = {
         this.drawAccessLine();
         this.drawClentOsPie();
         this.drawSourcePie();
+        this.drawBrowserPie();
     },
     drawAccessLine:function(){
         var data_access = $("#hidden_wrap input[name=data_access]").val();
@@ -43,6 +44,19 @@ var default_index_ops = {
             'title':'来路域名',
             'target':'source_chart',
             'series':data_source.series
+        };
+        chart_ops.drawPie( data );
+    },
+    drawBrowserPie:function(){
+        var data_client_browser = $("#hidden_wrap input[name=data_client_browser]").val();
+        if( data_client_browser.length < 1 ){
+            return ;
+        }
+        data_client_browser = eval('('+ data_client_browser +')');
+        data = {
+            'title':'浏览器',
+            'target':'client_browser_chart',
+            'series':data_client_browser.series
         };
         chart_ops.drawPie( data );
     }
