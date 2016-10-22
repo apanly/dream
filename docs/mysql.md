@@ -403,4 +403,15 @@
       PRIMARY KEY (`id`),
       UNIQUE KEY `idx_date_client_os` (`date`,`client_os`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='操作系统 日统计';
+    
+    CREATE TABLE `stat_daily_browser` (
+      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+      `date` int(11) NOT NULL DEFAULT '0' COMMENT '日期',
+      `client_browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器名称',
+      `total_number` int(11) NOT NULL DEFAULT '0' COMMENT '总次数',
+      `updated_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后一次更新时间',
+      `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '插入时间',
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `idx_date_client_browser` (`date`,`client_browser`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='浏览器日表统计';
 
