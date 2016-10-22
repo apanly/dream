@@ -1,10 +1,7 @@
 ;
-var log_uuid_ops = {
+var log_date_ops = {
     init:function(){
-        this.eventBind();
         this.datetimepickerComponent();
-    },
-    eventBind:function(){
     },
     datetimepickerComponent:function(){
         $.datetimepicker.setLocale('zh');
@@ -30,5 +27,5 @@ var log_uuid_ops = {
 };
 
 $(document).ready( function(){
-    log_uuid_ops.init();
+    log_date_ops.init();
 });

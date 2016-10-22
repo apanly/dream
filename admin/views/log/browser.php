@@ -9,7 +9,7 @@ StaticService::includeAppJsStatic("/js/log/date.js",\admin\assets\AdminAsset::cl
 <div class="row">
     <div class="row-in">
         <div class="columns-24">
-			<?php echo \Yii::$app->view->renderFile("@admin/views/common/stat_tab.php", ['current' => 'uuid']); ?>
+			<?php echo \Yii::$app->view->renderFile("@admin/views/common/stat_tab.php", ['current' => 'browser']); ?>
         </div>
     </div>
 </div>
@@ -63,7 +63,7 @@ StaticService::includeAppJsStatic("/js/log/date.js",\admin\assets\AdminAsset::cl
                 <tr>
                     <th>序号</th>
                     <th>日期</th>
-                    <th>UUID</th>
+                    <th>OS</th>
                     <th>总次数</th>
                 </tr>
                 </thead>
@@ -74,8 +74,8 @@ StaticService::includeAppJsStatic("/js/log/date.js",\admin\assets\AdminAsset::cl
                             <td class="text-center"><?=$_item['idx'];?></td>
                             <td><?=$_item['date'];?> </td>
                             <td>
-                                <a target="_blank" href="<?=AdminUrlService::buildUrl("/log/access",[ 'uuid' => $_item['uuid'] ]);?>">
-									<?=$_item['uuid'];?>
+                                <a target="_blank" href="<?=AdminUrlService::buildUrl("/log/access",[ 'client_browser' => $_item['client_browser'] ]);?>">
+									<?=$_item['client_browser'];?>
                                 </a>
                             </td>
                             <td><?=$_item['total_number'];?> </td>
@@ -94,7 +94,7 @@ StaticService::includeAppJsStatic("/js/log/date.js",\admin\assets\AdminAsset::cl
         <div class="columns-24 text-right">
 			<?php echo \Yii::$app->view->renderFile("@admin/views/common/pagination_v1.php",[
 				'pages' => $page_info,
-				'url' => '/log/uuid',
+				'url' => '/log/browser',
 				'search_conditions' => $search_conditions,
 				'current_page_count' => count($data)
 			]);?>

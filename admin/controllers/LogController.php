@@ -7,6 +7,8 @@ use common\components\DataHelper;
 use common\models\applog\AccessLogs;
 use common\models\applog\AppLogs;
 use common\models\stat\StatDailyAccessSource;
+use common\models\stat\StatDailyBrowser;
+use common\models\stat\StatDailyOs;
 use common\models\stat\StatDailyUuid;
 use common\service\GlobalUrlService;
 use Yii;
@@ -192,6 +194,112 @@ class LogController extends BaseController{
 			'date_to' => $date_to,
 		];
 		return $this->render("source",[
+			"data" => $data,
+			"page_info" => $page_info,
+			'search_conditions' => $search_conditions
+		]);
+	}
+
+	public function actionOs(){
+		$date_from = $this->get("date_from",date("Y-m-d") );
+		$date_to = $this->get("date_to",date("Y-m-d") );
+
+		$p = intval( $this->get("p",1) );
+		if(!$p){
+			$p = 1;
+		}
+
+
+		$query = StatDailyOs::find();
+		if( $date_from ){
+			$query->andWhere([ '>=','date',date("Ymd",strtotime( $date_from ) ) ]);
+		}
+		if( $date_from ){
+			$query->andWhere([ '<=','date',date("Ymd",strtotime( $date_to ) ) ]);
+		}
+
+		$total_count = $query->count();
+		$offset = ($p - 1) * $this->page_size;
+		$list = $query->orderBy([ 'id' => SORT_DESC ])->offset($offset)->limit( $this->page_size )->all();
+
+		$page_info = DataHelper::ipagination([
+			"total_count" => $total_count,
+			"page_size" => $this->page_size,
+			"page" => $p,
+			"display" => 10
+		]);
+		$data = [];
+		if($list){
+			$idx = 1;
+			foreach($list as $_item ){
+				$data[] = [
+					'idx' =>  $idx,
+					'date' => $_item['date'],
+					'client_os' => $_item['client_os'],
+					'total_number' => $_item['total_number']
+				];
+				$idx++;
+			}
+		}
+
+		$search_conditions = [
+			'date_from' => $date_from,
+			'date_to' => $date_to,
+		];
+		return $this->render("os",[
+			"data" => $data,
+			"page_info" => $page_info,
+			'search_conditions' => $search_conditions
+		]);
+	}
+
+	public function actionBrowser(){
+		$date_from = $this->get("date_from",date("Y-m-d") );
+		$date_to = $this->get("date_to",date("Y-m-d") );
+
+		$p = intval( $this->get("p",1) );
+		if(!$p){
+			$p = 1;
+		}
+
+
+		$query = StatDailyBrowser::find();
+		if( $date_from ){
+			$query->andWhere([ '>=','date',date("Ymd",strtotime( $date_from ) ) ]);
+		}
+		if( $date_from ){
+			$query->andWhere([ '<=','date',date("Ymd",strtotime( $date_to ) ) ]);
+		}
+
+		$total_count = $query->count();
+		$offset = ($p - 1) * $this->page_size;
+		$list = $query->orderBy([ 'id' => SORT_DESC ])->offset($offset)->limit( $this->page_size )->all();
+
+		$page_info = DataHelper::ipagination([
+			"total_count" => $total_count,
+			"page_size" => $this->page_size,
+			"page" => $p,
+			"display" => 10
+		]);
+		$data = [];
+		if($list){
+			$idx = 1;
+			foreach($list as $_item ){
+				$data[] = [
+					'idx' =>  $idx,
+					'date' => $_item['date'],
+					'client_browser' => $_item['client_browser'],
+					'total_number' => $_item['total_number']
+				];
+				$idx++;
+			}
+		}
+
+		$search_conditions = [
+			'date_from' => $date_from,
+			'date_to' => $date_to,
+		];
+		return $this->render("browser",[
 			"data" => $data,
 			"page_info" => $page_info,
 			'search_conditions' => $search_conditions

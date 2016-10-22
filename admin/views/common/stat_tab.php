@@ -16,6 +16,16 @@ $mapping = [
         "url" => AdminUrlService::buildUrl("/log/source"),
         "status" => 1
     ],
+	"os" => [
+		'title' => "操作系统统计",
+		"url" => AdminUrlService::buildUrl("/log/os"),
+		"status" => 1
+	],
+	"browser" => [
+		'title' => "浏览器统计",
+		"url" => AdminUrlService::buildUrl("/log/browser"),
+		"status" => 1
+	],
     "error" => [
         'title' => "错误日志",
         "url" => AdminUrlService::buildUrl("/log/error"),
