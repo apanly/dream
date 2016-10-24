@@ -1,11 +1,17 @@
 ;
 var chart_ops = {
+    getDefinedColor:function(){
+        var colors = ['#058DC7', '#50B432', '#ED561B', '#DDDF00',
+            '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'];
+        return colors  ;
+    },
     drawLine:function( data ){
         $('#'+data.target).highcharts({
             chart:{
                 height:270,
                 type:'spline'
             },
+            colors: this.getDefinedColor(),
             title: {
                 text: data.title,
                 align:"left"
@@ -74,6 +80,7 @@ var chart_ops = {
                 type: 'pie',
                 height:270
             },
+            colors: this.getDefinedColor(),
             title: {
                 text: data.title,
                 align:"left"
