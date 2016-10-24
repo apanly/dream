@@ -82,6 +82,9 @@ class LogController extends BaseController{
                     'source' => $_item_access['source'],
                     'uuid' => $_item_access['uuid'],
                     'ip' => $_item_access['ip'],
+                    'browser' => $_item_access['client_browser']."/".$_item_access['client_browser_version'],
+                    'os' => $_item_access['client_os']."/".$_item_access['client_os_version'],
+					'client_device' => $_item_access['client_device'],
                     'created_time' => $_item_access['created_time']
                 ];
                 $idx++;

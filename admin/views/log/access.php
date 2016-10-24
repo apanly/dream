@@ -66,6 +66,9 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::
                     <th>目标URL</th>
                     <th>来源</th>
                     <th>UUID</th>
+                    <th>操作系统</th>
+                    <th>浏览器</th>
+                    <th>设备</th>
                     <th>IP</th>
                     <th>时间</th>
                 </tr>
@@ -73,11 +76,14 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::
                 <tbody>
                 <?php if($data):?>
                     <?php foreach($data as $_item):?>
-                        <tr>
-                            <td class="text-center"><?=$_item['idx'];?></td>
+                        <tr class="centered">
+                            <td><?=$_item['idx'];?></td>
                             <td><?=$_item['target_url'];?> </td>
                             <td><?=$_item['source'];?> </td>
                             <td><?=$_item['uuid'];?></td>
+                            <td><?=$_item['browser'];?></td>
+                            <td><?=$_item['os'];?></td>
+                            <td><?=$_item['client_device'];?></td>
                             <td><?=$_item['ip'];?></td>
                             <td><?=$_item['created_time'];?></td>
                         </tr>
