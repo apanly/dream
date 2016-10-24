@@ -95,7 +95,9 @@ class LogController extends BaseController{
 			'date_from' => $date_from,
 			'date_to' => $date_to,
 			'source' => $source,
-			'uuid' => $uuid
+			'uuid' => $uuid,
+			'client_os' => $client_os,
+			'client_browser' => $client_browser
 		];
 
         return $this->render("access",[
