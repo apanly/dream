@@ -89,7 +89,11 @@ var chart_ops = {
                 enabled:false
             },
             tooltip: {
-                pointFormat: '<b>{point.percentage:.1f}%</b>'
+                // pointFormat: '<b>{point.percentage:.1f}%</b>',
+                formatter:function () {
+                    var s = '<b>' + this.point.name + "<br/>" + this.y + '%（'+ this.point.total_number +'次）</b>';
+                    return s;
+                }
             },
             plotOptions: {
                 pie: {

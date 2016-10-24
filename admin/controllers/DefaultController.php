@@ -120,7 +120,8 @@ class DefaultController extends BaseController
 			foreach( $source_list as $_item ){
 				$data_source['series'][0]['data'][] =[
 					'name' => $_item['source'],
-					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) )
+					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) ),
+					'total_number' => $_item['total_number']
 				];
 			}
 		}
@@ -142,7 +143,8 @@ class DefaultController extends BaseController
 			foreach( $os_list as $_item ){
 				$data_client_os['series'][0]['data'][] =[
 					'name' => $_item['client_os'],
-					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) )
+					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) ),
+					'total_number' => $_item['total_number']
 				];
 			}
 		}
@@ -166,7 +168,8 @@ class DefaultController extends BaseController
 			foreach( $client_browser_list as $_item ){
 				$data_client_browser['series'][0]['data'][] =[
 					'name' => $_item['client_browser'],
-					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) )
+					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) ),
+					'total_number' => $_item['total_number']
 				];
 			}
 		}
