@@ -74,7 +74,7 @@ StaticService::includeAppJsStatic("/js/log/date.js",\admin\assets\AdminAsset::cl
                             <td class="text-center"><?=$_item['idx'];?></td>
                             <td><?=$_item['date'];?> </td>
                             <td>
-                                <a target="_blank" href="<?=AdminUrlService::buildUrl("/log/access",[ 'client_browser' => $_item['client_browser'] ]);?>">
+                                <a  class="color-theme"  target="_blank" href="<?=AdminUrlService::buildUrl("/log/access",[ 'client_browser' => $_item['client_browser'] ]);?>">
 									<?=$_item['client_browser'];?>
                                 </a>
                             </td>

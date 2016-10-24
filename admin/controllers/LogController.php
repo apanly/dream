@@ -20,6 +20,8 @@ class LogController extends BaseController{
 		$date_to = $this->get("date_to",date("Y-m-d") );
 		$source = trim( $this->get("source","") );
 		$uuid = trim( $this->get("uuid",""));
+		$client_os = trim( $this->get("client_os",""));
+		$client_browser = trim( $this->get("client_browser",""));
         $p = intval( $this->get("p",1) );
         if(!$p){
             $p = 1;
@@ -40,6 +42,14 @@ class LogController extends BaseController{
 
 		if( $uuid ){
 			$query->andWhere([ 'uuid' => $uuid ]);
+		}
+
+		if( $client_os ){
+			$query->andWhere([ 'client_os' => $client_os ]);
+		}
+
+		if( $client_browser ){
+			$query->andWhere([ 'client_browser' => $client_browser ]);
 		}
 
         $total_count = $query->count();
