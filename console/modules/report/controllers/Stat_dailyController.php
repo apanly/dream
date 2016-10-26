@@ -225,5 +225,11 @@ class Stat_dailyController extends Stat_utilController{
 			$_item->client_device = $tmp_device->getName();
 			$_item->update(0);
 		}
+
+		$start = '2015-12-18';
+		$end = '2016-10-26';
+		for( $tmp_date = $start;$tmp_date < $end; $tmp_date = date("Y-m-d",strtotime($tmp_date) + 86400)  ){
+			 $this->actionBrowser( $tmp_date );
+		}
 	}
 }
