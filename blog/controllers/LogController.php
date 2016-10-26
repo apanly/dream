@@ -6,9 +6,9 @@ use blog\controllers\common\BaseController;
 use common\components\UtilHelper;
 use common\models\applog\AccessLogs;
 use common\models\posts\Posts;
-use Sinergi\BrowserDetector\Browser;
-use Sinergi\BrowserDetector\Os;
-use Sinergi\BrowserDetector\Device;
+use apanly\BrowserDetector\Browser;
+use apanly\BrowserDetector\Os;
+use apanly\BrowserDetector\Device;
 use Yii;
 
 

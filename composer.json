@@ -32,7 +32,6 @@
         "fxp/composer-asset-plugin": "~1.0",
         "phpoffice/phpexcel": "1.8.0",
         "bupt1987/html-parser": "dev-master",
-        "sinergi/browser-detector": "^6.0",
         "apanly/browser-detector": "dev-master"
     },
     "require-dev": {
