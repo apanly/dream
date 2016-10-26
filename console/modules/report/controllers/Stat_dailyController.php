@@ -7,9 +7,9 @@ use common\models\stat\StatDailyAccessSource;
 use common\models\stat\StatDailyBrowser;
 use common\models\stat\StatDailyOs;
 use common\models\stat\StatDailyUuid;
-use Sinergi\BrowserDetector\Browser;
-use Sinergi\BrowserDetector\Os;
-use Sinergi\BrowserDetector\Device;
+use apanly\BrowserDetector\Browser;
+use apanly\BrowserDetector\Os;
+use apanly\BrowserDetector\Device;
 
 class Stat_dailyController extends Stat_utilController{
 	/*
