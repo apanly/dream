@@ -23,6 +23,7 @@ class SyncBlogService extends BaseService {
     public static function doSync( $type,$blog_id ){
         $charset = "utf-8";
         $catlog = [ 1 ];
+        $limit_title_len = 0;//不限制
         switch( $type ){
             case "51cto":
                 $catlog = [
@@ -47,6 +48,7 @@ class SyncBlogService extends BaseService {
                 $catlog = [
                     "Web开发"
                 ];
+				$limit_title_len = 40;
                 break;
             default:
                 return self::_err("指定的类型无法处理!!");
@@ -68,6 +70,10 @@ class SyncBlogService extends BaseService {
         $link = $domain_blog."/default/{$blog_id}.html";
         $content = $blog_info['content'];
         $title = $blog_info['title'];
+
+		if( $limit_title_len ){//标题限制长度
+			$title = mb_substr( $limit_title_len,0 ,$limit_title_len,"utf-8" );
+		}
 
         $content .= "<br/>原文地址：<a href=\"{$link}\">{$blog_info['title']}</a>";
         /*相关标签*/
@@ -97,6 +103,8 @@ class SyncBlogService extends BaseService {
             $content = mb_convert_encoding($content,$charset,"utf-8");
             $title = mb_convert_encoding($title,$charset,"utf-8");
         }
+
+
 
         $params = [
             'title'=> $title,
