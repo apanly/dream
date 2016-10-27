@@ -27,6 +27,9 @@ class LogController extends BaseController{
 			$tmp_source = 'direct';
 			if( $referer ){
 				$tmp_source = parse_url( $referer ,PHP_URL_HOST );
+				if( stripos($tmp_source,"www.google.") !== false ){
+					$tmp_source = "www.google.com";
+				}
 			}
 
         	$uuid = $this->getUUID();
