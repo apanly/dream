@@ -33,7 +33,7 @@ class SyncBlogService extends BaseService {
                 break;
             case "csdn":
                 $catlog = [];
-                return self::_err("目前还处理不了这个类型!!");
+                //return self::_err("目前还处理不了这个类型!!");
                 break;
             case "sina":
                 break;
@@ -120,7 +120,7 @@ class SyncBlogService extends BaseService {
             $model_blog_sync_mapping = $sync_info;
             $is_edit = true;
         }else{
-            if( !$target->newPost(   $params ) ){
+            if( !$target->newPost(   $params,($type == "csdn" ) ) ){
                 return self::_err( $target->getErrorCode()."：".$target->getErrorMessage() );
             }
             if( $sync_info ){

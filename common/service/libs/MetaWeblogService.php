@@ -43,8 +43,11 @@ class MetaWeblogService extends BaseService {
         $this->passwd = $passwd;
     }
 
-    public function newPost( $params ){
+    public function newPost( $params,$is_csdn = false ){
         $this->method = "metaWeblog.newPost";
+        if( $is_csdn ){//先这样试试去
+        	$this->blog_id = 895030;
+		}
         $this->buildXML( $params );
         $res_xml = $this->doPost();;
         $this->metaweblog_message = new MetaWeblog_Message( $res_xml );
