@@ -5,6 +5,7 @@ var default_index_ops = {
         this.drawClentOsPie();
         this.drawSourcePie();
         this.drawBrowserPie();
+        this.drawDevicePie();
     },
     drawAccessLine:function(){
         var data_access = $("#hidden_wrap input[name=data_access]").val();
@@ -57,6 +58,19 @@ var default_index_ops = {
             'title':'浏览器',
             'target':'client_browser_chart',
             'series':data_client_browser.series
+        };
+        chart_ops.drawPie( data );
+    },
+    drawDevicePie:function(){
+        var data_client_device = $("#hidden_wrap input[name=data_client_device]").val();
+        if( data_client_device.length < 1 ){
+            return ;
+        }
+        data_client_device = eval('('+ data_client_device +')');
+        data = {
+            'title':'设备',
+            'target':'client_device_chart',
+            'series':data_client_device.series
         };
         chart_ops.drawPie( data );
     }

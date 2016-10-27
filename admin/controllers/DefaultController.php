@@ -10,6 +10,7 @@ use common\models\stat\StatAccess;
 use common\models\stat\StatBlog;
 use common\models\stat\StatDailyAccessSource;
 use common\models\stat\StatDailyBrowser;
+use common\models\stat\StatDailyDevice;
 use common\models\stat\StatDailyOs;
 use Yii;
 
@@ -174,13 +175,39 @@ class DefaultController extends BaseController
 			}
 		}
 
+		/*设备统计*/
+		$data_client_device = [
+			'series' => [
+				[
+					'data' => []
+				]
+			]
+		];
+
+		$client_device_list = StatDailyDevice::find()
+			->where([ 'date' => date("Ymd") ])
+			->orderBy([ 'total_number' => SORT_DESC ])
+			->asArray()
+			->all();
+		if( $client_device_list ){
+			$total_number = array_sum(  array_column($client_device_list,"total_number") );
+			foreach( $client_device_list as $_item ){
+				$data_client_device['series'][0]['data'][] =[
+					'name' => $_item['client_device'],
+					'y' => floatval( sprintf("%.2f", ( $_item['total_number']/ $total_number) * 100 ) ),
+					'total_number' => $_item['total_number']
+				];
+			}
+		}
+
         return $this->render("index",[
             "stat" =>$data,
             "data_access" => $data_access,
             "data_blog" => $data_blog,
             "data_client_os" => $data_client_os,
 			'data_source' => $data_source,
-			'data_client_browser' => $data_client_browser
+			'data_client_browser' => $data_client_browser,
+			'data_client_device' => $data_client_device
         ]);
     }
 

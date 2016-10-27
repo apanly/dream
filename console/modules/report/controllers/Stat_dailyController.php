@@ -5,6 +5,7 @@ namespace console\modules\report\controllers;
 use common\models\applog\AccessLogs;
 use common\models\stat\StatDailyAccessSource;
 use common\models\stat\StatDailyBrowser;
+use common\models\stat\StatDailyDevice;
 use common\models\stat\StatDailyOs;
 use common\models\stat\StatDailyUuid;
 use apanly\BrowserDetector\Browser;
@@ -161,6 +162,57 @@ class Stat_dailyController extends Stat_utilController{
 	}
 
 	/*
+	 * php yii report/stat_daily/device
+	 * */
+	public function actionDevice( $date = '' ){
+		$date = $date?$date:date("Y-m-d");
+		if( !preg_match("/^\d{4}-\d{2}-\d{2}$/",$date) ){
+			return $this->echoLog("param date format error,2016-04-28");
+		}
+
+		$time_from = date("Y-m-d 00:00:00",strtotime( $date ) );
+		$time_to = date("Y-m-d 23:59:59",strtotime( $date ) );
+
+		$list = AccessLogs::find()
+			->select([ 'client_device','COUNT(*) as total_number' ])
+			->where([ '>=','created_time',$time_from ])
+			->andWhere([ '<=','created_time',$time_to ])
+			->groupBy("client_device")
+			->asArray()
+			->all();
+
+		if( !$list ){
+			return $this->echoLog('no data to handle~~');
+		}
+
+		$date_int = date("Ymd",strtotime( $date ) );
+		$date_now = date("Y-m-d H:i:s");
+		foreach( $list as $_item ){
+			$tmp_client_device = $_item['client_device'];
+			if( !$tmp_client_device ){
+				continue;
+			}
+			$tmp_total_number = $_item['total_number'];
+			$tmp_info = StatDailyDevice::find()
+				->where([ 'date' => $date_int,'client_device' => $tmp_client_device ])
+				->one();
+			if( $tmp_info ){
+				$tmp_model_info = $tmp_info;
+			}else{
+				$tmp_model_info = new StatDailyDevice();
+				$tmp_model_info->date = $date_int;
+				$tmp_model_info->client_device = $tmp_client_device;
+				$tmp_model_info->created_time = $date_now;
+			}
+			$tmp_model_info->total_number = $tmp_total_number;
+			$tmp_model_info->updated_time = $date_now;
+			$tmp_model_info->save(0);
+		}
+
+		return $this->echoLog("it's over~~");
+	}
+
+	/*
 	 * php yii report/stat_daily/browser
 	 * */
 	public function actionBrowser( $date = '' ){
@@ -211,25 +263,30 @@ class Stat_dailyController extends Stat_utilController{
 		return $this->echoLog("it's over~~");
 	}
 
-
+	/*
+	 * php yii report/stat_daily/test
+	 * */
 	public function actionTest(){
-		$list = AccessLogs::find()->orderBy([ 'id' => SORT_ASC ])->all();
-		foreach( $list as $_item ){
-			$tmp_browser = new Browser( $_item['user_agent'] );
-			$tmp_os = new Os( $_item['user_agent'] );
-			$tmp_device = new Device( $_item['user_agent'] );
-			$_item->client_browser = $tmp_browser->getName();
-			$_item->client_browser_version = $tmp_browser->getVersion();
-			$_item->client_os = $tmp_os->getName();
-			$_item->client_os_version = $tmp_os->getVersion();
-			$_item->client_device = $tmp_device->getName();
-			$_item->update(0);
+		$flag = false;
+		if( $flag ){
+			$list = AccessLogs::find()->orderBy([ 'id' => SORT_ASC ])->all();
+			foreach( $list as $_item ){
+				$tmp_browser = new Browser( $_item['user_agent'] );
+				$tmp_os = new Os( $_item['user_agent'] );
+				$tmp_device = new Device( $_item['user_agent'] );
+				$_item->client_browser = $tmp_browser->getName();
+				$_item->client_browser_version = $tmp_browser->getVersion();
+				$_item->client_os = $tmp_os->getName();
+				$_item->client_os_version = $tmp_os->getVersion();
+				$_item->client_device = $tmp_device->getName();
+				$_item->update(0);
+			}
 		}
 
 		$start = '2015-12-18';
-		$end = '2016-10-26';
+		$end = date("Y-m-d",strtotime("+1 days"));
 		for( $tmp_date = $start;$tmp_date < $end; $tmp_date = date("Y-m-d",strtotime($tmp_date) + 86400)  ){
-			 $this->actionBrowser( $tmp_date );
+			 $this->actionDevice( $tmp_date );
 		}
 	}
 }

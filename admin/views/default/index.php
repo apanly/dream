@@ -8,7 +8,7 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
 ?>
 <div class="row">
     <div class="row-in">
-        <div class="columns-12">
+        <div class="columns-24">
             <div class="box-1">
                 <div class="row">
                     <div class="row-in">
@@ -57,6 +57,17 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                 </div>
             </div>
         </div>
+        <div class="columns-12">
+            <div class="box-1">
+                <div class="row">
+                    <div class="row-in">
+                        <div class="columns-24" id="client_device_chart">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="columns-24">
             <div class="box-1">
                 <div class="row">
@@ -76,4 +87,5 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
     <input type="hidden" name="data_client_os" value='<?=json_encode($data_client_os);?>'>
     <input type="hidden" name="data_source" value='<?=json_encode($data_source);?>'>
     <input type="hidden" name="data_client_browser" value='<?=json_encode($data_client_browser);?>'>
+    <input type="hidden" name="data_client_device" value='<?=json_encode($data_client_device);?>'>
 </div>
