@@ -2,7 +2,7 @@
 var chart_ops = {
     getDefinedColor:function(){
         var colors = ['#058DC7', '#50B432', '#ED561B', '#DDDF00',
-            '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'];
+            '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4','#E93EFF'];
         return colors  ;
     },
     drawLine:function( data ){
@@ -74,11 +74,15 @@ var chart_ops = {
     drawPie:function( data ){
         $('#'+data.target).highcharts({
             chart: {
+                // backgroundColor: '#000000',
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
                 type: 'pie',
-                height:270
+                height:300
+            },
+            noData:{
+
             },
             colors: this.getDefinedColor(),
             title: {
@@ -101,12 +105,26 @@ var chart_ops = {
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: <br/>{point.percentage:.1f} %',
+                        format: '{point.name}<br/>{point.percentage:.1f} %',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        }
-                    }
+                        },
+                        distance:50
+                    },
+                    showInLegend: false
                 }
+            },
+            legend: {
+                itemStyle : {
+                    'fontSize' : '12px',
+                    'color'    : '#768499'
+                },
+                layout: 'horizontal',
+                symbolHeight: 12,
+                symbolWidth :12,
+                symbolRadius :10,
+                itemMarginBottom:5,
+                borderWidth: 0
             },
             series: data.series
         });

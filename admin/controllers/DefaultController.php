@@ -101,6 +101,7 @@ class DefaultController extends BaseController
         }
 
 
+        $date_int = date("Ymd");
         /*今日来源域名*/
         $ignore_source = ["direct","www.vincentguo.cn","m.vincentguo.cn" ];
         $data_source = [
@@ -111,7 +112,7 @@ class DefaultController extends BaseController
 			]
 		];
 		$source_list = StatDailyAccessSource::find()
-			->where([ 'date' => date("Ymd") ])
+			->where([ 'date' => $date_int ])
 			->andWhere([ 'not in','source',$ignore_source ])
 			->orderBy([ 'total_number' => SORT_DESC ])
 			->asArray()
@@ -135,7 +136,7 @@ class DefaultController extends BaseController
 			]
 		];
 		$os_list = StatDailyOs::find()
-			->where([ 'date' => date("Ymd") ])
+			->where([ 'date' => $date_int ])
 			->orderBy([ 'total_number' => SORT_DESC ])
 			->asArray()
 			->all();
@@ -160,7 +161,7 @@ class DefaultController extends BaseController
 		];
 
 		$client_browser_list = StatDailyBrowser::find()
-			->where([ 'date' => date("Ymd") ])
+			->where([ 'date' => $date_int ])
 			->orderBy([ 'total_number' => SORT_DESC ])
 			->asArray()
 			->all();
@@ -185,7 +186,7 @@ class DefaultController extends BaseController
 		];
 
 		$client_device_list = StatDailyDevice::find()
-			->where([ 'date' => date("Ymd") ])
+			->where([ 'date' => $date_int ])
 			->orderBy([ 'total_number' => SORT_DESC ])
 			->asArray()
 			->all();
