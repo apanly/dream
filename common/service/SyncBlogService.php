@@ -72,7 +72,7 @@ class SyncBlogService extends BaseService {
         $title = $blog_info['title'];
 
 		if( $limit_title_len ){//标题限制长度
-			$title = mb_substr( $limit_title_len,0 ,$limit_title_len,"utf-8" );
+			$title = mb_substr( $title,0 ,$limit_title_len,"utf-8" );
 		}
 
         $content .= "<br/>原文地址：<a href=\"{$link}\">{$blog_info['title']}</a>";
