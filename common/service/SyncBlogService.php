@@ -48,7 +48,7 @@ class SyncBlogService extends BaseService {
                 $catlog = [
                     "Web开发"
                 ];
-				$limit_title_len = 40;
+				$limit_title_len = 30;
                 break;
             default:
                 return self::_err("指定的类型无法处理!!");
