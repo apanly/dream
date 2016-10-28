@@ -39,7 +39,6 @@ var default_info_ops = {
                 return true;
             }
 
-
             var wrap_width = that.calPicWidth( $("article.post").width() );
             wrap_width = dpi?(wrap_width*dpi):wrap_width;
             $(this).attr("width",wrap_width  );
@@ -84,15 +83,6 @@ var default_info_ops = {
     calPicWidth:function(width){
         var tmp_int = Math.ceil(width/50);
         return tmp_int*50;
-    },
-    getBrushFullPath:function(path){
-        var static_path = $("#domain_static").val();
-        var args = arguments,result = [];
-
-        for(var i = 0; i < args.length; i++){
-            result.push(args[i].replace('@', static_path + "syntaxhighlighter/scripts/"));
-        }
-        return result
     }
 };
 
@@ -102,7 +92,7 @@ var contents_ops = {
         var h3 = [];
         var h2index = 0;
         //获取DOM中h2,h3标签
-        $.each($('h2,h3'),function(index,item){
+        $.each($('.post-content h2,h3'),function(index,item){
             if(item.tagName.toLowerCase() == 'h2'){
                 var h2item = {};
                 h2item.name = $(item).text();
@@ -110,12 +100,13 @@ var contents_ops = {
                 h2.push(h2item);
                 h2index++;
             }else{
+                if(h2index-1<0){
+                    //console.log('2货别在使用h2标签之前使用h3标签');
+                    return true;
+                }
                 var h3item = {};
                 h3item.name = $(item).text();
                 h3item.id = 'menuIndex'+index;
-                if(h2index-1<0){
-                    alert('2货别在使用h2标签之前使用h3标签');
-                }
                 if(!h3[h2index-1]){
                     h3[h2index-1] = [];
                 }
@@ -127,19 +118,21 @@ var contents_ops = {
     },
     genTmpl:function(){
         //开始拼接
-        var tmpl = '<ul>';
+        var tmpl = '<ol>';
         var heading = this.initHeading();
         var h2 = heading.h2;
         var h3 = heading.h3;
         for(var i=0;i<h2.length;i++){
             tmpl += '<li><a href="javascript:void(0);" data-id="'+h2[i].id+'">'+h2[i].name+'</a></li>';
             if(h3[i]){
+                tmpl += "<ol>";
                 for(var j=0;j<h3[i].length;j++){
                     tmpl += '<li class="h3"><a href="javascript:void(0);" data-id="'+h3[i][j].id+'">'+h3[i][j].name+'</a></li>';
                 }
+                tmpl += "</ol>";
             }
         }
-        tmpl += '</ul>';
+        tmpl += '</ol>';
         return tmpl;
     },
     getIndex:function(){
@@ -147,7 +140,7 @@ var contents_ops = {
         //创建div标签
         var indexCon = '<div id="menuIndex" class="sidenav"></div>';
         //加载到页面中
-        $('#content').append(indexCon);
+        $('.content_index_wrap .content').append(indexCon);
         $('#menuIndex').append($(tmpl)).delegate('a','click',function(e){
             var selector = $(this).attr('data-id') ? '#'+$(this).attr('data-id') : 'h1';
             var scrollNum = $(selector).offset().top;
@@ -155,12 +148,14 @@ var contents_ops = {
             $('#menuIndex ul li').removeClass("active");
             $(this).parent().addClass("active");
         });
-
-
+        if( $(tmpl).find("li").size() > 0  ){
+            $('.content_index_wrap').removeClass("hidden");
+            $('.content_index_wrap').addClass("show");
+        }
     }
 };
 
 $(document).ready(function () {
     default_info_ops.init();
-    //contents_ops.getIndex();
+    contents_ops.getIndex();
 });

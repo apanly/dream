@@ -17,41 +17,11 @@ StaticService::includeStaticJs("/jquery/fancy/jquery.fancybox.pack.js",\blog\ass
 StaticService::includeStaticCss("/prettify/prettify.sons.css",\blog\assets\AppAsset::className());
 StaticService::includeStaticJs("/prettify/prettify.js",\blog\assets\AppAsset::className());
 
+StaticService::includeAppCssStatic("/css/web/default/info.css",\blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/web/default/info.js", \blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964", \blog\assets\AppAsset::className());
 ?>
-<style type="text/css">
-    #menuIndex ol, ul {
-        /*/list-style-position: outside;*/
-        list-style:none;
-        margin:0;
-        padding: 0;
-    }
-
-    #menuIndex .h3{
-        margin-top:5px;
-        margin-bottom:5px;
-        font-size:1em;
-        margin-left:10px;
-    }
-    #menuIndex .h2{
-        font-size:1.2em;
-    }
-    #menuIndex ul li a{
-        padding-left: 10px;
-    }
-    #menuIndex ul li.active a{
-        border-left: 2px solid #0099ff;
-
-    }
-    .post-content pre{
-        background:#000;
-    }
-    ol.linenums{
-        margin-left:20px;
-    }
-</style>
 <main class="col-md-8 main-content">
     <article class="post tag-zhuti tag-static-page tag-customize-page">
         <header class="post-head">
@@ -70,10 +40,20 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
         <section class="post-content">
             <p><?= $info['content']; ?></p>
         </section>
+
+        <?php if( $recommend_blogs ):?>
+            <section class="post-content">
+                <h3>相关推荐</h3>
+                <?php foreach( $recommend_blogs as $_recommend_blog_info ):?>
+                    <p>
+                        <a href="<?=UrlService::buildUrl("/default/info",[ "id" => $_recommend_blog_info["id"],"flag" => "recommend" ]);?>"><?=$_recommend_blog_info["title"];?></a>
+                    </p>
+                <?php endforeach;?>
+            </section>
+        <?php endif;?>
         <div class="page-header">
             版权声明：本文为博主原创文章，原文永久地址：<?= $info['url']; ?>
         </div>
-
         <!-- JiaThis Button BEGIN -->
         <div class="jiathis_style_32x32 clearfix">
             <a class="jiathis_button_qzone"></a>
@@ -125,7 +105,7 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
 
 
 </main>
-<?= Yii::$app->controller->renderPartial("/public/blog_side",[ "recommend_blogs" => $recommend_blogs,"qr_text" => GlobalUrlService::buildWapUrl("/default/info",[  'id' => $info['id'] ]) ]); ?>
+        <?= Yii::$app->controller->renderPartial("/public/blog_side",[ "recommend_blogs" => $recommend_blogs,"qr_text" => GlobalUrlService::buildWapUrl("/default/info",[  'id' => $info['id'] ]) ]); ?>
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

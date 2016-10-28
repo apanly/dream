@@ -21,6 +21,12 @@ $tags = CacheHelperService::getFrontCache("tag");
             </div>
         </div>
     </div>
+    <div class="widget hidden content_index_wrap">
+        <h4 class="title">目录</h4>
+        <div class="content">
+
+        </div>
+    </div>
     <div class="widget">
         <h4 class="title">智能推荐</h4>
         <div class="content recommend_posts">

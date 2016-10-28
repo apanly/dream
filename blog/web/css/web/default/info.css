@@ -1,0 +1,36 @@
+/*目录*/
+#menuIndex ol {
+    list-style-type:decimal;
+    margin:0;
+    padding: 0;
+    margin-left: 20px;
+}
+
+#menuIndex .h3{
+    margin-top:5px;
+    margin-bottom:5px;
+    font-size:1em;
+    margin-left:5px;
+}
+
+#menuIndex .h2{
+    font-size:1.2em;
+}
+#menuIndex ol li a{
+    /*padding-left: 10px;*/
+    color: #505050;
+    text-decoration: none;
+}
+
+#menuIndex ol li.active a{
+    color: #369;
+    text-decoration: none;
+}
+
+/*博文code css*/
+.post-content pre{
+    background:#000;
+}
+.post-content ol.linenums{
+    margin-left:20px;
+}
