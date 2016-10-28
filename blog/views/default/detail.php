@@ -42,14 +42,14 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
         </section>
 
         <?php if( $recommend_blogs ):?>
-            <section class="post-content">
+            <div class="recommend">
                 <h3>相关推荐</h3>
                 <?php foreach( $recommend_blogs as $_recommend_blog_info ):?>
                     <p>
                         <a href="<?=UrlService::buildUrl("/default/info",[ "id" => $_recommend_blog_info["id"],"flag" => "recommend" ]);?>"><?=$_recommend_blog_info["title"];?></a>
                     </p>
                 <?php endforeach;?>
-            </section>
+            </div>
         <?php endif;?>
         <div class="page-header">
             版权声明：本文为博主原创文章，原文永久地址：<?= $info['url']; ?>
