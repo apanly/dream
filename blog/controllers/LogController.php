@@ -52,6 +52,9 @@ class LogController extends BaseController{
 				$model_ac_log->client_os = $tmp_os->getName()?$tmp_os->getName():'';
 				$model_ac_log->client_os_version = $tmp_os->getVersion()?$tmp_os->getVersion():'';
 				$model_ac_log->client_device = $tmp_device->getName()?$tmp_device->getName():'';
+				if( $model_ac_log->client_device == "unknown" && UtilHelper::isPC() ){
+					$model_ac_log->client_device = "pc";
+				}
 			}
             $model_ac_log->ip = UtilHelper::getClientIP();
 			$model_ac_log->uuid = $uuid;
