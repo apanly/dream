@@ -17,8 +17,9 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
             <div class="columns-3">
                 <select class="select-1" name="status">
                     <option value="-1">请选择状态</option>
-                    <option value="1"  <?php if( $search_conditions['status']  == 1):?> selected <?php endif;?>>正常</option>
-                    <option value="0"  <?php if( $search_conditions['status']  == 0):?> selected <?php endif;?>>删除</option>
+                    <?php foreach( $status_mapping as $_status_id => $_status_info ):?>
+                        <option value="<?=$_status_id;?>"  <?php if( $search_conditions['status']  == $_status_id ):?> selected <?php endif;?>><?=$_status_info['desc'];?></option>
+                    <?php endforeach;?>
                 </select>
             </div>
             <div class="columns-8">
@@ -50,19 +51,19 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                 </thead>
                 <tbody>
                 <?php foreach($data as $_item):?>
-                    <tr id="trow_1">
-                        <td class="text-center"><?=$_item['id'];?></td>
+                    <tr>
+                        <td class="centered"><?=$_item['id'];?></td>
                         <td>
                             <a href="<?=$_item['view_url'];?>" target="_blank">
                                 <strong><?=$_item['title'];?></strong>
                             </a>
                         </td>
-                        <td><?=$_item['created'];?></td>
-                        <td>
+                        <td class="centered"><?=$_item['created'];?></td>
+                        <td class="centered">
                             <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span>
                             <span class="label label-<?=$_item['original_info']['class'];?>"><?=$_item['original_info']['desc'];?></span>
                         </td>
-                        <td>
+                        <td class="centered">
                             <a href="<?=$_item['edit_url'];?>" class="">
                                 <i class="icon_club">&#xe610;</i>
                             </a>

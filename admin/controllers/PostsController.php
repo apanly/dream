@@ -86,7 +86,8 @@ class PostsController extends BaseController{
         return $this->render("index",[
             "data" => $data,
             "page_info" => $page_info,
-            "search_conditions" => $search_conditions
+            "search_conditions" => $search_conditions,
+			'status_mapping' => Constant::$status_desc
         ]);
     }
 
