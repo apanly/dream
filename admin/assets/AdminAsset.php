@@ -1,6 +1,7 @@
 <?php
 namespace admin\assets;
 
+use common\service\GlobalUrlService;
 use yii\web\AssetBundle;
 
 
@@ -12,6 +13,7 @@ class AdminAsset extends AssetBundle{
 
 	public function registerAssetFiles($view){
 		$this->css = [
+			GlobalUrlService::buildStaticUrl("/fontawesome/css/font-awesome.min.css"),
 			'css/component/scrollbar.min.css',
 			'css/common.css'
 		];

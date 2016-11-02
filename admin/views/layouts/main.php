@@ -33,41 +33,41 @@ $domain_blog = Yii::$app->params['domains']['blog'];
 			<ul class="menu_list">
 				<li class="menu_dashboard">
 					<a href="<?=AdminUrlService::buildUrl("/default/index");?>">
-						<i class="icon_club">&#xe604;</i><span>Dashboard</span>
+						<i class="fa fa-dashboard fa-lg"></i><span>Dashboard</span>
 					</a>
 				</li>
 				<li class="menu_posts">
 					<a href="<?=AdminUrlService::buildUrl("/posts/index");?>">
-						<i class="icon_club">&#xe604;</i><span>文章</span>
+						<i class="fa fa-pencil fa-lg"></i><span>文章</span>
 					</a>
 				</li>
 				<li class="menu_account">
 					<a href="<?=AdminUrlService::buildUrl("/account/index");?>">
-						<i class="icon_club">&#xe603;</i><span>账号</span>
+						<i class="fa fa-user fa-lg"></i><span>账号</span>
 					</a>
 				</li>
 				<li class="menu_richmedia">
 					<a href="<?=AdminUrlService::buildUrl("/richmedia/index");?>">
-						<i class="icon_club">&#xe606;</i><span>多媒体</span></a>
+						<i class="fa fa-camera fa-lg"></i><span>多媒体</span></a>
 				</li>
 				<li class="menu_library">
 					<a href="<?=AdminUrlService::buildUrl("/library/index");?>">
-						<i class="icon_club">&#xe60b;</i><span>图书</span>
+						<i class="fa fa-book fa-lg"></i><span>图书</span>
 					</a>
 				</li>
 				<li class="menu_files">
 					<a href="<?=AdminUrlService::buildUrl("/file/index");?>">
-						<i class="icon_club">&#xe600;</i><span>文件</span>
+						<i class="fa fa-cloud fa-lg"></i><span>文件</span>
 					</a>
 				</li>
 				<li class="menu_stat">
 					<a href="<?=AdminUrlService::buildUrl("/log/access");?>">
-						<i class="icon_club">&#xe608;</i><span>统计</span>
+						<i class="fa fa-pie-chart fa-lg"></i><span>统计</span>
 					</a>
 				</li>
 				<li class="menu_girl">
 					<a href="<?=AdminUrlService::buildUrl("/douban/mz");?>">
-						<i class="icon_club">&#xe601;</i><span>豆瓣</span>
+						<i class="fa fa-file-photo-o  fa-lg"></i><span>豆瓣</span>
 					</a>
 				</li>
 			</ul>
