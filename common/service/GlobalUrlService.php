@@ -58,7 +58,7 @@ class GlobalUrlService {
 		return $url;
 	}
 
-    public static function buildPic1Static($path,$params = []){
+    public static function buildPic1Static($path,$params = [],$need_watermark = false){
         $switch = \Yii::$app->params['switch']['cdn']['pic1'];
         if( $switch ){
             if( UtilHelper::is_SSL() ){
@@ -86,6 +86,10 @@ class GlobalUrlService {
             }else if( $height ){
                 $url .= "?imageView/2/h/{$height}";
             }
+            //七牛设置的水印
+			if( $need_watermark ){
+				$url .= "|watermark/2/text/57yW56iL5rWq5a2Q55qE5Y2a5a6iIHd3dy52aW5jZW50Z3VvLmNu/font/5a6L5L2T/fontsize/500/fill/IzBENDJFNw==/dissolve/100/gravity/SouthEast/dx/10/dy/10";
+			}
         }else{
             if( $height && $weight ){
                 $url .= "?format=/w/{$weight}/h/{$height}";

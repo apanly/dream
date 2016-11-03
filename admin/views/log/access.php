@@ -81,8 +81,8 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::
                             <td><?=$_item['target_url'];?> </td>
                             <td><?=$_item['source'];?> </td>
                             <td><?=$_item['uuid'];?></td>
-                            <td><?=$_item['browser'];?></td>
                             <td><?=$_item['os'];?></td>
+                            <td><?=$_item['browser'];?></td>
                             <td><?=$_item['client_device'];?></td>
                             <td><?=$_item['ip'];?></td>
                             <td><?=$_item['created_time'];?></td>
