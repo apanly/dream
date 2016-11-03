@@ -10,10 +10,8 @@ use common\models\user\Admin;
 class AuthController extends BaseController{
 
     public function actionIndex(){
-        $this->layout = false;
-        return $this->render("index",[
-            "copyright" => Yii::$app->params['Copyright']
-        ]);
+    	$this->layout = "auth";
+        return $this->render("index");
     }
 
     public function actionLogin(){
