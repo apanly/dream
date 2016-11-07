@@ -232,6 +232,7 @@ class UtilHelper {
 			'*.yunetidc.com',
 			'*.baidu.com',
 			'*.cnzz.com',
+			'*.c-cnzz.com',
 			'*.duoshuo.com',
 			'*.jiathis.com'
 		];
