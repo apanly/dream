@@ -18,4 +18,21 @@ class ErrorController extends BaseController{
             "reback_url" => $reback_url
         ]);
     }
+
+	public function actionCsp(){
+
+		$content = file_get_contents("php://input");
+		if( !$content && isset( $GLOBALS['HTTP_RAW_POST_DATA'] ) ){
+			$content = $GLOBALS['HTTP_RAW_POST_DATA'];
+		}
+
+		$target = new AdCspReport();
+		$target->url =  isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';;
+		$target->ip = UtilHelper::getClientIP();
+		$target->report_content = $content;
+		$target->ua = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'';
+		$target->updated_time = date("Y-m-d H:i:s");
+		$target->created_time = date("Y-m-d H:i:s");
+		$target->save(0);
+	}
 }

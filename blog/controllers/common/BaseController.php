@@ -42,6 +42,8 @@ class BaseController extends BaseBlogController{
         $this->setDescription();
         $this->setKeywords();
 
+		Yii::$app->response->getHeaders()->set("Content-Security-Policy",UtilHelper::getCspHeader( YII_ENV) );
+
         if (!UtilHelper::isPC()
             && !in_array($action->getUniqueId(), $this->ignoreRedirectAction)
         ) {

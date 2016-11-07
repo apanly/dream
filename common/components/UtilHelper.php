@@ -225,4 +225,20 @@ class UtilHelper {
             .chr(125);// "}"
         return $uuid;
     }
+
+    public static function getCspHeader( $env = "prod" ){
+    	$domains = [
+			'*.yunetidc.com',
+			'*.baidu.com',
+			'*.cnzz.com',
+			'*.duoshuo.com',
+			'*.jiathis.com'
+		];
+    	if( $env != "prod" ){
+			$domains[] = '*.dr.local.com';
+		}
+
+		$domain_list = implode(" ",$domains);
+		return "script-src 'unsafe-inline' 'unsafe-eval' 'self'  {$domain_list};report-uri /error/csp";
+	}
 } 
