@@ -26,6 +26,7 @@ class BaseController extends BaseBlogController
         $this->setDescription();
         $this->setKeywords();
 
+		\Yii::$app->response->getHeaders()->set("Content-Security-Policy",UtilHelper::getCspHeader( YII_ENV) );
         //微信被封了
 //        $login_status = $this->checkLoginStatus();
 //

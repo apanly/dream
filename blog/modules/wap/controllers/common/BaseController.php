@@ -3,6 +3,7 @@ namespace blog\modules\wap\controllers\common;
 
 use blog\components\UrlService;
 use blog\components\BaseBlogController;
+use Yii;
 use common\components\UtilHelper;
 
 class BaseController extends BaseBlogController {
@@ -25,6 +26,7 @@ class BaseController extends BaseBlogController {
 
     public function beforeAction($action){
 
+		Yii::$app->response->getHeaders()->set("Content-Security-Policy",UtilHelper::getCspHeader( YII_ENV) );
 //微信账号被封了
 //        $login_status = $this->checkLoginStatus();
 //

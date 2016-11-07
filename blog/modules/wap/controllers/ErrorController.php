@@ -26,13 +26,6 @@ class ErrorController extends BaseController{
 			$content = $GLOBALS['HTTP_RAW_POST_DATA'];
 		}
 
-		$target = new AdCspReport();
-		$target->url =  isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';;
-		$target->ip = UtilHelper::getClientIP();
-		$target->report_content = $content;
-		$target->ua = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'';
-		$target->updated_time = date("Y-m-d H:i:s");
-		$target->created_time = date("Y-m-d H:i:s");
-		$target->save(0);
+		AppLogService::addCspReport( $content );
 	}
 }
