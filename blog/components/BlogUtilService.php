@@ -105,6 +105,13 @@ class BlogUtilService {
 
 		$list = [
 			[
+				'date' => '2016-11-07',
+				'title' => '全站增加CSP安全策略',
+				'content' => '<ol>
+<li>全站增加CSP安全策略，不想为劫持广告背锅</li>
+</ol>'
+			],
+			[
 				'date' => '2016-10-21',
 				'title' => '博客管理后台全新UI改版',
 				'content' => '<ol>
