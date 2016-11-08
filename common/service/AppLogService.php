@@ -52,10 +52,26 @@ class AppLogService extends BaseService {
     }
 
     public static function addCspReport( $content ){
+		$json_content = @json_decode( $content,true );
 		$target = new AdCspReport();
 		$target->url =  isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';;
 		$target->ip = UtilHelper::getClientIP();
 		$target->report_content = $content;
+		if( $json_content && isset($json_content['csp-report']) ){
+			if( isset( $json_content['csp-report']['blocked-uri']) ){
+				$blocked_uri = parse_url( $json_content['csp-report']['blocked-uri'] );
+				$tmp_port = isset( $blocked_uri['port'] )?$blocked_uri['port']:'';
+				$blocked_uri = $blocked_uri['host'];
+				if( $tmp_port ){
+					$blocked_uri .= ":{$tmp_port}";
+				}
+				$target->blocked_uri = $blocked_uri;
+			}
+
+			if( isset( $json_content['csp-report']['source-file']) ){
+				$target->source_file = $json_content['csp-report']['source-file'];
+			}
+		}
 		$target->ua = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'';
 		$target->updated_time = date("Y-m-d H:i:s");
 		$target->created_time = date("Y-m-d H:i:s");

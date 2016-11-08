@@ -10,6 +10,8 @@ use Yii;
  * @property integer $id
  * @property string $url
  * @property string $report_content
+ * @property string $blocked_uri
+ * @property string $source_file
  * @property string $ua
  * @property string $ip
  * @property string $updated_time
@@ -43,6 +45,7 @@ class AdCspReport extends \yii\db\ActiveRecord
             [['report_content'], 'string'],
             [['updated_time', 'created_time'], 'safe'],
             [['url', 'ua'], 'string', 'max' => 500],
+            [['blocked_uri', 'source_file'], 'string', 'max' => 100],
             [['ip'], 'string', 'max' => 50],
         ];
     }
@@ -56,6 +59,8 @@ class AdCspReport extends \yii\db\ActiveRecord
             'id' => 'ID',
             'url' => 'Url',
             'report_content' => 'Report Content',
+            'blocked_uri' => 'Blocked Uri',
+            'source_file' => 'Source File',
             'ua' => 'Ua',
             'ip' => 'Ip',
             'updated_time' => 'Updated Time',

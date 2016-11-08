@@ -5,6 +5,7 @@ namespace admin\controllers;
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\applog\AccessLogs;
+use common\models\applog\AdCspReport;
 use common\models\applog\AppLogs;
 use common\models\stat\StatDailyAccessSource;
 use common\models\stat\StatDailyBrowser;
@@ -385,5 +386,57 @@ class LogController extends BaseController{
             'log_type_mapping' => $log_type_mapping
         ]);
     }
+
+	public function actionCsp(){
+		$date_from = $this->get("date_from",date("Y-m-d") );
+		$date_to = $this->get("date_to",date("Y-m-d") );
+
+		$p = intval( $this->get("p",1) );
+		if(!$p){
+			$p = 1;
+		}
+
+		$query = AdCspReport::find();
+		if( $date_from ){
+			$query->andWhere([ '>=','created_time',date("Y-m-d",strtotime( $date_from ) ) ]);
+		}
+		if( $date_from ){
+			$query->andWhere([ '<=','created_time',date("Y-m-d 23:59:59",strtotime( $date_to ) ) ]);
+		}
+
+		$total_count = $query->count();
+		$offset = ($p - 1) * $this->page_size;
+		$list = $query->orderBy([ 'id' => SORT_DESC ])->offset($offset)->limit( $this->page_size )->all();
+
+		$page_info = DataHelper::ipagination([
+			"total_count" => $total_count,
+			"page_size" => $this->page_size,
+			"page" => $p,
+			"display" => 10
+		]);
+		$data = [];
+		if($list){
+			$idx = 1;
+			foreach($list as $_item ){
+				$data[] = [
+					'idx' =>  $idx,
+					'created_time' => $_item['created_time'],
+					'blocked_uri' => $_item['blocked_uri'],
+					'source_file' => $_item['source_file']
+				];
+				$idx++;
+			}
+		}
+
+		$search_conditions = [
+			'date_from' => $date_from,
+			'date_to' => $date_to,
+		];
+		return $this->render("csp",[
+			"data" => $data,
+			"page_info" => $page_info,
+			'search_conditions' => $search_conditions
+		]);
+	}
 
 }

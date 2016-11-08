@@ -26,6 +26,11 @@ $mapping = [
 		"url" => AdminUrlService::buildUrl("/log/browser"),
 		"status" => 1
 	],
+	"csp" => [
+		'title' => "CSP统计",
+		"url" => AdminUrlService::buildUrl("/log/csp"),
+		"status" => 1
+	],
     "error" => [
         'title' => "错误日志",
         "url" => AdminUrlService::buildUrl("/log/error"),
