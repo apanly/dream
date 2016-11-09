@@ -32,7 +32,8 @@
         "fxp/composer-asset-plugin": "~1.0",
         "phpoffice/phpexcel": "1.8.0",
         "bupt1987/html-parser": "dev-master",
-        "apanly/browser-detector": "dev-master"
+        "apanly/browser-detector": "dev-master",
+        "apanly/metaweblog": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

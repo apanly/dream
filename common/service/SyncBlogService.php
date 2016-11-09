@@ -1,10 +1,10 @@
 <?php
 namespace common\service;
 
+use apanly\metaweblog\MetaWeblog;
 use common\models\metaweblog\BlogSyncMapping;
 use common\models\metaweblog\BlogSyncQueue;
 use common\models\posts\Posts;
-use common\service\libs\MetaWeblogService;
 /**
  * 同步博客到各大平台
  */
@@ -112,7 +112,7 @@ class SyncBlogService extends BaseService {
             'categories'=> $catlog
         ];
 
-        $target =  new MetaWeblogService( $metaweblog_config['url'], $charset );
+        $target =  new MetaWeblog( $metaweblog_config['url'], $charset );
         $target->setAuth( $metaweblog_config['username'], $metaweblog_config['passwd'] );
 
         $date_now = date("Y-m-d H:i:s");
@@ -128,7 +128,7 @@ class SyncBlogService extends BaseService {
             $model_blog_sync_mapping = $sync_info;
             $is_edit = true;
         }else{
-            if( !$target->newPost(   $params,($type == "csdn" ) ) ){
+            if( !$target->newPost(  $params,($type == "csdn" ) ) ){
                 return self::_err( $target->getErrorCode()."：".$target->getErrorMessage() );
             }
             if( $sync_info ){
@@ -140,7 +140,7 @@ class SyncBlogService extends BaseService {
             }
         }
 
-        $sync_blog_id = $target->getResponse();
+        $sync_blog_id = $target->getBlogId();
         if( !$is_edit ){
             $model_blog_sync_mapping[ self::$type_mapping[ $type ] ] = $sync_blog_id;
         }
