@@ -29,6 +29,10 @@ class Sync_blogController extends Blog{
             $_item->status = $tmp_res?1:0;
             $_item->updated_time = $date_now;
             $_item->update(0);
+
+			$log = \Yii::$app->getRuntimePath().DIRECTORY_SEPARATOR.'curl.log';
+			file_put_contents($log,date('Y-m-d H:i:s')." result: {$tmp_res} \n",FILE_APPEND);
+
             if( !$tmp_res ){
                 $this->echoLog( SyncBlogService::getLastErrorMsg() );
             }

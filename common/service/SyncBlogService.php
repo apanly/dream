@@ -104,8 +104,6 @@ class SyncBlogService extends BaseService {
             $title = mb_convert_encoding($title,$charset,"utf-8");
         }
 
-
-
         $params = [
             'title'=> $title,
             'description'=> $content ,
@@ -149,7 +147,7 @@ class SyncBlogService extends BaseService {
         if( !$model_blog_sync_mapping->save(0) ){
             return false;
         }
-        return true;
+        return $target->getResponse();
     }
 
 
