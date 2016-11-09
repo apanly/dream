@@ -59,28 +59,11 @@ class PostsController extends BaseController{
             $idx = 1;
             $domains = Yii::$app->params['domains'];
 
-			$blog_ids = array_column( $posts_info,'id' );
-			$sync_mapping = BlogSyncMapping::find()
-				->select([ 'blog_id','cto51_id','csdn_id','sina_id','netease_id','oschina_id','cnblogs_id','chinaunix_id' ])
-				->where([ 'blog_id' => $blog_ids ])->indexBy("blog_id")->asArray()->all();
-
             foreach($posts_info as $_post){
                 $tmp_title = $_post['title'];
                 if(mb_strlen($tmp_title,"utf-8") > 30){
                     $tmp_title = mb_substr($_post['title'],0,30,'utf-8')."...";
                 }
-
-				$tmp_sync_desc = '未同步';
-				if( isset( $sync_mapping[ $_post['id'] ] ) ){
-					$tmp_sync_info = $sync_mapping[ $_post['id'] ];
-					foreach( $tmp_sync_info as $_sync_key => $_sync_id ){
-						if( $_sync_key == "blog_id" ){
-							continue;
-						}
-						$tmp_sync_desc .= "{$_sync_key}：".$_sync_id?'已同步':'未同步';
-						$tmp_sync_desc .= "<br/>";
-					}
-				}
 
                 $data[] = [
                     'idx' =>  $idx,
@@ -93,8 +76,7 @@ class PostsController extends BaseController{
                     "hot_info" => Constant::$hot_desc[$_post['hot']],
                     'created' => $_post['created_time'],
                     'edit_url' => Url::toRoute("/posts/set?id={$_post['id']}"),
-                    'view_url' => $domains['blog'].Url::toRoute("/default/{$_post['id']}"),
-					'sync_desc' => $tmp_sync_desc
+                    'view_url' => $domains['blog'].Url::toRoute("/default/{$_post['id']}")
                 ];
                 $idx++;
             }

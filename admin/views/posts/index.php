@@ -45,7 +45,6 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                     <th>编号</th>
                     <th>标题</th>
                     <th>发布时间</th>
-                    <th>同步情况</th>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>
@@ -60,7 +59,6 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                             </a>
                         </td>
                         <td class="centered"><?=$_item['created'];?></td>
-                        <td class="centered"><?=$_item['sync_desc'];?></td>
                         <td class="centered">
                             <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span>
                             <span class="label label-<?=$_item['original_info']['class'];?>"><?=$_item['original_info']['desc'];?></span>
