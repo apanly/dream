@@ -121,13 +121,13 @@ class SyncBlogService extends BaseService {
 
         if( $sync_info && $sync_info[ self::$type_mapping[ $type] ] ){
             if( !$target->editPost(  $sync_info[ self::$type_mapping[ $type] ], $params ) ){
-                return self::_err( $target->getErrorCode()."：".$target->getErrorMessage() );
+                return self::_err( $target->getErrorCode()."：".$target->getErrorMessage()." xml data:".$target->getResponse() );
             }
             $model_blog_sync_mapping = $sync_info;
             $is_edit = true;
         }else{
             if( !$target->newPost(  $params,($type == "csdn" ) ) ){
-                return self::_err( $target->getErrorCode()."：".$target->getErrorMessage() );
+                return self::_err( $target->getErrorCode()."：".$target->getErrorMessage()." xml data:".$target->getResponse() );
             }
             if( $sync_info ){
                 $model_blog_sync_mapping = $sync_info;
