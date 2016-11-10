@@ -44,6 +44,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                 <tr>
                     <th>编号</th>
                     <th>标题</th>
+                    <th>阅读量</th>
                     <th>发布时间</th>
                     <th>状态</th>
                     <th>操作</th>
@@ -58,6 +59,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                                 <strong><?=$_item['title'];?></strong>
                             </a>
                         </td>
+                        <td class="centered"><?=$_item['view_count'];?></td>
                         <td class="centered"><?=$_item['created'];?></td>
                         <td class="centered">
                             <span class="label label-<?=$_item['status_info']['class'];?>"><?=$_item['status_info']['desc'];?></span>

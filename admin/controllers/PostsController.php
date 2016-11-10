@@ -71,6 +71,7 @@ class PostsController extends BaseController{
                     'title' => DataHelper::encode($tmp_title),
                     'status' => $_post['status'],
                     'hot' => $_post['hot'],
+                    'view_count' => $_post['view_count'],
                     'status_info' => Constant::$status_desc[$_post['status']],
                     "original_info" => Constant::$original_desc[$_post['original']],
                     "hot_info" => Constant::$hot_desc[$_post['hot']],
