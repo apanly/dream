@@ -235,7 +235,6 @@ class UtilHelper {
 			'*.c-cnzz.com',
 			'*.duoshuo.com',
 			'*.jiathis.com',
-			'v3.jiathis.com',
 			'*.qnssl.com'
 		];
     	if( $env != "prod" ){
