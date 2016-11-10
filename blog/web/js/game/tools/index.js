@@ -42,24 +42,18 @@ var tools_index_ops = {
         $("#strlen textarea[name=content]").keydown( function(){
             $("#strlen .am-btn").click();
         } );
+
         $("#strlen textarea[name=content]").keyup( function(){
             $("#strlen .am-btn").click();
         } );
 
+        $("#json_format").on("input","textarea[name=content]",function() {
+            $("#json_format .am-btn").click();
+        });
         $("#json_format .am-btn").click( function(){
             var js_source = $("#json_format textarea[name=content]").val().replace(/^\s+/, '');
-            var tabsize = 4;//这里可选 1,2,4,8
-            var tabchar = '';
-            if (tabsize == 1) {
-                tabchar = '\t';
-            }
-            var foramt_result = '';
-            if (js_source && js_source.charAt(0) === '<') {
-                foramt_result = json_format_ops.style_html(js_source, tabsize, tabchar, 80);
-            } else {
-                foramt_result =  json_format_ops.js_beautify(js_source, tabsize, tabchar);
-            }
-            $("#json_format textarea[name=content]").val(foramt_result);
+            js_source = eval('(' + js_source + ')');
+            $("#json-renderer").JSONView(js_source);
             return false;
         } );
     }
