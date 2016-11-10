@@ -234,7 +234,8 @@ class UtilHelper {
 			'*.cnzz.com',
 			'*.c-cnzz.com',
 			'*.duoshuo.com',
-			'*.jiathis.com'
+			'*.jiathis.com',
+			'*.qnssl.com'
 		];
     	if( $env != "prod" ){
 			$domains[] = '*.dr.local.com';
