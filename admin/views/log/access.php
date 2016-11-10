@@ -70,6 +70,7 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::
                     <th>浏览器</th>
                     <th>设备</th>
                     <th>IP</th>
+                    <th>地址</th>
                     <th>时间</th>
                 </tr>
                 </thead>
@@ -85,6 +86,7 @@ StaticService::includeAppJsStatic("/js/log/access.js",\admin\assets\AdminAsset::
                             <td><?=$_item['browser'];?></td>
                             <td><?=$_item['client_device'];?></td>
                             <td><?=$_item['ip'];?></td>
+                            <td><?=$_item['ip_desc'];?></td>
                             <td><?=$_item['created_time'];?></td>
                         </tr>
                     <?php endforeach;?>

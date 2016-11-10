@@ -12,6 +12,7 @@ use common\models\stat\StatDailyBrowser;
 use common\models\stat\StatDailyOs;
 use common\models\stat\StatDailyUuid;
 use common\service\GlobalUrlService;
+use common\service\ipip\IPService;
 use Yii;
 
 
@@ -83,6 +84,7 @@ class LogController extends BaseController{
                     'source' => $_item_access['source'],
                     'uuid' => $_item_access['uuid'],
                     'ip' => $_item_access['ip'],
+                    'ip_desc' => implode(" ",IPService::find($_item_access['ip']) ),
                     'browser' => $_item_access['client_browser']."/".$_item_access['client_browser_version'],
                     'os' => $_item_access['client_os']."/".$_item_access['client_os_version'],
 					'client_device' => $_item_access['client_device'],
