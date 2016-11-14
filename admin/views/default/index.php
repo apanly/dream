@@ -3,6 +3,8 @@ use admin\components\StaticService;
 use yii\helpers\Url;
 use \common\service\GlobalUrlService;
 StaticService::includeAppJsStatic(GlobalUrlService::buildStaticUrl("/highcharts/js/highcharts.js"),\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic(GlobalUrlService::buildStaticUrl("/echarts/echarts.min.js"),\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic(GlobalUrlService::buildStaticUrl("/echarts/china.js"),\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic("/js/default/chart.js",\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsset::className());
 ?>
@@ -74,6 +76,17 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                     <div class="row-in">
                         <div class="columns-24" id="access_line" style="height: 270px;">
                             每日访问人数图,用highcharts画图
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="columns-24">
+            <div class="box-1">
+                <div class="row">
+                    <div class="row-in">
+                        <div class="columns-24 hide" id="access_map" style="min-height: 400px;">
+                           访问量分布地图
                         </div>
                     </div>
                 </div>

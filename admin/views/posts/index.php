@@ -44,7 +44,11 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                 <tr>
                     <th>编号</th>
                     <th>标题</th>
-                    <th>阅读量</th>
+                    <th>
+                        阅读量
+<!--                        <i class="fa fa-sort-up"></i>-->
+                        <i class="fa fa-sort-desc fa-lg"></i>
+                    </th>
                     <th>发布时间</th>
                     <th>状态</th>
                     <th>操作</th>

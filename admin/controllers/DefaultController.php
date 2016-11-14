@@ -12,6 +12,7 @@ use common\models\stat\StatDailyAccessSource;
 use common\models\stat\StatDailyBrowser;
 use common\models\stat\StatDailyDevice;
 use common\models\stat\StatDailyOs;
+use common\service\GeoService;
 use Yii;
 
 
@@ -19,6 +20,7 @@ class DefaultController extends BaseController
 {
     public function actionIndex(){
 
+    	GeoService::getGeoByIP('180.166.133.34');
         $data = [
             "posts" => [],
             "library" => []

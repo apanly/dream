@@ -3,12 +3,13 @@
 namespace common\service;
 
 
+use common\components\HttpClient;
 use common\components\HttpLib;
 
 class GeoService {
 
     public static function baidugeocoding($lat,$lng){
-        $ak = "DXSmX4CZ4NIeDVijxgMiGPC7";
+        $ak = self::getAK();
         $url = "http://api.map.baidu.com/geocoder/v2/?ak={$ak}&location={$lat},{$lng}&output=json&pois=0&coordtype=wgs84ll";
         $http_target = new HttpLib();
         $ret = $http_target->get($url);
@@ -23,4 +24,20 @@ class GeoService {
 
         return $geo_info['formatted_address'];
     }
+
+    /*
+     * 文档地址：http://lbsyun.baidu.com/index.php?title=webapi/high-acc-ip
+     *
+     */
+
+    public static function getGeoByIP( $ip ){
+		$ak = self::getAK();
+		$url = "https://api.map.baidu.com/highacciploc/v1?qcip={$ip}&qterm=pc&ak={$ak}&coord=bd09ll";
+		var_dump( HttpClient::get( $url ) );
+	}
+
+	private static function getAK(){
+    	return \Yii::$app->params['geo']['baidu']['ak'];
+	}
+
 } 
