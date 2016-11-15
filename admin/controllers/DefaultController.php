@@ -20,7 +20,6 @@ class DefaultController extends BaseController
 {
     public function actionIndex(){
 
-    	GeoService::getGeoByIP('180.166.133.34');
         $data = [
             "posts" => [],
             "library" => []
