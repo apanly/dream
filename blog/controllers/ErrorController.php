@@ -4,12 +4,8 @@ namespace blog\controllers;
 
 use blog\components\UrlService;
 use blog\controllers\common\BaseController;
-use blog\controllers\common\BlogException;
-use common\components\UtilHelper;
-use common\models\applog\AdCspReport;
 use common\service\AppLogService;
 use Yii;
-use yii\log\FileTarget;
 
 class ErrorController extends BaseController{
     public $enableCsrfValidation = false;

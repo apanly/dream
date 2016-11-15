@@ -326,7 +326,8 @@ class LogController extends BaseController{
 
     private $log_type_mapping = [
         1 => 'app-blog',
-        2 => 'app-js'
+        2 => 'app-js',
+		3 => 'app-console'
     ];
 
     public function actionError(){
