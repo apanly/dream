@@ -6,7 +6,7 @@ use \admin\components\AdminUrlService;
 <div class="row">
     <div class="row-in">
         <div class="columns-24">
-			<?php echo \Yii::$app->view->renderFile("@admin/views/common/stat_tab.php", ['current' => 'error']); ?>
+			<?php echo \Yii::$app->view->renderFile("@admin/views/common/ops_tab.php", ['current' => 'error']); ?>
         </div>
     </div>
 </div>
