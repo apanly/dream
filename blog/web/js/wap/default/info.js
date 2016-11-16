@@ -19,7 +19,7 @@ var default_info_ops = {
         }
         $("iframe").each(function () {
             $(this).attr("width", "100%");
-            if( $(this).attr("src").indexOf("v.qq.com/iframe") > -1 ){
+            if( $(this).attr("src") != undefined &&  $(this).attr("src").indexOf("v.qq.com/iframe") > -1 ){
                 $(this).attr("height", height);
             }
             if( $(this).hasClass("iframe_bug") ){
