@@ -59,7 +59,6 @@ StaticService::includeAppJsStatic("/js/game/tools/index.js", \blog\assets\GameAs
             </div>
             <div id="json-renderer" class="am-u-sm-6 am-u-md-6 am-u-lg-6"></div>
         </div>
-
         <button type="button" class="am-btn am-btn-primary am-radius am-btn-block am-hide" style="margin-top: 5px;">
             格式化
         </button>

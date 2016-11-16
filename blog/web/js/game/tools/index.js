@@ -56,7 +56,7 @@ var tools_index_ops = {
                 js_source = eval('(' + js_source + ')');
                 $("#json-renderer").JSONView(js_source);
             }catch( e ){
-                //alert( '错误：' + e.message );
+                $("#json-renderer").html( '错误信息，' + e.name + "：" + e.message );
             }
 
             return false;
