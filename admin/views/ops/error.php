@@ -70,7 +70,7 @@ use \admin\components\AdminUrlService;
         <div class="columns-24 text-right">
 			<?php echo \Yii::$app->view->renderFile("@admin/views/common/pagination_v1.php",[
 				'pages' => $page_info,
-				'url' => '/log/error',
+				'url' => '/ops/error',
 				'search_conditions' => $search_conditions,
 				'current_page_count' => count($data)
 			]);?>
