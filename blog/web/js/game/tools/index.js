@@ -52,8 +52,13 @@ var tools_index_ops = {
         });
         $("#json_format .am-btn").click( function(){
             var js_source = $("#json_format textarea[name=content]").val().replace(/^\s+/, '');
-            js_source = eval('(' + js_source + ')');
-            $("#json-renderer").JSONView(js_source);
+            try{
+                js_source = eval('(' + js_source + ')');
+                $("#json-renderer").JSONView(js_source);
+            }catch( e ){
+                //alert( '错误：' + e.message );
+            }
+
             return false;
         } );
     }
