@@ -92,7 +92,7 @@ var contents_ops = {
         var h3 = [];
         var h2index = 0;
         //获取DOM中h2,h3标签
-        $.each($('.post-content h2,h3'),function(index,item){
+        $.each($('.post-content h2,.post-content h3'),function(index,item){
             if(item.tagName.toLowerCase() == 'h2'){
                 var h2item = {};
                 h2item.name = $(item).text();
