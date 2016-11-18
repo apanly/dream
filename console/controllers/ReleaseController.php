@@ -60,13 +60,12 @@ class ReleaseController extends  BaseController {
 			}else if(stripos($msg, "unstaged changes") !== false){
 				$log['fail_reason'] = "无法合并有文件变动,请手动解决";
 				$queue->status = 0;
-			}else{
-				$queue->status = 1;
 			}
 		}
 
 		//发布成功之后写入版本文件
 		if( $queue->status == 1 && isset($repo_config['version']) ){
+			echo time();exit();
 			$msg = $this->writeReleaseVersion( $repo_config );
 			if( $msg ){
 				$log['version'] = "\r\n".$msg;
