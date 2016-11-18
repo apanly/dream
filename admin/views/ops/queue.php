@@ -1,5 +1,7 @@
 <?php
 use \admin\components\StaticService;
+//StaticService::includeAppJsStatic( \common\service\GlobalUrlService::buildStaticUrl("/prettify/prettify.js"),\admin\assets\AdminAsset::className() );
+//StaticService::includeAppCssStatic( \common\service\GlobalUrlService::buildStaticUrl("/prettify/prettify.sons.css"),\admin\assets\AdminAsset::className() );
 StaticService::includeAppJsStatic("/js/ops/queue.js",\admin\assets\AdminAsset::className() );
 ?>
 <style type="text/css">
@@ -15,6 +17,9 @@ StaticService::includeAppJsStatic("/js/ops/queue.js",\admin\assets\AdminAsset::c
         border-radius:0;
         background-color:rgba(0,0,0,0.9);
         font-size: 13px;
+    }
+    .table-1 td{
+        color: #ffffff;
     }
 </style>
 <div class="row">
