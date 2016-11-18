@@ -2,8 +2,9 @@
 
 namespace admin\controllers;
 
+use admin\components\AdminUrlService;
 use admin\controllers\common\BaseController;
-use common\components\phpanalysis\FenCiService;
+use common\components\DataHelper;
 use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\stat\StatAccess;
@@ -13,13 +14,12 @@ use common\models\stat\StatDailyBrowser;
 use common\models\stat\StatDailyDevice;
 use common\models\stat\StatDailyOs;
 use common\service\GeoService;
+use common\service\GlobalUrlService;
 use Yii;
 
 
-class DefaultController extends BaseController
-{
+class DefaultController extends BaseController {
     public function actionIndex(){
-
         $data = [
             "posts" => [],
             "library" => []
@@ -213,5 +213,21 @@ class DefaultController extends BaseController
         ]);
     }
 
-
+	public function actionTopSearch(){
+    	$data = [];
+		$kw = trim( $this->get("q",'') );
+		$query = Posts::find();
+		$query->andWhere( ['LIKE', 'title', '%' . strtr($kw, ['%' => '\%', '_' => '\_', '\\' => '\\\\']) . '%', false] );
+		$list = $query->orderBy([ 'view_count' => SORT_DESC  ])->asArray()->limit(10)->all();
+		if( $list ){
+			foreach( $list as $_item ){
+				$data[] = [
+					'id' => $_item['id'],
+					'title' => DataHelper::encode(  $_item['title'] ),
+					'url' => AdminUrlService::buildUrl("/posts/set",[ 'id' => $_item['id'] ])
+				];
+			}
+		}
+		return $this->renderJSON( $data );
+	}
 }

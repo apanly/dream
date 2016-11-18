@@ -1,7 +1,7 @@
 <?php
 use \admin\components\AdminUrlService;
 $mapping = [
-    "access" => [
+    "index" => [
         'title' => "版本发布",
         "url" => AdminUrlService::buildUrl("/ops/index"),
         "status" => 1

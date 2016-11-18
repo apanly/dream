@@ -3,7 +3,7 @@ var common_ops = {
     init:function(){
         this.eventBind();
         this.setMenuIconHighLight();
-        //this.autoComplete();
+        this.autoComplete();
     },
     eventBind:function(){
         //文本框失去焦点时隐藏tip提示层
@@ -105,18 +105,15 @@ var common_ops = {
         $("#top_search").autocomplete({
             source: function( request, response ) {
                 $.ajax({
-                    url: common_ops.buildAdminUrl("/search/member"),
+                    url: common_ops.buildAdminUrl("/default/top-search"),
                     dataType: "json",
-                    data:{q: request.term,top: 1},//top=1区分是否是top搜索栏
+                    data:{q: request.term },
                     success: function( res ) {
                         response( $.map( res.data, function( item ) {
                             return {
-                                member_id:item.member_id,
-                                nickname:item.nickname,
-                                mobile:item.mobile,
-                                ret_url:item.ret_url,
-                                label: item.nickname +"(" + item.mobile + ")",
-                                value: item.nickname +"(" + item.mobile + ")"
+                                url:item.url,
+                                label: item.title,
+                                value: item.title
                             }
                         }));
                     }
@@ -124,8 +121,7 @@ var common_ops = {
             },
             minLength: 1,
             select:function(event, ui){
-                window.location.href = ui.item.ret_url;
-                $("#top_search").text(ui.item.value);
+                window.location.href = ui.item.url;
             }
         });
     },
@@ -166,24 +162,6 @@ var common_ops = {
                 }
             }
         })
-    },
-    selectAll:function( btn_target,item_input_get ){//全选操作
-        btn_target.change(function(){
-            item_input_get.prop('checked',$(this).prop('checked') );
-        });
-
-        item_input_get.change( function(){
-            btn_target.prop('checked',$(this).prop('checked') );
-        });
-    },
-    getCheckBoxSelectOption:function( item_input_get ){//获取全选选中的值
-        var options = [];
-        item_input_get.each( function(){
-            if( $(this).prop('checked') ){
-                options.push ( $(this).val() )
-            }
-        });
-        return options;
     }
 };
 
