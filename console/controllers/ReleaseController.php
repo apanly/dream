@@ -65,7 +65,6 @@ class ReleaseController extends  BaseController {
 
 		//发布成功之后写入版本文件
 		if( $queue->status == 1 && isset($repo_config['version']) ){
-			echo time();exit();
 			$msg = $this->writeReleaseVersion( $repo_config );
 			if( $msg ){
 				$log['version'] = "\r\n".$msg;
@@ -126,6 +125,7 @@ class ReleaseController extends  BaseController {
 
     /*写入版本信息*/
     private function writeReleaseVersion( $repo_config ){
+
         if( !$repo_config || !isset( $repo_config['version'] ) ){
             return false;
         }
@@ -135,15 +135,16 @@ class ReleaseController extends  BaseController {
         $hosts = [];
         $ssh_param = '';
         //本地机器写入版本信息
-        if( isset( $repo_config['local'] ) ){
+        if( isset( $repo_config['feature'] ) ){
 			$hosts[] = 'local';
 		}
 
 		//远程机器写入版本信息
-        if( isset( $repo_config['remote'] ) && isset( $repo_config['remote']['hosts'] ) ){
+        if( isset( $repo_config['remote'] ) && isset( $repo_config['remote']['hosts'] )  ){
 			$hosts = array_merge( $hosts, $repo_config['remote']['hosts'] );
 			$ssh_param = isset( $repo_config['remote']['ssh_param'] )?$repo_config['remote']['ssh_param']:'';
 		}
+
 
 		if( !$hosts ){
         	return false;
