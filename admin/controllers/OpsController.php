@@ -169,13 +169,12 @@ class OpsController extends BaseController{
 			return $this->redirect( $reback_url );
 		}
 
-		$info = ReleaseQueue::find()->where(" id = {$id}")->one();
+		$info = ReleaseQueue::find()->where([ 'id' => $id ])->one();
     	if( !$info ){
 			return $this->redirect( $reback_url );
 		}
 
 		$release_status_mapping = $this->release_status_mapping;
-
 		$cmds = [];
 		$logs = @json_decode( $info['content'],true);
 		if($logs){

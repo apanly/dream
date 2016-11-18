@@ -1,7 +1,5 @@
 <?php
 use \admin\components\StaticService;
-StaticService::includeAppJsStatic( \common\service\GlobalUrlService::buildStaticUrl("/prettify/prettify.js"),\admin\assets\AdminAsset::className() );
-StaticService::includeAppCssStatic( \common\service\GlobalUrlService::buildStaticUrl("/prettify/prettify.sons.css"),\admin\assets\AdminAsset::className() );
 StaticService::includeAppJsStatic("/js/ops/queue.js",\admin\assets\AdminAsset::className() );
 ?>
 <style type="text/css">

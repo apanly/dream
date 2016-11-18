@@ -4,7 +4,7 @@ var queue_ops = {
         this.eventBind();
     },
     eventBind:function(){
-        prettyPrint();
+        //prettyPrint();
     }
 };
 $(document).ready( function(){
