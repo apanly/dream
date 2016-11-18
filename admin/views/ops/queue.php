@@ -33,10 +33,14 @@ StaticService::includeAppJsStatic("/js/ops/queue.js",\admin\assets\AdminAsset::c
             <div class="row">
                 <div class="row-in">
                     <div class="columns-12">
-                        <div class="text-left">队列详情：每次上线之后建议关注应用错误日志5分钟</div>
+                        <div class="text-left">
+                            <h3>队列详情：每次上线之后建议关注 错误日志5分钟</h3>
+                        </div>
                     </div>
                     <div class="columns-12">
-                        <div class="text-right">仓库：<?=$info['repo'];?> 状态：<?=$info['status_info']['title'];?></div>
+                        <div class="text-right">
+                            <h3>仓库：<?=$info['repo'];?> 状态：<?=$info['status_info']['title'];?></h3>
+                        </div>
                     </div>
                 </div>
             </div>

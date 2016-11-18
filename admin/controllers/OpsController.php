@@ -144,6 +144,11 @@ class OpsController extends BaseController{
 			return $this->renderJSON([],"请输入不少于5个字符的描述~~",-1);
 		}
 
+		$has_not_complate_task = ReleaseQueue::find()->where([ 'status' => -2 ,'repo' => $repo ])->count();
+		if( $has_not_complate_task ){
+			return $this->renderJSON([],"目前已有一个未运行同仓库的任务，请稍等~~",-1);
+		}
+
 		$queue = new ReleaseQueue();
 		$queue->uid = $this->current_user['uid'];
 		$queue->repo = $repo;
@@ -151,7 +156,7 @@ class OpsController extends BaseController{
 		$queue->status = -2;
 		$queue->created_time = $queue->updated_time = date("Y-m-d H:i:s");
 		if( $queue->save(0) ){
-			return $this->renderJSON([ 'url' => AdminUrlService::buildUrl("/ops/queue",[ 'id' => $queue->id ]) ]);
+			return $this->renderJSON([ 'url' => AdminUrlService::buildUrl("/ops/queue",[ 'id' => $queue->id ]) ],'操作成功~~');
 		}
 
 		return $this->renderJSON([],"系统繁忙，请稍后再试~~",-1);
