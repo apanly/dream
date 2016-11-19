@@ -17,11 +17,12 @@ class ReleaseController extends  BaseController {
         if(!$queue){
             return $this->echoLog(' no queue need to handle ~~');
         }
+		$queue->status = -1;
+		$queue->updated_time = date('Y-m-d H:i:s');
+		$queue->update(0);
 
-		$logs = $this->releaseRepo($queue,$mapping[ $queue['repo'] ]);
-        $queue->content = json_encode($logs);
-        $queue->updated_time = date('Y-m-d H:i:s');
-        $queue->update(0);
+		$this->releaseRepo($queue,$mapping[ $queue['repo'] ]);
+
 		return $this->echoLog(" it's over  ~~");
     }
 
@@ -71,13 +72,17 @@ class ReleaseController extends  BaseController {
 			}
 		}
 
-		return $log;
+		$queue->content = json_encode($log);
+		$queue->updated_time = date('Y-m-d H:i:s');
+		$queue->update(0);
+
+		return true;
 	}
 
 	/*在本地机器执行命令*/
     private function execLocalCmd($path){
         $res = [];
-        $cmd = "cd %s ; git fetch --all; git rebase origin/master 2>&1";
+        $cmd = "cd %s ; git fetch --all; git rebase origin/master";//2>&1
         $cmd = sprintf($cmd, $path);
         $res[] = "------------- start(".date("Y-m-d H:i:s").") --------------------\r\n";;
         $res[] = $cmd;
@@ -102,7 +107,7 @@ class ReleaseController extends  BaseController {
     	$ssh_param = $repo_config['remote']['ssh_param'];
 		$res = [];
 		foreach($hosts as $host){
-			$cmd = "ssh {$ssh_param}@{$host} -t -t 'cd %s ;git fetch --all ; git rebase origin/master 2>&1'";
+			$cmd = "ssh {$ssh_param}@{$host} -t -t 'cd %s ;git fetch --all ; git rebase origin/master'";//2>&1
 			$cmd = sprintf($cmd, $path);
 			$res[] = "------------- $host  start(".date("Y-m-d H:i:s").") --------------------\r\n";
 			$res[] = $cmd;
