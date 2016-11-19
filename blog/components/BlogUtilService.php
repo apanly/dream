@@ -105,6 +105,13 @@ class BlogUtilService {
 
 		$list = [
 			[
+				'date' => '2016-11-19',
+				'title' => '运维发布功能',
+				'content' => '<ol>
+<li>admin后台加入运维发布代码模块</li>
+</ol>'
+			],
+			[
 				'date' => '2016-11-07',
 				'title' => '全站增加CSP安全策略',
 				'content' => '<ol>
