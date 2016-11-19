@@ -88,6 +88,14 @@ class Stat_dailyController extends Blog{
             ->groupBy("ip")
             ->count();
         $model_stat_access->total_ip_number = $stat_ip_count?$stat_ip_count:0;
+
+		$stat_uuid_count = AccessLogs::find()
+			->where(['>=' ,'created_time',date("Y-m-d 00:00:00",strtotime($date) )])
+			->andWhere(['<=' ,'created_time',date("Y-m-d 23:59:59",strtotime($date) )])
+			->groupBy("uuid")
+			->count();
+		$model_stat_access->total_uv_number = $stat_uuid_count?$stat_uuid_count:0;
+
         $model_stat_access->updated_time = $date_now;
         $model_stat_access->save( 0 );
 

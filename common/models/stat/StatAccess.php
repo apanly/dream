@@ -11,6 +11,7 @@ use Yii;
  * @property string $date
  * @property integer $total_number
  * @property integer $total_ip_number
+ * @property integer $total_uv_number
  * @property string $updated_time
  * @property string $created_time
  */
@@ -39,8 +40,8 @@ class StatAccess extends \yii\db\ActiveRecord
     {
         return [
             [['date', 'updated_time', 'created_time'], 'safe'],
-            [['total_number', 'total_ip_number'], 'integer'],
-            [['date'], 'unique']
+            [['total_number', 'total_ip_number', 'total_uv_number'], 'integer'],
+            [['date'], 'unique'],
         ];
     }
 
@@ -54,6 +55,7 @@ class StatAccess extends \yii\db\ActiveRecord
             'date' => 'Date',
             'total_number' => 'Total Number',
             'total_ip_number' => 'Total Ip Number',
+            'total_uv_number' => 'Total Uv Number',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];
