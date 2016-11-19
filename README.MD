@@ -1,4 +1,4 @@
-郭大帅哥的Blog
+[编程浪子的博客](http://www.vincentguo.cn)
 ==========
 ##如何开始
 * [Kickstart](/docs/kickstart.md)
