@@ -91,7 +91,7 @@ class MusicController extends BaseController
 
         $data = [
             'lrc' => $lrc,
-            'song_url' => QQMusicService::getSongUrl($song_id,".mp3")
+            'song_url' => QQMusicService::getSongUrl($song_id)
         ];
 
         return $this->renderJSON( $data );

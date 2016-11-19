@@ -100,8 +100,11 @@ class QQMusicService extends  BaseService{
 
     /**
      * $tone_quality => 24,48,128,320
+	 * tsmusic好像不行了，换个接口 http://ws.stream.qqmusic.qq.com/{$song_id}.m4a?fromtag=46
      */
     public static function getSongUrl($song_id,$format = ".m4a",$tone_quality = 24,$hidden = true){
+    	$url = "http://ws.stream.qqmusic.qq.com/{$song_id}{$format}?fromtag=46";
+    	return $url;
         $url = "http://tsmusic{$tone_quality}.tc.qq.com/{$song_id}{$format}";
         if( $hidden ){
             $pwd1 = md5(time());

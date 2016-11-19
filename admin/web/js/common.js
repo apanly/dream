@@ -74,33 +74,6 @@ var common_ops = {
         return url+_paramUrl
 
     },
-    buildPicStaticUrl:function(bucket,img_key,params){
-        bucket = bucket?bucket:"pic3";
-        var url = "http://"+bucket+".s.rrr.me/"+img_key;
-
-        var width = params.hasOwnProperty("w")?params['w']:0;
-        var height = params.hasOwnProperty("h")?params['h']:0;
-        if( !width && !height ){
-            return url;
-        }
-
-        if( params.hasOwnProperty('view_mode') ){
-            url += "?imageView2/"+params['view_mode'];
-        }else{
-            url += "?imageView2/1";
-        }
-
-        if( width ){
-            url += "/w/"+width;
-        }
-
-        if( height ){
-            url += "/h/"+height;
-        }
-        url += "/interlace/1";
-        return url;
-    },
-
     autoComplete:function(){
         $("#top_search").autocomplete({
             source: function( request, response ) {

@@ -103,9 +103,6 @@ var core_ops = {
           });
         });
       }
-      //preload images
-      var preload_img=new Image();
-      preload_img.src='http://static.s.rrr.me/201606201358/loading.gif';
     },
     adjustWinWidth:function(){
       var winWidth=$(window).width();
