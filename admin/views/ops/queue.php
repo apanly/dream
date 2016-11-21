@@ -66,3 +66,6 @@ StaticService::includeAppJsStatic("/js/ops/queue.js",\admin\assets\AdminAsset::c
         </tr>
     </tbody>
 </table>
+<div class="hide hide_wrap">
+    <input type="hidden" name="status" value="<?=$info['status'];?>">
+</div>
