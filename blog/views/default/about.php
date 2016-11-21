@@ -23,7 +23,7 @@ $wx_urls = [
                 <li>姓名：郭威</li>
                 <li>坐标：上海&bull;徐汇区&bull;田林</li>
                 <li>学历：本科</li>
-                <li>工作：5年+</li>
+                <li>工作：<?=(date("Y") - 2011);?>年+</li>
                 <li>邮箱：apanly@163.com</li>
                 <li>工作经历：
                     <ul>

@@ -83,7 +83,7 @@ class BlogUtilService {
 				'title' => '关于',
 				'sub_menu' => [
 					[
-						'title' => '我',
+						'title' => '编程浪子',
 						'url'   => GlobalUrlService::buildBlogUrl("/default/about")
 					],[
 						'title' => '富媒体',
