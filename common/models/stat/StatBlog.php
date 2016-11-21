@@ -32,7 +32,7 @@ class StatBlog extends \yii\db\ActiveRecord
      */
     public static function getDb()
     {
-        return Yii::$app->get('blog');
+        return Yii::$app->get('dream_log');
     }
 
     /**
@@ -43,7 +43,7 @@ class StatBlog extends \yii\db\ActiveRecord
         return [
             [['date', 'updated_time', 'created_time'], 'safe'],
             [['today_post_number', 'total_post_number', 'total_unpost_number', 'total_original_number', 'total_hot_number'], 'integer'],
-            [['date'], 'unique']
+            [['date'], 'unique'],
         ];
     }
 
