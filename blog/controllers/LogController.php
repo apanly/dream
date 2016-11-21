@@ -68,7 +68,7 @@ class LogController extends BaseController{
 					$model_ac_log->client_height = $client_height;
 				}
 			}
-
+			$model_ac_log->created_time_min = date("Y-m-d H:i");
             $model_ac_log->created_time = date("Y-m-d H:i:s");
             $model_ac_log->save();
 

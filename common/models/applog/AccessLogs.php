@@ -22,6 +22,7 @@ use Yii;
  * @property string $uuid
  * @property integer $client_width
  * @property integer $client_height
+ * @property string $created_time_min
  * @property string $created_time
  */
 class AccessLogs extends \yii\db\ActiveRecord
@@ -49,7 +50,7 @@ class AccessLogs extends \yii\db\ActiveRecord
     {
         return [
             [['blog_id', 'client_width', 'client_height'], 'integer'],
-            [['created_time'], 'safe'],
+            [['created_time_min', 'created_time'], 'safe'],
             [['referer'], 'string', 'max' => 300],
             [['target_url'], 'string', 'max' => 500],
             [['source', 'uuid'], 'string', 'max' => 100],
@@ -82,6 +83,7 @@ class AccessLogs extends \yii\db\ActiveRecord
             'uuid' => 'Uuid',
             'client_width' => 'Client Width',
             'client_height' => 'Client Height',
+            'created_time_min' => 'Created Time Min',
             'created_time' => 'Created Time',
         ];
     }
