@@ -56,11 +56,15 @@ class DefaultController extends BaseController {
             "categories" => [],
             "series" => [
                 [
-                    'name' => '访问量',
+                    'name' => 'PV',
                     'data' => []
                 ],
+				[
+					'name' => 'UV',
+					'data' => []
+				],
                 [
-                    'name' => 'IP总数',
+                    'name' => 'IP',
                     'data' => []
                 ]
             ]
@@ -68,8 +72,10 @@ class DefaultController extends BaseController {
         if( $stat_access_list ){
             foreach( $stat_access_list as $_item ){
                 $data_access['categories'][] = $_item['date'];
-                $data_access['series'][1]['data'][] = intval( $_item['total_ip_number'] );
-                $data_access['series'][0]['data'][] = intval( $_item['total_number'] );
+				$data_access['series'][0]['data'][] = intval( $_item['total_number'] );
+				$data_access['series'][1]['data'][] = intval( $_item['total_uv_number'] );
+                $data_access['series'][2]['data'][] = intval( $_item['total_ip_number'] );
+
             }
         }
 
