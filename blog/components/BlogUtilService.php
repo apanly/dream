@@ -50,6 +50,9 @@ class BlogUtilService {
 					],[
 						'title' => '条形码和二维码',
 						'url'   => UrlService::buildUrl("/default/info", ['id' => 152])
+					],[
+						'title' => '【运维工具】Git代码发布系统',
+						'url'   => UrlService::buildUrl("/default/info", ['id' => 151])
 					]
 				]
 			],
@@ -78,8 +81,13 @@ class BlogUtilService {
 					]
 				]
 			],
+			'business' => [
+				'title' => '商业合作',
+				'tip' => '定制开发程序，数据库维护，服务器运维',
+				'url'   => GlobalUrlService::buildBlogUrl("/business/index"),
+				'status' => 0
+			],
 			'about'     => [
-
 				'title' => '关于',
 				'sub_menu' => [
 					[

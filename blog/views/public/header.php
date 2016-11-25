@@ -25,6 +25,11 @@ $menu_list = \blog\components\BlogUtilService::blogMenu();
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
                         <?php foreach( $menu_list as $_menu_key => $_menu_info ):?>
+                            <?php
+                                if( isset( $_menu_info['status'] ) && !$_menu_info['status'] ){
+                                    continue;
+                                }
+                            ?>
                             <?php if( isset($_menu_info['sub_menu']) ):?>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" ><?=$_menu_info['title'];?>
@@ -41,7 +46,7 @@ $menu_list = \blog\components\BlogUtilService::blogMenu();
                                 </li>
                             <?php else:?>
                             <li <?php if ($menu == $_menu_key ): ?> class="nav-current" <?php endif; ?>>
-                                <a href="<?=$_menu_info['url'];?>"><?=$_menu_info['title'];?></a>
+                                <a href="<?=$_menu_info['url'];?>" <?php if( isset( $_menu_info['tip'] ) ):?> title="<?=$_menu_info['tip'];?>" <?php endif;?> ><?=$_menu_info['title'];?></a>
                             </li>
                             <?php endif;?>
                         <?php endforeach;?>
