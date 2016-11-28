@@ -46,8 +46,8 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                     <th>编号</th>
                     <th>标题</th>
                     <th>
-                        <a class="color-theme" href="<?=AdminUrlService::buildUrl("/posts/index",[ 'order_by' => 'view_count','view_count' => $search_conditions['view_count']?0:1 ]);?>">阅读量</a>
-                        <i class="fa <?php if($search_conditions['view_count']):?>fa-sort-desc<?php else:?>fa-sort-up<?php endif;?>">
+                        <a class="color-theme" href="<?=AdminUrlService::buildUrl("/posts/index",[ 'order_by' => 'view_count','view_count' => ($search_conditions['order_by'] && $search_conditions['view_count'])?0:1 ]);?>">阅读量</a>
+                        <i class="fa <?php if($search_conditions['order_by'] && $search_conditions['view_count']):?>fa-sort-desc<?php else:?>fa-sort-up<?php endif;?>">
                     </th>
                     <th>发布时间</th>
                     <th>状态</th>
