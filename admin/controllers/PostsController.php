@@ -23,8 +23,8 @@ class PostsController extends BaseController{
     public function actionIndex(){
         $p = intval( $this->get("p",1) );
         $status = intval( $this->get("status",-1) );
+        $order_by = $this->get("order_by",'');
         $kw = trim( $this->get("kw",'') );
-
         if(!$p){
             $p = 1;
         }
@@ -40,10 +40,17 @@ class PostsController extends BaseController{
             $query->andWhere( ['LIKE', 'title', '%' . strtr($kw, ['%' => '\%', '_' => '\_', '\\' => '\\\\']) . '%', false] );
         }
 
-        $total_count = $query->count();
+		$total_count = $query->count();
+
+        if( $order_by ){
+			$query->orderBy([ $order_by => $this->get( $order_by )?SORT_DESC:SORT_ASC ]);
+		}else{
+			$query->orderBy([ 'id' => SORT_DESC ]);
+		}
+
+
         $offset = ($p - 1) * $this->page_size;
-        $posts_info = $query->orderBy("id desc")
-            ->offset($offset)
+        $posts_info = $query->offset($offset)
             ->limit( $this->page_size )
 			->asArray()
             ->all();
@@ -85,7 +92,9 @@ class PostsController extends BaseController{
 
         $search_conditions = [
             'kw' => $kw,
-            'status' => $status
+            'status' => $status,
+			'order_by' => $order_by,
+			$order_by => $this->get($order_by)
         ];
 
         return $this->render("index",[

@@ -2,6 +2,7 @@
 use \yii\helpers\Url;
 use \admin\components\StaticService;
 use \admin\components\AdminUrlService;
+use \common\service\GlobalUrlService;
 StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset::className());
 ?>
 <div class="row">
@@ -45,9 +46,8 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                     <th>编号</th>
                     <th>标题</th>
                     <th>
-                        阅读量
-<!--                        <i class="fa fa-sort-up"></i>-->
-                        <i class="fa fa-sort-desc fa-lg"></i>
+                        <a class="color-theme" href="<?=AdminUrlService::buildUrl("/posts/index",[ 'order_by' => 'view_count','view_count' => $search_conditions['view_count']?0:1 ]);?>">阅读量</a>
+                        <i class="fa <?php if($search_conditions['view_count']):?>fa-sort-desc<?php else:?>fa-sort-up<?php endif;?>">
                     </th>
                     <th>发布时间</th>
                     <th>状态</th>
@@ -59,8 +59,8 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                     <tr>
                         <td class="centered"><?=$_item['id'];?></td>
                         <td>
-                            <a href="<?=$_item['view_url'];?>" target="_blank">
-                                <strong><?=$_item['title'];?></strong>
+                            <a class="color-theme" href="<?=$_item['view_url'];?>" target="_blank">
+								<?=$_item['title'];?>
                             </a>
                         </td>
                         <td class="centered"><?=$_item['view_count'];?></td>

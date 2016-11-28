@@ -245,4 +245,8 @@ class GlobalUrlService {
         }
         return $domain_blog.$path;
     }
+
+    public static function buildNullUrl(){
+    	return "javascript:void(0);";
+	}
 } 
