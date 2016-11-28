@@ -6,6 +6,7 @@ use common\models\applog\AccessLogs;
 use common\models\posts\Posts;
 use common\models\stat\StatAccess;
 use common\models\stat\StatBlog;
+use common\models\stat\StatDailyUuid;
 use console\modules\blog\Blog;
 use common\service\health\HealthService;
 
@@ -89,12 +90,23 @@ class Stat_dailyController extends Blog{
             ->count();
         $model_stat_access->total_ip_number = $stat_ip_count?$stat_ip_count:0;
 
-		$stat_uuid_count = AccessLogs::find()
+		$stat_uuid = AccessLogs::find()
+			->select([ 'uuid' ])
 			->where(['>=' ,'created_time',date("Y-m-d 00:00:00",strtotime($date) )])
 			->andWhere(['<=' ,'created_time',date("Y-m-d 23:59:59",strtotime($date) )])
 			->groupBy("uuid")
-			->count();
-		$model_stat_access->total_uv_number = $stat_uuid_count?$stat_uuid_count:0;
+			->asArray()->all();
+
+		$model_stat_access->total_uv_number = $stat_uuid?count( $stat_uuid ):0;
+
+		if( $stat_uuid ){
+			$stat_returned_user_count = StatDailyUuid::find()->where([ 'uuid' =>  array_column( $stat_uuid,'uuid' ) ])
+				->andWhere([ '<','date',date("Ymd",strtotime($date)) ])
+				->count();
+			$model_stat_access->total_returned_user_number = $stat_returned_user_count?$stat_returned_user_count:0;
+			$model_stat_access->total_new_user_number = $model_stat_access->total_uv_number - $model_stat_access->total_returned_user_number;
+		}
+
 
         $model_stat_access->updated_time = $date_now;
         $model_stat_access->save( 0 );
