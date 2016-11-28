@@ -14,6 +14,7 @@ use Yii;
  * @property integer $total_uv_number
  * @property integer $total_new_user_number
  * @property integer $total_returned_user_number
+ * @property string $avg_pv_per_uv
  * @property string $updated_time
  * @property string $created_time
  */
@@ -43,6 +44,7 @@ class StatAccess extends \yii\db\ActiveRecord
         return [
             [['date', 'updated_time', 'created_time'], 'safe'],
             [['total_number', 'total_ip_number', 'total_uv_number', 'total_new_user_number', 'total_returned_user_number'], 'integer'],
+            [['avg_pv_per_uv'], 'number'],
             [['date'], 'unique'],
         ];
     }
@@ -60,6 +62,7 @@ class StatAccess extends \yii\db\ActiveRecord
             'total_uv_number' => 'Total Uv Number',
             'total_new_user_number' => 'Total New User Number',
             'total_returned_user_number' => 'Total Returned User Number',
+            'avg_pv_per_uv' => 'Avg Pv Per Uv',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];

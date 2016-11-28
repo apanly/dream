@@ -107,9 +107,11 @@ class Stat_dailyController extends Blog{
 			$model_stat_access->total_new_user_number = $model_stat_access->total_uv_number - $model_stat_access->total_returned_user_number;
 		}
 
+		if( $model_stat_access->total_number && $model_stat_access->total_uv_number){
+			$model_stat_access->avg_pv_per_uv = sprintf("%.2f", ($model_stat_access->total_number/ $model_stat_access->total_uv_number) );
+		}
 
         $model_stat_access->updated_time = $date_now;
-        $model_stat_access->save( 0 );
-
+        return $model_stat_access->save( 0 );
     }
 }
