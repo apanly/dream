@@ -100,10 +100,13 @@ class Stat_dailyController extends Blog{
 		$model_stat_access->total_uv_number = $stat_uuid?count( $stat_uuid ):0;
 
 		if( $stat_uuid ){
-			$stat_returned_user_count = StatDailyUuid::find()->where([ 'uuid' =>  array_column( $stat_uuid,'uuid' ) ])
+			$stat_returned_user = StatDailyUuid::find()
+				->select([ 'uid' ])
+				->where([ 'uuid' =>  array_column( $stat_uuid,'uuid' ) ])
 				->andWhere([ '<','date',date("Ymd",strtotime($date)) ])
-				->count();
-			$model_stat_access->total_returned_user_number = $stat_returned_user_count?$stat_returned_user_count:0;
+				->groupBy([ 'uuid' ])
+				->all();
+			$model_stat_access->total_returned_user_number = $stat_returned_user?count($stat_returned_user):0;
 			$model_stat_access->total_new_user_number = $model_stat_access->total_uv_number - $model_stat_access->total_returned_user_number;
 		}
 
