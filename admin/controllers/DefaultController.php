@@ -22,7 +22,8 @@ class DefaultController extends BaseController {
     public function actionIndex(){
         $data = [
             "posts" => [],
-            "library" => []
+            "library" => [],
+			'summary' => []
         ];
 
         $total_posts = Posts::find()->count();
@@ -75,7 +76,17 @@ class DefaultController extends BaseController {
 				$data_access['series'][0]['data'][] = intval( $_item['total_number'] );
 				$data_access['series'][1]['data'][] = intval( $_item['total_uv_number'] );
                 $data_access['series'][2]['data'][] = intval( $_item['total_ip_number'] );
-
+                if( $_item['date'] >= date("Y-m-d",strtotime("-1 days") ) ){
+					$data['summary'][] = [
+						'date' => $_item['date'],
+						'total_number' => $_item['total_number'],
+						'total_ip_number' => $_item['total_ip_number'],
+						'total_uv_number' => $_item['total_uv_number'],
+						'total_new_user_number' => $_item['total_new_user_number'],
+						'total_returned_user_number' => $_item['total_returned_user_number'],
+						'avg_pv_per_uv' => $_item['avg_pv_per_uv']
+					];
+				}
             }
         }
 

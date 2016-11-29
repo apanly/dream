@@ -26,6 +26,45 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                     </div>
                 </div>
             </div>
+            <div class="box-3 mg-t15">
+                <div class="row">
+                    <div class="row-in">
+                        <div class="title-3">
+                            <div class="columns-24"><h2>网站概况</h2></div>
+                        </div>
+                        <table class="table-1 centered">
+                            <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>浏览次数(PV)</th>
+                                <th>独立访客(UV)</th>
+                                <th>IP</th>
+                                <th>新独立访客</th>
+                                <th>回访客户</th>
+                                <th>人均浏览页数</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php if( $stat['summary'] ):?>
+                                    <?php foreach( $stat['summary'] as $_item ):?>
+                                        <tr>
+                                            <td><?=$_item['date'];?></td>
+                                            <td><?=$_item['total_number'];?></td>
+                                            <td><?=$_item['total_uv_number'];?></td>
+                                            <td><?=$_item['total_ip_number'];?></td>
+                                            <td><?=$_item['total_new_user_number'];?></td>
+                                            <td><?=$_item['total_returned_user_number'];?></td>
+                                            <td><?=$_item['avg_pv_per_uv'];?></td>
+                                        </tr>
+
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="columns-12">
             <div class="box-1">
