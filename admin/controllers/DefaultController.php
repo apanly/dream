@@ -88,6 +88,7 @@ class DefaultController extends BaseController {
 					];
 				}
             }
+            $data['summary'] = array_reverse( $data['summary'] );
         }
 
         $stat_blog_list = StatBlog::find()
