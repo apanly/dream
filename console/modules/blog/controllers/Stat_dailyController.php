@@ -101,7 +101,7 @@ class Stat_dailyController extends Blog{
 
 		if( $stat_uuid ){
 			$stat_returned_user = StatDailyUuid::find()
-				->select([ 'uid' ])
+				->select([ 'uuid' ])
 				->where([ 'uuid' =>  array_column( $stat_uuid,'uuid' ) ])
 				->andWhere([ '<','date',date("Ymd",strtotime($date)) ])
 				->groupBy([ 'uuid' ])
