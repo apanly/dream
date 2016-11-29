@@ -228,6 +228,7 @@ class UtilHelper {
 
     public static function getCspHeader( $env = "prod" ){
     	$domains = [
+    		'http://v3.jiathis.com',
     		'*.vincentguo.cn',
 			'*.yunetidc.com',
 			'*.baidu.com',
