@@ -24,8 +24,8 @@
     54 * * * * php  /data/www/dream/yii  blog/stat_daily/access >> /data/logs/jobs/stat_daily_access.log 2>&1
     
     #stat
-    59 * * * * php  /data/www/dream/yii  report/stat_daily/uuid >> /data/logs/jobs/report_stat_daily_uuid.log 2>&1
-    59 * * * * php  /data/www/dream/yii  report/stat_daily/source >> /data/logs/jobs/report_stat_daily_source.log 2>&1
-    59 * * * * php  /data/www/dream/yii  report/stat_daily/os >> /data/logs/jobs/report_stat_daily_os.log 2>&1
-    59 * * * * php  /data/www/dream/yii  report/stat_daily/browser >> /data/logs/jobs/report_stat_daily_browser.log 2>&1
+    55 * * * * php  /data/www/dream/yii  report/stat_daily/uuid >> /data/logs/jobs/report_stat_daily_uuid.log 2>&1
+    56 * * * * php  /data/www/dream/yii  report/stat_daily/source >> /data/logs/jobs/report_stat_daily_source.log 2>&1
+    57 * * * * php  /data/www/dream/yii  report/stat_daily/os >> /data/logs/jobs/report_stat_daily_os.log 2>&1
+    58 * * * * php  /data/www/dream/yii  report/stat_daily/browser >> /data/logs/jobs/report_stat_daily_browser.log 2>&1
     59 * * * * php  /data/www/dream/yii  report/stat_daily/device >> /data/logs/jobs/report_stat_daily_device.log 2>&1

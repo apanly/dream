@@ -43,3 +43,4 @@ static/web/uploads/*
 static/web/test/*
 common/logs/*
 admin/web/assets/*
+blog/web/assets/*

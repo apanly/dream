@@ -11,6 +11,7 @@ use Yii;
  * @property string $uuid
  * @property integer $date
  * @property integer $total_number
+ * @property string $updated_time
  * @property string $created_time
  */
 class StatDailyUuid extends \yii\db\ActiveRecord
@@ -38,8 +39,9 @@ class StatDailyUuid extends \yii\db\ActiveRecord
     {
         return [
             [['date', 'total_number'], 'integer'],
-            [['created_time'], 'safe'],
+            [['updated_time', 'created_time'], 'safe'],
             [['uuid'], 'string', 'max' => 100],
+            [['date', 'uuid'], 'unique', 'targetAttribute' => ['date', 'uuid'], 'message' => 'The combination of Uuid and Date has already been taken.'],
         ];
     }
 
@@ -53,6 +55,7 @@ class StatDailyUuid extends \yii\db\ActiveRecord
             'uuid' => 'Uuid',
             'date' => 'Date',
             'total_number' => 'Total Number',
+            'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];
     }

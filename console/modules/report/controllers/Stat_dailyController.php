@@ -51,9 +51,10 @@ class Stat_dailyController extends Stat_utilController{
 				$tmp_model_info = new StatDailyAccessSource();
 				$tmp_model_info->date = $date_int;
 				$tmp_model_info->source = $tmp_source;
+				$tmp_model_info->created_time = $date_now;
 			}
 			$tmp_model_info->total_number = $tmp_total_number;
-			$tmp_model_info->created_time = $date_now;
+			$tmp_model_info->updated_time = $date_now;
 			$tmp_model_info->save(0);
 		}
 
@@ -101,9 +102,10 @@ class Stat_dailyController extends Stat_utilController{
 				$tmp_model_info = new StatDailyUuid();
 				$tmp_model_info->date = $date_int;
 				$tmp_model_info->uuid = $tmp_uuid;
+				$tmp_model_info->created_time = $date_now;
 			}
 			$tmp_model_info->total_number = $tmp_total_number;
-			$tmp_model_info->created_time = $date_now;
+			$tmp_model_info->updated_time = $date_now;
 			$tmp_model_info->save(0);
 		}
 

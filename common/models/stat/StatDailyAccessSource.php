@@ -11,6 +11,7 @@ use Yii;
  * @property string $source
  * @property integer $date
  * @property integer $total_number
+ * @property string $updated_time
  * @property string $created_time
  */
 class StatDailyAccessSource extends \yii\db\ActiveRecord
@@ -38,8 +39,9 @@ class StatDailyAccessSource extends \yii\db\ActiveRecord
     {
         return [
             [['date', 'total_number'], 'integer'],
-            [['created_time'], 'safe'],
+            [['updated_time', 'created_time'], 'safe'],
             [['source'], 'string', 'max' => 50],
+            [['date', 'source'], 'unique', 'targetAttribute' => ['date', 'source'], 'message' => 'The combination of Source and Date has already been taken.'],
         ];
     }
 
@@ -53,6 +55,7 @@ class StatDailyAccessSource extends \yii\db\ActiveRecord
             'source' => 'Source',
             'date' => 'Date',
             'total_number' => 'Total Number',
+            'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];
     }
