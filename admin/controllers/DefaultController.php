@@ -220,6 +220,19 @@ class DefaultController extends BaseController {
 			}
 		}
 
+		//环境变量
+//		$db_target = Yii::$app->get("blog");
+//		$db_target->createCommand("SELECT version() as version,user() as user")->queryOne();
+		$env = [
+			'sys' =>  [
+				'服务器' => $_SERVER["SERVER_SOFTWARE"], //获取服务器标识的字串
+				'PHP版本' => PHP_VERSION, //获取PHP服务器版本
+				'操作系统' => php_uname(), //获取系统类型及版本号
+				'端口' => $_SERVER['SERVER_PORT'], //获取服务器Web端口
+				'上传限制' => ini_get("file_uploads") ? ini_get("upload_max_filesize") : "Disabled"
+			],
+		];
+
         return $this->render("index",[
             "stat" =>$data,
             "data_access" => $data_access,
@@ -227,7 +240,8 @@ class DefaultController extends BaseController {
             "data_client_os" => $data_client_os,
 			'data_source' => $data_source,
 			'data_client_browser' => $data_client_browser,
-			'data_client_device' => $data_client_device
+			'data_client_device' => $data_client_device,
+			'env' => $env
         ]);
     }
 

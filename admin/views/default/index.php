@@ -10,30 +10,49 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
 ?>
 <div class="row">
     <div class="row-in">
-        <div class="columns-24">
-            <div class="box-1">
+        <div class="columns-24 hide">
+            <div class="box-3">
                 <div class="row">
                     <div class="row-in">
-                        <h2 class="columns-24 title-1">统计信息</h2>
-                        <div class="columns-12">
-                            <div class="widget-int num-count">博文总数：<?=$stat["posts"]["total"];?></div>
-                            <div class="widget-int num-count">正常博文：<?=$stat["posts"]["total_valid"];?></div>
-                        </div>
-                        <div class="columns-12">
-                            <div class="widget-int num-count">图书总数：<?=$stat["library"]["total"];?></div>
-                            <div class="widget-int num-count">展示图书：<?=$stat["library"]["total_valid"];?></div>
-                        </div>
+                        <table class="table-1">
+                            <thead>
+                                <tr class="centered">
+                                    <th colspan="4">博文统计</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td colspan="2">
+                                博文（发布/总数）：<?=$stat["posts"]["total_valid"];?>/<?=$stat["posts"]["total"];?>
+                                </td>
+                                <td colspan="2">
+                                    图书（展示/总数）：<?=$stat["library"]["total_valid"];?>/<?=$stat["library"]["total"];?>
+                                </td>
+                            </tr>
+                            <?php if( $env['sys'] ):?>
+                            <tr>
+                                <td colspan="4">
+                                    <?php foreach( $env['sys'] as $_title => $_val ):?>
+                                        <?=$_title?>：<?=$_val;?><br/>
+                                    <?php endforeach;?>
+                                </td>
+                            </tr>
+                            <?php endif;?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="box-3 mg-t15">
+        </div>
+        <div class="columns-24">
+            <div class="box-3">
                 <div class="row">
                     <div class="row-in">
-                        <div class="title-3">
-                            <div class="columns-24"><h2>网站概况</h2></div>
-                        </div>
                         <table class="table-1 centered">
                             <thead>
+                            <tr>
+                                <th colspan="7">网站统计概况</th>
+                            </tr>
                             <tr>
                                 <th>日期</th>
                                 <th>浏览次数(PV)</th>
@@ -45,26 +64,25 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                             </tr>
                             </thead>
                             <tbody>
-                                <?php if( $stat['summary'] ):?>
-                                    <?php foreach( $stat['summary'] as $_item ):?>
-                                        <tr>
-                                            <td><?=$_item['date'];?></td>
-                                            <td><?=$_item['total_number'];?></td>
-                                            <td><?=$_item['total_uv_number'];?></td>
-                                            <td><?=$_item['total_ip_number'];?></td>
-                                            <td><?=$_item['total_new_user_number'];?></td>
-                                            <td><?=$_item['total_returned_user_number'];?></td>
-                                            <td><?=$_item['avg_pv_per_uv'];?></td>
-                                        </tr>
+							<?php if( $stat['summary'] ):?>
+								<?php foreach( $stat['summary'] as $_item ):?>
+                                    <tr>
+                                        <td><?=$_item['date'];?></td>
+                                        <td><?=$_item['total_number'];?></td>
+                                        <td><?=$_item['total_uv_number'];?></td>
+                                        <td><?=$_item['total_ip_number'];?></td>
+                                        <td><?=$_item['total_new_user_number'];?></td>
+                                        <td><?=$_item['total_returned_user_number'];?></td>
+                                        <td><?=$_item['avg_pv_per_uv'];?></td>
+                                    </tr>
 
-                                    <?php endforeach;?>
-                                <?php endif;?>
+								<?php endforeach;?>
+							<?php endif;?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="columns-12">
             <div class="box-1">
