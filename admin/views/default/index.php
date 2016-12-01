@@ -138,17 +138,6 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                 </div>
             </div>
         </div>
-        <div class="columns-24">
-            <div class="box-1">
-                <div class="row">
-                    <div class="row-in">
-                        <div class="columns-24 hide" id="access_map" style="min-height: 400px;">
-                           访问量分布地图
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

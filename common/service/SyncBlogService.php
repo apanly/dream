@@ -90,7 +90,7 @@ class SyncBlogService extends BaseService {
         if( $recommend_blogs ){
             $content .="<br/><br/><h3>智能推荐</h3><ul>";
             foreach( $recommend_blogs as $_recommend_blog ){
-                $tmp_link = $domain_blog."/default/{$_recommend_blog['id']}.html?flag=recommend";
+                $tmp_link = $domain_blog."/default/{$_recommend_blog['id']}.html?flag=recommend&source_id=".$_recommend_blog['source_id'];
                 $content .="<li><a href='{$tmp_link}'>{$_recommend_blog["title"]}</a></li>";
             }
             $content .="</ul>";

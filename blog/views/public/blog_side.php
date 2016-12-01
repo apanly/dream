@@ -32,7 +32,7 @@ $tags = CacheHelperService::getFrontCache("tag");
         <div class="content recommend_posts">
                 <?php foreach( $recommend_blogs as $_recommend_blog_info ):?>
                 <p>
-                    <a href="<?=UrlService::buildUrl("/default/info",[ "id" => $_recommend_blog_info["id"],"flag" => "recommend" ]);?>"><?=$_recommend_blog_info["title"];?></a>
+                    <a href="<?=UrlService::buildUrl("/default/info",[ "id" => $_recommend_blog_info["id"],"flag" => "recommend","source_id" => $_recommend_blog_info['source_id'] ]);?>"><?=$_recommend_blog_info["title"];?></a>
                 </p>
                 <?php endforeach;?>
         </div>
