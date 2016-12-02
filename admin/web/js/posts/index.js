@@ -10,7 +10,7 @@ var posts_index_ops = {
         });
 
         $("#search_conditions .clear_search").click( function(){
-            $("#search_conditions select[name=status]").val(-1);
+            $("#search_conditions select[name=status]").val(-99);
             $("#search_conditions input[name=kw]").val('');
         });
 

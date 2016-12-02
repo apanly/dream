@@ -28,7 +28,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
                     <input type="text" class="input-1"  name="kw" placeholder="请输入关键字" value="<?=$search_conditions["kw"];?>">
                 </div>
             </div>
-            <div class="columns-5">
+            <div class="columns-8">
                 <input type="button" value="搜索" class="do btn-tiny">
                 <a href="<?=AdminUrlService::buildUrl("/posts/index",[ 'status' => -1 ]);?>" class="color-orange  mg-l10">正在写的博文</a>
                 <a href="javascript:void(0);" class="color-theme  clear_search mg-l10">清空条件</a>
