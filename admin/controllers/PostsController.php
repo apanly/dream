@@ -197,7 +197,7 @@ class PostsController extends BaseController{
         BlogService::buildTags($post_id);
 
         CacheHelperService::buildFront(true);
-        if( $status ){//只有在线的才进入同步队列
+        if( $status == 1 ){//只有在线的才进入同步队列
             SyncBlogService::addQueue( $post_id );
             RecommendService::addQueue( $post_id );
         }
