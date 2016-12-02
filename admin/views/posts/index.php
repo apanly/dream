@@ -17,7 +17,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
         <form id="search_conditions">
             <div class="columns-3">
                 <select class="select-1" name="status">
-                    <option value="-1">请选择状态</option>
+                    <option value="-99">请选择状态</option>
                     <?php foreach( $status_mapping as $_status_id => $_status_info ):?>
                         <option value="<?=$_status_id;?>"  <?php if( $search_conditions['status']  == $_status_id ):?> selected <?php endif;?>><?=$_status_info['desc'];?></option>
                     <?php endforeach;?>

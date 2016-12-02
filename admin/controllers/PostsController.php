@@ -22,7 +22,7 @@ use yii\helpers\Url;
 class PostsController extends BaseController{
     public function actionIndex(){
         $p = intval( $this->get("p",1) );
-        $status = intval( $this->get("status",-1) );
+        $status = intval( $this->get("status",-99) );
         $order_by = $this->get("order_by",'');
         $kw = trim( $this->get("kw",'') );
         if(!$p){
@@ -32,7 +32,7 @@ class PostsController extends BaseController{
         $data = [];
 
         $query = Posts::find();
-        if( $status >= 0 ){
+        if( $status >= -2 ){
             $query->andWhere([ 'status' => $status ]);
         }
 

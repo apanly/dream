@@ -62,7 +62,6 @@ StaticService::includeAppJsStatic("/js/posts/set.js",\admin\assets\AdminAsset::c
                     <div class="columns-16">
                         <div class="select-wrap">
                             <select name="type" id="type" class="select-1">
-                                <option value="0">请选择</option>
 								<?php foreach($posts_type as $_key => $_type):?>
                                     <option value="<?=$_key;?>" <?php if($info && $_key == $info['type']):?> selected <?php endif;?> ><?=$_type;?></option>
 								<?php endforeach;?>

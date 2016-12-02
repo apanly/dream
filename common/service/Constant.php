@@ -13,8 +13,10 @@ class Constant {
     ];
 
     public static $status_desc = [
+		1 => ['class' => 'success','desc' => "正常"],
         0 => ['class' => 'danger','desc' => "隐藏"],
-        1 => ['class' => 'success','desc' => "正常"]
+        -1 => ['class' => 'orange','desc' => "正在写"],
+        -2 => ['class' => 'gray','desc' => "排队中"],
     ];
 
     public static $original_desc = [
