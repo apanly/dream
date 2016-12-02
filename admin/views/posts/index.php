@@ -30,6 +30,7 @@ StaticService::includeAppJsStatic("/js/posts/index.js",\admin\assets\AdminAsset:
             </div>
             <div class="columns-5">
                 <input type="button" value="搜索" class="do btn-tiny">
+                <a href="<?=AdminUrlService::buildUrl("/posts/index",[ 'status' => -1 ]);?>" class="color-orange  mg-l10">正在写的博文</a>
                 <a href="javascript:void(0);" class="color-theme  clear_search mg-l10">清空条件</a>
             </div>
 
