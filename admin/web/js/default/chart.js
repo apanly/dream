@@ -111,6 +111,7 @@ var chart_ops = {
                         },
                         distance:50
                     },
+                    //innerSize: '75%',
                     showInLegend: false
                 }
             },
