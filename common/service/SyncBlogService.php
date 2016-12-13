@@ -67,7 +67,7 @@ class SyncBlogService extends BaseService {
             return self::_err("博客不存在哦!!");
         }
         $domain_blog = \Yii::$app->params['domains']['blog'];
-        $link = $domain_blog."/default/{$blog_id}.html";
+        $link = $domain_blog."/default/{$blog_id}.html?source={$type}";
         $content = $blog_info['content'];
         $title = $blog_info['title'];
 
