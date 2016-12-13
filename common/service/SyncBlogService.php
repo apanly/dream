@@ -81,7 +81,7 @@ class SyncBlogService extends BaseService {
             $content .="<br/>标签：";
             $tmp_tags = explode(",",$blog_info['tags'] );
             foreach( $tmp_tags as $_tmp_tag ){
-                $tmp_link = $domain_blog."/search/do?kw={$_tmp_tag}";
+                $tmp_link = $domain_blog."/search/do?kw={$_tmp_tag}&source_id={$blog_id}";
                 $content .= "<a href='{$tmp_link}'>{$_tmp_tag}</a> &nbsp;&nbsp;";
             }
         }
