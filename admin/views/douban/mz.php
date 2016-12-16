@@ -1,5 +1,7 @@
 <?php
 use \admin\components\StaticService;
+StaticService::includeStaticCss("/jquery/fancy/jquery.fancybox.css",\admin\assets\AdminAsset::className());
+StaticService::includeStaticJs("/jquery/fancy/jquery.fancybox.pack.js",\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic("/js/douban/mz.js",\admin\assets\AdminAsset::className());
 ?>
 <div class="row">
@@ -18,7 +20,9 @@ StaticService::includeAppJsStatic("/js/douban/mz.js",\admin\assets\AdminAsset::c
                     <div class="box-2">
                         <div class="avatar-3">
                             <div class="inner" style="height: 347px;width: 240px;overflow:hidden;">
-                                <img src="<?=$_mz_info['src_url'];?>" alt="<?=$_mz_info['title'];?>" />
+                                <a class="image_gallary" rel="dbmz" href="<?=$_mz_info['src_url'];?>">
+                                    <img src="<?=$_mz_info['src_url'];?>" alt="<?=$_mz_info['title'];?>" />
+                                </a>
                             </div>
                         </div>
 
