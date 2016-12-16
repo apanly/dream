@@ -3,7 +3,7 @@
     server {
         listen       80;
         listen	 443 default ssl;
-        server_name  vincentguo.cn www.vincentguo.cn blog.vincentguo.cn   admin.vincentguo.cn;
+        server_name  vincentguo.cn www.vincentguo.cn blog.vincentguo.cn   admin.vincentguo.cn api.vincentguo.cn; 
     
         if ( $http_host  = 'vincentguo.cn' ){
         	   rewrite ^/(.*)$ http://www.vincentguo.cn/$1 permanent;
