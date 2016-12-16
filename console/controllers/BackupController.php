@@ -9,6 +9,7 @@ class BackupController extends  BaseController {
 
     /**
      * 备份数据库
+	 * dream_blog dream_log
      */
     public function actionMysql(){
 
@@ -16,7 +17,7 @@ class BackupController extends  BaseController {
         $config_mysql = \Yii::$app->components['blog'];
         $mysql_user = $config_mysql['username'];
         $mysql_passwd = $config_mysql['password'];
-        $db_name = "dream_blog";
+        $db_name = "dream_blog dream_log";
 
         $command = "cd /data/www/backup/ && /usr/bin/mysqldump -u{$mysql_user}".($mysql_passwd?"  -p{$mysql_passwd}":" ").  " {$db_name} --skip-lock-tables > {$filename}";
         exec($command);
