@@ -29,14 +29,11 @@ class SearchController extends BaseController
         $pagesize = 10;
         $offset   = ($p - 1) * $pagesize;
 
-        $search_key  = ['LIKE', 'search_key', '%' . strtr($kw, ['%' => '\%', '_' => '\_', '\\' => '\\\\']) . '%', false];
-        $query       = IndexSearch::find()->where($search_key);
+        $search_key = ['LIKE', 'search_key', '%' . strtr($kw, ['%' => '\%', '_' => '\_', '\\' => '\\\\']) . '%', false];
+        $query = IndexSearch::find()->where($search_key);
         $total_count = $query->count();
-        $list        = $query->orderBy("id desc")
-            ->limit($pagesize)
-            ->offset($offset)
-            ->all();
-
+        $list  = $query->orderBy("id desc")
+            ->limit($pagesize)->offset($offset)->all();
 
         if ($list) {
             $book_mapping = DataHelper::getDicByRelateID($list, Book::className(), "book_id", "id", ["subtitle", "summary", "origin_image_url", "tags"]);
