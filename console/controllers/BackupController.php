@@ -27,6 +27,15 @@ class BackupController extends  BaseController {
 			exec($command);
 			$this->echoLog("tar backup_mysql:".$command);
 		}
+		//备份完成发送邮件
+//		$mail= \Yii::$app->mailer->compose();
+//		$mail->setTo($mail_to);
+//		$mail->setSubject($subject);
+//		$mail->setHtmlBody($mail_body);
+//		$flag = false;
+//		if($mail->send()){
+//			$flag =  true;
+//		}
 
 
     }

@@ -1,5 +1,29 @@
 ;
 var chart_ops = {
+    setOption:function(){
+        Highcharts.setOptions({
+            exporting: {
+                enabled: false
+            },
+            colors: this.getDefinedColor(),
+            legend: {
+                enabled:false
+            },
+            credits:{
+                enabled:false
+            },
+            lang: {
+                noData: "暂无数据"
+            },
+            noData: {
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '15px',
+                    color: '#303030'
+                }
+            }
+        });
+    },
     getDefinedColor:function(){
         var colors = ['#058DC7', '#50B432', '#ED561B', '#DDDF00',
             '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4','#E93EFF'];
@@ -11,7 +35,6 @@ var chart_ops = {
                 height:270,
                 type:'spline'
             },
-            colors: this.getDefinedColor(),
             title: {
                 text: data.title,
                 align:"left"

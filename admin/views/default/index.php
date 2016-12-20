@@ -5,45 +5,18 @@ use \common\service\GlobalUrlService;
 StaticService::includeAppJsStatic(GlobalUrlService::buildStaticUrl("/highcharts/js/highcharts.js"),\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic(GlobalUrlService::buildStaticUrl("/echarts/echarts.min.js"),\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic(GlobalUrlService::buildStaticUrl("/echarts/china.js"),\admin\assets\AdminAsset::className());
+
+StaticService::includeStaticJs( "/jquery/moment.min.js", \admin\assets\AdminAsset::className() );
+
+StaticService::includeStaticCss("/jquery/daterangepicker/daterangepicker.min.css",\admin\assets\AdminAsset::className() );
+StaticService::includeStaticJs( "/jquery/daterangepicker/jquery.daterangepicker.min.js", \admin\assets\AdminAsset::className() );
+
+
 StaticService::includeAppJsStatic("/js/default/chart.js",\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsset::className());
 ?>
 <div class="row">
     <div class="row-in">
-        <div class="columns-24 hide">
-            <div class="box-3">
-                <div class="row">
-                    <div class="row-in">
-                        <table class="table-1">
-                            <thead>
-                                <tr class="centered">
-                                    <th colspan="4">博文统计</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td colspan="2">
-                                博文（发布/总数）：<?=$stat["posts"]["total_valid"];?>/<?=$stat["posts"]["total"];?>
-                                </td>
-                                <td colspan="2">
-                                    图书（展示/总数）：<?=$stat["library"]["total_valid"];?>/<?=$stat["library"]["total"];?>
-                                </td>
-                            </tr>
-                            <?php if( $env['sys'] ):?>
-                            <tr>
-                                <td colspan="4">
-                                    <?php foreach( $env['sys'] as $_title => $_val ):?>
-                                        <?=$_title?>：<?=$_val;?><br/>
-                                    <?php endforeach;?>
-                                </td>
-                            </tr>
-                            <?php endif;?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="columns-24">
             <div class="box-3">
                 <div class="row">
@@ -83,6 +56,27 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="columns-24">
+            <div class="row chart_form_wrap">
+                <div class="row-in">
+                    <div class="columns-3">
+                        <select class="select-1" name="custom_date">
+							<?php foreach( $custom_date as $_text => $_item ):?>
+                                <option date_from="<?=$_item["date_from"];?>" date_to="<?=$_item["date_to"];?>"><?=$_text;?></option>
+							<?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="columns-6">
+                        <div class="input-wrap">
+                            <input type="text" class="input-1 arrow" name="date_range_picker" value="">
+                            <input type="hidden" class="input-1" name="date_from" value="2016-11-20">
+                            <input type="hidden" class="input-1" name="date_to" value="2016-12-20">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="columns-12">
             <div class="box-1">
@@ -143,8 +137,4 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
 
 <div class="hide" id="hidden_wrap">
     <input type="hidden" name="data_access" value='<?=json_encode($data_access);?>'>
-    <input type="hidden" name="data_client_os" value='<?=json_encode($data_client_os);?>'>
-    <input type="hidden" name="data_source" value='<?=json_encode($data_source);?>'>
-    <input type="hidden" name="data_client_browser" value='<?=json_encode($data_client_browser);?>'>
-    <input type="hidden" name="data_client_device" value='<?=json_encode($data_client_device);?>'>
 </div>

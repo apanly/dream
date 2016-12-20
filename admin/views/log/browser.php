@@ -2,8 +2,8 @@
 use \yii\helpers\Url;
 use \admin\components\StaticService;
 use \admin\components\AdminUrlService;
-StaticService::includeAppCssStatic("/components/datetimepicker/jquery.datetimepicker.min.css",\admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/components/datetimepicker/jquery.datetimepicker.full.min.js",\admin\assets\AdminAsset::className());
+StaticService::includeStaticCss("/jquery/datetimepicker/jquery.datetimepicker.min.css",\admin\assets\AdminAsset::className() );
+StaticService::includeStaticJs( "/jquery/datetimepicker/jquery.datetimepicker.full.min.js", \admin\assets\AdminAsset::className() );
 StaticService::includeAppJsStatic("/js/log/date.js",\admin\assets\AdminAsset::className());
 ?>
 <div class="row">
