@@ -2,6 +2,7 @@
 namespace console\controllers;
 
 use common\components\QiniuService;
+use common\models\stat\SysLogs;
 
 /**
  * 备份
@@ -24,7 +25,8 @@ class BackupController extends  BaseController {
 			$filename = $db_name."_".date("Y-m-d").".sql";
 			$command = "cd {$backup_dir} && /usr/bin/mysqldump -u{$mysql_user}".($mysql_passwd?"  -p{$mysql_passwd}":" ").  " {$db_name} --skip-lock-tables > {$filename}";
 			exec($command);
-			$this->echoLog("backp mysql:".$command);
+			//有密码不要输出
+			//$this->echoLog("backp mysql:".$command);
 
 			$command = "cd {$backup_dir} && tar -zcf {$filename}.tar.gz {$filename} && rm {$filename}";
 			exec($command);
@@ -41,7 +43,14 @@ class BackupController extends  BaseController {
 				$ret = QiniuService::uploadFile( $_back_file['path'],$_back_file['name'],'backup' );
 				if( !$ret ){
 					$this->echoLog( QiniuService::getLastErrorMsg() );
+					continue;
 				}
+				//将数据记录起来，以后可以方便操作数据，例如删除，下载等等了
+				$tmp_model_sys_log = new SysLogs();
+				$tmp_model_sys_log->type = 1;
+				$tmp_model_sys_log->file_key = $_back_file['name'];
+				$tmp_model_sys_log->created_time = $tmp_model_sys_log->updated_time = date("Y-m-d H:i:s");
+				$tmp_model_sys_log->save(0);
 			}
 		}
 
