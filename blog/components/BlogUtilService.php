@@ -113,6 +113,13 @@ class BlogUtilService {
 
 		$list = [
 			[
+				'date' => '2016-12-21',
+				'title' => '加入数据库备份功能',
+				'content' => '<ol>
+<li>每日备份数据库并同步文件到CDN存储</li>
+</ol>'
+			],
+			[
 				'date' => '2016-11-19',
 				'title' => '运维发布功能',
 				'content' => '<ol>
