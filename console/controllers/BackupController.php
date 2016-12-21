@@ -1,6 +1,7 @@
 <?php
-
 namespace console\controllers;
+
+use common\components\QiniuService;
 
 /**
  * 备份
@@ -35,17 +36,12 @@ class BackupController extends  BaseController {
 		}
 
 		if( $backup_files ){
-			//备份完成发送邮件
-			$mail= \Yii::$app->mailer->compose();
-			$mail->setTo( "imguowei_888@qq.com" );
-			$mail->setSubject( "VPS数据库备份" );
-			$mail->setHtmlBody( "网站数据备份，防止又被关闭vps了" );
-			foreach( $backup_files  as $_back_file ){
-				$mail->attach( $_back_file[ 'path' ],[ 'fileName' => $_back_file[ 'name' ] ] );
-			}
-
-			if( $mail->send() ){
-				$this->echoLog( "备份成功~~"  );
+			//直接放到七牛网站上去
+			foreach( $backup_files as $_back_file ){
+				$ret = QiniuService::uploadFile( $_back_file['path'],$_back_file['name'],'backup' );
+				if( !$ret ){
+					$this->echoLog( QiniuService::getLastErrorMsg() );
+				}
 			}
 		}
 
