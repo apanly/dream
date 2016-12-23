@@ -34,6 +34,7 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                                 <th>新独立访客</th>
                                 <th>回访客户</th>
                                 <th>人均浏览页数</th>
+                                <th>最近更新时间</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -47,6 +48,7 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                                         <td><?=$_item['total_new_user_number'];?></td>
                                         <td><?=$_item['total_returned_user_number'];?></td>
                                         <td><?=$_item['avg_pv_per_uv'];?></td>
+                                        <td><?=$_item['updated_time'];?></td>
                                     </tr>
 
 								<?php endforeach;?>

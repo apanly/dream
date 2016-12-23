@@ -82,7 +82,8 @@ class DefaultController extends BaseController {
 						'total_uv_number' => $_item['total_uv_number'],
 						'total_new_user_number' => $_item['total_new_user_number'],
 						'total_returned_user_number' => $_item['total_returned_user_number'],
-						'avg_pv_per_uv' => $_item['avg_pv_per_uv']
+						'avg_pv_per_uv' => $_item['avg_pv_per_uv'],
+						'updated_time' => $_item['updated_time'],
 					];
 				}
             }
