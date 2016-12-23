@@ -239,7 +239,7 @@ class UtilHelper {
 			'*.qnssl.com'
 		];
     	if( $env != "prod" ){
-			$domains[] = '*.dr.local.com';
+			$domains[] = '*.dr.test';
 		}
 
 		$domain_list = implode(" ",$domains);
