@@ -14,7 +14,7 @@ class BackupController extends  BaseController {
 	 * dream_blog dream_log
      */
     public function actionMysql(){
-
+		$this->echoLog("=======start======");
 		$config_mysql = \Yii::$app->components['blog'];
 		$mysql_user = $config_mysql['username'];
 		$mysql_passwd = $config_mysql['password'];
@@ -54,7 +54,7 @@ class BackupController extends  BaseController {
 			}
 		}
 
-
+		$this->echoLog("=======end======");
 
     }
 
