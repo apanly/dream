@@ -24,7 +24,7 @@ StaticService::includeAppJsStatic("/js/default/index.js",\admin\assets\AdminAsse
                         <table class="table-1 centered">
                             <thead>
                             <tr>
-                                <th colspan="7">网站统计概况</th>
+                                <th colspan="8">网站统计概况</th>
                             </tr>
                             <tr>
                                 <th>日期</th>
