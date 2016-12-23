@@ -37,6 +37,11 @@ $menu_list = \blog\components\BlogUtilService::blogMenu();
                                     </a>
                                     <ul class="dropdown-menu">
                                         <?php foreach($_menu_info['sub_menu'] as $_submenu_key => $_submenu_info ):?>
+											<?php
+											if( isset( $_submenu_info['status'] ) && !$_submenu_info['status'] ){
+												continue;
+											}
+											?>
                                             <li>
                                                 <a href="<?=$_submenu_info['url'];?>"><?=$_submenu_info['title'];?></a>
                                             </li>

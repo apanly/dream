@@ -1,11 +1,27 @@
 <?php
 use common\service\CacheHelperService;
 use blog\components\StaticService;
+use \common\service\GlobalUrlService;
+$wx_urls = [
+	"my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
+	"imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
+	"starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+];
+
+
 $tags = CacheHelperService::getFrontCache("tag");
 $menu_list = \blog\components\BlogUtilService::blogMenu();
 $project_list = $menu_list['project'];
 ?>
 <aside class="col-md-4 sidebar">
+    <div class="widget">
+        <h4 class="title">社交</h4>
+        <div class="content">
+            <p>QQ群：325264502 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=d7ed56eea3e6e0047db0420404dd0874c5c3d37e30ee40ab7bb6a5a2fb77dc72"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="编程浪子小天地" title="编程浪子小天地"></a> </p>
+            <p>微信公众号：<a  href="<?=\common\service\GlobalUrlService::buildNullUrl();?>" data-toggle="modal" data-target="#wechat_service_qrcode">imguowei_888</a></p>
+        </div>
+    </div>
+
     <div class="widget">
         <h4 class="title">搜索</h4>
         <div class="content search">
@@ -58,3 +74,17 @@ $project_list = $menu_list['project'];
         </div>
     </div>
 </aside>
+
+<div class="modal fade" id="wechat_service_qrcode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h5 class="modal-title" id="myModalLabel">公众号二维码</h5>
+            </div>
+            <div class="modal-body">
+                <img title="编程浪子的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
+            </div>
+        </div>
+    </div>
+</div>

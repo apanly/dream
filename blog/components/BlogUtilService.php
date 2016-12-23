@@ -77,7 +77,8 @@ class BlogUtilService {
 					],
 					[
 						'title' => 'Code Preview',
-						'url'   => GlobalUrlService::buildBlogUrl("/code/run")
+						'url'   => GlobalUrlService::buildBlogUrl("/code/run"),
+						'status' => 0
 					]
 				]
 			],
