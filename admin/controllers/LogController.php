@@ -11,6 +11,7 @@ use common\models\stat\StatDailyAccessSource;
 use common\models\stat\StatDailyBrowser;
 use common\models\stat\StatDailyOs;
 use common\models\stat\StatDailyUuid;
+use common\models\weixin\WxHistory;
 use common\service\GlobalUrlService;
 use common\service\ipip\IPService;
 use Yii;
@@ -324,7 +325,6 @@ class LogController extends BaseController{
 		]);
 	}
 
-
 	public function actionCsp(){
 		$date_from = $this->get("date_from",date("Y-m-d") );
 		$date_to = $this->get("date_to",date("Y-m-d") );
@@ -374,6 +374,45 @@ class LogController extends BaseController{
 			"data" => $data,
 			"page_info" => $page_info,
 			'search_conditions' => $search_conditions
+		]);
+	}
+
+	public function actionWechat(){
+		$p = intval( $this->get("p",1) );
+		if(!$p){
+			$p = 1;
+		}
+		$query = WxHistory::find();
+		$total_count = $query->count();
+		$offset = ($p - 1) * $this->page_size;
+		$list = $query->orderBy([ 'id' => SORT_DESC ] )
+			->offset($offset)->limit( $this->page_size )
+			->all();
+
+		$page_info = DataHelper::ipagination([
+			"total_count" => $total_count,
+			"page_size" => $this->page_size,
+			"page" => $p,
+			"display" => 10
+		]);
+
+		$data = [];
+		if( $list ){
+			foreach( $list as $_item ){
+				$data[] = [
+					'id' => $_item['id'],
+					'openid' => $_item['from_openid'],
+					'type' => $_item['type'],
+					'content' => $_item['content'],
+					'text' => $_item['text'],
+				];
+			}
+		}
+
+		return $this->render("wechat",[
+			"data" => $data,
+			"page_info" => $page_info,
+			'search_conditions' => []
 		]);
 	}
 

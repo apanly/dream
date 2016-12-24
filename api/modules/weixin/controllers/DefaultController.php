@@ -249,7 +249,8 @@ EOT;
 回复“@关键字”搜索歌曲\n
 回复“#xxx”发送上墙内容\n
 回复“hadoop,https”搜索博文\n
-可访问:m.vincentguo.cn
+可访问:m.vincentguo.cn\n
+咨询类信息由于工作原因当天晚上统一回复
 EOT;
         return $resData;
     }

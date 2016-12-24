@@ -6,6 +6,11 @@ $mapping = [
         "url" => AdminUrlService::buildUrl("/log/access"),
         "status" => 1
     ],
+	"wechat" => [
+		'title' => "微信公众号",
+		"url" => AdminUrlService::buildUrl("/log/wechat"),
+		"status" => 1
+	],
     "uuid" => [
         'title' => "UUID统计",
         "url" => AdminUrlService::buildUrl("/log/uuid"),
