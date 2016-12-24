@@ -16,9 +16,9 @@ use \admin\components\StaticService;
 			<table class="table-1">
 				<thead>
 				<tr>
-					<th>序号</th>
-					<th>Openid</th>
-					<th>类型</th>
+					<th width="50">序号</th>
+					<th width="200">Openid</th>
+					<th width="50">类型</th>
 					<th>内容</th>
 					<th width="300">原生信息</th>
 				</tr>
