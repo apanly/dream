@@ -1,3 +1,8 @@
+## 20161226
+    ALTER TABLE `posts` ADD `sn` VARCHAR(20)  NOT NULL  DEFAULT ''  COMMENT '博文序列号（替代id字段）'  AFTER `id`;
+    ALTER TABLE `posts` ADD INDEX `idx_sn` (`sn`);
+    update posts set sn = id ;
+
 ## 20161021
     ALTER TABLE `access_logs` ADD `client_browser` VARCHAR(50)  NOT NULL  DEFAULT ''  COMMENT '浏览器'  AFTER `user_agent`;
     ALTER TABLE `access_logs` ADD `client_os` VARCHAR(20)  NOT NULL  DEFAULT ''  COMMENT '客户端操作系统'  AFTER `client_browser`;

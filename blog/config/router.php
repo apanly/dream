@@ -5,7 +5,7 @@ return [
     'enableStrictParsing' => false,
     'rules'               => [
         [
-            'pattern' => '/<controller:\w+>/<id:\d+>',
+            'pattern' => '/<controller:\w+>/<id:\w+>',
             'route'   => '<controller>/info',
             'suffix'  => '.html'
         ],

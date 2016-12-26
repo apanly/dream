@@ -165,6 +165,7 @@ class PostsController extends BaseController{
         }else{
             $model_posts = new Posts();
             $model_posts->uid = $uid;
+			$model_posts->sn = $this->getUniqueSn();
             $model_posts->created_time = $date_now;
         }
         $tags_arr = [];
@@ -262,4 +263,13 @@ class PostsController extends BaseController{
         BlogService::buildTags( $blog_id );
         RecommendService::addQueue( $blog_id );
     }
+
+
+	private function getUniqueSn( ){
+		do{
+			$sn = md5( "dream_blog_".time() );
+			$sn = mb_substr($sn,5,8);
+		}while( Posts::findOne(['sn'=>$sn])  );
+		return $sn;
+	}
 }

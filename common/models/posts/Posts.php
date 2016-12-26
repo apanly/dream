@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "posts".
  *
  * @property integer $id
+ * @property string $sn
  * @property integer $uid
  * @property string $title
  * @property integer $type
@@ -50,6 +51,7 @@ class Posts extends \yii\db\ActiveRecord
             [['content'], 'required'],
             [['content'], 'string'],
             [['updated_time', 'created_time'], 'safe'],
+            [['sn'], 'string', 'max' => 20],
             [['title', 'tags'], 'string', 'max' => 250],
             [['image_url'], 'string', 'max' => 256],
         ];
@@ -62,6 +64,7 @@ class Posts extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'sn' => 'Sn',
             'uid' => 'Uid',
             'title' => 'Title',
             'type' => 'Type',

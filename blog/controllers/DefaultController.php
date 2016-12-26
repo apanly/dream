@@ -63,6 +63,7 @@ class DefaultController extends BaseController{
                 $data[]      = [
                     'idx' => $idx,
                     'id' => $_post['id'],
+                    'sn' => $_post['sn'],
                     'title'  => DataHelper::encode($_post['title']),
                     'content' => nl2br($tmp_content),
                     'original' => $_post['original'],
@@ -94,9 +95,8 @@ class DefaultController extends BaseController{
 
     }
 
-    public function actionInfo($id){
+    public function actionInfo( $id ){
 
-        $id = intval($id);
         if (!$id) {
             return $this->goHome();
         }
@@ -125,13 +125,13 @@ class DefaultController extends BaseController{
         ];
 
         $prev_info = Posts::find()
-            ->where(["<", "id", $id])
+            ->where(["<", "id", $post_info['id'] ])
             ->andWhere(['status' => 1])
             ->orderBy("id desc")
             ->one();
 
         $next_info = Posts::find()
-            ->where([">", "id", $id])
+            ->where([">", "id", $post_info['id'] ])
             ->andWhere(['status' => 1])
             ->orderBy("id asc")
             ->one();
@@ -142,7 +142,7 @@ class DefaultController extends BaseController{
             "info"      => $data,
             "prev_info" => $prev_info,
             "next_info" => $next_info,
-            "recommend_blogs" => RecommendService::getRecommendBlog( $id )
+            "recommend_blogs" => RecommendService::getRecommendBlog( $post_info['id'] )
         ]);
     }
 
