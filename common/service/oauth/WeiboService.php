@@ -44,6 +44,12 @@ class WeiboService extends  ClientBase {
 			'appkey' => $config['ak']
 		];
 		$ret = HttpClient::get( $url."?".http_build_query( $get_params ) );
+		$ret = @json_decode( $ret,true );
+		if( !$ret || isset( $ret['error'] ) ){
+			return $this->_err( $ret['error'] );
+		}
+		$ret['openid'] = $ret['id'];
+		$ret['avatar'] = $ret['profile_image_url'];
 		return $ret;
 	}
 

@@ -37,9 +37,13 @@ class ClientService extends  BaseService  {
 	}
 
 	public static function getUserInfo( $type,$access_token = '',$params = [] ){
+		
 		$client_name = "common\\service\\oauth\\".ucfirst($type)."Service";
 		$target = new $client_name();
 		$ret = $target->getUserInfo( $access_token,$params  );
-		var_dump(  $ret );exit();
+		if( !$ret ){
+			return self::_err( $target->getLastErrorMsg() );
+		}
+		return $ret;
 	}
 }

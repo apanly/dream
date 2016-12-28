@@ -39,6 +39,12 @@ class GithubService extends  ClientBase {
 		$url = "https://api.github.com/user";
 		HttpClient::setHeader([ 'Authorization' => "token {$access_token}" ]);
 		$ret = HttpClient::get( $url );
+		$ret = @json_decode( $ret,true );
+		if( !$ret || isset( $ret['error'] ) ){
+			return $this->_err( $ret['error'] );
+		}
+		$ret['openid'] = $ret['id'];
+		$ret['avatar'] = $ret['avatar_url'];
 		return $ret;
 	}
 
