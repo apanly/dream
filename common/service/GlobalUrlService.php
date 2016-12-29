@@ -214,7 +214,6 @@ class GlobalUrlService {
         return $domain_blog.$path;
     }
 
-
     public static function buildWapUrl($uri, $params = []){
         if(substr($uri,0,1) != "/") {
             $uri = "/" . $uri;
@@ -226,7 +225,6 @@ class GlobalUrlService {
         }
         return $domain_m.$path;
     }
-
 
     public static function buildGameUrl($uri, $params = []){
         $path = Url::toRoute(array_merge(["/game" . $uri], $params));
@@ -245,6 +243,15 @@ class GlobalUrlService {
         }
         return $domain_blog.$path;
     }
+
+    public static function buildPhpUrl( $uri, $params = [] ){
+		$path = Url::toRoute(array_merge([ $uri ], $params));
+		$domain_blog = \Yii::$app->params['domains']['awephp'];
+		if( UtilHelper::is_SSL() ){
+			$domain_blog = str_replace("http://","https://",$domain_blog);
+		}
+		return $domain_blog.$path;
+	}
 
     public static function buildNullUrl(){
     	return "javascript:void(0);";
