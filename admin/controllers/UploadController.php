@@ -15,22 +15,29 @@ class UploadController extends BaseController
     private $allow_file_type = ["image/jpg","image/gif","image/bmp","image/jpeg","image/png"];//设置允许上传文件的类型
 
     public function actionPost(){
-        if ($_FILES["file"]["error"] > 0){
-            return $this->renderJSON([],"上传失败!error:". $_FILES["file"]["error"],-1);
+
+		if( $this->get("guid") ){
+			$file_target = $_FILES['editormd-image-file'];
+		}else{
+			$file_target = $_FILES["file"];
+		}
+
+        if ($file_target["error"] > 0){
+            return $this->renderJSON([],"上传失败!error:". $file_target["error"],-1);
         }
 
-        if(!is_uploaded_file($_FILES['file']['tmp_name'])){
+        if(!is_uploaded_file($file_target['tmp_name'])){
             return $this->renderJSON([],"非法上传文件!",-1);
         }
 
-        $type = $_FILES["file"]["type"];
-        $filename = $_FILES["file"]["name"];
+        $type = $file_target["type"];
+        $filename = $file_target["name"];
 
         if( !in_array($type,$this->allow_file_type) ){
             return $this->renderJSON([],"只能上传图片!",-1);
         }
 
-        $ret = UploadService::uploadByFile($filename,$_FILES['file']['tmp_name']);
+        $ret = UploadService::uploadByFile($filename,$file_target['tmp_name']);
         if( !$ret ){
             return $this->renderJSON([],UploadService::getLastErrorMsg(),-1);
         }
@@ -225,5 +232,19 @@ class UploadController extends BaseController
         echo  json_encode( $data );
         exit();
     }
+
+    /*markdown编辑器*/
+    public function actionEditorMd(){
+
+		$ret = $this->actionPost();
+		$ret = @json_decode( $ret,true );
+		$data = [
+			'success' => ( $ret['code'] == 200 )?1:0,
+			'message' => $ret['msg'],
+			'url' => $ret['data']['url']
+		];
+		echo json_encode( $data );
+		\Yii::$app->end();
+	}
 
 }

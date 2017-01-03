@@ -3,6 +3,20 @@ body{
     background: #f5f5f5;
 }
 
+.container-fluid{
+    padding-right:0 ;
+}
+
+.docs .sidebar_wrap{
+    padding-right: 0;
+}
+
+.docs .page h3{
+    padding-bottom: 15px;
+    border-bottom: 2px dashed #ccc;
+}
+
+
 .docs .well{
     border: 0;
     border-radius:0;
@@ -11,7 +25,17 @@ body{
     padding:0;
 }
 .docs .page{
+    font-size: 15px;
     background:#ffffff;
+}
+
+.docs .page p {
+    line-height: 25px;
+    margin: 15px 0 ;
+}
+.content .page .hero-unit {
+    min-height: 1000px;
+    max-width: 1088px;
 }
 
 .sidebar-nav .nav-list li.nav-header {
@@ -47,5 +71,5 @@ body{
 }
 
 .footer{
-    margin: 0;
+    display: none;
 }
