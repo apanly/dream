@@ -34,6 +34,10 @@ class BlogUtilService {
 						'url'   => UrlService::buildUrl("/default/info", ['id' => 132])
 					],
 					[
+						'title' => 'QQ、微博、Github登录',
+						'url'   => UrlService::buildUrl("/default/info", ['id' => 191 ])
+					],
+					[
 						'title' => '私人github',
 						'url'   => UrlService::buildUrl("/default/info", ['id' => 96])
 					],

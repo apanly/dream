@@ -1,4 +1,5 @@
 <?php
+use \blog\components\UrlService;
 use \common\components\DataHelper;
 ?>
 <main class="col-md-12 main-content">
@@ -33,9 +34,9 @@ use \common\components\DataHelper;
                     </div>
 					<?php endforeach;?>
                 </div>
-
-
-
+            </div>
+            <div class="col-md-8 col-md-offset-4" style="margin-top: 40px;">
+                具体功能实现请参考博文：<a target="_blank" href="<?= UrlService::buildUrl("/default/info",[ 'id' => 191 ]); ?>">【Demo】QQ，github，微博第三方社交登录</a>
             </div>
         </div>
 
