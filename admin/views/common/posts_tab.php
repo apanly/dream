@@ -11,6 +11,17 @@ $mapping = [
         "url" => AdminUrlService::buildUrl("/posts/set"),
         "status" => 1
     ],
+    "md_index" => [
+		'title' => "教程列表",
+		"url" => AdminUrlService::buildUrl("/md/index"),
+		"status" => 1
+	],
+	"md_set" => [
+		'title' => "写教程",
+		"url" => AdminUrlService::buildUrl("/md/set"),
+		"status" => 1
+	],
+
 ];
 ?>
 
