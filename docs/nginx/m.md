@@ -8,7 +8,7 @@
             server_name   m.vincentguo.cn;
             root  /data/www/dream/blog/web;
             access_log  /data/logs/nginx/dream_access_wap.log  main;
-    
+
             proxy_set_header Host www.vincentguo.cn;
             location / {
                 proxy_set_header Host www.vincentguo.cn;
@@ -18,7 +18,7 @@
                 rewrite ^(.*)$ /wap$1 break;
                 proxy_pass $scheme://127.0.0.1:$server_port;
             }
-    
+
             location ~* \.(gif|jpg|jpeg|png|ico|css|js|xml)$ {
                 #rewrite ^(.*)$ /$1 break;
                 #proxy_pass http://127.0.0.1:80;
