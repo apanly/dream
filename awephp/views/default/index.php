@@ -7,7 +7,7 @@ use \common\service\GlobalUrlService;
 	</h1>
 	<p class="lead"><strong>PHP是世界上最好的语言~~,只想用心写教程</strong></p>
 	<p>
-		<a class="btn btn-lg btn-default btn-getting-started" href="<?=GlobalUrlService::buildPhpUrl("/docs/index");?>">开始阅读
+		<a class="btn btn-lg btn-default btn-getting-started" href="<?=GlobalUrlService::buildPhpUrl("/docs/info",[ 'id' => 1 ]);?>">开始阅读
 		</a>
 	</p>
 </header>

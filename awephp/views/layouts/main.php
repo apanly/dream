@@ -32,7 +32,7 @@ AppAsset::register($this);
                     <a href="<?=GlobalUrlService::buildPhpUrl("/");?>">首页</a>
                 </li>
                 <li>
-                    <a href="<?=GlobalUrlService::buildPhpUrl("/docs/index");?>">教程</a>
+                    <a href="<?=GlobalUrlService::buildPhpUrl("/docs/info",[  'id' => 1 ]);?>">教程</a>
                 </li>
                 <li>
                     <a href="<?=GlobalUrlService::buildBlogUrl("/");?>">博客</a>
