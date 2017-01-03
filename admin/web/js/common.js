@@ -27,7 +27,7 @@ var common_ops = {
             nav_name = "dashboard";
         }
 
-        if(  pathname.indexOf("/posts/") > -1  ){
+        if(  pathname.indexOf("/posts/") > -1 || pathname.indexOf("/md/") > -1  ){
             nav_name = "posts";
         }
 
@@ -49,6 +49,10 @@ var common_ops = {
 
         if(  pathname.indexOf("/log/") > -1  ){
             nav_name = "stat";
+        }
+
+        if(  pathname.indexOf("/ops/") > -1  ){
+            nav_name = "ops";
         }
 
         if( pathname.indexOf("/douban/") > -1 ){
