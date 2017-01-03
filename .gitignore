@@ -44,3 +44,4 @@ static/web/test/*
 common/logs/*
 admin/web/assets/*
 blog/web/assets/*
+awephp/web/assets/*
