@@ -29,7 +29,7 @@ class RecommendService extends BaseService {
                 foreach( $relation_post_list as $_relation_blog_info ){
                     $recommend_blogs[] = [
                         "title" => DataHelper::encode( $_relation_blog_info['title'] ),
-                        "id" => $_relation_blog_info['sn'],
+                        "id" => $_relation_blog_info['id'],
 						'source_id' => $blog_id
                     ];
                 }
