@@ -10,6 +10,28 @@ var md_menu_ops = {
             } )
         });
 
+        $(".ops_btn_wrap .refresh").click( function(){
+            $.ajax({
+                url:common_ops.buildAdminUrl('/md/menu-refresh'),
+                type:'POST',
+                dataType:'json',
+                success:function(res){
+                    var callback = {};
+                    if(res.code == 200){
+                        callback = {
+                            ok:function(){
+                                window.location.href = window.location.href;
+                            },
+                            cancel:function(){
+                                window.location.href = window.location.href;
+                            }
+                        }
+                    }
+                    $.alert(res.msg,callback);
+                }
+            });
+        });
+
         $(".menu_list_wrap .edit").click( function(){
             common_ops.popLayer( "/md/menu-set",{
                 'title':'设置一级菜单',
