@@ -6,6 +6,7 @@ use admin\components\AdminUrlService;
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\awephp\AweDocs;
+use common\models\awephp\AweMenu;
 use common\service\Constant;
 use Yii;
 
@@ -135,6 +136,164 @@ class MdController extends BaseController{
 		$model_docs->updated_time = $date_now;
 		$model_docs->save(0);
 		return $this->renderJSON([ 'id' => $model_docs->id ],"操作成功");
+	}
+
+
+	public function actionMenu(){
+		$list  = AweMenu::find()->orderBy([ 'weight' => SORT_ASC ])->asArray()->all();
+		$menu_data = [];
+		if( $list ){
+			//先找出一级菜单
+			$docs_ids = [];
+			foreach( $list as $_item ){
+				if(  $_item['parent_id'] == 0  ){
+					$menu_data[ $_item['id'] ] = [
+						'id' => $_item['id'],
+						'title' => DataHelper::encode( $_item['title'] ),
+						'weight' => $_item['weight'],
+						'sub_menu' => []
+					];
+				}else{
+					$docs_ids[] = $_item['doc_id'];
+				}
+			}
+			//先找出二级菜单
+			if( $docs_ids ){
+				$docs_mapping = AweDocs::find()->where([ 'id' => $docs_ids ])->indexBy('id')->asArray()->all();
+				foreach( $list as $_item ){
+					if(  $_item['parent_id'] && isset( $docs_mapping[ $_item['doc_id'] ] )) {
+						$tmp_doc_info = $docs_mapping[ $_item['doc_id'] ];
+						$menu_data[ $_item['parent_id'] ]['sub_menu'][] = [
+							'doc_id' => $tmp_doc_info['id'],
+							'doc_title' => DataHelper::encode( $tmp_doc_info['title'] ),
+							'parent_id' => $_item['parent_id'],
+							'id' => $_item['id'],
+							'weight' => $_item['weight']
+						];
+					}
+				}
+			}
+		}
+		return $this->render("menu",[
+			'list' => $menu_data
+		]);
+	}
+
+	public function actionMenuSet(){
+		if( Yii::$app->request->isGet ){
+			$id = intval( $this->get("id",0) );
+			$info = [];
+			if( $id ){
+				$info = AweMenu::find()->where([ 'id' => $id ])->one();
+			}
+			$content_html = $this->renderPartial("menu_set",[
+				'info' => $info
+			]);
+			return $this->renderJSON([ 'form_wrap' => $content_html ]);
+		}
+
+		$id = intval( $this->post("id",0) );
+		$title = trim( $this->post("title","") );
+		$weight = intval( $this->post("weight",0) );
+		$date_now = date("Y-m-d H:i:s");
+
+		if( !$title ){
+			return $this->renderJSON([],"请输入符合规范的菜单名称~~",-1);
+		}
+
+		if( !$weight || $weight < 1 ){
+			return $this->renderJSON([],"请输入符合规范的权重~~",-1);
+		}
+
+		$has_in = AweMenu::find()->where([ 'title' => $title ])->andWhere([ '!=','id',$id ])->count();
+		if( $has_in ){
+			return $this->renderJSON([],"此菜单名称已有啦，请换一个吧~~",-1);
+		}
+
+		$info = [];
+		if( $id ){
+			$info = AweMenu::find()->where([ 'id' => $id ])->one();
+		}
+
+		if( $info ){
+			$model_menu = $info;
+		}else{
+			$model_menu = new AweMenu();
+			$model_menu->created_time = $date_now;
+		}
+		$model_menu->title = $title;
+		$model_menu->weight = $weight;
+		$model_menu->updated_time = $date_now;
+		$model_menu->save( 0 );
+		return $this->renderJSON([],"操作成功~~");
+	}
+
+	public function actionMenuSubSet(){
+		if( Yii::$app->request->isGet ){
+			$id = intval( $this->get("id",0) );
+			$parent_id = intval( $this->get("parent_id",0) );
+			$parent_info = AweMenu::find()->where([ 'id' => $parent_id ])->one();
+			if( !$parent_info ){
+				return $this->renderJSON([],"指定父菜单不存在~~",-1);
+			}
+			$info = [];
+			if( $id ){
+				$info = AweMenu::find()->where([ 'id' => $id ])->one();
+			}
+
+			$related_docs_ids = AweMenu::find()
+				->where([ '>','doc_id',0 ])
+				->andWhere([ '!=','id',$id ])
+				->select([ 'doc_id' ])->column();
+
+			$docs_list = AweDocs::find()->where([ 'not in','id', $related_docs_ids ])
+				->orderBy([ 'id' => SORT_DESC ])->asArray()->all();
+			$content_html = $this->renderPartial("menu_sub_set",[
+				'parent_info' => $parent_info,
+				'docs_list' => $docs_list,
+				'info' => $info
+			]);
+			return $this->renderJSON([ 'form_wrap' => $content_html ]);
+		}
+
+		$id = intval( $this->post("id",0) );
+		$parent_id = intval( $this->post("parent_id",0) );
+		$doc_id = intval( $this->post("doc_id",0) );
+		$weight = intval( $this->post("weight",0) );
+		$date_now = date("Y-m-d H:i:s");
+
+		$parent_info = AweMenu::find()->where([ 'id' => $parent_id ])->one();
+		if( !$parent_info ){
+			return $this->renderJSON([],"指定父菜单不存在~~",-1);
+		}
+
+		$doc_info = AweDocs::find()->where([ 'id' => $doc_id ])->one();
+		if( !$doc_info ){
+			return $this->renderJSON([],"关联教程不存在~~",-1);
+		}
+
+		$has_bind = AweMenu::find()->where([ 'doc_id' => $doc_id ])->andWhere([ '!=' ,'parent_id', $parent_id ])->count();
+		if( $has_bind ){
+			return $this->renderJSON([],"指定教程已和其他菜单绑定~~",-1);
+		}
+
+		$info = [];
+		if( $id ){
+			$info = AweMenu::find()->where([ 'id' => $id ])->one();
+		}
+
+		if( $info ){
+			$model_menu = $info;
+		}else{
+			$model_menu = new AweMenu();
+			$model_menu->created_time = $date_now;
+		}
+		$model_menu->weight = $weight;
+		$model_menu->doc_id = $doc_id;
+		$model_menu->parent_id = $parent_id;
+		$model_menu->updated_time = $date_now;
+		$model_menu->save( 0 );
+		return $this->renderJSON([],"操作成功~~");
 	}
 }
 

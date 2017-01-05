@@ -8,7 +8,13 @@ StaticService::includeAppJsStatic( "/js/docs.js",\awephp\assets\AppAsset::classN
 		<?= Yii::$app->controller->renderPartial("/public/docs_nav"); ?>
         <div class="col-md-9 page">
             <div class="hero-unit">
+                <?php if( $info['status']  == 1 ):?>
                 <?=$content;?>
+                <?php else:?>
+                    <h1 class="text-center">
+                        编辑中，敬请期待~~
+                    </h1>
+                <?php endif;?>
             </div>
         </div>
     </div>

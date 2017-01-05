@@ -127,7 +127,6 @@ var common_ops = {
                     }else{//默认是small
                         //target_handle.addClass('lay-medium');
                     }
-
                     $.lay.open({
                         'content':target_handle,
                         'title':title,
