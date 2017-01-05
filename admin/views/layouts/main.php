@@ -22,11 +22,11 @@ $domain_blog = Yii::$app->params['domains']['blog'];
 <div class="page_wrap">
 	<div class="box_wrap open">
 		<div class="box_left_nav">
-			<div class="logo centered">
+			<h1 class="logo-default centered">
                 <div class="avatar-1">
-                    <img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>" alt="100*100">
+                    <img src="<?= GlobalUrlService::buildStaticPic("/images/admin/my.jpg",[ 'w' => 80,'h' => 80 ]) ?>">
                 </div>
-			</div>
+			</h1>
 			<h2 class="version">
                 <a target="_blank" class="color-theme" href="<?=$domain_blog;?>"><?= $seo_title;?></a>
             </h2>

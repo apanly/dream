@@ -1,6 +1,9 @@
 <?php
 use \yii\helpers\Url;
 use \admin\components\StaticService;
+StaticService::includeStaticCss("/jquery/fancy/jquery.fancybox.css",\admin\assets\AdminAsset::className());
+StaticService::includeStaticJs("/jquery/fancy/jquery.fancybox.pack.js",\admin\assets\AdminAsset::className());
+StaticService::includeAppJsStatic("/js/file/index.js", \admin\assets\AdminAsset::className());
 ?>
 <div class="row">
     <div class="row-in">
@@ -26,7 +29,9 @@ use \admin\components\StaticService;
                         <tr>
                             <td class="text-center"><?=$_item['idx'];?></td>
                             <td>
-                                <img src="<?= $_item['small_pic_url']; ?>"/>
+                                <a href="<?= $_item['big_pic_url']; ?>" class="image_gallary" rel="file">
+                                    <img src="<?= $_item['small_pic_url']; ?>"/>
+                                </a>
                             </td>
                             <td>
                                 <a href="<?= $_item['big_pic_url']; ?>" target="_blank">查看大图</a>

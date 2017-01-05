@@ -1,5 +1,5 @@
 ;
-var douban_mz_ops = {
+var file_index_ops = {
     init:function(){
         this.eventBind();
     },
@@ -21,5 +21,5 @@ var douban_mz_ops = {
 };
 
 $(document).ready(function(){
-    douban_mz_ops.init();
+    file_index_ops.init();
 });

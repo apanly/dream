@@ -94,6 +94,21 @@ var richmedia_index_ops = {
                 }
             });
         });
+
+        $("a.image_gallary").fancybox({
+            openEffect	: 'none',
+            closeEffect	: 'none',
+            type:'image',
+            nextClick: true,
+            helpers: {
+                title : {
+                    type : 'inside'
+                }
+            },
+            afterLoad : function() {
+                this.title = '图库 ' + (this.index + 1) + ' / ' + this.group.length + (this.title ? ' - ' + this.title : '');
+            }
+        });
     }
 };
 

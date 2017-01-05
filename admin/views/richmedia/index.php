@@ -1,17 +1,8 @@
 <?php
 use \admin\components\StaticService;
 
-StaticService::includeAppCssStatic("/js/jquery/blueimp-gallery/css/blueimp-gallery.css", \admin\assets\AdminAsset::className());
-StaticService::includeAppCssStatic("/js/jquery/blueimp-gallery/css/blueimp-gallery-indicator.css", \admin\assets\AdminAsset::className());
-StaticService::includeAppCssStatic("/js/jquery/blueimp-gallery/css/blueimp-gallery-video.css", \admin\assets\AdminAsset::className());
-
-StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-helper.js", \admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery.js", \admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery-fullscreen.js", \admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery-indicator.js", \admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery-video.js", \admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/blueimp-gallery-vimeo.js", \admin\assets\AdminAsset::className());
-StaticService::includeAppJsStatic("/js/jquery/blueimp-gallery/js/jquery.blueimp-gallery.js", \admin\assets\AdminAsset::className());
+StaticService::includeStaticCss("/jquery/fancy/jquery.fancybox.css",\admin\assets\AdminAsset::className());
+StaticService::includeStaticJs("/jquery/fancy/jquery.fancybox.pack.js",\admin\assets\AdminAsset::className());
 StaticService::includeAppJsStatic("/js/richmedia/index.js", \admin\assets\AdminAsset::className());
 ?>
 <div class="row">
@@ -42,7 +33,7 @@ StaticService::includeAppJsStatic("/js/richmedia/index.js", \admin\assets\AdminA
                             <td class="text-center"><?= $_item['idx']; ?></td>
                             <td>
                                 <?php if ($_item['type'] == "image"): ?>
-                                    <a href="<?= $_item['big_src_url']; ?>" data-gallery="">
+                                    <a href="<?= $_item['big_src_url']; ?>" class="image_gallary" rel="richmedia">
                                         <img src="<?= $_item['small_src_url']; ?>"/>
                                     </a>
                                 <?php else: ?>
