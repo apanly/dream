@@ -19,3 +19,6 @@ StaticService::includeAppJsStatic( "/js/docs.js",\awephp\assets\AppAsset::classN
         </div>
     </div>
 </div>
+<div class="hide hidden_wrap">
+    <input type="hidden" name="doc_id" value="<?=$info?$info['id']:0;?>">
+</div>

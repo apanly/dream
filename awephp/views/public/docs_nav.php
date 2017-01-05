@@ -13,9 +13,7 @@ $menu = \common\service\CacheHelperService::getAweMenu();
                     </li>
                     <?php if( $_item['sub_menu'] ):?>
                         <?php foreach(  $_item['sub_menu'] as $_sub_item ):?>
-                    <li class="<?=$_sub_item['doc_id'];?>">
-                        <!--class="active"-->
-
+                    <li class="sub_menu_<?=$_sub_item['doc_id'];?>">
                             <a href="<?=GlobalUrlService::buildPhpUrl("/docs/info",[ 'id' => $_sub_item['doc_id'] ]);?>" ><?=$_sub_item['doc_title'];?><?php if( $_sub_item['status']  == -1 ):?> <span class="label label-info pull-right">编辑中</span> <?php endif;?></a>
                     </li>
                         <?php endforeach;?>

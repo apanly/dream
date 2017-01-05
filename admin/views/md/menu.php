@@ -74,7 +74,7 @@ StaticService::includeAppJsStatic("/js/md/menu.js", \admin\assets\AdminAsset::cl
                     </tr>
                 <?php else:?>
                     <tr>
-                        <td>暂无菜单</td>
+                        <td colspan="2">暂无菜单</td>
                     </tr>
 				<?php endif;?>
                 </tbody>
