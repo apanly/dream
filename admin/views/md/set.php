@@ -44,6 +44,9 @@ StaticService::includeAppJsStatic("/js/md/set.js",\admin\assets\AdminAsset::clas
         <div class="columns-24" id="editormd">
             <textarea style="display:none;"><?=$info?$info['content']:'';?></textarea>
         </div>
+        <div class="columns-24">
+            <input type="button" value="保存" class="btn-small save">
+        </div>
 	</div>
 </div>
 <div class="hide" id="hide_wrap">
