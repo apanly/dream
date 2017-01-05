@@ -38,6 +38,10 @@ body{
     max-width: 1088px;
 }
 
+.content .page .hero-unit  h1{
+    text-align: center;
+}
+
 .sidebar-nav .nav-list li.nav-header {
     margin-top: 20px;
 }
