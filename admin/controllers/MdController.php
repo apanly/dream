@@ -7,6 +7,7 @@ use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\awephp\AweDocs;
 use common\models\awephp\AweMenu;
+use common\service\CacheHelperService;
 use common\service\Constant;
 use Yii;
 
@@ -294,6 +295,11 @@ class MdController extends BaseController{
 		$model_menu->updated_time = $date_now;
 		$model_menu->save( 0 );
 		return $this->renderJSON([],"操作成功~~");
+	}
+
+	public function actionMenuRefresh(){
+		CacheHelperService::buildAweMenu( true );
+		return $this->renderJSON([],"更新成功~~");
 	}
 }
 

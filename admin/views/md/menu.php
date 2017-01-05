@@ -16,6 +16,7 @@ StaticService::includeAppJsStatic("/js/md/menu.js", \admin\assets\AdminAsset::cl
         <div class="title-3a">
             <div class="columns-24 right ops_btn_wrap">
                 <i class="icon_club pointer hastip add" data-tip="添加菜单">&#xe613;</i>
+                <i class="icon_club pointer hastip refresh" data-tip="刷新菜单">&#xe636;</i>
             </div>
         </div>
     </div>

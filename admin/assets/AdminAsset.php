@@ -16,7 +16,7 @@ class AdminAsset extends AssetBundle{
 			GlobalUrlService::buildStaticUrl("/fontawesome/css/font-awesome.min.css"),
 			GlobalUrlService::buildStaticUrl("/jquery/jquery-ui.min.css"),
 			'css/component/scrollbar.min.css',
-			'css/common.css'
+			'css/common.css?version='.RELEASE_VERSION
 		];
 		$this->js = [
 			'js/jquery/jquery-1.12.3.min.js',
