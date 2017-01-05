@@ -12,11 +12,12 @@ class AdminAsset extends AssetBundle{
     public $js = [];
 
 	public function registerAssetFiles($view){
+		$release_version = defined("RELEASE_VERSION") ? RELEASE_VERSION : "20170105164900";
 		$this->css = [
 			GlobalUrlService::buildStaticUrl("/fontawesome/css/font-awesome.min.css"),
 			GlobalUrlService::buildStaticUrl("/jquery/jquery-ui.min.css"),
 			'css/component/scrollbar.min.css',
-			'css/common.css?version='.RELEASE_VERSION
+			'css/common.css?version='.$release_version
 		];
 		$this->js = [
 			'js/jquery/jquery-1.12.3.min.js',
