@@ -119,17 +119,20 @@ class BaseController extends Controller{
         $view->params['header_title'] = $title;
     }
 
-    protected function renderJSON($data=[], $msg ="ok", $code = 200)
+    protected function renderJSON($data=[], $msg ="ok", $code = 200,$is_json_flag = false)
     {
+    	$ret =  json_encode([
+			"code" => $code,
+			"msg"   =>  $msg,
+			"data"  =>  $data,
+			"req_id" =>  $this->geneReqId(),
+		]);
+    	if( $is_json_flag ){
+    		return $ret;
+		}
+
         header('Content-type: application/json');
-        echo json_encode([
-            "code" => $code,
-            "msg"   =>  $msg,
-            "data"  =>  $data,
-            "req_id" =>  $this->geneReqId(),
-        ]);
-
-
+        echo $ret;
         return Yii::$app->end();
     }
 

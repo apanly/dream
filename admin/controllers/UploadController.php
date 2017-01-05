@@ -16,34 +16,36 @@ class UploadController extends BaseController
 
     public function actionPost(){
 
+    	$is_json_flag = false;
 		if( $this->get("guid") ){
+			$is_json_flag = true;
 			$file_target = $_FILES['editormd-image-file'];
 		}else{
 			$file_target = $_FILES["file"];
 		}
 
         if ($file_target["error"] > 0){
-            return $this->renderJSON([],"上传失败!error:". $file_target["error"],-1);
+            return $this->renderJSON([],"上传失败!error:". $file_target["error"],-1,$is_json_flag);
         }
 
         if(!is_uploaded_file($file_target['tmp_name'])){
-            return $this->renderJSON([],"非法上传文件!",-1);
+            return $this->renderJSON([],"非法上传文件!",-1,$is_json_flag);
         }
 
         $type = $file_target["type"];
         $filename = $file_target["name"];
 
         if( !in_array($type,$this->allow_file_type) ){
-            return $this->renderJSON([],"只能上传图片!",-1);
+            return $this->renderJSON([],"只能上传图片!",-1,$is_json_flag);
         }
 
         $ret = UploadService::uploadByFile($filename,$file_target['tmp_name']);
         if( !$ret ){
-            return $this->renderJSON([],UploadService::getLastErrorMsg(),-1);
+            return $this->renderJSON([],UploadService::getLastErrorMsg(),-1,$is_json_flag);
         }
 
         $display_url = GlobalUrlService::buildPic1Static($ret['uri'],['w' => 600]);
-        return $this->renderJSON([ 'url' => $display_url, 'filename' => $filename ]);
+        return $this->renderJSON([ 'url' => $display_url, 'filename' => $filename ],'成功',200,$is_json_flag);
     }
 
     /*文件管理上传文件的*/
