@@ -1,5 +1,10 @@
 <?php
 use awephp\components\StaticService;
+/*fancy*/
+StaticService::includeStaticCss("/jquery/fancy/jquery.fancybox.css",\awephp\assets\AppAsset::className());
+StaticService::includeStaticJs("/jquery/fancy/jquery.fancybox.pack.js",\awephp\assets\AppAsset::className());
+
+
 StaticService::includeAppCssStatic( "/css/github-markdown.css",\awephp\assets\AppAsset::className() );
 StaticService::includeAppCssStatic( "/css/docs.css",\awephp\assets\AppAsset::className() );
 
