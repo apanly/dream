@@ -21,8 +21,7 @@ var docs_ops = {
         wrap_width = dpi?(wrap_width*dpi):wrap_width;
 
         $(".page .markdown-body img").each(function(){
-            console.log( $(this).hasOwnProperty("no-zoom") );
-            if(  parseInt($(this).attr("no-zoom")) == 1 ){
+            if(  parseInt( $(this).attr("no-zoom") ) == 1 ){
                 return true;
             }
             var image_url = $(this).attr("src");
