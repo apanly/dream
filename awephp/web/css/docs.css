@@ -40,6 +40,7 @@ body{
 
 .content .page .hero-unit  h1{
     text-align: center;
+    border-bottom:none;
 }
 
 .sidebar-nav .nav-list li.nav-header {
