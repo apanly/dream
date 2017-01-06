@@ -21,17 +21,11 @@ var default_info_ops = {
         });
     },
     adaptImage:function(){
-        var that = this;
-        var windowWidth = $(window).width();
+
         var dpi = window.devicePixelRatio;
-        var width = windowWidth;
-        if(dpi){
-            width = windowWidth * dpi;
-        }
-        var picwidth = this.calPicWidth(width);
-        if( picwidth > 1024 ){
-            picwidth = 1024;
-        }
+        var original_wrap_width = $("article.post").width();
+        var wrap_width = this.calPicWidth( original_wrap_width );
+        wrap_width = dpi?(wrap_width*dpi):wrap_width;
 
         $("article .post-content img").each(function(){
             var image_url = $(this).attr("src");
@@ -39,14 +33,9 @@ var default_info_ops = {
                 return true;
             }
 
-            var wrap_width = that.calPicWidth( $("article.post").width() );
-            wrap_width = dpi?(wrap_width*dpi):wrap_width;
-            $(this).attr("width",wrap_width  );
+            $(this).attr("width",original_wrap_width  );
             $(this).attr("src",image_url.replace(/\/w\/\d+/,"/w/" + wrap_width ) );
-            image_url = image_url.replace(/\/w\/\d+/,"/w/" + picwidth);
-
-            //以前使用lightbox换掉了
-            //var target = $('<a class="zoom" href="'+image_url+'" data-lightbox="roadtrip"></a>');
+            image_url = image_url.replace(/\/w\/\d+/,"/w/" + wrap_width);
 
             var img_title = $(this).attr("title");
             img_title = ( img_title != undefined && img_title.length > 1 )?img_title:'';
@@ -61,10 +50,6 @@ var default_info_ops = {
             $(this).hide();
         });
 
-        // lightbox.option({
-        //     'resizeDuration': 200,
-        //     'wrapAround': true
-        // });
 
         $(".fancybox").fancybox({
             openEffect	: 'none',
