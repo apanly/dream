@@ -17,6 +17,8 @@ class DocsController extends AuthController{
 			return $this->redirect( GlobalUrlService::buildPhpUrl("/") );
 		}
 		$my_html = MarkdownExtra::defaultTransform( $info['content'] );
+		//代码进行渲染显示
+		$my_html = str_replace( "<pre>","<pre class='prettyprint linenums '>",$my_html );
         return $this->render("index",[
         	'content' => $my_html,
 			'info' => $info

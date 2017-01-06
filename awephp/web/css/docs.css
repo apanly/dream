@@ -80,3 +80,12 @@ body{
 .footer{
     display: none;
 }
+
+.markdown-body .tag{
+    color:  #905;
+}
+
+.markdown-body .pln,.markdown-body .pun{
+    color: #000;
+}
+

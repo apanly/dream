@@ -1,7 +1,12 @@
 <?php
 use awephp\components\StaticService;
-StaticService::includeAppCssStatic( "/css/docs.css",\awephp\assets\AppAsset::className() );
 StaticService::includeAppCssStatic( "/css/github-markdown.css",\awephp\assets\AppAsset::className() );
+StaticService::includeAppCssStatic( "/css/docs.css",\awephp\assets\AppAsset::className() );
+
+
+/*prettify*/
+StaticService::includeStaticCss("/prettify/prettify.sons.css",\awephp\assets\AppAsset::className());
+StaticService::includeStaticJs("/prettify/prettify.js",\awephp\assets\AppAsset::className());
 
 StaticService::includeAppJsStatic( "/js/docs.js",\awephp\assets\AppAsset::className() );
 ?>
