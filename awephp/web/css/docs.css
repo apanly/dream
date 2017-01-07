@@ -85,7 +85,7 @@ body{
     color:  #905;
 }
 
-.markdown-body .pln,.markdown-body .pun{
+.markdown-body .pln,.markdown-body .pun,.markdown-body .atn{
     color: #000;
 }
 

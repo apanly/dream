@@ -15,7 +15,7 @@ StaticService::includeAppJsStatic("/js/ops/index.js",\admin\assets\AdminAsset::c
 <div class="row">
     <div class="row-in">
         <div class="title-3a">
-            <div class="columns-16 right pull-right">
+            <div class="columns-24 right right">
                 <a href="javascript:void(0);">
                     <i class="fa fa-paper-plane fa-lg hastip release" data-tip="发布代码"></i>
                 </a>
