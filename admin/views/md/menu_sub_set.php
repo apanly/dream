@@ -35,7 +35,7 @@ use \common\components\DataHelper;
                 </div>
                 <div class="columns-15">
                     <div class="input-wrap">
-                        <input type="text" class="input-1" placeholder="请输入权重" name="weight" value="1">
+                        <input type="text" class="input-1" placeholder="请输入权重" name="weight" value="<?=$info?$info['weight']:1;?>">
                     </div>
                 </div>
             </div>

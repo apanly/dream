@@ -109,7 +109,6 @@ class MdController extends BaseController{
 			]);
 		}
 
-		$uid = $this->current_user->uid;
 		$id =trim( $this->post("id",0) );
 		$title =trim( $this->post("title") );
 		$content = trim( $this->post("content") );
@@ -131,11 +130,16 @@ class MdController extends BaseController{
 			$model_docs->created_time = $date_now;
 		}
 
+		$before_status = $model_docs->status;
 		$model_docs->title = $title;
 		$model_docs->content = $content;
 		$model_docs->status = $status;
 		$model_docs->updated_time = $date_now;
 		$model_docs->save(0);
+		if( $before_status != $status && $status == 1 ){//说明发布了
+			CacheHelperService::buildAweMenu( true );
+		}
+
 		return $this->renderJSON([ 'id' => $model_docs->id ],"操作成功");
 	}
 
