@@ -18,7 +18,7 @@ StaticService::includeAppJsStatic( "/js/docs.js",\awephp\assets\AppAsset::classN
 <div class="container-fluid docs">
     <div class="row-fluid">
 		<?= Yii::$app->controller->renderPartial("/public/docs_nav"); ?>
-        <div class="col-md-9 page">
+        <div class="col-md-9 page" style="padding-bottom: 50px;">
             <div class="hero-unit markdown-body">
                 <?php if( $info['status']  == 1 ):?>
                 <?=$content;?>
