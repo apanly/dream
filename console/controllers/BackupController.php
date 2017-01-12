@@ -21,6 +21,8 @@ class BackupController extends  BaseController {
 		$db_names = [ "dream_blog","dream_log" ];
 		$backup_files = [];
 		$backup_dir = "/data/www/backup/";
+		$code_dir = "/data/www/dream/";
+		$date = date("Ymd");
 		foreach( $db_names as $db_name){
 			$filename = $db_name."_".date("Y-m-d").".sql";
 			$command = "cd {$backup_dir} && /usr/bin/mysqldump -u{$mysql_user}".($mysql_passwd?"  -p{$mysql_passwd}":" ").  " {$db_name} --skip-lock-tables > {$filename}";
@@ -33,9 +35,18 @@ class BackupController extends  BaseController {
 			$this->echoLog("tar backup_mysql:".$command);
 			$backup_files[] = [
 				'path' => "{$backup_dir}{$filename}.tar.gz",
-				'name' => "{$filename}.tar.gz"
+				'name' => "{$date}/{$filename}.tar.gz"
 			];
 		}
+
+		//备份整个网站
+		$filename = "www_{$date}.tar.gz";
+		$command = "cd {$code_dir} && git archive --format tar.gz --output {$backup_dir}{$filename} master";
+		exec($command);
+		$backup_files[] = [
+			'path' => "{$backup_dir}{$filename}",
+			'name' => "{$date}/{$filename}"
+		];
 
 		if( $backup_files ){
 			//直接放到七牛网站上去
@@ -54,6 +65,9 @@ class BackupController extends  BaseController {
 			}
 		}
 
+		//清理7天前修改过的工作
+		$command = "cd {$backup_dir} && find {$backup_dir} -mtime +7 | xargs rm -rf";
+		exec($command);
 		$this->echoLog("=======end======");
 
     }
