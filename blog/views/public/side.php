@@ -15,14 +15,6 @@ $project_list = $menu_list['project'];
 ?>
 <aside class="col-md-4 sidebar">
     <div class="widget">
-        <h4 class="title">社交</h4>
-        <div class="content">
-            <p>QQ群：325264502 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=d7ed56eea3e6e0047db0420404dd0874c5c3d37e30ee40ab7bb6a5a2fb77dc72"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="编程浪子小天地" title="编程浪子小天地"></a> </p>
-            <p>微信公众号：<a  href="<?=\common\service\GlobalUrlService::buildNullUrl();?>" data-toggle="modal" data-target="#wechat_service_qrcode">imguowei_888</a></p>
-        </div>
-    </div>
-
-    <div class="widget">
         <h4 class="title">搜索</h4>
         <div class="content search">
             <div class="input-group">
@@ -31,6 +23,10 @@ $project_list = $menu_list['project'];
                     <button class="btn btn-default do-search" type="button" style="padding: 6px 12px;">搜索</button>
                 </span>
             </div>
+        </div>
+        <div class="content" style="margin-top: 10px;">
+            <p>QQ群：325264502 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=d7ed56eea3e6e0047db0420404dd0874c5c3d37e30ee40ab7bb6a5a2fb77dc72"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="编程浪子小天地" title="编程浪子小天地"></a> </p>
+            <p>微信公众号：<a  href="<?=\common\service\GlobalUrlService::buildNullUrl();?>" data-toggle="modal" data-target="#wechat_service_qrcode">imguowei_888</a></p>
         </div>
     </div>
     <div class="widget">
