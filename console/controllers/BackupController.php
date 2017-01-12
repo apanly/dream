@@ -39,15 +39,15 @@ class BackupController extends  BaseController {
 			];
 		}
 
-		//备份整个网站
-		$filename = "www_{$date}.tar.gz";
-		$command = "cd {$code_dir} && git archive --format tar.gz --output {$backup_dir}{$filename} master";
-		$this->echoLog("backup www:".$command);
-		exec($command);
-		$backup_files[] = [
-			'path' => "{$backup_dir}{$filename}",
-			'name' => "{$date}/{$filename}"
-		];
+		//先不备份整个网站
+//		$filename = "www_{$date}.tar.gz";
+//		$command = "cd {$code_dir} && git archive --format tar.gz --output {$backup_dir}{$filename} master";
+//		$this->echoLog("backup www:".$command);
+//		exec($command);
+//		$backup_files[] = [
+//			'path' => "{$backup_dir}{$filename}",
+//			'name' => "{$date}/{$filename}"
+//		];
 
 		if( $backup_files ){
 			//直接放到七牛网站上去
