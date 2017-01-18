@@ -20,7 +20,7 @@ class DefaultController extends Blog{
     	foreach( $list as $_item ){
     		$tmp_content = $_item['content'];
     		$tmp_content = str_replace("www.vincentguo.cn","www.54php.cn",$tmp_content);
-    		//$tmp_content = str_replace("cdn.pic1.yunetidc.com","cdn.pic1.54php.cn",$tmp_content);
+    		$tmp_content = str_replace("cdn.pic1.yunetidc.com","cdn.pic1.54php.cn",$tmp_content);
 			$_item->content = $tmp_content;
 			$_item->update( 0 );
 		}
