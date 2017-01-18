@@ -14,8 +14,9 @@
 * 每个bucket都要添加域名和修改回源地址
 
 ### 博客博文替换
-* 将所有博客博文中的 相关链接 "http://www.vincentguo.cn/" 换成 "http://www.54php.cn/"
-* 将所有博客博文中的 所有图片 "http://pic2.cdn.vincentuo.cn" 换成 "http://pic2.cdn.54php.cn"
+* 执行脚本 php yii  blog/default/change-domain 
+    * 将所有博客博文中的 相关链接 "http://www.vincentguo.cn/" 换成 "http://www.54php.cn/"
+    * 将所有博客博文中的 所有图片 "http://pic2.cdn.vincentuo.cn" 换成 "http://pic2.cdn.54php.cn"
 
 ### 分发到其他平台的博文
 * 全部重新推送一遍
