@@ -18,6 +18,7 @@ AppAsset::register($this);
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="baidu-site-verification" content="sfWgUvxKJK" />
+	<meta name="baidu-site-verification" content="r4HAm9eZW3" />
     <meta name="google-site-verification" content="c_1LAxAX-8MMoXntjVS1kCu5JnGhVIlcgLT6idZpgq4" />
     <meta property="wb:webmaster" content="ccdf2279363f4648" />
     <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
