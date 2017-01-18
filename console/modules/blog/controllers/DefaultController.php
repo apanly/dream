@@ -21,6 +21,12 @@ class DefaultController extends Blog{
     		$tmp_content = $_item['content'];
     		$tmp_content = str_replace("www.vincentguo.cn","www.54php.cn",$tmp_content);
     		$tmp_content = str_replace("cdn.pic1.yunetidc.com","cdn.pic1.54php.cn",$tmp_content);
+			preg_match('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i',$tmp_content,$match_img);
+			if( $match_img && count($match_img) == 3 ){
+				$tmp_content->image_url = $match_img[2];
+			}else{
+				$tmp_content->image_url = "";
+			}
 			$_item->content = $tmp_content;
 			$_item->update( 0 );
 		}
