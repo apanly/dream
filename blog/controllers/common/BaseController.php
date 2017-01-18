@@ -23,7 +23,11 @@ class BaseController extends BaseBlogController{
         "default/about",
         "test/index",
         'default/qrcode',
-        'default/barcode'
+        'default/barcode',
+		'oauth/login',
+		'oauth/qq',
+		'oauth/github',
+		'oauth/weibo',
     ];
 
 
