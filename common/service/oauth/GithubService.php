@@ -49,7 +49,8 @@ class GithubService extends  ClientBase {
 	}
 
 	private  function getCallback(){
+		$domain = \Yii::$app->params['domains']['blog'];
 		$callback = \Yii::$app->params['oauth']['github']['callback'];
-		return "http://www.vincentguo.cn".$callback;
+		return $domain.$callback;
 	}
 }

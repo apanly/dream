@@ -95,7 +95,8 @@ class QqService extends  ClientBase {
 	}
 
 	private  function getCallback(){
+		$domain = \Yii::$app->params['domains']['blog'];
 		$callback = \Yii::$app->params['oauth']['qq']['callback'];
-		return "http://www.vincentguo.cn".$callback;
+		return $domain.$callback;
 	}
 }
