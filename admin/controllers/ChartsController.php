@@ -26,7 +26,7 @@ class ChartsController extends BaseController {
         $date_from_int = date("Ymd",strtotime( $date_from ) );
         $date_to_int = date("Ymd",strtotime( $date_to ) );
         /*今日来源域名*/
-        $ignore_source = ["direct","www.vincentguo.cn","m.vincentguo.cn" ];
+        $ignore_source = ["direct","www.vincentguo.cn","m.vincentguo.cn","www.54php.cn","m.54php.cn" ];
         $data_source = [
 			'series' => [
 				[
