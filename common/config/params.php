@@ -10,5 +10,5 @@ return [
         'keywords' => 'php教程，python教程，php开发，编程浪子的博客'
     ],
     'Copyright' => "<a href='http://m.vincentguo.cn'>移动版</a>
-    <br/>Copyright © 2016.编程浪子 All rights reserved | 备案号：青ICP备13000097号-81"
+    <br/>Copyright © 2016.编程浪子 All rights reserved | 备案号：沪ICP备13003569号-2"
 ];
