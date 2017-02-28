@@ -22,6 +22,7 @@ AppAsset::register($this);
     <meta name="google-site-verification" content="c_1LAxAX-8MMoXntjVS1kCu5JnGhVIlcgLT6idZpgq4" />
 	<meta name="google-site-verification" content="o216Mzhg5gyKjw7ZUK7RIONSz3i_5NdTPk2QXIR_V4s" />
     <meta property="wb:webmaster" content="ccdf2279363f4648" />
+	<meta name="sogou_site_verification" content="kfQlSAkuuQ"/>
     <link rel="shortcut icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
     <link rel="icon" href="<?=GlobalUrlService::buildStaticUrl("/images/icon.png");?>">
 
