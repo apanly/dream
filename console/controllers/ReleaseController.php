@@ -82,7 +82,7 @@ class ReleaseController extends  BaseController {
 	/*在本地机器执行命令*/
     private function execLocalCmd($path){
         $res = [];
-        $cmd = "cd %s ; git fetch origin; git rebase origin/master 2>&1";
+        $cmd = "cd %s && git fetch origin 2>&1 && git rebase origin/master 2>&1";
         $cmd = sprintf($cmd, $path);
         $res[] = "------------- start(".date("Y-m-d H:i:s").") --------------------\r\n";;
         $res[] = $cmd;
@@ -90,7 +90,7 @@ class ReleaseController extends  BaseController {
         $output = implode("\r\n", $output);
         $res[] = $output;
         if (stripos($output, "CONFLICT") !== false) {
-            $cmd = "cd %s &&  git rebase --abort";
+            $cmd = "cd %s &&  git rebase --abort 2>&1";
             $cmd = sprintf($cmd, $path);
             $res[] = $cmd;
             exec($cmd, $output);
