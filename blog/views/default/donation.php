@@ -9,17 +9,35 @@ use \blog\components\UrlService;
 			<tr>
 				<td>赞助人</td>
 				<td>赞助金额</td>
+				<td>赞助时间</td>
+				<td>赞助方式</td>
 				<td width="200">赞助原因</td>
 			</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td>唐萪衷</td>
-				<td>88.00</td>
-				<td class="text-left">
-					做档案录入需要拍照上传保存,参考博文：<a target="_blank" href="<?=UrlService::buildUrl('/default/info',['id'=>150]);?>">HTML5 拍照上传</a>
-				</td>
-			</tr>
+                <tr>
+                    <td>叫我大头</td>
+                    <td>1.00</td>
+                    <td>2017-05-10</td>
+                    <td>支付宝</td>
+                    <td class="text-left">任性没留言</td>
+                </tr>
+                <tr>
+                    <td>匿名</td>
+                    <td>5.66</td>
+                    <td>2017-04-24</td>
+                    <td>微信扫码</td>
+                    <td class="text-left">任性没留言</td>
+                </tr>
+                <tr>
+                    <td>唐萪衷</td>
+                    <td>88.00</td>
+                    <td>2016-11-09</td>
+                    <td>微信红包</td>
+                    <td class="text-left">
+                        做档案录入需要拍照上传保存,参考博文：<a target="_blank" href="<?=UrlService::buildUrl('/default/info',['id'=>150]);?>">HTML5 拍照上传</a>
+                    </td>
+                </tr>
 			</tbody>
 		</table>
 	</article>
