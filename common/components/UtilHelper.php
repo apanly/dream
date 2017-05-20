@@ -235,7 +235,8 @@ class UtilHelper {
 			'*.baidu.com',
 			'*.cnzz.com',
 			'*.c-cnzz.com',
-			'*.duoshuo.com',
+			'*.sohu.com',
+			'*.itc.cn',
 			'*.jiathis.com',
 			'*.qnssl.com'
 		];

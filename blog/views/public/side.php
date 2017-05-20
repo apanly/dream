@@ -29,6 +29,20 @@ $project_list = $menu_list['project'];
             <p>微信公众号：<a  href="<?=\common\service\GlobalUrlService::buildNullUrl();?>" data-toggle="modal" data-target="#wechat_service_qrcode">imguowei_888（点我扫码）</a></p>
         </div>
     </div>
+
+    <div class="widget">
+        <h4 class="title"><?=$project_list['title'];?>Demo</h4>
+        <div class="content e-book">
+            <ul class="list-group">
+				<?php foreach($project_list['sub_menu'] as $_submenu_key => $_submenu_info ):?>
+                    <li class="list-group-item">
+                        <a href="<?=$_submenu_info['url'];?>"><?=$_submenu_info['title'];?></a>
+                    </li>
+				<?php endforeach;;?>
+            </ul>
+        </div>
+    </div>
+
     <div class="widget">
         <h4 class="title">标签云</h4>
         <div class="content tag-cloud">
@@ -40,18 +54,7 @@ $project_list = $menu_list['project'];
         </div>
     </div>
 
-    <div class="widget">
-        <h4 class="title"><?=$project_list['title'];?>Demo</h4>
-        <div class="content e-book">
-            <ul class="list-group">
-                <?php foreach($project_list['sub_menu'] as $_submenu_key => $_submenu_info ):?>
-                    <li class="list-group-item">
-                        <a href="<?=$_submenu_info['url'];?>"><?=$_submenu_info['title'];?></a>
-                    </li>
-                <?php endforeach;;?>
-            </ul>
-        </div>
-    </div>
+
 
     <div class="widget">
         <h4 class="title">电子书籍</h4>

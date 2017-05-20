@@ -17,6 +17,8 @@ return [
         "cdn_pic3" => "http://cdn.pic3.yunetidc.com",
         "m"  => "http://m.vincentguo.cn",
         "cookie" => ".vincentguo.cn",
+		"awephp" => "http://awephp.54php.cn",
+		"book" => "http://book.54php.cn",
     ],
     "author" => [
         "nickname" => "编程浪子",

@@ -19,8 +19,10 @@ StaticService::includeStaticJs("/prettify/prettify.js",\blog\assets\AppAsset::cl
 
 StaticService::includeAppCssStatic("/css/web/default/info.css",\blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/web/default/info.js", \blog\assets\AppAsset::className());
-StaticService::includeAppJsStatic("/js/duoshuo.js", \blog\assets\AppAsset::className());
+StaticService::includeAppJsStatic("https://changyan.sohu.com/upload/changyan.js", \blog\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/comment.js", \blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964", \blog\assets\AppAsset::className());
+
 ?>
 <main class="col-md-8 main-content">
     <article class="post tag-zhuti tag-static-page tag-customize-page">
@@ -81,12 +83,11 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
         <?php endif; ?>
         <footer class="post-footer clearfix">
             <div class="pull-left">
-                <img title="支付宝赞助" src="<?=GlobalUrlService::buildStaticUrl("/images/pay/pay.jpg");?>" style="max-width: 500px;" height="300">
+                <img title="支付宝赞助" src="<?=GlobalUrlService::buildStaticUrl("/images/pay/pay.jpg");?>" style="max-width: 700px;" height="300">
             </div>
         </footer>
         <!-- 多说评论框 start -->
-        <div class="ds-thread" data-thread-key="<?= $info['id']; ?>" data-title="<?= $info['title']; ?>"
-             data-url="<?= $info['url']; ?>"></div>
+        <div id="SOHUCS" sid="<?=$info['id'];?>"></div>
         <!-- 多说评论框 end -->
     </article>
 
@@ -106,18 +107,3 @@ StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964"
 
 </main>
         <?= Yii::$app->controller->renderPartial("/public/blog_side",[ "recommend_blogs" => $recommend_blogs,"qr_text" => GlobalUrlService::buildWapUrl("/default/info",[  'id' => $info['id'] ]) ]); ?>
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    var duoshuoQuery = {short_name: "guowei"};
-    (function () {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';
-        ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->

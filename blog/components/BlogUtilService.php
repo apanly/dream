@@ -26,6 +26,10 @@ class BlogUtilService {
 				'title'    => '项目',
 				'sub_menu' => [
 					[
+						'title' => 'Yii2打造后台+微信全栈图书商城',
+						'url'   => GlobalUrlService::buildBookUrl("/")
+					],
+					[
 						'title' => '二维码登录',
 						'url'   => UrlService::buildUrl("/default/info", ['id' => 21])
 					],

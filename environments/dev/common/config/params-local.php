@@ -16,6 +16,8 @@ return [
         "cdn_pic3" => "http://pic3.dr.local.com",
         "m" => "http://m.dr.local.com",
         "cookie" => ".dr.local.com",
+		"awephp" => "http://awephp.dr.test",
+		"book" => "http://book.imooc.test",
     ],
     "author" => [
         "nickname" => "编程浪子",
