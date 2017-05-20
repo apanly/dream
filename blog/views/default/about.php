@@ -2,8 +2,7 @@
 use \common\service\GlobalUrlService;
 $wx_urls = [
     "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
-    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
-    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+    "coderonin" => GlobalUrlService::buildStaticUrl("/images/weixin/coderonin.jpg")
 ];
 ?>
 <main class="col-md-12 main-content">
@@ -66,17 +65,11 @@ $wx_urls = [
                     </ul>
                 </li>
                 <li>
-                    编程浪子的故事（服务号）
+                    编程浪子走四方
                     <ul>
                         <li>
-                            <img title="编程浪子的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
+                            <img title="编程浪子走四方:CodeRonin" src="<?=$wx_urls['coderonin'];?>" width="250" height="250">
                         </li>
-                    </ul>
-                </li>
-                <li style="display: none;">
-                    狂神星域（订阅号）
-                    <ul>
-                        <li><img title="狂神星域:mystarzone" src="<?=$wx_urls['starzone'];?>"></li>
                     </ul>
                 </li>
             </ul>

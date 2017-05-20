@@ -4,8 +4,7 @@ use \common\service\GlobalUrlService;
 use \blog\components\UrlService;
 $wx_urls = [
     "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
-    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
-    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+    "coderonin" => GlobalUrlService::buildStaticUrl("/images/weixin/coderonin.jpg")
 ];
 $tags = CacheHelperService::getFrontCache("tag");
 ?>
@@ -52,7 +51,7 @@ $tags = CacheHelperService::getFrontCache("tag");
     <div class="widget">
         <h4 class="title">微信服务号</h4>
         <div class="content wechat">
-            <img title="编程浪子的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
+            <img title="编程浪子走四方:CodeRonin" src="<?=$wx_urls['coderonin'];?>" width="250" height="250">
         </div>
     </div>
 </aside>
