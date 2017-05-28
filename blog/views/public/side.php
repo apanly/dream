@@ -5,6 +5,7 @@ use \common\service\GlobalUrlService;
 $wx_urls = [
 	"my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
 	"imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
+	"coderonin" => GlobalUrlService::buildStaticUrl("/images/weixin/coderonin.jpg"),
 	"starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
 ];
 
@@ -26,7 +27,7 @@ $project_list = $menu_list['project'];
         </div>
         <div class="content" style="margin-top: 10px;">
             <p>QQ群：325264502 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=d7ed56eea3e6e0047db0420404dd0874c5c3d37e30ee40ab7bb6a5a2fb77dc72"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="编程浪子小天地" title="编程浪子小天地"></a> </p>
-            <p>微信公众号：<a  href="<?=\common\service\GlobalUrlService::buildNullUrl();?>" data-toggle="modal" data-target="#wechat_service_qrcode">imguowei_888（点我扫码）</a></p>
+            <p>微信公众号：<a  href="<?=\common\service\GlobalUrlService::buildNullUrl();?>" data-toggle="modal" data-target="#wechat_service_qrcode">CodeRonin（点我扫码）</a></p>
         </div>
     </div>
 
@@ -82,7 +83,7 @@ $project_list = $menu_list['project'];
                 <h5 class="modal-title" id="myModalLabel">公众号二维码</h5>
             </div>
             <div class="modal-body">
-                <img title="编程浪子的故事:imguowei_888" src="<?=$wx_urls['imguowei'];?>">
+                <img title="编程浪子走四方:CodeRonin" src="<?=$wx_urls['coderonin'];?>" style="width:270px;height:270px;">
             </div>
         </div>
     </div>
