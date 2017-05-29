@@ -7,8 +7,7 @@ StaticService::includeAppJsStatic("/js/wap/my/index.js", \blog\assets\WapAsset::
 
 $wx_urls = [
     "my" => GlobalUrlService::buildStaticUrl("/images/weixin/my.jpg"),
-    "imguowei" => GlobalUrlService::buildStaticUrl("/images/weixin/imguowei_888.jpg"),
-    "starzone" => GlobalUrlService::buildStaticUrl("/images/weixin/mystarzone.jpg"),
+    "coderonin" => GlobalUrlService::buildStaticUrl("/images/weixin/coderonin.jpg"),
 ];
 ?>
 
@@ -156,7 +155,7 @@ $wx_urls = [
             </li>
             <li class="am-g am-list-item-dated">
                 <a href="javascript:void(0);" class="am-list-item-hd ">
-                    微信服务号：imguowei_888
+                    微信服务号：CodeRonin
                 </a>
             </li>
             <li class="am-g am-list-item-dated">
@@ -176,6 +175,6 @@ $wx_urls = [
 <figure data-am-widget="figure" class="am am-figure am-figure-default">
     <img src="<?=$wx_urls["my"];?>" alt="个人微信号：apanly"/>
 
-    <img src="<?=$wx_urls["imguowei"];?>" alt="微信服务号：imguowei_888"/>
+    <img src="<?=$wx_urls["coderonin"];?>" alt="微信服务号：CodeRonin" style="height: 250px;width:250px;"/>
 </figure>
 
