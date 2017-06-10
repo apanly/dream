@@ -363,6 +363,12 @@ class BlogUtilService {
 				"desc" => "新房爬虫，及时知道房价变动，虽然房价很贵，但是实话告诉你，房价还在涨"
 			],
 			[
+				'title' => '编程浪子梦博客',
+				'url'   => GlobalUrlService::buildBlogUrl("/"),
+				'cover' => "http://cdn.pic1.54php.cn/20170611/0fe21515c51c8d61d62a5308ec49b43c.jpg?imageView/2/w/300",
+				"desc" => "梦想谁都有，我就是想通过这个博客和更多的人结交朋友"
+			],
+			[
 				'title' => '二维码登录',
 				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 21]),
 				"cover" => "http://cdn.pic1.54php.cn/20151002/20151002001803_897420a8.jpg?imageView/2/w/300",
@@ -418,7 +424,13 @@ class BlogUtilService {
 				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 50 ]),
 				"cover" => "http://cdn.pic1.54php.cn/20151017/e58d1fec47f42f6e4b46ed2dfc1c6ba4.jpg?imageView/2/w/300",
 				"desc" => "图书馆都见过，程序猿打招自己的高逼格电子图书馆"
-			]
+			],
+			[
+				'title' => '小工具集合',
+				'url'   => GlobalUrlService::buildGameUrl("/tools/index"),
+				"cover" => "http://cdn.pic1.54php.cn/20170611/a121207a7554198b81f89e4d0ac1a184.jpg?imageView/2/w/300",
+				"desc" => "个人写了几个常用小工具，密码生成器、JSON格式化、字符长度"
+			],
 		];
 
 		return $menu;
