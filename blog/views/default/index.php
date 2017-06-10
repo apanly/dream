@@ -2,6 +2,7 @@
 use \yii\helpers\Url;
 use \blog\components\StaticService;
 use \blog\components\UrlService;
+use \common\service\GlobalUrlService;
 
 StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAsset::className());
 ?>
@@ -21,7 +22,7 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
                     <a class="pull-left" href="<?= UrlService::buildUrl("/default/index", ["type" => 3]); ?>">原创文章</a>
                 </div>
                 <div class="col-md-3">
-                    <a class="pull-left" href="<?= UrlService::buildUrl("/oauth/login"); ?>">QQ、微博、Github登录功能</a>
+                    <a class="pull-left" style="font-size: 20px;color: green;" href="<?= GlobalUrlService::buildDemoUrl("/"); ?>">个人演示系统</a>
                 </div>
                 <div class="col-md-4">
                     <?php foreach ($hot_kws as $_kw): ?>

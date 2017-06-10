@@ -23,46 +23,8 @@ class BlogUtilService {
 				'url'   => GlobalUrlService::buildBlogUrl("/default/donation")
 			],
 			'project'   => [
-				'title'    => '项目',
-				'sub_menu' => [
-					[
-						'title' => 'Yii2打造后台+微信全栈图书商城',
-						'url'   => GlobalUrlService::buildBookUrl("/")
-					],
-					[
-						'title' => '二维码登录',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 21])
-					],
-					[
-						'title' => '微信墙',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 132])
-					],
-					[
-						'title' => 'QQ、微博、Github登录',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 191 ])
-					],
-					[
-						'title' => '私人github',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 96])
-					],
-					[
-						'title' => 'QQ音乐',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 80])
-					],
-					[
-						'title' => 'metaweblog',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 91])
-					],[
-						'title' => 'H5拍照上传',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 150])
-					],[
-						'title' => '条形码和二维码',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 152])
-					],[
-						'title' => '【运维工具】Git代码发布系统',
-						'url'   => UrlService::buildUrl("/default/info", ['id' => 151])
-					]
-				]
+				'title'    => '演示系统',
+				'url'   => GlobalUrlService::buildDemoUrl("/")
 			],
 			'tools'     => [
 				'title'    => '小工具',
@@ -121,6 +83,13 @@ class BlogUtilService {
 	public static function getChangeLog(){
 
 		$list = [
+			[
+				'date' => '2017-06-10',
+				'title' => '加入个人演示系统',
+				'content' => '<ol>
+<li>演示系统主要展示个人的一些项目</li>
+</ol>'
+			],
 			[
 				'date' => '2016-12-21',
 				'title' => '加入数据库备份功能',
@@ -366,5 +335,93 @@ class BlogUtilService {
 		return $list;
 	}
 
+	public static function getProjectList(){
+		$menu = [
+			[
+				'title' => 'Yii2打造后台+微信全栈图书商城',
+				'url'   => GlobalUrlService::buildBookUrl("/"),
+				"cover" => "http://cdn.pic1.54php.cn/20170610/befdb7b8578dcb675c24288d6a505348.jpg?imageView/2/w/300",
+				'desc'  => '基于微信服务号的图书商城,包含支付系统、消息模板、二维码的渠道、自定义菜单、微信授权登录、商业统计、手机验证码',
+				"pay" => true
+			],
+			[
+				'title' => 'RBAC打造通用web管理权限',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", [ 'id' => 42 ]),
+				'cover' => "http://cdn.pic1.54php.cn/20170610/13a5e6693e3de0a6319a7edc57c826ed.jpg?imageView/2/w/300",
+				'desc'  => 'RBAC是商业系统中最常见的权限管理技术之一。RBAC是一种思想，任何编程语言都可以实现，其成熟简单的控制思想 越来越受广大开发人员喜欢'
+			],
+			[
+				'title' => 'vagrant打造跨平台可移动的开发环境',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", [ 'id' => 26 ]),
+				'cover' => "http://cdn.pic1.54php.cn/20170610/a4f4ddccfd3201ee87e139be118da8dd.jpg?imageView/2/w/300",
+				"desc" => "Vagrant目前是国内互联网公司应用最多的内部开发环境工具。Vagrant是我们开发者的福音，使我们完全摆脱了重复配置环境的处境"
+			],
+			[
+				'title' => '房价变动及时知道',
+				'url'   => GlobalUrlService::buildScrapyUrl("/"),
+				'cover' => "http://cdn.pic1.54php.cn/20170610/4c0b12fa607d70ec5427fc4bae97cb13.jpg?imageView/2/w/300",
+				"desc" => "新房爬虫，及时知道房价变动，虽然房价很贵，但是实话告诉你，房价还在涨"
+			],
+			[
+				'title' => '二维码登录',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 21]),
+				"cover" => "http://cdn.pic1.54php.cn/20151002/20151002001803_897420a8.jpg?imageView/2/w/300",
+				"desc" => "常见的扫描登录的实现原理讲解，让你也可以实现高大上的扫描登录"
+			],
+			[
+				'title' => '微信墙',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 132]),
+				"cover" => "http://cdn.pic1.54php.cn/20160616/4b381f1b8b9b669092184f001a11fd97.jpg?imageView/2/w/300",
+				"desc" => "传统墙与微信的结合，为活动助兴"
+			],
+			[
+				'title' => 'QQ、微博、Github登录',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 191 ]),
+				"cover" => "http://cdn.pic1.54php.cn/20170103/daa7636b15f14de41c14c5dcb7581e6a.jpg?imageView/2/w/300",
+				"desc" => "通用Oauth系统设计，以QQ，微博为例，方便任何第三方系统接入"
+			],
+			[
+				'title' => '私人github',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 96]),
+				"cover" => "http://cdn.pic1.54php.cn/20160116/044f386c88e7a395e7b9430c8b344874.jpg?imageView/2/w/300",
+				"desc" => "如果你严肃对待编程，就必定会使用\"版本管理系统\"（Version Control System）。眼下最流行的\"版本管理系统\"，非Git莫属"
+			],
+			[
+				'title' => 'QQ音乐',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 80]),
+				'cover' => 'http://cdn.pic1.54php.cn/20151226/b1c2429a76041a67a476f02000b58e07.jpg?imageView/2/w/300',
+				"desc" => "不会爬虫，怎么敢说自己是程序员了，要爬就爬BAT，以腾讯QQ微源，打造自己的QQ音乐平台"
+			],
+			[
+				'title' => 'metaweblog',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 91]),
+				"cover" => "http://cdn.pic1.54php.cn/20160110/d0783b7ecfc5c6dcc55efc4cc4ab123c.jpg?imageView/2/w/300",
+				"desc" => "还在人肉同步博客嘛，outman 了，试试这个，绝对让你耳目一新"
+			],[
+				'title' => 'H5拍照上传',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 150]),
+				"cover" => "http://cdn.pic1.54php.cn/20160802/70b60ba962ccb59927e1f2790022c878.jpg?imageView/2/w/300",
+				"desc" => "H5越来越流行了，在不试试你就Out了，一起来玩玩拍照"
+			],[
+				'title' => '条形码和二维码',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 152]),
+				"cover" => "http://cdn.pic1.54php.cn/20160808/6276e49a59f8e3cbb0b6f8401cee59d3.jpg?imageView/2/w/300",
+				"desc" => "PHP如何生成二维码，Let's Go"
+			],[
+				'title' => '【运维工具】Git代码发布系统',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 151]),
+				"cover" => "http://cdn.pic1.54php.cn/20161121/48514e6db097ea7bc9cb88aece2ad032.png?imageView/2/w/300",
+				"desc" => "自动化是运维团队追求的终极目标，发布系统必将是自动化的第一炮"
+			],
+			[
+				'title' => '高逼格图书馆',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 50 ]),
+				"cover" => "http://cdn.pic1.54php.cn/20151017/e58d1fec47f42f6e4b46ed2dfc1c6ba4.jpg?imageView/2/w/300",
+				"desc" => "图书馆都见过，程序猿打招自己的高逼格电子图书馆"
+			]
+		];
+
+		return $menu;
+	}
 
 } 

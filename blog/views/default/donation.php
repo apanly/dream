@@ -16,6 +16,13 @@ use \blog\components\UrlService;
 			</thead>
 			<tbody>
                 <tr>
+                    <td>匿名</td>
+                    <td>6.60</td>
+                    <td>2017-06-10</td>
+                    <td>微信扫码</td>
+                    <td class="text-left">为知识付费，文章地址:<a href="https://mp.weixin.qq.com/s?__biz=MzU0MDAwNDY2OQ==&tempkey=CT2wbHbNFxMRUPXByDD1wBufhVth6bm2ZR3%2BHs%2FLVU9%2FUJsFrxamncjYClRjuYgdUu3HmBrjebIRtjfRmUjpaIt7yYE5qp2embYItLZrGtaGam8VI%2F56r0odSXLnEmwHX9V9ojLDtdn5%2FScVmJwfZA%3D%3D&chksm=7b3e995a4c49104c8ff441e5a2ad2443847f5ccf65a1cdd0ba05ffae1f73ed57ece8b02ab6ee#rd" target="_blank">大神，我有个问题，帮我看看</a></td>
+                </tr>
+                <tr>
                     <td>德鸿</td>
                     <td>66.00</td>
                     <td>2017-06-06</td>

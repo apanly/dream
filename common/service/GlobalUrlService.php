@@ -235,6 +235,15 @@ class GlobalUrlService {
         return $domain_blog.$path;
     }
 
+	public static function buildDemoUrl($uri, $params = []){
+		$path = Url::toRoute(array_merge(["/demo" . $uri], $params));
+		$domain_blog = \Yii::$app->params['domains']['blog'];
+		if( UtilHelper::is_SSL() ){
+			$domain_blog = str_replace("http://","https://",$domain_blog);
+		}
+		return $domain_blog.$path;
+	}
+
     public static function buildMateUrl($uri, $params = []){
         $path = Url::toRoute(array_merge(["/mate" . $uri], $params));
         $domain_blog = \Yii::$app->params['domains']['blog'];
@@ -247,6 +256,24 @@ class GlobalUrlService {
 	public static function buildBookUrl($uri, $params = []){
 		$path = Url::toRoute(array_merge([ $uri ], $params ) );
 		$domain_blog = \Yii::$app->params['domains']['book'];
+		if( UtilHelper::is_SSL() ){
+			$domain_blog = str_replace("http://","https://",$domain_blog);
+		}
+		return $domain_blog.$path;
+	}
+
+	public static function buildRbacUrl($uri, $params = []){
+		$path = Url::toRoute(array_merge([ $uri ], $params ) );
+		$domain_blog = \Yii::$app->params['domains']['rbac'];
+		if( UtilHelper::is_SSL() ){
+			$domain_blog = str_replace("http://","https://",$domain_blog);
+		}
+		return $domain_blog.$path;
+	}
+
+	public static function buildScrapyUrl($uri, $params = []){
+		$path = Url::toRoute(array_merge([ $uri ], $params ) );
+		$domain_blog = \Yii::$app->params['domains']['scrapy'];
 		if( UtilHelper::is_SSL() ){
 			$domain_blog = str_replace("http://","https://",$domain_blog);
 		}

@@ -11,8 +11,7 @@ $wx_urls = [
 
 
 $tags = CacheHelperService::getFrontCache("tag");
-$menu_list = \blog\components\BlogUtilService::blogMenu();
-$project_list = $menu_list['project'];
+$project_list =  \blog\components\BlogUtilService::getProjectList();
 ?>
 <aside class="col-md-4 sidebar">
     <div class="widget">
@@ -32,10 +31,10 @@ $project_list = $menu_list['project'];
     </div>
 
     <div class="widget">
-        <h4 class="title"><?=$project_list['title'];?>Demo</h4>
+        <h4 class="title">项目Demo</h4>
         <div class="content e-book">
             <ul class="list-group">
-				<?php foreach($project_list['sub_menu'] as $_submenu_key => $_submenu_info ):?>
+				<?php foreach($project_list as  $_submenu_info ):?>
                     <li class="list-group-item">
                         <a href="<?=$_submenu_info['url'];?>"><?=$_submenu_info['title'];?></a>
                     </li>
@@ -75,16 +74,5 @@ $project_list = $menu_list['project'];
     </div>
 </aside>
 
-<div class="modal fade" id="wechat_service_qrcode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h5 class="modal-title" id="myModalLabel">公众号二维码</h5>
-            </div>
-            <div class="modal-body">
-                <img title="编程浪子走四方:CodeRonin" src="<?=$wx_urls['coderonin'];?>" style="width:270px;height:270px;">
-            </div>
-        </div>
-    </div>
-</div>
+<?php echo \Yii::$app->view->renderFile("@blog/views/public/wechat.php");?>
+
