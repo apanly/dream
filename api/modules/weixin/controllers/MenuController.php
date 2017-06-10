@@ -7,6 +7,7 @@ use api\modules\weixin\controllers\WxrequestController;
 
 
 use blog\components\UrlService;
+use common\service\GlobalUrlService;
 use Yii;
 
 class MenuController extends BaseController{
@@ -18,72 +19,69 @@ class MenuController extends BaseController{
         }
 
         $from  = $this->getSource();
-        $domains = Yii::$app->params['domains'];
-        $domain_m = $domains['m'];
-        $domain_blog = $domains['blog'];
 
         $menu  = [
             "button" => [
-                [
-                    "name"       => "博客",
-                    "sub_button" => [
-                        [
-                            "type" => "click",
-                            "name" => "原创文章",
-                            "key"  => "blog_original"
-                        ],
-                        [
-                            "name" => "文章列表",
-                            "type" => "view",
-                            "url"  => UrlService::buildWapUrl("/default/index",["from"=>$from])
-                        ],
-                        [
-                            "type" => "view",
-                            "name" => "图书馆",
-                            "url"  => UrlService::buildWapUrl("/library/index",["from"=>$from])
-                        ],
-                        [
-                            "name" => "富媒体",
-                            "type" => "view",
-                            "url"  => UrlService::buildWapUrl("/richmedia/index",["from"=>$from])
-                        ],
-                    ]
-                ],
-                [
-                    "name"       => "小玩意",
-                    "sub_button" => [
-                        [
-                            "type" => "click",
-                            "name" => "点歌",
-                            "key"  => "ktv"
-                        ],
-                        [
-                            "type" => "view",
-                            "name" => "密码生成",
-                            "url"  => UrlService::buildGameUrl("/tools/index",['from' => $from])
-                        ],
-                        [
-                            "type" => "view",
-                            "name" => "微信墙",
-                            "url"  => UrlService::buildWapUrl("/wechat_wall/index",['from' => $from])
-                        ]
-                    ]
-                ],
-                [
-                    "name"       => "关于",
-                    "sub_button" => [
-                        [
-                            "type" => "view",
-                            "name" => "关于",
-                            "url"  => UrlService::buildWapUrl("/my/about",["from"=>$from])
-                        ],
-                        [
-                            "type" => "view",
-                            "name" => "赞助",
-                            "url"  => UrlService::buildWapUrl("/my/about",["from"=>$from,"#" => "contact"])
-                        ]
-                    ]
-                ]
+				[
+					"name"       => "演示系统",
+					"sub_button" => [
+						[
+							"name" => "商城系统",
+							"type" => "view",
+							"url"  => GlobalUrlService::buildBookUrl("/")
+						],
+						[
+							"name" => "博客系统",
+							"type" => "view",
+							"url"  => GlobalUrlService::buildWapUrl("/default/index",[ "from" => "imguowei_888" ])
+						],
+						[
+							"name" => "小工具",
+							"type" => "view",
+							"url"  => GlobalUrlService::buildGameUrl("/tools/index",[ "from" => "imguowei_888" ])
+						],
+						[
+							"name" => "更多系统",
+							"type" => "view",
+							"url"  => GlobalUrlService::buildDemoUrl("/",[ "from" => "imguowei_888" ])
+						],
+					]
+				],
+				[
+					"name"       => "个人博客",
+					"sub_button" => [
+						[
+							"name" => "文章列表",
+							"type" => "view",
+							"url"  => GlobalUrlService::buildWapUrl("/default/index",[ "from" => "imguowei_888" ])
+						],
+						[
+							"type" => "view",
+							"name" => "图书馆",
+							"url"  => GlobalUrlService::buildWapUrl("/library/index",[ "from" => "imguowei_888" ])
+						]
+					]
+				],
+				[
+					"name" => "与我联系",
+					"sub_button" => [
+						[
+							"name" => "作者介绍",
+							"type" => "view",
+							"url"  => GlobalUrlService::buildWapUrl("/my/about",[ "from" => "imguowei_888" ])
+						],
+						[
+							"type" => "view",
+							"name" => "赞助浪子",
+							"url"  => GlobalUrlService::buildWapUrl("/my/about",[ "from"=> "imguowei_888","#" => "contact"])
+						],
+						[
+							"type" => "view",
+							"name" => "浪子鸡汤",
+							"url"  => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MDAwNDY2OQ==&scene=124#wechat_redirect"
+						]
+					]
+				]
             ]
         ];
 
@@ -91,6 +89,7 @@ class MenuController extends BaseController{
         if( !$access_token ){
             $access_token = WxrequestController::getAccessToken( true );
         }
+
         return WxrequestController::send("menu/create?access_token=" . $access_token, json_encode($menu,JSON_UNESCAPED_UNICODE), 'POST');
     }
 
