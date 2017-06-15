@@ -12,7 +12,7 @@ var demo_scan_ops = {
     },
     login: function () {
         $.ajax({
-            url: '/demo/dologin',
+            url: '/demo1/dologin',
             type: 'POST',
             dataType: 'json',
             success: function (res) {
