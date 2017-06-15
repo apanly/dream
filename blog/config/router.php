@@ -14,8 +14,8 @@ return [
             'route'   => '/<module>/<controller>/info',
             'suffix'  => '.html'
         ],
-        '/<module:(wap|game|weixin|mate)>/<controller:\w+>/<action:\w+>/<id:\d+>' =>'<module>/<controller>/<action>',
-        '/<module:(wap|game|weixin|mate)>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+        '/<module:(wap|game|weixin|mate|demo)>/<controller:\w+>/<action:\w+>/<id:\d+>' =>'<module>/<controller>/<action>',
+        '/<module:(wap|game|weixin|mate|demo)>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
         '/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
         '/<controller:\w+>/<action:\w+>'  => '<controller>/<action>',
         '/'  => 'default/index',
