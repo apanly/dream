@@ -17,7 +17,7 @@ class BaseController extends BaseBlogController{
         "log/add",
         "public/iframe",
         "code/run",
-        "demo/login",
+        "demo1/login",
         "default/change-log",
         "default/donation",
         "default/about",
