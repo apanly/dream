@@ -14,6 +14,7 @@ use Yii;
  * @property integer $type
  * @property integer $original
  * @property integer $hot
+ * @property integer $soul
  * @property string $content
  * @property string $tags
  * @property string $image_url
@@ -47,7 +48,7 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['uid', 'type', 'original', 'hot', 'status', 'comment_count', 'view_count'], 'integer'],
+            [['uid', 'type', 'original', 'hot', 'soul', 'status', 'comment_count', 'view_count'], 'integer'],
             [['content'], 'required'],
             [['content'], 'string'],
             [['updated_time', 'created_time'], 'safe'],
@@ -70,6 +71,7 @@ class Posts extends \yii\db\ActiveRecord
             'type' => 'Type',
             'original' => 'Original',
             'hot' => 'Hot',
+            'soul' => 'Soul',
             'content' => 'Content',
             'tags' => 'Tags',
             'image_url' => 'Image Url',

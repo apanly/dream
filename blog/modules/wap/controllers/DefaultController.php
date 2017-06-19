@@ -89,13 +89,15 @@ class DefaultController extends BaseController
 
 		switch ( $type ){
 			case 2:
+				$query->andWhere([ 'soul' => 0 ]);
 				$query->orderBy( [ 'view_count' => SORT_DESC ] );
 				break;
 			case 3:
-				$query->andWhere(['original' => 1]);
+				$query->andWhere([ 'original' => 1, 'soul' => 0 ]);
 				$query->orderBy( [ 'id' => SORT_DESC ] );
 				break;
 			default:
+				$query->andWhere([ 'soul' => 0 ]);
 				$query->orderBy( [ 'id' => SORT_DESC ] );
 				break;
 		}

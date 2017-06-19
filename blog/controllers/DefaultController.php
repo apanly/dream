@@ -23,7 +23,7 @@ class DefaultController extends BaseController{
 
     public function actionIndex(){
         $type = intval($this->get("type", 1));
-        $type = in_array($type, [1, 2, 3]) ? $type : 1;
+        $type = in_array($type, [1, 2, 3,4]) ? $type : 1;
 
         $p = intval($this->get("p", 1));
         if (!$p) {
@@ -36,16 +36,21 @@ class DefaultController extends BaseController{
 
 
         $query = Posts::find()->where(['status' => 1]);
-
 		switch ( $type ){
 			case 2:
+				$query->andWhere([ 'soul' => 0 ]);
 				$query->orderBy( [ 'view_count' => SORT_DESC ] );
 				break;
 			case 3:
-				$query->andWhere(['original' => 1]);
+				$query->andWhere([ 'original' => 1,'soul' => 0]);
+				$query->orderBy( [ 'id' => SORT_DESC ] );
+				break;
+			case 4:
+				$query->andWhere([ 'soul' => 1 ]);
 				$query->orderBy( [ 'id' => SORT_DESC ] );
 				break;
 			default:
+				$query->andWhere([ 'soul' => 0 ]);
 				$query->orderBy( [ 'id' => SORT_DESC ] );
 				break;
 		}

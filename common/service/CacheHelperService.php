@@ -79,7 +79,7 @@ class CacheHelperService {
             }
 
             $post_latest = Posts::find()
-                ->where(['status' => 1])
+                ->where([ 'status' => 1, 'soul' => 0 ])
 				->orderBy([ 'id' => SORT_DESC ])
                 ->limit(10)
                 ->all();
