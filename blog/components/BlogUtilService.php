@@ -387,6 +387,12 @@ class BlogUtilService {
 				"desc" => "通用Oauth系统设计，以QQ，微博为例，方便任何第三方系统接入"
 			],
 			[
+				'title' => '边玩游戏边学Git',
+				'url'   => "http://wiki.54php.cn/git/",
+				"cover" => "http://cdn.pic1.54php.cn/20170620/0ce648828260f2b3a0a9908000d13ff7.jpg?imageView/2/w/300",
+				"desc" => "你对 Git 感兴趣吗？那么算是来对地方了！ “Learning Git Branching” 可以说是目前为止最好的教程了，在沙盒里你能执行相应的命令，还能看到每个命令的执行情况"
+			],
+			[
 				'title' => '私人github',
 				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 96]),
 				"cover" => "http://cdn.pic1.54php.cn/20160116/044f386c88e7a395e7b9430c8b344874.jpg?imageView/2/w/300",
