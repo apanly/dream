@@ -107,7 +107,12 @@ class BackupController extends  BaseController {
 			$crontab_path,
 			'/etc/nginx/conf.d/m.conf',
 			'/etc/nginx/conf.d/pic.conf',
-			'/etc/nginx/conf.d/www.conf'
+			'/etc/nginx/conf.d/www.conf',
+			'/etc/nginx/conf.d/book.conf',
+			'/etc/nginx/conf.d/rbac.conf',
+			'/etc/nginx/conf.d/scrapy.conf',
+			'/etc/nginx/conf.d/vincentguo.conf',
+			'/etc/nginx/conf.d/wiki.conf'
 		];
 
 		$cp_path = array_merge( $config_path,$extra_path );
