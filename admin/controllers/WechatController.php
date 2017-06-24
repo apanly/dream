@@ -4,19 +4,9 @@ namespace admin\controllers;
 
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
-use common\models\applog\AccessLogs;
-use common\models\applog\AdCspReport;
-use common\models\applog\AppLogs;
-use common\models\stat\StatDailyAccessSource;
-use common\models\stat\StatDailyBrowser;
-use common\models\stat\StatDailyOs;
-use common\models\stat\StatDailyUuid;
 use common\models\weixin\OauthMember;
-use common\models\weixin\WxHistory;
 use common\models\weixin\WxMsgHistory;
 use common\service\GlobalUrlService;
-use common\service\ipip\IPService;
-use Yii;
 
 
 class WechatController extends BaseController{
@@ -42,18 +32,13 @@ class WechatController extends BaseController{
 
 		$data = [];
 		if( $list ){
-			$user_mapping = DataHelper::getDicByRelateID( $list,OauthMember::className(),"from_openid","id",["nickname","avatar"]);
+			$user_mapping = DataHelper::getDicByRelateID( $list,OauthMember::className(),"from_openid","openid",["nickname","avatar"]);
 			foreach( $list as $_item ){
-				if( !isset( $user_mapping[ $_item['from_openid'] ] ) ){
-					continue;
-				}
-
-				$tmp_user_info = $user_mapping[ $_item['from_openid'] ];
-
+				$tmp_user_info = isset( $user_mapping[ $_item['from_openid'] ] )?$user_mapping[ $_item['from_openid'] ]:'';
 				$data[] = [
 					'id' => $_item['id'],
-					"nickname" => DataHelper::encode( $tmp_user_info['nickname'] ),
-					"avatar" => $tmp_user_info['avatar']?GlobalUrlService::buildPicStaticUrl("avatar","/{$tmp_user_info['avatar']}",[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+					"nickname" => $tmp_user_info?DataHelper::encode( $tmp_user_info['nickname'] ):'',
+					"avatar" => $tmp_user_info?GlobalUrlService::buildPicStaticUrl("avatar","/{$tmp_user_info['avatar']}",[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
 					'type' => $_item['type'],
 					'content' => $_item['content'],
 					'text' => $_item['text'],

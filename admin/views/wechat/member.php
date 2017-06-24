@@ -52,8 +52,7 @@ use \admin\components\StaticService;
 			<?php echo \Yii::$app->view->renderFile("@admin/views/common/pagination_v1.php",[
 				'pages' => $page_info,
 				'url' => '/wechat/member',
-				'search_conditions' => $search_conditions,
-				'current_page_count' => count($data)
+				'search_conditions' => $search_conditions
 			]);?>
         </div>
     </div>

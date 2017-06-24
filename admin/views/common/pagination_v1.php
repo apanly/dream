@@ -2,7 +2,7 @@
 use admin\components\AdminUrlService;
 ?>
 <div class="pagination-wrap">
-	<span class="pagination-count">共<?=$current_page_count;?>条记录｜每页<?=$pages["page_size"];?>条</span>
+	<span class="pagination-count">共<?=$pages['total_count'];?>条记录｜每页<?=$pages["page_size"];?>条</span>
 	<ul class="pagination">
 		<?php if($pages['previous']): ?>
 		<li class="head">

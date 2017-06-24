@@ -17,18 +17,18 @@ use \admin\components\StaticService;
 				<thead>
 				<tr>
 					<th width="50">序号</th>
-					<th width="200">头像</th>
-					<th width="200">名称</th>
+					<th width="100">头像</th>
+					<th width="100">名称</th>
 					<th width="50">类型</th>
 					<th>内容</th>
 					<th width="300">原生信息</th>
-					<th width="300">操作</th>
+					<th width="80">操作</th>
 				</tr>
 				</thead>
 				<tbody>
 				<?php if($data):?>
 					<?php foreach($data as $_item):?>
-						<tr class="centered">
+						<tr>
 							<td><?=$_item['id'];?></td>
 							<td>
                                 <img class="avatar-small circle" src="<?=$_item['avatar'];?>" />
@@ -61,8 +61,7 @@ use \admin\components\StaticService;
 			<?php echo \Yii::$app->view->renderFile("@admin/views/common/pagination_v1.php",[
 				'pages' => $page_info,
 				'url' => '/wechat/index',
-				'search_conditions' => $search_conditions,
-				'current_page_count' => count($data)
+				'search_conditions' => $search_conditions
 			]);?>
 		</div>
 	</div>
