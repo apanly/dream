@@ -89,11 +89,11 @@ class MessageService extends BaseService {
 			}
         }
 
-        
+
 		if( in_array( $type, [ "text" ] )  && substr($content,0,1) == "#" ){
 			if( $member_info ){
 				$model_message = new WxWallHistory();
-				$model_message->uid = $member_info['id'];
+				$model_message->member_id = $member_info['id'];
 				$model_message->type = 1;
 				$model_message->content = ltrim($content,"#");
 				$model_message->status = 1;
