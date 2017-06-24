@@ -104,7 +104,15 @@ class MsgController extends BaseController{
 			case "#"://微信墙
 				$bind_info = UserOpenidUnionid::findOne( [ 'other_openid' => trim( $dataObj->FromUserName ) ]  );
 				if( $bind_info ){
-					return 'success';
+					$data = [
+						[
+							'title' => '上墙成功',
+							'description' => "点击这里，进入列表查看",
+							'picurl' => GlobalUrlService::buildPic1Static("/20160531/7ba8f923c344a5af480cd76dd358e196.jpg",[ 'w' => 800]),
+							'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/index")
+						]
+					];
+					return ['type' => "rich" ,"data" => $this->getRichXml($data)];
 				}
 				$keyword = "上墙";
 				break;
@@ -293,5 +301,7 @@ EOT;
 		$resData = "欢迎使用". \Yii::$app->params['author']['nickname']."微信墙，操作指引如下\r\n回复 # + 你想说的话\r\n 微信墙列表:".GlobalUrlService::buildWapUrl("/wechat_wall/index");
 		return $resData;
 	}
+
+
 
 }
