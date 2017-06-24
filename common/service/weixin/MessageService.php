@@ -66,7 +66,9 @@ class MessageService extends BaseService {
 			if( $model_member->save( 0 ) ){
 				$member_info = $model_member;
 			}
-			WxQueueListService::addQueue( "info",[ "openid" => $from_openid ] );
+			if( !$member_info['headimgurl'] ){
+				WxQueueListService::addQueue( "info",[ "openid" => $from_openid ] );
+			}
 		}
 
 

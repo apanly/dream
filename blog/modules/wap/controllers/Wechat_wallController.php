@@ -6,7 +6,9 @@ use common\components\DataHelper;
 use common\models\user\User;
 use common\models\user\UserMessageHistory;
 use common\models\user\UserOpenidUnionid;
+use common\models\weixin\OauthMember;
 use common\models\weixin\WxHistory;
+use common\models\weixin\WxWallHistory;
 use common\service\GlobalUrlService;
 
 class Wechat_wallController extends BaseController{
@@ -20,23 +22,20 @@ class Wechat_wallController extends BaseController{
     }
 
     public function actionIndex(){
-        $list = UserMessageHistory::find()
-            ->where(['status' => 1 ])
-            ->orderBy("id desc")
-            ->limit(5)
-            ->all();
+        $list = WxWallHistory::find()
+            ->where([ 'status' => 1 ])->orderBy("id desc")->limit( 30 )->all();
         $data = [];
         if( $list ){
-            $user_mapping = DataHelper::getDicByRelateID($list,User::className(),"uid","uid",["nickname","avatar"]);
+            $user_mapping = DataHelper::getDicByRelateID($list,OauthMember::className(),"member_id","id",["nickname","headimgurl"]);
             foreach( $list as $_item ){
-                if( !isset( $user_mapping[ $_item['uid'] ] ) ){
+                if( !isset( $user_mapping[ $_item['member_id'] ] ) ){
                     continue;
                 }
-                $tmp_user_info = $user_mapping[ $_item['uid'] ];
+                $tmp_user_info = $user_mapping[ $_item['member_id'] ];
                 $data[] = [
                     "id" => $_item['id'],
                     "nickname" => DataHelper::encode( $tmp_user_info['nickname'] ),
-                    "avatar" => $tmp_user_info['avatar']?$tmp_user_info['avatar']:GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+                    "avatar" => $tmp_user_info['headimgurl']?"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$tmp_user_info['headimgurl']}":GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
                     "content" => DataHelper::encode( $_item['content'] ),
                     "created_time" => date("Y-m-d H:i",strtotime($_item['created_time']) )
                 ];
