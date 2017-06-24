@@ -31,6 +31,10 @@ var common_ops = {
             nav_name = "posts";
         }
 
+        if(  pathname.indexOf("/wechat/") > -1 ){
+            nav_name = "wechat";
+        }
+
         if(  pathname.indexOf("/account/") > -1  ){
             nav_name = "account";
         }

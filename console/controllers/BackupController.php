@@ -19,7 +19,7 @@ class BackupController extends  BaseController {
 		$config_mysql = \Yii::$app->components['blog'];
 		$mysql_user = $config_mysql['username'];
 		$mysql_passwd = $config_mysql['password'];
-		$db_names = [ "dream_blog","dream_log" ];
+		$db_names = [ "dream_blog","dream_log","dream_wechat" ];
 		$backup_files = [];
 		$backup_dir = "/data/www/backup/";
 		$date = date("Ymd");

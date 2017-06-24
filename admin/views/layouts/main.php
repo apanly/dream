@@ -41,6 +41,21 @@ $domain_blog = Yii::$app->params['domains']['blog'];
 						<i class="fa fa-pencil fa-lg"></i><span>文章</span>
 					</a>
 				</li>
+                <li class="menu_wechat">
+                    <a href="<?=AdminUrlService::buildUrl("/wechat/index");?>">
+                        <i class="fa fa-wechat fa-lg"></i><span>微信</span>
+                    </a>
+                </li>
+                <li class="menu_stat">
+                    <a href="<?=AdminUrlService::buildUrl("/log/access");?>">
+                        <i class="fa fa-pie-chart fa-lg"></i><span>统计</span>
+                    </a>
+                </li>
+                <li class="menu_ops">
+                    <a href="<?=AdminUrlService::buildUrl("/ops/index");?>">
+                        <i class="fa fa-server fa-lg"></i><span>运维</span>
+                    </a>
+                </li>
 				<li class="menu_account">
 					<a href="<?=AdminUrlService::buildUrl("/account/index");?>">
 						<i class="fa fa-user fa-lg"></i><span>账号</span>
@@ -60,16 +75,7 @@ $domain_blog = Yii::$app->params['domains']['blog'];
 						<i class="fa fa-cloud fa-lg"></i><span>文件</span>
 					</a>
 				</li>
-				<li class="menu_stat">
-					<a href="<?=AdminUrlService::buildUrl("/log/access");?>">
-						<i class="fa fa-pie-chart fa-lg"></i><span>统计</span>
-					</a>
-				</li>
-                <li class="menu_ops">
-                    <a href="<?=AdminUrlService::buildUrl("/ops/index");?>">
-                        <i class="fa fa-server fa-lg"></i><span>运维</span>
-                    </a>
-                </li>
+
 				<li class="menu_girl">
 					<a href="<?=AdminUrlService::buildUrl("/douban/mz");?>">
 						<i class="fa fa-file-photo-o  fa-lg"></i><span>豆瓣</span>
