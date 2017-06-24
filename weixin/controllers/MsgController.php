@@ -222,34 +222,6 @@ EOT;
 		return ['type' => $type ,"data" => $data];
 	}
 
-	private function getOriginalBlog(){
-		$post_list = Posts::find()
-			->where([ 'original' => 1,'status' => 1 ])
-			->orderBy("updated_time desc")
-			->limit(5)
-			->all();
-
-		$list = [];
-		if( $post_list ){
-			$domain_static = \Yii::$app->params['domains']['static'];
-			foreach($post_list as $_item){
-				$tmp_image = "{$domain_static}/wx/".mt_rand(1,7).".jpg";
-				if( $_item['image_url'] ){
-					$tmp_image = $_item['image_url'];
-				}
-				$list[] = [
-					"title" => $_item['title'],
-					"description" => $_item['title'],
-					"picurl" => $tmp_image,
-					"url" => GlobalUrlService::buildWapUrl("/default/info",['id' => $_item['id'] ])
-				];
-			}
-		}
-		$data = $list?$this->getRichXml($list):$this->help();
-		$type = $list?"rich":"text";
-		return ['type' => $type ,"data" => $data];
-	}
-
 
 	private function getRichXml($list){
 		$article_count = count( $list );
@@ -275,11 +247,11 @@ EOT;
 	private function help(){
 		$resData = <<<EOT
 没找到你想要的东西（：\n
+回复“@ + 关键字”搜索歌曲\n
 回复“上墙” 演示微信墙\n
-回复“@关键字”搜索歌曲\n
-回复“#xxx”发送上墙内容\n
+回复“# + 关键字”发送上墙内容\n
 回复“hadoop,https”搜索博文\n
-可访问:m.54.cn\n
+也可点击菜单进入系统\n
 咨询类信息由于工作原因当天晚上统一回复
 EOT;
 		return $resData;

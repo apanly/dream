@@ -2,6 +2,7 @@
 namespace weixin\controllers;
 
 use common\service\GlobalUrlService;
+use common\service\weixin\RequestService;
 use common\service\weixin\WechatConfigService;
 
 class MenuController extends BaseController{

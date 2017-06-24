@@ -84,7 +84,7 @@ class HttpClient  extends  BaseService{
         }
         curl_close($curl);
         $calculate_time_span = microtime(true) - $calculate_time1;
-        $log = \Yii::$app->getRuntimePath().DIRECTORY_SEPARATOR.'curl.log';
+        $log = \Yii::$app->getRuntimePath().DIRECTORY_SEPARATOR."curl_".date("Ymd").".log";
         file_put_contents($log,date('Y-m-d H:i:s')." [ time:{$calculate_time_span} ] url: {$url} \nmethod: {$method} \ndata: ".json_encode($param)." \nresult: {$info} \nerrorno: {$_errno} error: {$_error} \n",FILE_APPEND);
 
         if( $_error ){

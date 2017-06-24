@@ -11,7 +11,12 @@ use Yii;
  * @property string $openid
  * @property string $nickname
  * @property integer $sex
+ * @property string $country
+ * @property string $province
+ * @property string $city
+ * @property string $headimgurl
  * @property string $avatar
+ * @property integer $subscribe
  * @property string $updated_time
  * @property string $created_time
  */
@@ -39,10 +44,10 @@ class OauthMember extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sex'], 'integer'],
+            [['sex', 'subscribe'], 'integer'],
             [['updated_time', 'created_time'], 'safe'],
-            [['openid', 'nickname'], 'string', 'max' => 100],
-            [['avatar'], 'string', 'max' => 200],
+            [['openid', 'nickname', 'country', 'province', 'city'], 'string', 'max' => 100],
+            [['headimgurl', 'avatar'], 'string', 'max' => 300],
             [['openid'], 'unique'],
         ];
     }
@@ -57,7 +62,12 @@ class OauthMember extends \yii\db\ActiveRecord
             'openid' => 'Openid',
             'nickname' => 'Nickname',
             'sex' => 'Sex',
+            'country' => 'Country',
+            'province' => 'Province',
+            'city' => 'City',
+            'headimgurl' => 'Headimgurl',
             'avatar' => 'Avatar',
+            'subscribe' => 'Subscribe',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',
         ];

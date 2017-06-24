@@ -21,7 +21,10 @@ return [
         ],
         'emoticon' => [
             'class' => 'console\modules\emoticon\EmoticonModule'
-        ]
+        ],
+		'weixin' => [
+			'class' => 'console\modules\weixin\WeixinModule',
+		]
     ],
     'components' => [
         'log' => [

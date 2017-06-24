@@ -1,7 +1,7 @@
 <?php
 namespace common\service\weixin;
 use common\components\HttpClient;
-use app\models\oauth\OauthAccessToken;
+use \common\models\weixin\OauthAccessToken;
 use common\service\BaseService;
 
 
