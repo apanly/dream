@@ -30,7 +30,7 @@ use \admin\components\StaticService;
                         <tr>
                             <td><?=$_item['id'];?></td>
                             <td>
-                                <img class="avatar-small circle" src="<?=$_item['avatar'];?>" />
+                                <img class="avatar-1" src="<?=$_item['avatar'];?>" />
                             </td>
                             <td><?=$_item['nickname'];?> </td>
                             <td><?=$_item['sex'];?> </td>
