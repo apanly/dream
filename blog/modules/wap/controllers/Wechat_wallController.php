@@ -35,7 +35,7 @@ class Wechat_wallController extends BaseController{
                 $data[] = [
                     "id" => $_item['id'],
                     "nickname" => DataHelper::encode( $tmp_user_info['nickname'] ),
-                    "avatar" => $tmp_user_info['avatar']?GlobalUrlService::buildPicStaticUrl("avatar",$tmp_user_info['avatar'],[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+                    "avatar" => $tmp_user_info['avatar']?GlobalUrlService::buildPicStaticUrl("avatar","/{$tmp_user_info['avatar']}",[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
                     "content" => DataHelper::encode( $_item['content'] ),
                     "created_time" => date("Y-m-d H:i",strtotime($_item['created_time']) )
                 ];
@@ -68,7 +68,7 @@ class Wechat_wallController extends BaseController{
         $data = [
             "id" => $info['id'],
             "nickname" => DataHelper::encode( $user_info['nickname'] ),
-            "avatar" => $user_info['avatar']?$user_info['avatar']:GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+			"avatar" => $user_info['avatar']?GlobalUrlService::buildPicStaticUrl("avatar","/{$user_info['avatar']}",[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
             "content" => DataHelper::encode( $info['content'] ),
             "created_time" => date("Y-m-d H:i",strtotime($info['created_time']) )
         ];
