@@ -84,6 +84,13 @@ class BlogUtilService {
 
 		$list = [
 			[
+				'date' => '2017-06-24',
+				'title' => '整体架构加入 微信 独立App',
+				'content' => '<ol>
+<li>将 编程浪子走四方 公众号 接入微信独立App</li>
+</ol>'
+			],
+			[
 				'date' => '2017-06-10',
 				'title' => '加入个人演示系统',
 				'content' => '<ol>
