@@ -2,6 +2,7 @@
 namespace common\service\weixin;
 
 use common\models\weixin\MarketQrcode;
+use common\models\weixin\OauthMember;
 use common\models\weixin\QrcodeScanHistory;
 use common\models\weixin\WxMsgHistory;
 use common\service\BaseService;
@@ -66,7 +67,15 @@ class MessageService extends BaseService {
 					$model_scan_history->save( 0 );
 				}
 			}
+
+			//加入到数据表队列
+			$member_info = OauthMember::findOne([ 'openid' => $from_openid ]);
+			if( !$member_info ){
+				WxQueueListService::addQueue( "info",[ "openid" => $from_openid ] );
+			}
         }
+
+
     }
 
     
