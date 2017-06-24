@@ -1,6 +1,6 @@
 <?php
-use \yii\helpers\Url;
 use \admin\components\StaticService;
+use \admin\components\AdminUrlService;
 ?>
 <div class="row">
 	<div class="row-in">
@@ -43,7 +43,9 @@ use \admin\components\StaticService;
 
 							</td>
                             <td>
-                                回复功能
+                                <a href="<?=AdminUrlService::buildUrl("/wechat/reply",[ "member_id" => $_item['member_id'] ]);?>">
+                                    <i class="fa fa-reply fa-lg">回复</i>
+                                </a>
                             </td>
 						</tr>
 					<?php endforeach;?>

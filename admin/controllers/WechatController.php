@@ -2,6 +2,7 @@
 
 namespace admin\controllers;
 
+use admin\components\AdminUrlService;
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\weixin\OauthMember;
@@ -32,13 +33,14 @@ class WechatController extends BaseController{
 
 		$data = [];
 		if( $list ){
-			$user_mapping = DataHelper::getDicByRelateID( $list,OauthMember::className(),"from_openid","openid",["nickname","avatar"]);
+			$user_mapping = DataHelper::getDicByRelateID( $list,OauthMember::className(),"from_openid","openid",["id","nickname","avatar"]);
 			foreach( $list as $_item ){
 				$tmp_user_info = isset( $user_mapping[ $_item['from_openid'] ] )?$user_mapping[ $_item['from_openid'] ]:'';
 				$data[] = [
 					'id' => $_item['id'],
+					'member_id' => $tmp_user_info?$tmp_user_info['id']:0,
 					"nickname" => $tmp_user_info?DataHelper::encode( $tmp_user_info['nickname'] ):'',
-					"avatar" => $tmp_user_info?GlobalUrlService::buildPicStaticUrl("avatar","/{$tmp_user_info['avatar']}",[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+					"avatar" => ( $tmp_user_info && $tmp_user_info['avatar'] )?GlobalUrlService::buildPicStaticUrl("avatar","/{$tmp_user_info['avatar']}",[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
 					'type' => $_item['type'],
 					'content' => $_item['content'],
 					'text' => $_item['text'],
@@ -97,4 +99,36 @@ class WechatController extends BaseController{
 		]);
 	}
 
+	public function actionReply(){
+		$member_id = $this->get( "member_id",0 );
+		if( !$member_id ){
+			return $this->redirect( AdminUrlService::buildUrl( "/wechat/index" ) );
+		}
+
+		$member_info = OauthMember::findOne([ 'id' => $member_id ]);
+		if( !$member_info ){
+			return $this->redirect( AdminUrlService::buildUrl( "/wechat/index" ) );
+		}
+
+		$list = WxMsgHistory::find()->where([ 'from_openid' => $member_info['openid'] ])
+			->orderBy([ 'id' => SORT_DESC ] )->limit( 10 )->all();
+		$data = [];
+		if( $list ){
+			foreach( $list as $_item ){
+				$data[] = [
+					'id' => $_item['id'],
+					'member_id' => $member_info?$member_info['id']:0,
+					"nickname" => $member_info?DataHelper::encode( $member_info['nickname'] ):'',
+					"avatar" => ( $member_info && $member_info['avatar'] )?GlobalUrlService::buildPicStaticUrl("avatar","/{$member_info['avatar']}",[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+					'type' => $_item['type'],
+					'content' => $_item['content']
+				];
+			}
+		}
+
+		return $this->render( "reply",[
+			"data" => $data,
+			"member_info" => $member_info
+		] );
+	}
 }
