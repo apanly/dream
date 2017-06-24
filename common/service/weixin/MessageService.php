@@ -69,6 +69,7 @@ class MessageService extends BaseService {
 			}
 
 			//加入到数据表队列
+			$from_openid = (string)$from_openid;
 			$member_info = OauthMember::findOne([ 'openid' => $from_openid ]);
 			if( !$member_info ){
 				WxQueueListService::addQueue( "info",[ "openid" => $from_openid ] );

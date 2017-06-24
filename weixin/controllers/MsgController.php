@@ -112,15 +112,7 @@ class MsgController extends BaseController{
 
 		switch( $keyword ){
 			case "上墙" :
-				$data = [
-					[
-						'title' => '点击授权签到',
-						'description' => \Yii::$app->params['author']['nickname']."微信墙,授权后方可上墙留言",
-						'picurl' => GlobalUrlService::buildPic1Static("/20160531/7ba8f923c344a5af480cd76dd358e196.jpg",[ 'w' => 800]),
-						'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/sign",['woid' => trim($dataObj->FromUserName)])
-					]
-				];
-				return ['type' => "rich" ,"data" => $this->getRichXml($data)];
+				return ['type' => "text" ,"data" => $this->wallTip() ];
 				break;
 		}
 
@@ -294,6 +286,11 @@ EOT;
 @歌曲名称 或 @歌手名
 如@王菲，@匆匆那年
 EOT;
+		return $resData;
+	}
+
+	private function wallTip(){
+		$resData = "欢迎使用". \Yii::$app->params['author']['nickname']."微信墙，操作指引如下\r\n回复 # + 你想说的话\r\n 微信墙列表:".GlobalUrlService::buildWapUrl("/wechat_wall/index");
 		return $resData;
 	}
 
