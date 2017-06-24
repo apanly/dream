@@ -102,19 +102,15 @@ class MsgController extends BaseController{
 				return $this->searchMusicByKw($keyword);
 				break;
 			case "#"://微信墙
-				$bind_info = UserOpenidUnionid::findOne( [ 'other_openid' => trim( $dataObj->FromUserName ) ]  );
-				if( $bind_info ){
-					$data = [
-						[
-							'title' => '上墙成功',
-							'description' => "点击这里，进入列表查看",
-							'picurl' => GlobalUrlService::buildPic1Static("/20160531/7ba8f923c344a5af480cd76dd358e196.jpg",[ 'w' => 800]),
-							'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/index")
-						]
-					];
-					return ['type' => "rich" ,"data" => $this->getRichXml($data)];
-				}
-				$keyword = "上墙";
+				$data = [
+					[
+						'title' => '上墙成功',
+						'description' => "点击这里，进入列表查看",
+						'picurl' => GlobalUrlService::buildPic1Static("/20160531/7ba8f923c344a5af480cd76dd358e196.jpg",[ 'w' => 800]),
+						'url' =>  GlobalUrlService::buildWapUrl("/wechat_wall/index")
+					]
+				];
+				return ['type' => "rich" ,"data" => $this->getRichXml($data)];
 				break;
 		}
 

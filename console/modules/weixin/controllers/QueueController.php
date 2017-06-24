@@ -46,19 +46,21 @@ class QueueController extends BaseController {
 			return false;
 		}
 
-
-		$member_info = OauthMember::findOne([ 'openid' => $data['openid'] ]);
-		if( $member_info ){
-			return false;
-		}
-
 		$config = WechatConfigService::getConfig();
 		RequestService::setConfig( $config['appid'],$config['apptoken'],$config['appsecret'] );
 		$access_token = RequestService::getAccessToken();
 		$info = RequestService::send( "user/info?access_token={$access_token}&openid={$data['openid']}&lang=zh_CN" );
 		if( $info ){
-			$model_member = new OauthMember();
-			$model_member->openid = isset( $info['openid'] )?$info['openid']:'';
+			$member_info = OauthMember::findOne([ 'openid' => $data['openid'] ]);
+			if( $member_info ){
+				$model_member = $member_info;
+			}else{
+				$model_member = new OauthMember();
+				$model_member->created_time  = date("Y-m-d H:i:s");
+				$model_member->openid = isset( $info['openid'] )?$info['openid']:'';
+			}
+
+			$before_headimgurl = $model_member->headimgurl;
 			$model_member->nickname = isset( $info['nickname'] )?$info['nickname']:'';
 			$model_member->sex = isset( $info['sex'] )?$info['sex']:'0';
 			$model_member->country = isset( $info['country'] )?$info['country']:'';
@@ -66,8 +68,8 @@ class QueueController extends BaseController {
 			$model_member->city = isset( $info['city'] )?$info['city']:'';
 			$model_member->headimgurl = isset( $info['headimgurl'] )?$info['headimgurl']:'';
 			$model_member->subscribe = isset( $info['subscribe'] )?$info['subscribe']:'0';
-			$model_member->created_time = $model_member->updated_time = date("Y-m-d H:i:s");
-			if( $model_member->save( 0 ) ){
+			$model_member->updated_time = date("Y-m-d H:i:s");
+			if( $model_member->save( 0 )  && $before_headimgurl != $model_member->headimgurl ){
 				WxQueueListService::addQueue( "avatar",[ "member_id" => $model_member->id,"avatar_url"  => $model_member->headimgurl] );
 			}
 		}
