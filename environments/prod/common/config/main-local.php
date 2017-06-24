@@ -14,6 +14,13 @@ return [
             'username' => 'xxx',
             'password' => 'xxx',
             'charset' => 'utf8',
-        ]
+        ],
+		'dream_wechat' =>[
+			'class' => 'yii\db\Connection',
+			'dsn' => 'mysql:host=localhost;dbname=dream_wechat',
+			'username' => 'root',
+			'password' => '',
+			'charset' => 'utf8',
+		]
     ],
 ];
