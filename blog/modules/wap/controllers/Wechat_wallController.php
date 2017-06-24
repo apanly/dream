@@ -26,7 +26,7 @@ class Wechat_wallController extends BaseController{
             ->where([ 'status' => 1 ])->orderBy("id desc")->limit( 30 )->all();
         $data = [];
         if( $list ){
-            $user_mapping = DataHelper::getDicByRelateID($list,OauthMember::className(),"member_id","id",["nickname","headimgurl"]);
+            $user_mapping = DataHelper::getDicByRelateID($list,OauthMember::className(),"member_id","id",["nickname","avatar"]);
             foreach( $list as $_item ){
                 if( !isset( $user_mapping[ $_item['member_id'] ] ) ){
                     continue;
@@ -35,7 +35,7 @@ class Wechat_wallController extends BaseController{
                 $data[] = [
                     "id" => $_item['id'],
                     "nickname" => DataHelper::encode( $tmp_user_info['nickname'] ),
-                    "avatar" => $tmp_user_info['headimgurl']?"http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$tmp_user_info['headimgurl']}":GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
+                    "avatar" => $tmp_user_info['avatar']?GlobalUrlService::buildPicStaticUrl("avatar",$tmp_user_info['avatar'],[ 'w' => 100,'h' => 100 ]):GlobalUrlService::buildStaticUrl("/images/wap/no_avatar.png"),
                     "content" => DataHelper::encode( $_item['content'] ),
                     "created_time" => date("Y-m-d H:i",strtotime($_item['created_time']) )
                 ];
@@ -53,7 +53,7 @@ class Wechat_wallController extends BaseController{
             return $this->renderJSON([],"",-1);
         }
 
-        $info = UserMessageHistory::find()
+        $info = WxWallHistory::find()
             ->where([ 'status' => 1 ])
             ->andWhere([">","id",$max_id])
             ->orderBy("id desc")
@@ -64,7 +64,7 @@ class Wechat_wallController extends BaseController{
             return $this->renderJSON();
         }
 
-        $user_info = User::findOne( ['uid' => $info['uid'] ]);
+        $user_info = OauthMember::findOne( ['id' => $info['member_id'] ]);
         $data = [
             "id" => $info['id'],
             "nickname" => DataHelper::encode( $user_info['nickname'] ),
