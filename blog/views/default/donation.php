@@ -20,7 +20,7 @@ use \blog\components\UrlService;
                     <td>2.22</td>
                     <td>2017-07-16</td>
                     <td>微信扫码</td>
-                    <td class="text-left">fot the dream</td>
+                    <td class="text-left">for the dream</td>
                 </tr>
                 <tr>
                     <td>匿名</td>
