@@ -19,10 +19,11 @@ class UserController extends BaseController{
 	}
 
 	public function actionLogin(){
-		$url = GlobalUrlService::buildSuperMarketUrl( "/" );
+		$url = $this->getReferer();
 
 		if( Yii::$app->request->isGet ) {
 			$this->setTitle("登录");
+			$this->setReferer();
 			$is_login = $this->checkMemberLoginStatus();
 			if( $is_login ){
 				return $this->redirect( $url );
@@ -53,7 +54,7 @@ class UserController extends BaseController{
 		}
 
 		if( !$member_info->verifyPassword( $login_pwd ) ){
-			return $this->renderJSON([],"请输入正确的登录用户名和密码-2~~".$member_info->getSaltPassword( $login_pwd ),-1);
+			return $this->renderJSON([],"请输入正确的登录用户名和密码-2~~",-1);
 		}
 
 		$member_info->last_ip = UtilHelper::getClientIP();
@@ -71,6 +72,10 @@ class UserController extends BaseController{
 	public function actionReg(){
 		if( Yii::$app->request->isGet ){
 			$this->setTitle("注册");
+			$get_referer = $this->get( "referer","" );
+			if( $get_referer ){
+				$this->setReferer();
+			}
 			return $this->render( "reg" );
 		}
 
@@ -133,8 +138,9 @@ class UserController extends BaseController{
 	}
 
 	public function actionLogout(){
+		$this->setReferer();
 		$this->removeMemberAuthToken();
-		return $this->redirect( GlobalUrlService::buildSuperMarketUrl("/") );
+		return $this->redirect( $this->getReferer() );
 	}
 
 	public function actionOauth(){
@@ -148,6 +154,36 @@ class UserController extends BaseController{
 		$captcha_handle = new ValidateCode( $font_path );
 		$captcha_handle->doimg();
 		$this->setCookie($this->captcha_cookie_name,$captcha_handle->getCode() );
+	}
+
+	private $referer_cookie_name = "referer";
+
+	private function setReferer(){
+		$cookie_referer = $this->getCookie( $this->referer_cookie_name,"" );
+		$get_referer = $this->get( "referer","" );
+		if( !$get_referer ){
+			if( $cookie_referer ){
+				$get_referer = $cookie_referer;
+			}else{
+				$get_referer = $_SERVER['HTTP_REFERER'];
+			}
+		}else{
+			$get_referer = GlobalUrlService::buildUrl( urldecode( $get_referer ) );
+		}
+
+		if( $get_referer && $get_referer != $cookie_referer ){
+			$this->setCookie( $this->referer_cookie_name,$get_referer,3600 );
+		}
+	}
+
+	private function getReferer(){
+		$cookie_referer = $this->getCookie( $this->referer_cookie_name,"" );
+		$get_referer = urldecode( $this->get( "referer","" ) );
+		$final_referer = ( $get_referer && $get_referer != $cookie_referer )?$get_referer:$cookie_referer;
+		if( !$cookie_referer && !$get_referer){
+			$final_referer = GlobalUrlService::buildSuperMarketUrl( "/" );
+		}
+		return $final_referer;
 	}
 
 }

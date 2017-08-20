@@ -34,6 +34,15 @@ StaticService::includeAppCssStatic("/css/market/articles_info.css", \blog\assets
         <div class="article-main-content">
 			<?= $info['content']; ?>
             <h2>源码下载地址</h2>
+			<?php if( isset( $this->params['current_member'] ) ):?>
+                <div class="alert alert-info">
+					<?=$info['down_url'];?>
+                </div>
+            <?php else:?>
+                <div class="alert alert-info text-center">
+                    <strong>下载内容需要&nbsp;&nbsp;<a href="<?=GlobalUrlService::buildOauthUrl("/user/login");?>">登录</a>&nbsp;&nbsp;之后才可以浏览</strong>
+                </div>
+            <?php endif;?>
         </div>
     </section>
     <div class="row hide">

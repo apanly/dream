@@ -31,11 +31,11 @@ SuperMarketAsset::register($this);
                     <?php if( isset( $this->params['current_member'] ) ):?>
                         <span><?=DataHelper::encode( $this->params['current_member']['login_name'] );?>
                         <span>|</span>
-                        <a href="<?=GlobalUrlService::buildUrl( "/user/logout" );?>">退出</a>
+                        <a href="<?=GlobalUrlService::buildOauthUrl( "/user/logout" );?>">退出</a>
                     <?php else:?>
-                    <a href="<?=GlobalUrlService::buildUrl( "/user/login" );?>">登录</a>
+                    <a href="<?=GlobalUrlService::buildOauthUrl( "/user/login" );?>">登录</a>
                     <span>|</span>
-                    <a href="<?=GlobalUrlService::buildUrl( "/user/reg" );?>">注册</a>
+                    <a href="<?=GlobalUrlService::buildOauthUrl( "/user/reg" );?>">注册</a>
                     <?php endif;?>
                 </div>
                 <div class="top-bar-search hide">

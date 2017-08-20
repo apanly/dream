@@ -308,6 +308,20 @@ class GlobalUrlService {
 		return $domain_blog.$path;
 	}
 
+	public static function buildOauthUrl($uri, $params = []){
+		$referer = $_SERVER['REQUEST_URI'];
+		$params['referer'] = urlencode( $referer );
+
+		$path = Url::toRoute(array_merge([$uri], $params));
+		$domain_blog = \Yii::$app->params['domains']['blog'];
+		if( UtilHelper::is_SSL() ){
+			$domain_blog = str_replace("http://","https://",$domain_blog);
+		}
+
+		return $domain_blog.$path;
+	}
+
+
     public static function buildNullUrl(){
     	return "javascript:void(0);";
 	}
