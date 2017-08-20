@@ -18,7 +18,7 @@ class BlogUtilService {
 			'market'   => [
 				'title' => '杂货铺',
 				'url'   => GlobalUrlService::buildSuperMarketUrl("/"),
-				'status' => 0
+				'status' => 1
 			],
 			'donation'   => [
 				'title' => '赞助',
