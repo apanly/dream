@@ -7,8 +7,7 @@ use Yii;
 class StaticService
 {
 
-    public static function includeAppStatic($type, $path, $depend)
-    {
+    public static function includeAppStatic($type, $path, $depend){
         $release_version = defined("RELEASE_VERSION") ? RELEASE_VERSION : "20150731141600";
         if (stripos($path, "?") !== false) {
             $path = $path . "&version={$release_version}";
