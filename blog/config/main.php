@@ -27,6 +27,9 @@ return [
         ],
 		'demo' => [
 			'class' => 'blog\modules\demo\DemoModule',
+		],
+		'market' => [
+			'class' => 'blog\modules\market\MarketModule',
 		]
     ],
     'components'          => [
@@ -44,5 +47,5 @@ return [
             'errorAction' => 'error/error',
         ],
     ],
-    'params'              => $params,
+    'params'  => $params,
 ];

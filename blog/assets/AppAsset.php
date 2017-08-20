@@ -16,15 +16,12 @@ class AppAsset extends AssetBundle
         $this->css = [
             GlobalUrlService::buildStaticUrl("/bootstrap/css/bootstrap.min.css"),
             GlobalUrlService::buildStaticUrl("/bootstrap/css/font-awesome.min.css"),
-            //GlobalUrlService::buildStaticUrl("/bootstrap/css/monokai_sublime.min.css"),
             "css/screen.min.css"
         ];
         $this->js = [
             GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
             GlobalUrlService::buildStaticUrl("/bootstrap/js/bootstrap.min.js"),
-//            GlobalUrlService::buildStaticUrl("/jquery/jquery.fitvids.min.js"),
-           // GlobalUrlService::buildStaticUrl("/bootstrap/js/highlight.min.js"),
-//            "js/main.js",
+            GlobalUrlService::buildStaticUrl("/plugin/layer/layer.js"),
             "js/public.js",
             "js/access.js",
         ];

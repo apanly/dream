@@ -1,3 +1,26 @@
+## 20170819
+
+        CREATE TABLE `member` (
+          `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '会员id',
+          `login_name` varchar(20) NOT NULL DEFAULT '' COMMENT '用户登录用户名',
+          `login_pwd` varchar(32) NOT NULL DEFAULT '' COMMENT '用户密码',
+          `salt` varchar(32) NOT NULL DEFAULT '' COMMENT '随机秘钥',
+          `email` varchar(60) NOT NULL DEFAULT '' COMMENT '用户邮箱',
+          `avatar` varchar(500) NOT NULL DEFAULT '' COMMENT '用户头像',
+          `last_ip` varchar(32) NOT NULL DEFAULT '' COMMENT '最后一次登录ip',
+          `last_city` varchar(32) NOT NULL DEFAULT '' COMMENT '最后的活跃城市',
+          `last_city_id` int(11) NOT NULL DEFAULT '0' COMMENT '最后活跃城市id',
+          `last_active_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后活跃时间',
+          `reg_ip` varchar(32) NOT NULL DEFAULT '' COMMENT '注册ip',
+          `reg_city` varchar(32) NOT NULL DEFAULT '' COMMENT '注册城市',
+          `reg_city_id` int(11) NOT NULL DEFAULT '0' COMMENT '注册城市id',
+          `updated_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后一次更新时间',
+          `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '插入时间',
+          PRIMARY KEY (`id`),
+          UNIQUE KEY `idx_email` (`email`),
+          UNIQUE KEY `idx_login_name` (`login_name`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员表';
+
 ## 20161226
     ALTER TABLE `posts` ADD `sn` VARCHAR(20)  NOT NULL  DEFAULT ''  COMMENT '博文序列号（替代id字段）'  AFTER `id`;
     ALTER TABLE `posts` ADD INDEX `idx_sn` (`sn`);

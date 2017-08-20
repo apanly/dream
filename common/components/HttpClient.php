@@ -10,6 +10,8 @@ class HttpClient  extends  BaseService{
 
     private static $cookie = null;
 
+    private static $gzip_flag = false;
+
 
     public static function get($url, $param =[]) {
 
@@ -35,6 +37,10 @@ class HttpClient  extends  BaseService{
         curl_setopt($curl, CURLOPT_VERBOSE, true);
 
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);//函数中加入下面这条语句
+
+		if( self::$gzip_flag ){
+			curl_setopt($curl, CURLOPT_ENCODING, "gzip"); // 关键在这里
+		}
 
 		if( isset( Yii::$app->params['curl'] ) && isset(Yii::$app->params['curl']['timeout']) ){
             curl_setopt($curl, CURLOPT_TIMEOUT, Yii::$app->params['curl']['timeout']);
@@ -102,7 +108,9 @@ class HttpClient  extends  BaseService{
         self::$cookie = $cookie;
     }
 
-
+    public static function setGzip(  ){
+		self::$gzip_flag = true;
+	}
 
 
     protected static function getProxy() {

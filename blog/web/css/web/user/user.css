@@ -1,0 +1,552 @@
+html {
+    height: 100%
+}
+
+body, input, button, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica Neue', STHeiti, 'Microsoft YaHei', Helvetica, Arial, sans-serif
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    font-size: 100%;
+    line-height: 1.7
+}
+
+dd {
+    margin-left: 10px
+}
+
+a {
+    cursor: pointer;
+    color: #155faa;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #499ef3;
+}
+
+.aw-register-box .mod-head > a > img {
+    display: none
+}
+
+.aw-register-box .mod-footer {
+    padding-top: 40px;
+    border-top: 1px solid #e6e6e6
+}
+
+.aw-login-box .mod-body .side-bar .btn, .aw-register-box .mod-footer .btn {
+    position: relative;
+    width: 170px;
+    line-height: 40px;
+    margin: 0 0 20px;
+    padding: 0 0 0 15px;
+    height: 34px !important;
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0
+}
+
+.aw-login-box .mod-body .side-bar .btn > i, .aw-register-box .mod-footer .btn > i, .aw-login-box .mod-body .side-bar .btn > i:before, .aw-register-box .mod-footer .btn > i:before {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0
+}
+
+.aw-login-box .mod-body .side-bar .btn.btn-weibo, .aw-register-box .mod-footer .btn.btn-weibo, .aw-login-box .mod-body .side-bar .btn.btn-qq, .aw-register-box .mod-footer .btn.btn-qq {
+    background-size: contain
+}
+
+.aw-login-box .mod-body .side-bar .btn.btn-weibo, .aw-register-box .mod-footer .btn.btn-weibo {
+    background-image: url(/images/user/weibo-login.png)
+}
+
+.aw-login-box .mod-body .side-bar .btn.btn-qq, .aw-register-box .mod-footer .btn.btn-qq {
+    background-image: url(/images/user/qq-login.png)
+}
+
+/* 登陆页面 */
+
+#wrapper {
+    position: relative;
+    margin-bottom: 20px;
+    padding-top: 100px;
+}
+
+.btn-weibo {
+    background-color: #ff6666;
+    color: #fff;
+}
+
+.btn-weibo:hover {
+    background-color: #FF4D4D;
+    color: #fff;
+}
+
+.btn-weibo:active {
+    background-color: #E64545;
+    color: #fff;
+}
+
+.btn-qq {
+    background-color: #418ae2;
+    color: #fff;
+    color: #fff;
+}
+
+.btn-qq:hover {
+    background-color: #2D7FE2;
+    color: #fff;
+}
+
+.btn-qq:active {
+    background-color: #1773E2;
+    color: #fff;
+}
+
+.btn-wechat {
+    background-color: #73db42;
+    color: #fff;
+}
+
+.btn-wechat:hover {
+    color: #fff;
+}
+
+.btn-primary {
+    border: none;
+    background-color: #59b0ff;
+}
+
+.btn-primary:hover {
+    background-color: #4daaff;
+}
+
+.btn-primary:active, .btn-primary:focus {
+    background-color: #1a90ff;
+}
+
+.btn:active, .btn.active {
+    box-shadow: none;
+}
+
+.aw-login-box {
+    width: 714px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+}
+
+.aw-login-box .logo {
+    width: 151px;
+    height: 94px;
+    background: url('img/login_logo.png') no-repeat;
+}
+
+.aw-login-box .logo a {
+    display: block;
+    width: 151px;
+    height: 94px;
+}
+
+.aw-login-box .mod-body {
+    padding: 10px 60px;
+}
+
+.aw-login-box .mod-body .content {
+    width: 300px;
+    margin-right: 60px;
+}
+
+.aw-login-box .mod-body .content h2 {
+    margin: 13px 0 10px;
+    color: #666666;
+}
+
+.aw-login-box .mod-body .content ul li {
+    margin-top: 20px;
+    line-height: 30px;
+}
+
+.aw-login-box .mod-body .content ul li:first-child {
+    margin-top: 0;
+}
+
+.aw-login-box .mod-body .content ul li.last {
+    font-size: 12px;
+    line-height: 40px;
+}
+
+.aw-login-box .mod-body .content ul li.last input {
+    vertical-align: -2px \0;
+}
+
+.aw-login-box .mod-body .content ul li.last a {
+    color: #666666;
+}
+
+.aw-login-box .mod-body .content ul li .btn-primary {
+    width: 112px;
+    color: #fff !important;
+}
+
+.aw-login-box .mod-body .side-bar {
+    height: 326px;
+    padding: 60px 0 60px 60px;
+    border-left: 1px solid #e6e6e6;
+}
+
+.aw-login-box .mod-body .side-bar h3 {
+    margin-bottom: 27px;
+    color: #666666;
+    text-align: center;
+}
+
+.aw-login-box .mod-body .side-bar .btn {
+    position: relative;
+    width: 170px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 0 20px;
+    padding: 0 0 0 15px;
+}
+
+.aw-login-box .mod-body .side-bar .btn i {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.aw-login-box .mod-body .side-bar .btn-wechat .img {
+    display: none;
+}
+
+.aw-login-box .mod-body .side-bar .btn-wechat.active {
+    position: relative;
+    height: 200px;
+    background-color: #4d4d4d;
+}
+
+.aw-login-box .mod-body .side-bar .btn-wechat.active .img {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 40px;
+    width: 148px;
+    height: 148px;
+}
+
+.aw-login-box .mod-body .side-bar .btn-wechat.active img {
+    max-width: 148px;
+}
+
+.aw-login-box .mod-body .side-bar .btn-wechat.active #aw-loading-mini-box {
+    margin-top: 55px;
+}
+
+.aw-login-box .mod-body .form-control {
+    height: 40px;
+    line-height: 28px \0;
+    padding-left: 15px !important;
+    box-shadow: none;
+    border-color: #e6e6e6;
+}
+
+.aw-login-box .mod-footer {
+    height: 70px;
+    line-height: 70px;
+    background-color: #f5f5f5;
+    padding: 0 60px;
+    color: #66b7ff;
+}
+
+.aw-login-box .mod-footer span {
+    color: #a94442;
+}
+
+.aw-login-box .mod-footer a {
+    color: #66b7ff;
+}
+
+.aw-footer-wrap {
+    color: #999999;
+}
+
+.aw-footer-wrap a {
+    color: #66b7ff;
+}
+
+/* iphone竖屏幕 */
+@media (max-width: 640px) {
+    /*登录界面*/
+    #wrapper {
+        padding: 20px;
+    }
+
+    .aw-login-wrap {
+        width: auto;
+    }
+
+    .aw-login-box .aw-mod-head, .aw-login-box .aw-mod-body, .aw-login-box .aw-mod-footer {
+        width: auto;
+    }
+
+    .aw-login-box .aw-mod-body {
+        padding: 20px;
+    }
+
+    .aw-login-box .aw-mod-body #aw-login-user-name, .aw-mod-body #aw-login-user-password {
+        width: 195px;
+    }
+
+    .aw-login-box .aw-mod-footer {
+        padding: 0 10px !important;
+    }
+}
+
+.btn-blue {
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    border: none;
+    background-color: #66b7ff;
+    color: #fff !important;
+}
+
+.btn-blue:hover {
+    background-color: #4DAAFF;
+}
+
+.btn-blue:active {
+    background-color: #339DFF;
+}
+
+.aw-register-box {
+    width: 714px;
+    height: auto;
+    margin: 10px auto 40px;
+    padding: 10px 0;
+    background: #fff;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.aw-register-box h1 {
+    margin: 10px 0 0;
+    font-size: 20px;
+    color: #666666;
+}
+
+.aw-register-box .mod-body {
+    width: 390px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.aw-register-box ul li {
+    position: relative;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.aw-register-box ul li input[type="text"], .aw-register-box ul li input[type="password"] {
+    width: 100%;
+    height: 40px;
+    line-height: 28px \0;
+    padding-left: 15px !important;
+    box-shadow: none;
+    border-color: #e6e6e6;
+}
+
+.aw-register-box ul li.last {
+    text-align: left;
+    color: #666;
+}
+
+.aw-register-box ul li.last input {
+    vertical-align: -2px \0;
+}
+
+.aw-register-box ul li.alert-danger i {
+    margin-right: 5px;
+}
+
+.aw-register-box ul li hr {
+    margin: 30px 0;
+}
+
+.aw-register-box ul .aw-register-verify input {
+    width: 190px !important;
+}
+
+.aw-register-box ul .aw-register-verify img {
+    cursor: pointer;
+}
+
+.aw-register-box .more-information ul li {
+    padding: 5px 0;
+    text-align: left;
+}
+
+.aw-register-box .more-information .select_area {
+    max-width: 120px;
+}
+
+.aw-register-box .more-information-btn {
+    position: absolute;
+    left: 105px;
+    top: -15px;
+    width: 90px;
+    background-color: #fff;
+    color: #66b7ff;
+}
+
+.aw-regiter-agreement {
+    position: relative;
+    width: 712px;
+    margin: 10px 0 0 -201px;
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+.aw-register-agreement-txt {
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* 注册提示 */
+.aw-register-box li span {
+    position: absolute;
+    top: 0;
+    right: -145px;
+    width: 130px;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.aw-reg-tips {
+    line-height: 15px;
+    background: #EEF7FD;
+    border: 1px solid #CFDDE6;
+    color: #999;
+}
+
+.aw-reg-err {
+    line-height: 28px;
+    background: #FFEAEA;
+    border: 1px solid #E5C3C4;
+    color: #CC0000;
+}
+
+.aw-reg-right {
+    background: none;
+    border: none;
+}
+
+/* 开放接口注册页面 */
+.aw-register-open-box {
+    padding-top: 30px;
+}
+
+.aw-register-open-box p {
+    width: 240px;
+    text-align: left;
+    margin: 0 auto 10px;
+}
+
+.aw-register-open-box ul {
+    padding-top: 0px;
+}
+
+.aw-register-open-tabs i {
+    margin-left: 5px;
+}
+
+.aw-register-open-tabs.active .i-triangle-down {
+    background-position: -210px -110px;
+}
+
+/* 找回密码 */
+.aw-find-pwd {
+    padding-bottom: 0;
+}
+
+.aw-find-pwd .mod-body {
+    margin: 30px auto 100px;
+}
+
+.aw-find-pwd .mod-footer {
+    height: 70px;
+    line-height: 70px;
+    background-color: #f5f5f5;
+    border-radius: 0 0 3px 3px;
+}
+
+.aw-register-box ul li.error p {
+    background: none repeat scroll 0 0 #FFF480;
+    border: 1px solid #EBEBEB;
+    border-radius: 5px 5px 5px 5px;
+    color: #666666;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 12px;
+    text-align: left;
+}
+
+.aw-register-box ul li.error p .i-no {
+    margin-right: 10px;
+    position: relative;
+    top: 4px;
+}
+
+.aw-forget-box .mod-footer{
+    height: 70px;
+    line-height: 70px;
+    background-color: #f5f5f5;
+    padding: 0 60px;
+    color: #66b7ff;
+}
+
+
+/* iphone横屏幕 */
+@media (max-width: 640px) {
+    /*注册界面*/
+    .aw-register-box .mod-body {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .aw-register-box, .aw-register-box ul li {
+        width: auto;
+    }
+}
+
+@media (max-width: 321px) {
+    .aw-register-box {
+        width: 270px !important;
+    }
+
+    .aw-regiter-agreement {
+        width: 240px;
+        margin: 10px 0 0;
+    }
+}
+

@@ -63,6 +63,10 @@ var common_ops = {
             nav_name = "girl";
         }
 
+        if( pathname.indexOf("/soft/") > -1 ){
+            nav_name = "soft";
+        }
+
 
         if( nav_name == null ){
             return;

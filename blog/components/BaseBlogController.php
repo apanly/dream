@@ -2,15 +2,18 @@
 namespace blog\components;
 
 use common\components\UtilHelper;
+use common\models\user\Member;
 use common\service\Constant;
 use Yii;
 use \common\models\user\User;
 
 class BaseBlogController extends \common\components\BaseWebController{
 
-    public $auth_cookie_name = "m_vincentguo";
+    public $auth_cookie_name = "m_54php";
+    public $member_auth_cookie_name = "vuser";
     public $salt = "cr5s6fwPKgKrSvpTNd971ea8fbc47";
     public $current_user = null;
+    public $current_member = null;
 
     public function checkLoginStatus(){
         $auth_cookie = $this->getCookie($this->auth_cookie_name);
@@ -49,5 +52,36 @@ class BaseBlogController extends \common\components\BaseWebController{
 
 	public function getUUID(){
 		return $this->getCookie(Constant::$uuid_cookie_name,'' );
+	}
+
+	public function checkMemberLoginStatus(){
+		$auth_cookie = $this->getCookie( $this->member_auth_cookie_name );
+		$login_status = false;
+		if( $auth_cookie ){
+			list($auth_token,$member_id) = explode("#",$auth_cookie);
+			if( $auth_token && $member_id ){
+				$member_info = Member::findOne([ 'id' => $member_id ]);
+				$check_token = $this->geneMemberAuthToken(  $member_info );
+				if( $member_info && $auth_token == $check_token ){
+					$login_status = true;
+					$this->current_member = $member_info;
+					$this->getView()->params['current_member'] = $member_info;
+				}
+			}
+		}
+		return $login_status;
+	}
+
+	public  function createMemberLoginStatus( $member_info ){
+		$auth_token = $this->geneMemberAuthToken( $member_info );
+		$this->setCookie($this->member_auth_cookie_name,$auth_token."#".$member_info['id']);
+	}
+
+	public  function removeMemberAuthToken(){
+		$this->removeCookie($this->member_auth_cookie_name);
+	}
+
+	public function geneMemberAuthToken( $member_info ){
+		return md5($this->salt."-{$member_info['id']}-{$member_info['login_name']}-{$member_info['email']}-{$member_info['salt']}");
 	}
 }

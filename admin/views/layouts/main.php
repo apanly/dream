@@ -41,6 +41,11 @@ $domain_blog = Yii::$app->params['domains']['blog'];
 						<i class="fa fa-pencil fa-lg"></i><span>文章</span>
 					</a>
 				</li>
+                <li class="menu_soft">
+                    <a href="<?=AdminUrlService::buildUrl("/soft/index");?>">
+                        <i class="fa fa-cart-plus fa-lg"></i><span>杂货铺</span>
+                    </a>
+                </li>
                 <li class="menu_wechat">
                     <a href="<?=AdminUrlService::buildUrl("/wechat/index");?>">
                         <i class="fa fa-wechat fa-lg"></i><span>微信</span>

@@ -24,6 +24,9 @@ return [
         ],
 		'weixin' => [
 			'class' => 'console\modules\weixin\WeixinModule',
+		],
+		'market' => [
+			'class' => 'console\modules\market\MarketModule',
 		]
     ],
     'components' => [

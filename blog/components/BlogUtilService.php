@@ -14,9 +14,11 @@ class BlogUtilService {
 				'title' => '文章',
 				'url'   => GlobalUrlService::buildBlogUrl("/")
 			],
-			'library'   => [
-				'title' => '图书馆',
-				'url'   => GlobalUrlService::buildBlogUrl("/library/index")
+
+			'market'   => [
+				'title' => '杂货铺',
+				'url'   => GlobalUrlService::buildSuperMarketUrl("/"),
+				'status' => 0
 			],
 			'donation'   => [
 				'title' => '赞助',
@@ -25,6 +27,10 @@ class BlogUtilService {
 			'project'   => [
 				'title'    => '演示系统',
 				'url'   => GlobalUrlService::buildDemoUrl("/")
+			],
+			'library'   => [
+				'title' => '图书馆',
+				'url'   => GlobalUrlService::buildBlogUrl("/library/index")
 			],
 			'tools'     => [
 				'title'    => '小工具',
@@ -52,6 +58,7 @@ class BlogUtilService {
 					]
 				]
 			],
+
 			'business' => [
 				'title' => '商业合作',
 				'tip' => '定制开发程序，数据库维护，服务器运维',
