@@ -1,5 +1,25 @@
 ## 20170819
-
+        
+        CREATE TABLE `soft` (
+          `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+          `sn` varchar(20) NOT NULL DEFAULT '' COMMENT '序列号',
+          `title` varchar(250) NOT NULL DEFAULT '' COMMENT '标题',
+          `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1： 小程序，2：mac app 3 ：web程序 ',
+          `content` mediumtext NOT NULL COMMENT '内容',
+          `tags` varchar(250) NOT NULL DEFAULT '' COMMENT 'tag',
+          `image_url` varchar(256) NOT NULL DEFAULT '' COMMENT '封面图片''',
+          `preview_url` varchar(256) NOT NULL DEFAULT '' COMMENT '演示地址',
+          `down_url` varchar(256) NOT NULL DEFAULT '' COMMENT '下载地址',
+          `origin_info_url` varchar(256) NOT NULL DEFAULT '' COMMENT '源网站详情地址',
+          `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0 无效 1 有效 ',
+          `comment_count` int(11) NOT NULL DEFAULT '0' COMMENT '评论总数',
+          `view_count` int(11) NOT NULL DEFAULT '0' COMMENT '阅读总数',
+          `updated_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+          `created_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+          PRIMARY KEY (`id`),
+          UNIQUE KEY `idx_sn` (`sn`)
+        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='软件下载';
+        
         CREATE TABLE `member` (
           `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '会员id',
           `login_name` varchar(20) NOT NULL DEFAULT '' COMMENT '用户登录用户名',

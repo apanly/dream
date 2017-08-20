@@ -99,7 +99,7 @@ StaticService::includeAppJsStatic("/js/soft/index.js",\admin\assets\AdminAsset::
         <div class="columns-24 text-right">
             <?php echo \Yii::$app->view->renderFile("@admin/views/common/pagination_v1.php",[
                 'pages' => $page_info,
-                'url' => '/posts/index',
+                'url' => '/soft/index',
                 'search_conditions' => $search_conditions,
                 'current_page_count' => count($data)
             ]);?>
