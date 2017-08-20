@@ -8,6 +8,7 @@ use blog\controllers\common\BaseController;
 use common\service\CityService;
 use common\service\Constant;
 use common\service\GlobalUrlService;
+use common\service\oauth\ClientService;
 use Yii;
 
 
@@ -144,7 +145,9 @@ class UserController extends BaseController{
 	}
 
 	public function actionOauth(){
-
+		$type = trim( $this->get("type",'weibo') );
+		$url = ClientService::goLogin( $type );
+		return $this->redirect( $url );
 	}
 
 	private $captcha_cookie_name = "validate_code";
