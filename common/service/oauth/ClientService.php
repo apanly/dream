@@ -10,12 +10,16 @@ class ClientService extends  BaseService  {
 	/*
 	 * 获取登录地址
 	 * */
-	public static function goLogin( $type ){
+	public static function goLogin( $type,$callback_url = '' ){
 		$client_name = "common\\service\\oauth\\".ucfirst($type)."Service";
 		$target = new $client_name();
+		if( in_array( $type,[ 'weibo' ] ) ){
+			$target->setCallback( $callback_url );
+		}
 		$url = $target->Login();
 		return $url;
 	}
+
 
 	public static function getAccessToken( $type,$params = [] ){
 		$client_name = "common\\service\\oauth\\".ucfirst($type)."Service";

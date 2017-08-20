@@ -146,7 +146,7 @@ class UserController extends BaseController{
 
 	public function actionOauth(){
 		$type = trim( $this->get("type",'weibo') );
-		$url = ClientService::goLogin( $type );
+		$url = ClientService::goLogin( $type,GlobalUrlService::buildBlogUrl("/user/oauth_weibo") );
 		return $this->redirect( $url );
 	}
 

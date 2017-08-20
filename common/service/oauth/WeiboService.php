@@ -7,6 +7,9 @@ namespace common\service\oauth;
 use common\components\HttpClient;
 
 class WeiboService extends  ClientBase {
+
+	private $callback_url = null;
+
 	public function Login(){
 		$url = "https://api.weibo.com/oauth2/authorize";
 		$config_params = \Yii::$app->params;
@@ -54,8 +57,18 @@ class WeiboService extends  ClientBase {
 	}
 
 	private  function getCallback(){
-		$domain = \Yii::$app->params['domains']['blog'];
-		$callback = \Yii::$app->params['oauth']['weibo']['callback'];
-		return $domain.$callback;
+		if( !$this->callback_url ){
+			$domain = \Yii::$app->params['domains']['blog'];
+			$callback = \Yii::$app->params['oauth']['weibo']['callback'];
+			$callback = $domain.$callback;
+		}else{
+			$callback = $this->callback_url;
+		}
+
+		return $callback;
+	}
+
+	public function setCallback( $url ){
+		$this->callback_url = $url;
 	}
 }
