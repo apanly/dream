@@ -10,7 +10,7 @@ return [
             'suffix'  => '.html'
         ],
         [
-            'pattern' => '/<module:(wap)>/<controller:\w+>/<id:\d+>',
+            'pattern' => '/<module:(wap|market)>/<controller:\w+>/<id:\d+>',
             'route'   => '/<module>/<controller>/info',
             'suffix'  => '.html'
         ],

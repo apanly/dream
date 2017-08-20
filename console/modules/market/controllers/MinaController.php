@@ -12,6 +12,7 @@ require_once __DIR__."/../../../../common/service/dom/simple_html_dom.php";
 class MinaController extends BaseController {
 
 	//http://www.lanrenmb.com/x/p17.html
+	//https://www.waitsun.com/
 	//php yii market/mina/index
     public function actionIndex(){
 		$total = 17 ;

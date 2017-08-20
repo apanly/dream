@@ -6,10 +6,14 @@ use blog\components\BaseBlogController;
 
 class BaseController extends BaseBlogController{
 
-    protected $allowAllAction = [];
+    protected $allowAllAction = [
+		"market/default/index",
+		"market/default/info",
+		"market/default/mina",
+	];
 
-    public function __construct($id, $module, $config = [])
-    {
+
+    public function __construct($id, $module, $config = []){
         parent::__construct($id, $module, $config = []);
         $view  = \Yii::$app->view;
         $view->params['id'] = $id;
@@ -17,6 +21,22 @@ class BaseController extends BaseBlogController{
         $this->setTitle();
         $this->setDescription();
     }
+
+	public function beforeAction($action){
+		$login_status = $this->checkMemberLoginStatus();
+		if ( in_array($action->getUniqueId(), $this->allowAllAction ) ) {
+			return true;
+		}
+
+		if( !$login_status ){
+			if( \Yii::$app->request->isAjax ){
+				$this->renderJSON([],"未登录,系统将引导您重新登录~~",-302);
+			}
+			return false;
+		}
+		return true;
+
+	}
 
 
 	public function setTitle($title = "浪子的杂货店"){

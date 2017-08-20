@@ -28,9 +28,15 @@ SuperMarketAsset::register($this);
                     <img src="<?= GlobalUrlService::buildStaticUrl("/images/market/logo.png"); ?>">
                 </a>
                 <div class="top-bar-login">
+                    <?php if( isset( $this->params['current_member'] ) ):?>
+                        <span><?=DataHelper::encode( $this->params['current_member']['login_name'] );?>
+                        <span>|</span>
+                        <a href="<?=GlobalUrlService::buildUrl( "/user/logout" );?>">退出</a>
+                    <?php else:?>
                     <a href="<?=GlobalUrlService::buildUrl( "/user/login" );?>">登录</a>
                     <span>|</span>
                     <a href="<?=GlobalUrlService::buildUrl( "/user/reg" );?>">注册</a>
+                    <?php endif;?>
                 </div>
                 <div class="top-bar-search hide">
                     <form method="GET" action="<?=GlobalUrlService::buildSuperMarketUrl("/search");?>" accept-charset="UTF-8" class="form-inline">
@@ -49,16 +55,15 @@ SuperMarketAsset::register($this);
     <div class="container">
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="nav navbar-nav">
-                <li class=active><a href="<?=GlobalUrlService::buildSuperMarketUrl("/");?>">首页</a>
+                <li class="home"><a href="<?=GlobalUrlService::buildSuperMarketUrl("/");?>">首页</a></li>
+                <li class="hide" >
+                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/site");?>">建站模板</a>
+                </li>
+                <li class="mina">
+                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/mina");?>">微信小程序</a>
                 </li>
                 <li class="hide" >
-                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/site");?>">建站模板</a>
-                </li>
-                <li>
-                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/mina");?>">微信小程序</a>
-                </li>
-                <li class="hide" >
-                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/soft");?>">Mac软件</a>
+                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/macapp");?>">Mac软件</a>
                 </li>
                 <li>
                     <a  href="<?=GlobalUrlService::buildBlogUrl("/");?>">博客</a>

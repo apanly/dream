@@ -60,8 +60,8 @@ StaticService::includeAppJsStatic("/js/market/default/index.js", \blog\assets\Su
     }
 
 </style>
-<div class="container-fluid" style="margin: 0;padding: 0;">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row hide" style="margin: 0;padding: 0;">
         <div class="col-md-12 col-sm-12">
             <div id="focus" class="focus">
                 <div class="hd"><ul></ul></div>
@@ -74,15 +74,20 @@ StaticService::includeAppJsStatic("/js/market/default/index.js", \blog\assets\Su
             </div>
         </div>
     </div>
-    <h3>小程序</h3>
-    <div class="row">
+    <div class="page-header">
+    <h3>小程序示例</h3>
+    </div>
+    <div class="row" style="padding: 0 30px;">
         <?php foreach( $mina_list as $_item  ):?>
-        <div class="col-sm-3 col-md-3 col-lg-3">
+        <div class="col-sm-6 col-md-3 col-lg-3">
             <div class="thumbnail">
-                <img src="<?=$_item['image_url'];?>" alt="...">
-                <div class="caption">
-                    <h3><?=$_item['title'];?></h3>
-                </div>
+                <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/info",[ "id" => $_item['id'] ]);?>">
+                    <img src="<?=$_item['image_url'];?>" style="height: 400px;">
+                    <div class="caption" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                        <h3><?=$_item['title'];?></h3>
+                    </div>
+                </a>
+
             </div>
         </div>
         <?php endforeach;?>

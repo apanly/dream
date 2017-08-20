@@ -19,8 +19,14 @@ class UserController extends BaseController{
 	}
 
 	public function actionLogin(){
+		$url = GlobalUrlService::buildSuperMarketUrl( "/" );
+
 		if( Yii::$app->request->isGet ) {
 			$this->setTitle("登录");
+			$is_login = $this->checkMemberLoginStatus();
+			if( $is_login ){
+				return $this->redirect( $url );
+			}
 			return $this->render("login");
 		}
 
@@ -57,7 +63,7 @@ class UserController extends BaseController{
 		$member_info->updated_time = $date_now;
 		$member_info->update( 0 );
 
-		$url = GlobalUrlService::buildSuperMarketUrl( "/" );
+
 		$this->createMemberLoginStatus( $member_info );
 		return $this->renderJSON( [ 'url' => $url ],"登录成功~~" );
 	}
@@ -124,6 +130,11 @@ class UserController extends BaseController{
 
 	public function actionForget(){
 		return $this->render( "forget" );
+	}
+
+	public function actionLogout(){
+		$this->removeMemberAuthToken();
+		return $this->redirect( GlobalUrlService::buildSuperMarketUrl("/") );
 	}
 
 	public function actionOauth(){

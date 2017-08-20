@@ -20,9 +20,11 @@ class SuperMarketAsset extends AssetBundle
         $this->css = [
 			GlobalUrlService::buildStaticUrl("/bootstrap/css/metro-bootstrap.min.css"),
 			GlobalUrlService::buildStaticUrl("/fontawesome/css/font-awesome.min.css"),
+			"css/market/index.css",
 		];
         $this->js = [
-            GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js")
+            GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
+			'js/market/common.js'
         ];
 
         parent::registerAssetFiles($view);
