@@ -34,7 +34,7 @@ StaticService::includeAppJsStatic("/js/web/user/reg.js", \blog\assets\AppAsset::
             </ul>
         </div>
     </div>
-    <div class="mod-footer">
+    <div class="mod-footer hide">
         <span>使用第三方账号直接登录</span>&nbsp;&nbsp;
         <a href="<?=GlobalUrlService::buildBlogUrl("/user/oauth",[ "type" => "weibo" ]);?>" class="btn btn-weibo"><i class="icon icon-weibo"></i> 新浪微博登录</a>
         <a href="<?=GlobalUrlService::buildBlogUrl("/user/oauth",[ "type" => "qq" ]);?>" class="btn btn-qq"> <i class="icon icon-qq"></i> QQ登录</a>

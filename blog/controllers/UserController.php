@@ -2,7 +2,9 @@
 
 namespace blog\controllers;
 use common\components\UtilHelper;
+use common\models\oauth\OauthBind;
 use common\models\user\Member;
+use common\models\weixin\OauthMember;
 use common\service\captcha\ValidateCode;
 use blog\controllers\common\BaseController;
 use common\service\CityService;
@@ -77,6 +79,7 @@ class UserController extends BaseController{
 			if( $get_referer ){
 				$this->setReferer();
 			}
+
 			return $this->render( "reg" );
 		}
 
@@ -101,6 +104,10 @@ class UserController extends BaseController{
 
 		if( in_array( $login_pwd,Constant::$low_password ) ){
 			return $this->renderJSON( [] , "登录密码太简单，请换一个~~" ,-1);
+		}
+
+		if( !$this->checkCaptcha(  $captcha_code ) ){
+			return $this->renderJSON( [] , "请输入正确的验证码~~" ,-1);
 		}
 
 		$has_in = Member::find()->where([ 'login_name' => $login_name ])->count();
@@ -150,6 +157,77 @@ class UserController extends BaseController{
 		return $this->redirect( $url );
 	}
 
+	/*
+	 * 回调地址
+	 * */
+	public function actionOauth_weibo(){
+		$type = "weibo";
+		$ret = ClientService::getAccessToken( $type,$this->get( null ) );
+		$error_msg = '';
+		$uid = 0;
+		if( $ret ){
+			$uid = $this->getUserInfo( $type, $ret['access_token'],[ 'uid' => $ret['uid'] ] );
+		}else{
+			$error_msg = ClientService::getLastErrorMsg();
+		}
+
+		return $this->redirect( GlobalUrlService::buildBlogUrl("/oauth/login",[
+			'error_msg' => $error_msg,
+			'uid' => $uid,
+			'type' => $type
+		]) );
+	}
+
+	private function getUserInfo( $type,$access_token,$params = [] ){
+		$ret = ClientService::getUserInfo( $type,$access_token ,$params );
+		if( !$ret ){
+			return ClientService::_err( "获取用户信息失败" );
+		}
+
+		//判断是否已经绑定
+		$date_now = date("Y-m-d H:i:s");
+		$has_bind = OauthBind::find()->where([ 'client_type' => $type,'openid' => $ret['openid'] ])->one();
+		$member_id = ( $has_bind && $has_bind['member_id'] )?$has_bind['member_id']:0;
+		if( !$member_id ){
+			if( $has_bind ){
+
+			}else{
+
+			}
+		}
+
+		if( $has_bind && $has_bind['member_id']){
+			$uid = $has_bind['member_id'];
+		}else{//新建用户并绑定关系
+			$date_now = date("Y-m-d H:i:s");
+			$unique_name = md5( $type."_".$ret['name'] );
+			$user_info = Member::findOne([ 'unique_name' => $unique_name  ]);
+			if( !$user_info ){
+				$model_user = new User();
+				$model_user->nickname = $ret['name'];
+				$model_user->unique_name = $unique_name;
+				$model_user->avatar = $ret['avatar'];
+				$model_user->updated_time = $model_user->created_time = $date_now;
+				if( !$model_user->save( 0 ) ){
+					return ClientService::_err( "获取用户信息失败" );
+				}
+				$user_info = $model_user;
+			}
+
+			$model_auth_bind = new OauthBind();
+			$model_auth_bind->uid = $user_info->uid;
+			$model_auth_bind->client_type = $type;
+			$model_auth_bind->openid = $ret['openid'];
+			$model_auth_bind->extra = json_encode( $ret );
+			$model_auth_bind->created_time = $date_now;
+			$model_auth_bind->save( 0 );
+			$uid = $user_info->uid;
+		}
+
+		return $uid;
+	}
+
+
 	private $captcha_cookie_name = "validate_code";
 
 	public function actionImg_captcha(){
@@ -157,6 +235,14 @@ class UserController extends BaseController{
 		$captcha_handle = new ValidateCode( $font_path );
 		$captcha_handle->doimg();
 		$this->setCookie($this->captcha_cookie_name,$captcha_handle->getCode() );
+	}
+
+	private function checkCaptcha( $captcha_code ){
+		$cookie_captcha = $this->getCookie( $this->captcha_cookie_name,"" );
+		if( strtolower( $cookie_captcha ) != strtolower( $captcha_code ) ){
+			return false;
+		}
+		return true;
 	}
 
 	private $referer_cookie_name = "referer";

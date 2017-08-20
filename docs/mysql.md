@@ -1,3 +1,7 @@
+## 20170820
+
+    ALTER TABLE `oauth_bind` ADD `member_id` INT(11)  NOT NULL  DEFAULT '0'  COMMENT '会员id'  AFTER `uid`;
+
 ## 20170819
         
         CREATE TABLE `soft` (

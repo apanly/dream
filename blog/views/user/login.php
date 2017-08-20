@@ -8,7 +8,7 @@ StaticService::includeAppJsStatic("/js/web/user/login.js", \blog\assets\AppAsset
 <div id="wrapper">
     <div class="aw-login-box">
         <div class="mod-body clearfix">
-            <div class="content pull-left">
+            <div class="content pull-left" style="width: 100%;">
                 <h2 class="text-center" style="font-size: 200%;">登录</h2>
                 <div id="login_form">
                     <ul>
@@ -22,12 +22,12 @@ StaticService::includeAppJsStatic("/js/web/user/login.js", \blog\assets\AppAsset
                         <li class="last">
                             <a href="<?=GlobalUrlService::buildNullUrl();?>"  id="login_submit" class="pull-right btn btn-large btn-primary do_login">登录</a>
 
-                            <a href="<?=GlobalUrlService::buildUrl( "/user/forget" );?>">&nbsp;&nbsp;忘记密码？</a>
+                            <a class="hide" href="<?=GlobalUrlService::buildUrl( "/user/forget" );?>">&nbsp;&nbsp;忘记密码？</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="side-bar pull-left">
+            <div class="side-bar pull-left hide">
                 <h3>第三方账号登录</h3>
                 <a href="<?=GlobalUrlService::buildBlogUrl("/user/oauth",[ "type" => "weibo" ]);?>" class="btn btn-block btn-weibo"><i class="icon icon-weibo"></i> 新浪微博登录</a>
                 <a href="<?=GlobalUrlService::buildBlogUrl("/user/oauth",[ "type" => "qq" ]);?>" class="btn btn-block btn-qq"> <i class="icon icon-qq"></i> QQ登录</a>
