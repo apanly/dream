@@ -28,7 +28,7 @@ StaticService::includeAppCssStatic("/css/market/articles.css", \blog\assets\Supe
                             <p class="article-item-tags">
                                 <a href="<?=GlobalUrlService::buildNullUrl();?>" class="article-tag-element">微信小程序</a>
                             </p>
-                            <p class="article-item-desc">
+                            <p class="article-item-desc hide">
                                 近日，inASK英士在上海发布了两款HLD光源投影机，让新光源投影市场再添强力军。
                             </p>
                             <p class="article-item-options">
