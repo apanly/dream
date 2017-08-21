@@ -58,11 +58,6 @@ StaticService::includeAppJsStatic("/js/market/default/index.js", \blog\assets\Su
     .focus .bd li a {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* 取消链接高亮 */
     }
-
-    section.www-article-main .article-main-content p{
-        margin-bottom: 5px;
-    }
-
 </style>
 <div class="container-fluid">
     <div class="row hide" style="margin: 0;padding: 0;">
