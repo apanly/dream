@@ -18,6 +18,10 @@ var common_ops = {
             nav_name = "mina";
         }
 
+        if(  pathname.indexOf("/default/site") > -1  ){
+            nav_name = "site";
+        }
+
         $("#navbarCollapse li."+nav_name).addClass("active");
     }
 };

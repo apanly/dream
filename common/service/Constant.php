@@ -13,9 +13,9 @@ class Constant {
     ];
 
 	public static $soft_type = [
-		1 => "小程序",
+		1 => "微信小程序",
 		2 => "MacApp",
-		3 => "Web程序",
+		3 => "建站源码",
 	];
 
 	public static $soft_status_desc = [

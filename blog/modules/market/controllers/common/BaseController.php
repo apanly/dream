@@ -10,6 +10,7 @@ class BaseController extends BaseBlogController{
 		"market/default/index",
 		"market/default/info",
 		"market/default/mina",
+		"market/default/site",
 	];
 
 
@@ -24,6 +25,10 @@ class BaseController extends BaseBlogController{
 
 	public function beforeAction($action){
 		$login_status = $this->checkMemberLoginStatus();
+		if( !$this->getUUID() ){
+			$this->setUUID();
+		}
+
 		if ( in_array($action->getUniqueId(), $this->allowAllAction ) ) {
 			return true;
 		}

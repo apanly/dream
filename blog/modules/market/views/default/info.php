@@ -13,6 +13,8 @@ StaticService::includeAppCssStatic("/css/market/articles_info.css", \blog\assets
             <li class="home"><a href="<?= GlobalUrlService::buildSuperMarketUrl("/"); ?>">首页</a></li>
 			<?php if ($info['type'] == 1): ?>
                 <li><a href="<?= GlobalUrlService::buildSuperMarketUrl("/default/mina"); ?>">微信小程序</a></li>
+            <?php elseif ( $info['type'] == 3): ?>
+                <li><a href="<?= GlobalUrlService::buildSuperMarketUrl("/default/site"); ?>">建站源码</a></li>
 			<?php endif; ?>
             <li><span><?= DataHelper::encode($info['title']); ?></span></li>
         </ol>
@@ -29,7 +31,9 @@ StaticService::includeAppCssStatic("/css/market/articles_info.css", \blog\assets
         </div>
         <div class="article-main-tags">
             标签：
-            <a href="<?=GlobalUrlService::buildNullUrl();?>">微信小程序</a>
+            <a href="<?=GlobalUrlService::buildNullUrl();?>">
+                <?=common\service\Constant::$soft_type[ $info['type'] ];?>
+            </a>
         </div>
         <div class="article-main-content">
 			<?= $info['content']; ?>

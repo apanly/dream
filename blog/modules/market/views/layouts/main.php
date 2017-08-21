@@ -56,12 +56,15 @@ SuperMarketAsset::register($this);
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="nav navbar-nav">
                 <li class="home"><a href="<?=GlobalUrlService::buildSuperMarketUrl("/");?>">首页</a></li>
-                <li class="hide" >
-                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/site");?>">建站模板</a>
-                </li>
+
                 <li class="mina">
                     <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/mina");?>">微信小程序</a>
                 </li>
+
+                <li class="site" >
+                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/site");?>">建站源码</a>
+                </li>
+
                 <li class="hide" >
                     <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/macapp");?>">Mac软件</a>
                 </li>
