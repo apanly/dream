@@ -25,6 +25,7 @@ class SuperMarketAsset extends AssetBundle
 		];
         $this->js = [
             GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
+			"js/access.js?version={$release_version}",
 			"js/market/common.js?version={$release_version}"
         ];
 

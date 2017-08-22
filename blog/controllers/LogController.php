@@ -9,6 +9,7 @@ use common\models\posts\Posts;
 use apanly\BrowserDetector\Browser;
 use apanly\BrowserDetector\Os;
 use apanly\BrowserDetector\Device;
+use common\models\soft\Soft;
 use Yii;
 
 
@@ -19,9 +20,15 @@ class LogController extends BaseController{
         $target_url = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"";
         if( $target_url ){
 			$blog_id = 0;
+			$soft_id = 0;
 			preg_match("/\/default\/(\d+)(.html)?/",$target_url,$matches);
 			if( $matches && count( $matches ) >= 2  ){
-				$blog_id = $matches[1];
+				if( stripos( $target_url,"/market/" ) !== false ){
+					$soft_id = $matches[1];
+				}else{
+					$blog_id = $matches[1];
+				}
+
 			}
 
 			$tmp_source = 'direct';
@@ -78,6 +85,14 @@ class LogController extends BaseController{
 				if( $blog_info ){
 					$blog_info->view_count += 1;
 					$blog_info->update(0);
+				}
+			}
+
+			if( $soft_id ){
+				$soft_info = Soft::findOne([ 'id' => $soft_id  ]);
+				if( $soft_info ){
+					$soft_info->view_count += 1;
+					$soft_info->update(0);
 				}
 			}
 

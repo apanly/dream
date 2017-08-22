@@ -107,6 +107,11 @@ SuperMarketAsset::register($this);
 
 </footer>
 <?php $this->endBody() ?>
+<div class="hidden_wrap" style="display: none;">
+    <input type="hidden" id="access_domain" value="<?=GlobalUrlService::buildBlogUrl("/");?>">
+    <input type="hidden" id="domain_static" value="<?=GlobalUrlService::buildStaticUrl("/");?>">
+</div>
+<?php echo \Yii::$app->view->renderFile("@blog/views/public/stat.php");?>
 </body>
 </html>
 <?php $this->endPage() ?>
