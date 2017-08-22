@@ -17,7 +17,7 @@ class DefaultController extends BaseController {
     public function actionIndex(){
 
     	$mina_list = Soft::find()->where([ 'type' => 1,'status' => 1 ])
-			->orderBy([ 'id' => SORT_DESC ])->limit( 4 )->all();
+			->orderBy([ 'updated_time' => SORT_DESC ])->limit( 4 )->all();
 
 		$site_list = Soft::find()->where([ 'type' => 3,'status' => 1 ])
 			->orderBy([ 'id' => SORT_DESC ])->limit( 4 )->all();
@@ -56,7 +56,7 @@ class DefaultController extends BaseController {
 		$offset   = ($p - 1) * $pagesize;
 
 		$query = Soft::find()->where([ 'type' => 1,'status' => 1]);
-		$query->orderBy( [ 'id' => SORT_DESC ] );
+		$query->orderBy( [ 'updated_time' => SORT_DESC ] );
 		$total_count = $query->count();
 		$list = $query->offset($offset)->limit($pagesize)->all();
 
