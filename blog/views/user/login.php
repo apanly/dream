@@ -37,7 +37,7 @@ StaticService::includeAppJsStatic("/js/web/user/login.js", \blog\assets\AppAsset
             <span>还没有账号?</span>&nbsp;&nbsp;
             <a href="<?=GlobalUrlService::buildUrl( "/user/reg" );?>">立即注册</a>&nbsp;&nbsp;•&nbsp;&nbsp;
             <a href="<?=GlobalUrlService::buildUrl( "/" );?>">返回博客</a>&nbsp;&nbsp;•&nbsp;&nbsp;
-            <a href="<?=GlobalUrlService::buildSuperMarketUrl( "/" );?>">返回杂货铺</a>
+            <a href="<?=GlobalUrlService::buildSuperMarketUrl( "/" );?>">返回源码空间</a>
         </div>
     </div>
 </div>

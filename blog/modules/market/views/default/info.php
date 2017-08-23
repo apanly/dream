@@ -45,6 +45,7 @@ StaticService::includeAppJsStatic("/js/market/default/info.js", \blog\assets\App
                     版权声明：本文为博主原创文章，原文永久地址：<?=GlobalUrlService::buildSuperMarketUrl("/default/info",[ 'id' => $info['id'] ]);?>
                 </p>
             </blockquote>
+
 			<?= $info['content']; ?>
             <h2>源码下载地址</h2>
 			<?php if( isset( $this->params['current_member'] ) ):?>
