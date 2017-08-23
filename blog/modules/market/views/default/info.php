@@ -39,6 +39,12 @@ StaticService::includeAppJsStatic("/js/market/default/info.js", \blog\assets\App
             </a>
         </div>
         <div class="article-main-content">
+            <blockquote style="border:1px dashed #FF9A9A;">
+                <p>本站保证所有源码都经过详细测试后才分享</p>
+                <p>
+                    版权声明：本文为博主原创文章，原文永久地址：<?=GlobalUrlService::buildSuperMarketUrl("/default/info",[ 'id' => $info['id'] ]);?>
+                </p>
+            </blockquote>
 			<?= $info['content']; ?>
             <h2>源码下载地址</h2>
 			<?php if( isset( $this->params['current_member'] ) ):?>
@@ -50,6 +56,7 @@ StaticService::includeAppJsStatic("/js/market/default/info.js", \blog\assets\App
                     <strong>下载内容需要&nbsp;&nbsp;<a href="<?=GlobalUrlService::buildOauthUrl("/user/login");?>">登录</a>&nbsp;&nbsp;之后才可以浏览</strong>
                 </div>
             <?php endif;?>
+
         </div>
     </section>
     <div class="row hide">
