@@ -16,7 +16,7 @@ class BlogUtilService {
 			],
 
 			'market'   => [
-				'title' => '杂货铺',
+				'title' => '源码下载',
 				'url'   => GlobalUrlService::buildSuperMarketUrl("/"),
 				'status' => 1
 			],

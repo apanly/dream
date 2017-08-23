@@ -44,7 +44,7 @@ class BaseController extends BaseBlogController{
 	}
 
 
-	public function setTitle($title = "浪子的杂货店"){
+	public function setTitle($title = "网站模板_网站模板下载_商业源码_商业源码网 - 浪子的杂货店"){
 		$this->getView()->title = $title;
 	}
 

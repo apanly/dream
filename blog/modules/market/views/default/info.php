@@ -2,9 +2,12 @@
 use blog\components\StaticService;
 use \common\service\GlobalUrlService;
 use \common\components\DataHelper;
+/*fancy*/
+StaticService::includeStaticCss("/jquery/fancy/jquery.fancybox.css",\blog\assets\AppAsset::className());
+StaticService::includeStaticJs("/jquery/fancy/jquery.fancybox.pack.js",\blog\assets\AppAsset::className());
 
 StaticService::includeAppCssStatic("/css/market/articles_info.css", \blog\assets\SuperMarketAsset::className());
-
+StaticService::includeAppJsStatic("/js/market/default/info.js", \blog\assets\AppAsset::className());
 ?>
 <div class="container">
     <div class="row" style="margin-top: 5px;">
