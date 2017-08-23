@@ -97,7 +97,7 @@ SuperMarketAsset::register($this);
                         <ul class="list-unstyled footer-maps-list">
                             <li><a href="<?=GlobalUrlService::buildBlogUrl("/");?>">博客</a></li>
                             <li><a href="<?=GlobalUrlService::buildDemoUrl("/");?>">演示系统</a></li>
-                            <li><a href="<?=GlobalUrlService::buildSuperMarketUrl("/");?>">杂货铺</a></li>
+                            <li><a href="<?=GlobalUrlService::buildSuperMarketUrl("/");?>">源码空间</a></li>
                             <li><a href="<?=GlobalUrlService::buildGameUrl("/");?>">小工具</a></li>
                         </ul>
                     </div>
