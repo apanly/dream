@@ -39,12 +39,7 @@ StaticService::includeAppJsStatic("/js/market/default/info.js", \blog\assets\App
             </a>
         </div>
         <div class="article-main-content">
-            <blockquote style="border:1px dashed #FF9A9A;">
-                <p>本站保证所有源码都经过详细测试后才分享</p>
-                <p>
-                    版权声明：本文为博主原创文章，原文永久地址：<?=GlobalUrlService::buildSuperMarketUrl("/default/info",[ 'id' => $info['id'] ]);?>
-                </p>
-            </blockquote>
+
 
 			<?= $info['content']; ?>
             <h2>源码下载地址</h2>
@@ -57,6 +52,15 @@ StaticService::includeAppJsStatic("/js/market/default/info.js", \blog\assets\App
                     <strong>下载内容需要&nbsp;&nbsp;<a href="<?=GlobalUrlService::buildOauthUrl("/user/login");?>">登录</a>&nbsp;&nbsp;之后才可以浏览</strong>
                 </div>
             <?php endif;?>
+
+            <blockquote style="border:1px dashed #FF9A9A;">
+                <p>声明：该资源仅供学习和研究传播，大家请在下载后24小时内删除，一切关于该资源商业行为与<?=GlobalUrlService::buildBlogUrl("/");?>无关</p>
+                <p>本站保证所有源码都经过详细测试后才分享</p>
+                <p>转载请注明来源：<a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/info",[ 'id' => $info['id'] ]);?>"><?= DataHelper::encode($info['title']); ?></a></p>
+                <p>
+                    本文永久链接地址：<?=GlobalUrlService::buildSuperMarketUrl("/default/info",[ 'id' => $info['id'] ]);?>
+                </p>
+            </blockquote>
 
         </div>
     </section>
