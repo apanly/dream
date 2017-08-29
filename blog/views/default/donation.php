@@ -17,6 +17,13 @@ use \blog\components\UrlService;
 			<tbody>
                 <tr>
                     <td>匿名</td>
+                    <td>3.00</td>
+                    <td>2017-08-29</td>
+                    <td>微信扫码</td>
+                    <td class="text-left">作者加油</td>
+                </tr>
+                <tr>
+                    <td>匿名</td>
                     <td>2.22</td>
                     <td>2017-07-16</td>
                     <td>微信扫码</td>
