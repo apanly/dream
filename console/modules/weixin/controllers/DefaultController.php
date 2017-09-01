@@ -42,7 +42,7 @@ class DefaultController extends BaseController {
 				if( $_item->headimgurl ){
 					WxQueueListService::addQueue( "avatar",[ "member_id" => $_item['id'],"avatar_url"  => $_item->headimgurl] );
 				}else{
-					WxQueueListService::addQueue( "info",[ "openid" => $_item['open_id'] ] );
+					WxQueueListService::addQueue( "info",[ "openid" => $_item['openid'] ] );
 				}
 			}
 
