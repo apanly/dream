@@ -35,7 +35,7 @@ class DefaultController extends BaseController {
 		$list = OauthMember::find()->where([ 'avatar' => '' ])->all();
 		if( $list ){
 			foreach ( $list as $_item ){
-				if( $_item['open_id'] == 'system' ){
+				if( $_item['openid'] == 'system' ){
 					continue;
 				}
 
