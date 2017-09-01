@@ -3,6 +3,7 @@
 namespace console\modules\weixin\controllers;
 
 use common\components\HttpClient;
+use common\models\weixin\OauthMember;
 use common\service\weixin\RequestService;
 use common\service\weixin\WechatConfigService;
 use common\service\weixin\WxQueueListService;
@@ -28,5 +29,23 @@ class DefaultController extends BaseController {
 		}
 
 		return $this->echoLog( "it's over ~~" );
+	}
+
+	public function actionFix(){
+		$list = OauthMember::find()->where([ 'avatar' => '' ])->all();
+		if( $list ){
+			foreach ( $list as $_item ){
+				if( $_item['open_id'] == 'system' ){
+					continue;
+				}
+
+				if( $_item->headimgurl ){
+					WxQueueListService::addQueue( "avatar",[ "member_id" => $_item['id'],"avatar_url"  => $_item->headimgurl] );
+				}else{
+					WxQueueListService::addQueue( "info",[ "openid" => $_item['open_id'] ] );
+				}
+			}
+
+		}
 	}
 }
