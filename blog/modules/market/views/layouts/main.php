@@ -30,7 +30,7 @@ SuperMarketAsset::register($this);
                 </a>
                 <div class="top-bar-login">
                     <?php if( isset( $this->params['current_member'] ) ):?>
-                        <span><?=DataHelper::encode( $this->params['current_member']['login_name'] );?>
+                        <a href="<?=GlobalUrlService::buildOauthUrl( "/user/profile/index" );?>"><?=DataHelper::encode( $this->params['current_member']['login_name'] );?></a>
                         <span>|</span>
                         <a href="<?=GlobalUrlService::buildOauthUrl( "/user/logout" );?>">退出</a>
                     <?php else:?>

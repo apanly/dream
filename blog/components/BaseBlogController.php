@@ -82,6 +82,6 @@ class BaseBlogController extends \common\components\BaseWebController{
 	}
 
 	public function geneMemberAuthToken( $member_info ){
-		return md5($this->salt."-{$member_info['id']}-{$member_info['login_name']}-{$member_info['email']}-{$member_info['salt']}");
+		return md5($this->salt."-{$member_info['id']}-{$member_info['login_name']}-{$member_info['login_pwd']}-{$member_info['email']}-{$member_info['salt']}");
 	}
 }

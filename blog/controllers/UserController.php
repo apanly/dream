@@ -141,6 +141,10 @@ class UserController extends BaseController{
 		return $this->renderJSON( [],"注册成功~~");
 	}
 
+	public function actionProfile(){
+		return $this->render("profile");
+	}
+
 	public function actionForget(){
 		return $this->render( "forget" );
 	}

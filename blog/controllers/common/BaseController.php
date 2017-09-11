@@ -32,8 +32,7 @@ class BaseController extends BaseBlogController{
     ];
 
 
-    public function __construct($id, $module, $config = [])
-    {
+    public function __construct($id, $module, $config = []){
         parent::__construct($id, $module, $config = []);
         $view = Yii::$app->view;
         $view->params['id'] = $id;
@@ -41,8 +40,9 @@ class BaseController extends BaseBlogController{
         $view->params['copyright'] = Yii::$app->params['Copyright'];
     }
 
-    public function beforeAction($action)
-    {
+    public function beforeAction($action){
+		$login_status = $this->checkMemberLoginStatus();
+
         $this->setTitle();
         $this->setDescription();
         $this->setKeywords();
@@ -64,6 +64,8 @@ class BaseController extends BaseBlogController{
 		if( !$this->getUUID() ){
 			$this->setUUID();
 		}
+
+
 
         return true;
     }

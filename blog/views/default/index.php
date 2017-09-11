@@ -38,7 +38,8 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
 <main class="col-md-8 main-content">
     <?php if ($data): ?>
         <?php foreach ($data as $_item): ?>
-            <article id=85 class="post tag-about-ghost tag-release featured">
+            <?php if( $_item['from'] == "blog" ):?>
+                <article  class="post tag-about-ghost tag-release featured">
                 <div class="featured" title="推荐文章">
                     <i class="fa fa-star"></i>
                 </div>
@@ -79,6 +80,34 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
                     </footer>
                 <?php endif; ?>
             </article>
+            <?php else:?>
+                <article  class="post tag-about-ghost tag-release featured">
+                    <div class="featured" title="推荐文章">
+                        <i class="fa fa-star"></i>
+                    </div>
+
+                    <div class="post-head">
+                        <h1 class="post-title">
+                            <a href="<?= $_item['view_url']; ?>">
+								<?= $_item['title']; ?>
+                            </a>
+                        </h1>
+
+                        <div class="post-meta">
+                        <span class="author">作者：<a
+                                    href="<?= $_item['author']['link']; ?>"><?= $_item['author']['nickname']; ?></a></span> &bull;
+                            <time class="post-date"><?= $_item['date']; ?></time>&bull;
+                            <span class="author"><?=$_item['view_count'];?>次阅读</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p><img src="<?= $_item['image_url']; ?>"></p>
+                    </div>
+                    <div class="post-permalink">
+                        <a href="<?= $_item['view_url']; ?>" class="btn btn-default">下载<?=$_item['type_desc'];?></a>
+                    </div>
+                </article>
+            <?php endif;?>
         <?php endforeach; ?>
     <?php endif; ?>
 

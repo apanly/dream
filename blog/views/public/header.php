@@ -1,6 +1,7 @@
 <?php
 use \blog\components\UrlService;
 use \common\service\GlobalUrlService;
+use  \common\components\DataHelper;
 $menu_list = \blog\components\BlogUtilService::blogMenu();
 ?>
 <header class="main-header" style="background-image: url(<?=GlobalUrlService::buildStaticUrl("/images/web/banner_bg.jpg");?>)">
@@ -54,7 +55,13 @@ $menu_list = \blog\components\BlogUtilService::blogMenu();
                                 <a href="<?=$_menu_info['url'];?>" <?php if( isset( $_menu_info['tip'] ) ):?> title="<?=$_menu_info['tip'];?>" <?php endif;?> ><?=$_menu_info['title'];?></a>
                             </li>
                             <?php endif;?>
+
                         <?php endforeach;?>
+						<?php if( isset( $this->params['current_member'] ) ):?>
+                        <li>
+                            <a style="color: #e67e22;" href="<?=GlobalUrlService::buildOauthUrl( "/user/profile/index" );?>">欢迎您，<?=DataHelper::encode( $this->params['current_member']['login_name'] );?></a>
+                        </li>
+						<?php endif;?>
                     </ul>
                 </div>
             </div>

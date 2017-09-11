@@ -10,7 +10,9 @@ use common\components\DataHelper;
 use common\components\UtilHelper;
 use common\models\posts\Posts;
 use common\models\posts\PostsRecommend;
+use common\models\soft\Soft;
 use common\service\CacheHelperService;
+use common\service\Constant;
 use common\service\GlobalUrlService;
 use common\service\RecommendService;
 use console\modules\blog\Blog;
@@ -59,9 +61,33 @@ class DefaultController extends BaseController{
 
         $posts_info = $query->offset($offset)->limit($pagesize)->all();
 
+        $soft_page_size = 5;
+		$soft_list = Soft::find()->where([ 'status' => 1 ])
+			->orderBy([ 'id' => SORT_DESC ])
+			->offset(  ( $p - 1 ) * $soft_page_size )
+			->limit( $soft_page_size )->all();
+
+		$author = Yii::$app->params['author'];
+		$soft_data = [];
+
+		if( $soft_list ){
+			foreach (  $soft_list as $_item  ){
+				$soft_data[]      = [
+					'id' => $_item['id'],
+					'title'  => DataHelper::encode($_item['title']),
+					'author' => $author,
+					'image_url' => $_item['image_url'],
+					'view_count' => $_item['view_count'],
+					'type_desc' => Constant::$soft_type[ $_item['type'] ],
+					'date'  => date("Y.m.d", strtotime($_item['updated_time'])),
+					'view_url' =>  GlobalUrlService::buildSuperMarketUrl( "/default/info" ,[ "id" => $_item['id'] ] ),
+					'from' => "soft"
+				];
+			}
+		}
+
         if ($posts_info) {
             $idx    = 1;
-            $author = Yii::$app->params['author'];
             foreach ($posts_info as $_post) {
                 $tmp_content = UtilHelper::blog_summary($_post['content'], 105);
                 $tags = explode(",", $_post['tags']);
@@ -77,9 +103,16 @@ class DefaultController extends BaseController{
                     'tags'  => $tags,
                     'date'  => date("Y.m.d", strtotime($_post['updated_time'])),
                     'view_url' => UrlService::buildUrl( "/default/info" ,[ "id" => $_post['id'] ] ),
+					'from' => "blog"
                 ];
+
+                if( isset( $soft_data[ $idx - 1 ] ) ){
+					$data[] = $soft_data[ $idx - 1 ];
+				}
             }
         }
+
+
 
         $page_info = DataHelper::ipagination([
             "total_count" => $total_count,
