@@ -100,7 +100,7 @@ StaticService::includeAppJsStatic("/js/web/default/index.js", \blog\assets\AppAs
                             <span class="author"><?=$_item['view_count'];?>次阅读</span>
                         </div>
                     </div>
-                    <div class="post-content">
+                    <div class="post-content text-center">
                         <p><img src="<?= $_item['image_url']; ?>"></p>
                     </div>
                     <div class="post-permalink">

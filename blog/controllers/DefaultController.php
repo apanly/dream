@@ -109,6 +109,7 @@ class DefaultController extends BaseController{
                 if( isset( $soft_data[ $idx - 1 ] ) ){
 					$data[] = $soft_data[ $idx - 1 ];
 				}
+				$idx++;
             }
         }
 
