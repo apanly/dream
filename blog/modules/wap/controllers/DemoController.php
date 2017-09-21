@@ -25,4 +25,9 @@ class DemoController extends BaseController{
     public function actionScan_code(){
         return $this->render("scan_code");
     }
+
+
+    public function actionWapPay(){
+		return $this->render("h5pay");
+	}
 }
