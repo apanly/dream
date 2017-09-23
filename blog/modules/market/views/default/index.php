@@ -73,11 +73,12 @@ StaticService::includeAppJsStatic("/js/market/default/index.js", \blog\assets\Su
             </div>
         </div>
     </div>
+
     <div class="page-header">
-        <h3>小程序示例</h3>
+        <h3>建站示例</h3>
     </div>
     <div class="row" style="padding: 0 30px;">
-		<?php foreach( $mina_list as $_item  ):?>
+		<?php foreach( $site_list as $_item  ):?>
             <div class="col-sm-6 col-md-3 col-lg-3">
                 <div class="thumbnail">
                     <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/info",[ "id" => $_item['id'] ]);?>">
@@ -93,10 +94,10 @@ StaticService::includeAppJsStatic("/js/market/default/index.js", \blog\assets\Su
     </div>
 
     <div class="page-header">
-        <h3>建站示例</h3>
+        <h3>小程序示例</h3>
     </div>
     <div class="row" style="padding: 0 30px;">
-		<?php foreach( $site_list as $_item  ):?>
+		<?php foreach( $mina_list as $_item  ):?>
             <div class="col-sm-6 col-md-3 col-lg-3">
                 <div class="thumbnail">
                     <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/info",[ "id" => $_item['id'] ]);?>">
