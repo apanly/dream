@@ -41,17 +41,17 @@ StaticService::includeAppJsStatic("/js/market/default/info.js", \blog\assets\App
             </a>
         </div>
         <div class="article-main-content">
-
-
 			<?= $info['content']; ?>
             <h2>源码下载地址</h2>
 			<?php if( isset( $this->params['current_member'] ) ):?>
                 <div class="alert alert-info">
-					<?=$info['down_url'];?>
+					<?=$info['down_url'];?><br/><br/>
+                    加入QQ群和更多朋友交流：325264502 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=d7ed56eea3e6e0047db0420404dd0874c5c3d37e30ee40ab7bb6a5a2fb77dc72">点击一键加入群</a>
                 </div>
             <?php else:?>
                 <div class="alert alert-info text-center">
                     <strong>下载内容需要&nbsp;&nbsp;<a href="<?=GlobalUrlService::buildOauthUrl("/user/login");?>">登录</a>&nbsp;&nbsp;之后才可以浏览</strong>
+
                 </div>
             <?php endif;?>
 
