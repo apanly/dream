@@ -22,6 +22,10 @@ var common_ops = {
             nav_name = "site";
         }
 
+        if(  pathname.indexOf("/default/soft") > -1  ){
+            nav_name = "soft";
+        }
+
         $("#navbarCollapse li."+nav_name).addClass("active");
     }
 };

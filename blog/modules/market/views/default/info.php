@@ -18,6 +18,8 @@ StaticService::includeAppJsStatic("/js/market/default/info.js", \blog\assets\App
                 <li><a href="<?= GlobalUrlService::buildSuperMarketUrl("/default/mina"); ?>">微信小程序</a></li>
             <?php elseif ( $info['type'] == 3): ?>
                 <li><a href="<?= GlobalUrlService::buildSuperMarketUrl("/default/site"); ?>">建站源码</a></li>
+            <?php elseif ( $info['type'] == 4): ?>
+                <li><a href="<?= GlobalUrlService::buildSuperMarketUrl("/default/soft"); ?>">软件下载</a></li>
 			<?php endif; ?>
             <li><span><?= DataHelper::encode($info['title']); ?></span></li>
         </ol>

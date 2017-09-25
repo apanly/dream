@@ -62,11 +62,13 @@ SuperMarketAsset::register($this);
                     <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/site");?>">建站源码</a>
                 </li>
 
+                <li class="soft" >
+                    <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/soft");?>">软件下载</a>
+                </li>
+
                 <li class="mina">
                     <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/mina");?>">微信小程序</a>
                 </li>
-
-
 
                 <li class="hide" >
                     <a href="<?=GlobalUrlService::buildSuperMarketUrl("/default/macapp");?>">Mac软件</a>

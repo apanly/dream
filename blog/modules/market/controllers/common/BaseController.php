@@ -11,6 +11,7 @@ class BaseController extends BaseBlogController{
 		"market/default/info",
 		"market/default/mina",
 		"market/default/site",
+		"market/default/soft",
 	];
 
 
