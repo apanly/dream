@@ -19,7 +19,7 @@ class DefaultController extends BaseController {
     	$mina_list = Soft::find()->where([ 'type' => 1,'status' => 1 ])
 			->orderBy([ 'updated_time' => SORT_DESC ])->limit( 4 )->all();
 
-		$site_list = Soft::find()->where([ 'type' => 3,'status' => 1 ])
+		$site_list = Soft::find()->where([ 'type' => [ 3,4 ],'status' => 1 ])
 			->orderBy([ 'id' => SORT_DESC ])->limit( 4 )->all();
 
         return $this->render('index',[
