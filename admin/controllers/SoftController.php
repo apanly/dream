@@ -23,8 +23,7 @@ use yii\helpers\Url;
 
 class SoftController extends BaseController
 {
-	public function actionIndex()
-	{
+	public function actionIndex(){
 		$p        = intval($this->get("p", 1));
 		$status   = intval($this->get("status", -99));
 		$order_by = $this->get("order_by", '');
@@ -105,8 +104,7 @@ class SoftController extends BaseController
 		]);
 	}
 
-	public function actionSet()
-	{
+	public function actionSet(){
 		$request = Yii::$app->request;
 		if ($request->isGet) {
 			$id   = trim($this->get("id", 0));
@@ -120,6 +118,9 @@ class SoftController extends BaseController
 						"content" => DataHelper::encode($post_info['content']),
 						"type"    => $post_info['type'],
 						"down_url"    => $post_info['down_url'],
+						"need_buy"    => $post_info['need_buy'],
+						"price"    => $post_info['price'],
+						"free_number"    => $post_info['free_number'],
 						"status"  => $post_info['status'],
 						"tags"    => DataHelper::encode($post_info['tags'])
 					];
@@ -137,6 +138,9 @@ class SoftController extends BaseController
 		$title   = trim($this->post("title"));
 		$content = trim($this->post("content"));
 		$down_url = trim( $this->post("down_url") );
+		$need_buy = trim( $this->post("need_buy") );
+		$price = trim( $this->post("price") );
+		$free_number = trim( $this->post("free_number") );
 		$tags    = trim($this->post("tags"));
 		$type    = trim($this->post("type"));
 		$status  = trim($this->post("status", 0));
@@ -176,6 +180,9 @@ class SoftController extends BaseController
 
 		$model_soft->title  = $title;
 		$model_soft->down_url  = $down_url;
+		$model_soft->need_buy  = $need_buy;
+		$model_soft->price  = $price;
+		$model_soft->free_number  = $free_number;
 		$model_soft->content = $content;
 		$model_soft->type = $type;
 		$model_soft->status = $status;

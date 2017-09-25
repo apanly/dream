@@ -43,6 +43,11 @@ var soft_set_ops = {
             var content  = $.trim( that.ue.getContent() );
             var tags_val = $.trim( $("#soft_set_wrap input[name=tags]").val() );
             var down_url = $.trim( $("#soft_set_wrap input[name=down_url]").val() );
+
+            var need_buy = $.trim( $("#soft_set_wrap select[name=need_buy]").val() );
+            var price = $.trim( $("#soft_set_wrap input[name=price]").val() );
+            var free_number = $.trim( $("#soft_set_wrap input[name=free_number]").val() );
+
             var type_target = $("#type");
             var type_val = $.trim( type_target.val() );
             var status_target = $("#status");
@@ -65,6 +70,9 @@ var soft_set_ops = {
                 title:title_val,
                 content:content,
                 down_url:down_url,
+                need_buy:need_buy,
+                price:price,
+                free_number:free_number,
                 tags:tags_val,
                 type:type_val,
                 status:status_val

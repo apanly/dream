@@ -1,3 +1,12 @@
+## 20170925
+
+    ALTER TABLE `soft` ADD `need_buy` TINYINT(1)  NOT NULL  DEFAULT '0'  COMMENT '是否需要购买 1：需要 0：不需要'  AFTER `origin_info_url`;
+    ALTER TABLE `soft` ADD `free_number` INT(11)  NOT NULL  DEFAULT '0'  COMMENT '免费名额'  AFTER `need_buy`;
+    ALTER TABLE `soft` ADD `apply_number` INT(11)  NOT NULL  DEFAULT '0'  COMMENT '已申请名额'  AFTER `free_number`;
+    ALTER TABLE `soft` ADD `price` DECIMAL(10,2)  NOT NULL  DEFAULT '0'  COMMENT '购买价格'  AFTER `need_buy`;
+
+
+
 ## 20170820
 
     ALTER TABLE `oauth_bind` ADD `member_id` INT(11)  NOT NULL  DEFAULT '0'  COMMENT '会员id'  AFTER `uid`;

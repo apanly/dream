@@ -17,6 +17,10 @@ use Yii;
  * @property string $preview_url
  * @property string $down_url
  * @property string $origin_info_url
+ * @property integer $need_buy
+ * @property string $price
+ * @property integer $free_number
+ * @property integer $apply_number
  * @property integer $status
  * @property integer $comment_count
  * @property integer $view_count
@@ -34,7 +38,7 @@ class Soft extends \yii\db\ActiveRecord
 		$this->sn = $sn;
 	}
 
-	/**
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -56,9 +60,10 @@ class Soft extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'status', 'comment_count', 'view_count'], 'integer'],
+            [['type', 'need_buy', 'free_number', 'apply_number', 'status', 'comment_count', 'view_count'], 'integer'],
             [['content'], 'required'],
             [['content'], 'string'],
+            [['price'], 'number'],
             [['updated_time', 'created_time'], 'safe'],
             [['sn'], 'string', 'max' => 20],
             [['title', 'tags'], 'string', 'max' => 250],
@@ -83,6 +88,10 @@ class Soft extends \yii\db\ActiveRecord
             'preview_url' => 'Preview Url',
             'down_url' => 'Down Url',
             'origin_info_url' => 'Origin Info Url',
+            'need_buy' => 'Need Buy',
+            'price' => 'Price',
+            'free_number' => 'Free Number',
+            'apply_number' => 'Apply Number',
             'status' => 'Status',
             'comment_count' => 'Comment Count',
             'view_count' => 'View Count',
