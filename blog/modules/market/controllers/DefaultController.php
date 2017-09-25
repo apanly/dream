@@ -16,15 +16,30 @@ class DefaultController extends BaseController {
 
     public function actionIndex(){
 
-    	$mina_list = Soft::find()->where([ 'type' => 1,'status' => 1 ])
-			->orderBy([ 'updated_time' => SORT_DESC ])->limit( 4 )->all();
-
-		$site_list = Soft::find()->where([ 'type' => [ 3,4 ],'status' => 1 ])
-			->orderBy([ 'id' => SORT_DESC ])->limit( 4 )->all();
+		$query = Soft::find()->where([ 'type' => [ 2,3,4 ],'status' => 1]);
+		$query->orderBy( [ 'id' => SORT_DESC ] );
+		$list = $query->limit( 15  )->all();
+		$data     = [];
+		if ($list) {
+			$author = \Yii::$app->params['author'];
+			foreach ( $list as $_item ) {
+				$tags = explode(",", $_item['tags']);
+				$data[]      = [
+					'id' => $_item['id'],
+					'title'  => DataHelper::encode($_item['title']),
+					'content'  => mb_substr( strip_tags($_item['content']) ,0,200,"utf-8"),
+					'image_url' => $_item['image_url'],
+					'author' => $author,
+					'tags'  => $tags,
+					'type_desc'  => Constant::$soft_type[ $_item['type'] ],
+					'date'  => date("Y.m.d", strtotime( $_item['updated_time'] ) ),
+					'view_url' => GlobalUrlService::buildSuperMarketUrl( "/default/info" ,[ "id" => $_item['id'] ] ),
+				];
+			}
+		}
 
         return $this->render('index',[
-        	'mina_list' => $mina_list,
-        	'site_list' => $site_list,
+			"data" => $data
 		]);
     }
 
