@@ -139,8 +139,8 @@ class SoftController extends BaseController
 		$content = trim($this->post("content"));
 		$down_url = trim( $this->post("down_url") );
 		$need_buy = trim( $this->post("need_buy") );
-		$price = trim( $this->post("price") );
-		$free_number = trim( $this->post("free_number") );
+		$price = intval( trim( $this->post("price",0) ) );
+		$free_number = intval( trim( $this->post("free_number",0) ) );
 		$tags    = trim($this->post("tags"));
 		$type    = trim($this->post("type"));
 		$status  = trim($this->post("status", 0));
