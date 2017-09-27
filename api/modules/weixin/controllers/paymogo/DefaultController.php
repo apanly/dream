@@ -13,7 +13,7 @@ class DefaultController extends  BaseController {
 		$xml_data = file_get_contents("php://input");
         file_put_contents( "/tmp/mogo.log",$xml_data,FILE_APPEND );
 
-        return "消息接口";
+        return "success";
     }
 
 } 
