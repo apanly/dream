@@ -22,7 +22,6 @@ var demo_mogopay_ops = {
                 success:function( res ){
                     var data = res.data['payinfo'];
                     data = eval( '(' + data + ')' );
-                    console.log( data );
                     var json_data = {
                         timestamp: data.timeStamp,
                         nonceStr: data.nonceStr,

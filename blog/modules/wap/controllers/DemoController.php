@@ -118,7 +118,7 @@ class DemoController extends BaseController{
 			"timestamp" => $timestamp,
 			"url"       => $url,
 			"signature" => $signature,
-			//"string" => $string
+			"string" => $string
 		);
 
 		return $this->renderJSON( $signPackage );
