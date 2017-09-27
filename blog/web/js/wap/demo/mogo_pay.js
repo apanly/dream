@@ -61,7 +61,7 @@ var demo_mogopay_ops = {
                     var nonceStr = data.data.nonceStr;
                     var signature = data.data.signature;
                     wx.config({
-                        debug: false,
+                        debug: true,
                         appId: appId,
                         timestamp: timestamp,
                         nonceStr: nonceStr,
