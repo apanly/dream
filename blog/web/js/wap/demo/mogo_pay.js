@@ -52,7 +52,7 @@ var demo_mogopay_ops = {
             url:common_ops.buildWapUrl( '/demo/jssdk' ) ,
             type:'GET',
             data:{
-                'url':encodeURIComponent(location.href.split('#')[0])
+                'url':location.href.split('#')[0]
             },
             dataType:'json',
             success:function(data){
