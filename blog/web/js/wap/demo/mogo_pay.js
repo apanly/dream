@@ -77,7 +77,11 @@ var demo_mogopay_ops = {
                     });
 
                     wx.error(function(res){
-                        alert( res );
+                        var msg = '';
+                        for( var idx in res ){
+                            msg += idx + ":" + res[idx];
+                        }
+                        alert(  msg  );
                     });
                 }
             }
