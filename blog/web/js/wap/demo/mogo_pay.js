@@ -19,8 +19,28 @@ var demo_mogopay_ops = {
                 data:{
                     'openid':openid
                 },
-                success:function(){
-
+                success:function( res ){
+                    var data = res.data['payinfo'];
+                    var json_data = {
+                        timestamp: data.timeStamp,
+                        nonceStr: data.nonceStr,
+                        package: data.package,
+                        signType: data.signType,
+                        paySign: data.paySign,
+                        success: function () {
+                            alert("支付成功~~");
+                            window.location.href = window.location.href;
+                        },
+                        cancel: function(){
+                            alert("取消了支付~~");
+                        },
+                        fail: function(){
+                            alert("支付失败~~");
+                        }
+                    };
+                    wx.ready( function(){
+                        wx.chooseWXPay( json_data );
+                    } );
                 }
             });
         });

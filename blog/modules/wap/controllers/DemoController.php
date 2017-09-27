@@ -71,7 +71,7 @@ class DemoController extends BaseController{
 		$params['sign'] = $sign;
 
 		$data = HttpClient::post( $order_url,$params );
-		return $this->renderJSON( $data );
+		return $this->renderJSON( json_decode($data,true) );
 	}
 
 	function getSign( $params ){
@@ -88,9 +88,49 @@ class DemoController extends BaseController{
 
 	public function actionJssdk(){
 		RequestService::setConfig( $this->appid,$this->token,$this->appkey );
-		$access_token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid.'&secret='.$this->appkey;
+		$access_token_url = "token?grant_type=client_credential&appid=".$this->appid.'&secret='.$this->appkey;
 		$res = RequestService::send($access_token_url,[]);
-		var_dump( $res );
+		if( !$res ){
+			return "access_token 错误";
+		}
+		$access_token = $res['access_token'];
+		$url = "ticket/getticket?type=jsapi&access_token={$access_token}";
+		$res = RequestService::send($url);
+		$ticket_info = $res;
+		if( isset($ticket_info['errcode'])  && $ticket_info['errcode'] != 0 ){
+			return $ticket_info['errcode'];
+		}
+
+		$ticket = isset( $ticket_info['ticket'] )? $ticket_info['ticket']:'';
+
+		$url = trim(Yii::$app->request->get("url"));
+		if( !$url ){
+			$url = isset( $_SERVER['HTTP_REFERER'] )?$_SERVER['HTTP_REFERER']:'';
+		}
+
+		$timestamp = time();
+		$nonceStr = $this->createNonceStr();
+		$string = "jsapi_ticket={$ticket}&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
+		$signature = sha1($string);
+		$signPackage = array(
+			"appId"     => RequestService::getAppId(),
+			"nonceStr"  => $nonceStr,
+			"timestamp" => $timestamp,
+			"url"       => $url,
+			"signature" => $signature,
+			//"string" => $string
+		);
+
+		return $this->renderJSON( $signPackage );
+	}
+
+	private function createNonceStr($length = 16) {
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		$str = "";
+		for ($i = 0; $i < $length; $i++) {
+			$str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+		}
+		return $str;
 	}
 
 	public function actionCallback(){
