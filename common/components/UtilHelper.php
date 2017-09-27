@@ -237,7 +237,8 @@ class UtilHelper {
 			'*.sohu.com',
 			'*.itc.cn',
 			'*.jiathis.com',
-			'*.qnssl.com'
+			'*.qnssl.com',
+			"*.wx.qq.com"
 		];
     	if( $env != "prod" ){
 			$domains[] = '*.dr.test';
