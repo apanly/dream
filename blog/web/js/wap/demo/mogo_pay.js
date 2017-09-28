@@ -2,7 +2,7 @@
 var demo_mogopay_ops = {
     init:function(){
         $(".am-navbar").hide();
-        this.initWechatconfig();
+        //this.initWechatconfig();
         this.eventBind();
     },
     eventBind:function(){
