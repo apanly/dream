@@ -12,12 +12,19 @@ var demo_mogopay_ops = {
             if( openid == undefined ){
                 openid = $(".am-form input[name=openid]").val();
             }
+
+            if( openid.lenth < 1 ){
+                alert("请输入openid");
+                return;
+            }
+
             $.ajax({
                 url:common_ops.buildWapUrl("/demo/mogo-pay"),
                 type:'POST',
                 dataType:'json',
                 data:{
-                    'openid':openid
+                    'openid':openid,
+                    'no_credit':$("#no_credit").val()
                 },
                 success:function( res ){
                     var data = res.data['payinfo'];
@@ -119,6 +126,7 @@ function onBridgeReady(){
 }
 
 $(document).ready( function(){
+    demo_mogopay_ops.init();
     if (typeof WeixinJSBridge == "undefined"){
         if( document.addEventListener ){
             document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);

@@ -14,6 +14,12 @@ StaticService::includeAppJsStatic("/js/wap/demo/mogo_pay.js", \blog\assets\WapAs
 			<div class="am-form-group">
 				<input type="text" name="openid"  placeholder="请输入支付openid">
 			</div>
+            <div class="am-form-group am-form-select">
+                <select id="no_credit">
+                    <option value="0">是否限制信用卡</option>
+                    <option value="1">限制信用卡</option>
+                </select>
+            </div>
 			<p><button type="button" class="pay am-btn am-btn-primary am-btn-block">支付</button></p>
 			<p><button type="button" data="o-glQw3tyODapIuCOwFu47G2Kgq8" class="pay am-btn am-btn-primary am-btn-block">郭威支付</button></p>
 			<p><button type="button" data="o-glQw469XL9XSmwXaFRQ-25LoJk" class="pay am-btn am-btn-primary am-btn-block">冯银鹏支付</button></p>

@@ -44,6 +44,7 @@ class DemoController extends BaseController{
 		}
 
 		$openid = $this->post("openid","");
+		$no_credit = intval( $this->post("no_credit",0) );
     	if( !$openid ){
     		return $this->renderJSON( [],"请输入openid~~",-1 );
 		}
@@ -63,9 +64,12 @@ class DemoController extends BaseController{
 			"validtime" => 30,
 			"acct" =>  $openid ,
 			"notify_url" => "http://m.54php.cn/demo/callback",
-			"limit_pay" => "no_credit"
+
 		];
 
+		if( $no_credit ){
+			$params["limit_pay"] = "no_credit";
+		}
 		$sign = $this->getSign( $params );
 
 		$params['sign'] = $sign;
