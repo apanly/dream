@@ -4,6 +4,7 @@ namespace blog\modules\wap\controllers;
 
 use blog\modules\wap\controllers\common\BaseController;
 use common\components\HttpClient;
+use common\models\demo\MobileRange;
 use common\service\weixin\RequestService;
 use Yii;
 
@@ -29,7 +30,29 @@ class DemoController extends BaseController{
     }
 
 	public function actionMobile(){
-		return $this->render("mobile");
+		if( Yii::$app->request->isGet ) {
+			return $this->render("mobile");
+		}
+
+		$mobile = trim( $this->post( "mobile","" ) );
+
+		if( strlen( $mobile ) < 1 || strlen( $mobile ) > 13 ){
+			return $this->renderJSON( [],"请输入正确手机号码~",-1 );
+		}
+
+		$info = MobileRange::find()->where([ 'prefix' => mb_substr( $mobile,0,7 ,"utf-8") ])->one();
+		$data = [];
+		if( $info ){
+			$data = [
+				"provice" => $info['provice'],
+				"city" => $info['city'],
+				"operator" => $info['operator'],
+				"zone" => $info['zone'],
+				"code" => $info['code']
+			];
+		}
+
+		return $this->renderJSON( $data );
 	}
 
     public function actionWapPay(){
