@@ -21,7 +21,7 @@ var default_info_ops = {
                 },
                 dataType:'json',
                 success:function( res ){
-
+                    common_ops.alert( res.msg );
                 }
             });
         } );

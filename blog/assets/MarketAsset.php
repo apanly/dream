@@ -19,7 +19,7 @@ class MarketAsset extends AssetBundle
     public function registerAssetFiles($view){
         $this->css = [];
         $this->js = [
-            GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js")
+            GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
         ];
         parent::registerAssetFiles($view);
     }
