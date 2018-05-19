@@ -27,7 +27,19 @@ var common_ops = {
         }
 
         $("#navbarCollapse li."+nav_name).addClass("active");
-    }
+    },
+    buildMarketUrl:function( path ,params){
+        var url =  "/market" +  path;
+        var _paramUrl = '';
+        if( params ){
+            _paramUrl = Object.keys(params).map(function(k) {
+                return [encodeURIComponent(k), encodeURIComponent(params[k])].join("=");
+            }).join('&');
+            _paramUrl = "?"+_paramUrl;
+        }
+        return url+_paramUrl
+
+    },
 };
 
 $(document).ready(function () {

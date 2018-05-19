@@ -5,7 +5,26 @@ var default_info_ops = {
         this.adaptImage();
     },
     eventBind: function () {
+        $(".buy_soft").click( function(){
+            var btn_target = $(this);
+            if( btn_target.hasClass("disabled") ){
+                $.alert("正在保存，请不要重复提交~~");
+                return false;
+            }
 
+
+            $.ajax({
+                url:common_ops.buildMarketUrl("/order/buy"),
+                type:'POST',
+                data:{
+                    id:$("input[name=soft_id]").val()
+                },
+                dataType:'json',
+                success:function( res ){
+
+                }
+            });
+        } );
     },
     adaptImage:function(){
 

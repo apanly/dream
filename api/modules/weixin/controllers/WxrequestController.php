@@ -50,7 +50,6 @@ class WxrequestController extends BaseController{
         $cache = new FileCache();
         $data = $cache[$cacheTokenKey];
         $access_token = "";
-
         if(!$data){
             $force = true;
         }else{

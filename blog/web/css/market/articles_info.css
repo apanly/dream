@@ -3341,3 +3341,8 @@ section.app-view-comment > h2 > small > a {
     color: red;
     font-size: 12px
 }
+
+.buy_soft{
+    color: #ffb366;
+    font-weight: 200;
+}

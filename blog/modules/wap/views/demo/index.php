@@ -39,6 +39,11 @@ use \common\service\GlobalUrlService;
 						<i  class="am-icon-qrcode am-icon-fw"></i> 生成条形码和二维码
 					</a>
 				</li>
+                <li>
+                    <a href="<?= GlobalUrlService::buildWapUrl("/demo/mobile"); ?>">
+                        <i  class="am-icon-mobile am-icon-fw"></i> 手机归属地查询
+                    </a>
+                </li>
 			</ul>
 		</div>
 	</div>

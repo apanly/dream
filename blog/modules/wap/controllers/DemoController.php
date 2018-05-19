@@ -28,6 +28,9 @@ class DemoController extends BaseController{
         return $this->render("scan_code");
     }
 
+	public function actionMobile(){
+		return $this->render("mobile");
+	}
 
     public function actionWapPay(){
 		return $this->render("h5pay");
