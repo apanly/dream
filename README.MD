@@ -1,4 +1,4 @@
-[编程浪子的博客](http://www.vincentguo.cn)
+[编程浪子的博客](http://www.54php.cn)
 ==========
 ##如何开始
 * [Kickstart](/docs/kickstart.md)
