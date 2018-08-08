@@ -71,15 +71,16 @@ class DefaultController extends AuthController{
                 $tmp_tags = explode(",", $_post['tags']);
                 $data[] = [
                     'title' => $_post['title'],
-                    'content' => UtilHelper::blog_short($_post['content'], 100),
+                    'content' => UtilHelper::blog_short( str_replace("&nbsp;"," ", $_post['content'] ), 100),
                     "tags" => $tmp_tags,
                     'image_url' => $tmp_image_url,
                     'id' => $_post['id'],
+                    'created_time' => date("Y-m-d H:i",strtotime( $_post['created_time'] ) )
                 ];
             }
         }
-
-        return $this->renderJSON([ 'list' => $data ]);
+		$has_more = ( count( $data ) < $this->page_size )?0:1;
+        return $this->renderJSON([ 'list' => $data,'has_more' => $has_more ]);
     }
 
     public function actionInfo(){

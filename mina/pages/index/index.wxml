@@ -1,0 +1,34 @@
+<!--index.wxml-->
+<import src="/zanui-weapp/loadmore/index.wxml" />
+
+<view  class="container">
+  <block wx:for="{{list}}" wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
+    <view class="feed-item" data-id="{{item.id}}" bindtap="bindItemTap" >
+      <view class="zan-font-16" >
+        <text>{{item.title}}</text>
+      </view>
+      <view style='margin-top:10px;text-align: center'>
+        <image mode="widthFix" style="width: 100%;"  data-index="{{idx}}" binderror="errorloadImage" src="{{item.image_url}}"></image>
+      </view>
+      <view class="zan-font-12 zan-ellipsis--l3" bindtap="bindItemTap">
+        <text>{{item.content}}</text>
+      </view>
+      <view class="tag-body">
+        <view class="tag-actions" bindtap="bindItemTap">
+          <view class="comments">
+            <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
+            <view class="zan-pull-left zan-font-12">
+              <text>{{item.created_time}}</text>
+            </view>
+          </view>
+          <view class="like">
+          <view class="zan-icon zan-icon-contact zan-pull-left zan-font-12 "> </view>
+          <view class="zan-pull-left zan-font-12 ">{{ item.tags }}</view>
+        </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <template is="zan-loadmore" data="{{ loading }}"/>
+  <template is="zan-loadmore" data="{{ nodata }}"/>
+</view>
