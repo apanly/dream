@@ -352,6 +352,13 @@ class BlogUtilService {
 	public static function getProjectList(){
 		$menu = [
 			[
+				'title' => 'Python3 + Flask构建微信小程序订餐系统',
+				'url'   => "https://food.54php.cn",
+				"cover" => "http://cdn.pic1.54php.cn/20180808/4963e02a1be66875be0e4d067d5bf5c8.jpg?imageView/2/w/300",
+				'desc'  => '基于微信小程序的订餐系统,包含支付系统、消息模板、授权登录、商业统计、图片系统、Cookie登录',
+				"pay" => true
+			],
+			[
 				'title' => 'Yii2打造后台+微信全栈图书商城',
 				'url'   => GlobalUrlService::buildBookUrl("/"),
 				"cover" => "http://cdn.pic1.54php.cn/20170610/befdb7b8578dcb675c24288d6a505348.jpg?imageView/2/w/300",
