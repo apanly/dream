@@ -60,7 +60,7 @@ class MsgController extends BaseController{
 			case "text":
 				$kw = trim( $xml_obj->Content );
 				if( in_array($kw ,["商城账号","商城帐号","账号","帐号","订餐小程序","小程序"] ) ){
-					$res = [ 'type'=>'text','data'=> '用户名：54php.cn，密码：123456' ];
+					$res = [ 'type'=>'text','data'=> '用户名：54php.cn，密码：123456，个人QQ群：1586538192' ];
 				}else{
 					$res = $this->parseText( $xml_obj );
 				}
