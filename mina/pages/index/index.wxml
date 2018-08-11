@@ -10,11 +10,11 @@
       <view style='margin-top:10px;text-align: center'>
         <image mode="widthFix" style="width: 100%;"  data-index="{{idx}}" binderror="errorloadImage" src="{{item.image_url}}"></image>
       </view>
-      <view class="zan-font-12 zan-ellipsis--l3" bindtap="bindItemTap">
+      <view class="zan-font-12 zan-ellipsis--l3">
         <text>{{item.content}}</text>
       </view>
       <view class="tag-body">
-        <view class="tag-actions" bindtap="bindItemTap">
+        <view class="tag-actions">
           <view class="comments">
             <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
             <view class="zan-pull-left zan-font-12">

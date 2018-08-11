@@ -2,9 +2,9 @@
 
     server {
         listen       80;
-        server_name  pic1.vincentguo.cn pic2.vincentguo.cn pic3.vincentguo.cn;
+        server_name  pic1.54php.cn pic2.54php.cn pic3.54php.cn;
 
-        if ( $http_host ~* "^(.*?)\.vincentguo\.cn$"){
+        if ( $http_host ~* "^(.*?)\.54php\.cn$"){
               set $domain $1;
         }
 

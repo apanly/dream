@@ -17,8 +17,8 @@
 */15 * * * * php /data/www/dream/yii blog/recommend/queue >> /data/logs/jobs/recommend.log 2>&1
 
 #sitemap
-1 3 * * * curl -i http://www.vincentguo.cn/search/sitemap?type=m >> /data/logs/jobs/sitemap.log 2>&1
-1 3 * * * curl -i http://www.vincentguo.cn/search/sitemap >> /data/logs/jobs/sitemap.log 2>&1
+1 3 * * * curl -i http://www.54php.cn/search/sitemap?type=m >> /data/logs/jobs/sitemap.log 2>&1
+1 3 * * * curl -i http://www.54php.cn/search/sitemap >> /data/logs/jobs/sitemap.log 2>&1
 
 10 3 * * * php  /data/www/dream/yii  blog/stat_daily/blog >> /data/logs/jobs/stat_daily_blog.log 2>&1
 54 * * * * php  /data/www/dream/yii  blog/stat_daily/access >> /data/logs/jobs/stat_daily_access.log 2>&1

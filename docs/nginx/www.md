@@ -4,17 +4,17 @@
         server {
             listen       80;
             listen     443 default ssl;
-            server_name  vincentguo.cn api.vincentguo.cn  www.vincentguo.cn blog.vincentguo.cn   admin.vincentguo.cn static.vincentguo.cn awephp.vincentguo.cn;
+            server_name  54php.cn api.54php.cn  www.54php.cn blog.54php.cn   admin.vincentguo.cn static.54php.cn awephp.54php.cn;
     
-            if ( $http_host  = 'vincentguo.cn' ){
-                   rewrite ^/(.*)$ http://www.vincentguo.cn/$1 permanent;
+            if ( $http_host  = '54php.cn' ){
+                   rewrite ^/(.*)$ http://www.54php.cn/$1 permanent;
             }
     
             if (  $request_filename ~* "wap/robots\.txt" ) {
-                   rewrite  ^/(.*)$  http://www.vincentguo.cn/robots.txt permanent;
+                   rewrite  ^/(.*)$  http://www.54php.cn/robots.txt permanent;
             }
     
-            if ( $http_host ~* "^(.*?)\.vincentguo\.cn$"){
+            if ( $http_host ~* "^(.*?)\.54php\.cn$"){
                   set $domain $1;
             }
     

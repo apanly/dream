@@ -5,13 +5,13 @@
             listen     443  ssl;
             ssl_certificate /data/www/https/www.vincentguo.cn_bundle.crt;
             ssl_certificate_key /data/www/https/startssl.key;
-            server_name   m.vincentguo.cn;
+            server_name   m.54php.cn;
             root  /data/www/dream/blog/web;
             access_log  /data/logs/nginx/dream_access_wap.log  main;
 
-            proxy_set_header Host www.vincentguo.cn;
+            proxy_set_header Host www.54php.cn;
             location / {
-                proxy_set_header Host www.vincentguo.cn;
+                proxy_set_header Host www.54php.cn;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header REMOTE-HOST $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

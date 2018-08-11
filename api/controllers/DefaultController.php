@@ -9,6 +9,7 @@ use common\models\library\Book;
 use common\models\posts\Posts;
 use common\models\posts\RichMedia;
 use common\service\GlobalUrlService;
+use common\service\RecommendService;
 use Yii;
 use api\controllers\common\AuthController;
 
@@ -98,10 +99,9 @@ class DefaultController extends AuthController{
 
         $content = preg_replace("/brush:(\w+);toolbar:false/","prettyprint linenums",$post_info['content']);
 
+
         $info = [
-            'author' => [
-                'name' => DataHelper::getAuthorName()
-            ],
+            'author' => DataHelper::getAuthorName(),
             'title' => $post_info['title'],
             'content' => $content,
             "tags" => $tmp_tags,
@@ -114,7 +114,11 @@ class DefaultController extends AuthController{
             'url' => GlobalUrlService::buildWapUrl("/default/info",[ 'id' => $post_info['id'] ])
         ];
 
-        return $this->renderJSON([ 'info' => $info,'share_info' => $share_info ]);
+        return $this->renderJSON([
+        	'info' => $info,
+			'share_info' => $share_info,
+			"recommend_blogs" => RecommendService::getRecommendBlog( $id )
+		]);
     }
 
     public function actionMedia(){
