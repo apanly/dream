@@ -60,7 +60,7 @@ class MsgController extends BaseController{
 			case "text":
 				$kw = trim( $xml_obj->Content );
 				if( in_array($kw ,["商城账号","商城帐号","账号","帐号","订餐小程序","小程序"] ) ){
-					$res = [ 'type'=>'text','data'=> '用户名：54php.cn，密码：123456，个人QQ群：1586538192' ];
+					$res = [ 'type'=>'text','data'=> '用户名：54php.cn，密码：123456，个人QQ群：325264502' ];
 				}else{
 					$res = $this->parseText( $xml_obj );
 				}
@@ -259,7 +259,7 @@ EOT;
 	private function subscribeTips(){
 		$resData = <<<EOT
 感谢您关注编程浪子的公众号
-QQ群：1586538192\n
+QQ群：325264502\n
 回复“上墙” 演示微信墙\n
 回复“@关键字” 搜索歌曲
 EOT;
