@@ -4,7 +4,7 @@
         server {
             listen       80;
             listen     443 default ssl;
-            server_name  54php.cn api.54php.cn  www.54php.cn blog.54php.cn   admin.vincentguo.cn static.54php.cn awephp.54php.cn;
+            server_name  54php.cn api.54php.cn  www.54php.cn blog.54php.cn   admin.54php.cn static.54php.cn awephp.54php.cn;
     
             if ( $http_host  = '54php.cn' ){
                    rewrite ^/(.*)$ http://www.54php.cn/$1 permanent;
