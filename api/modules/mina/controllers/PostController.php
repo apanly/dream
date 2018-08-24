@@ -85,9 +85,10 @@ class PostController extends BaseMinaController {
 		$info = [
 			'author' => DataHelper::getAuthorName(),
 			'title' => $post_info['title'],
+			'view_count' => $post_info['view_count'],
 			'content' => $content,
 			"tags" => $tmp_tags,
-			'updated_time' => date("Y-m-d H:i",strtotime( $post_info['updated_time'] ) ),
+			'date' => date("Y-m-d",strtotime( $post_info['updated_time'] ) ),
 		];
 
 		$share_info = [

@@ -31,7 +31,7 @@ Page({
         var that = this;
         return {
             title: that.data.share_info.title,
-            path: '/page/info/index?id=' + that.data.id,
+            path: '/pages/info/index?id=' + that.data.id,
             success:function( res ){
                 //转发成功
             },

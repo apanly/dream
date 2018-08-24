@@ -3,8 +3,8 @@
     <view class="post_wrap" wx:if="{{info}}">
         <view class="title">{{ info.title }}</view>
         <view class="meta">作者：{{ info.author }}</view>
-        <view class="meta">阅读量：195</view>
-        <view class="meta">创建时间：2018.08.08</view>
+        <view class="meta">阅读量：{{info.view_count}}</view>
+        <view class="meta">创建时间：{{info.date}}</view>
         <view class="content hairline van-hairline--top">
             <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
         </view>
