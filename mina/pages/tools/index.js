@@ -1,25 +1,38 @@
-// pages/tools/index.js
+var app = getApp();
 Page({
     data: {
-        list:[
-            {
-                "title":"图书扫码",
-                "icon_class":"fa fa-5x fa-barcode"
-            },
-            {
-                "title":"二维码",
-                "icon_class":"fa fa-5x fa-qrcode"
-            },
-            {
-                "title":"随机密码",
-                "icon_class":"fa fa-5x fa-key"
-            }
-        ]
+        list:[]
     },
     onLoad: function (options) {
 
     },
     onShow: function () {
+        var that = this;
+        wx.request({
+            url: app.buildUrl("/tools/index"),
+            header: app.getRequestHeader(),
+            success: function (res) {
+                var resp = res.data;
+                if (resp.code != 200) {
+                    app.alert({"content": resp.msg});
+                    return;
+                }
 
+                that.setData({
+                    list: resp.data.tools
+                });
+            }
+        });
+    },
+    openTool:function( e ){
+        var data = e.currentTarget.dataset;
+        var route = data.route;
+        if( data.type == "http" ){
+            route = "/pages/webview/index?href=" + route
+        }
+
+        wx.navigateTo({
+            url: route
+        });
     }
 });

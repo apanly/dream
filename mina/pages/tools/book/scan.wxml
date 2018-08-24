@@ -1,0 +1,5 @@
+<view class="container">
+    <view class="scan_wrap">
+        <van-button type="primary" plain>点我扫码</van-button>
+    </view>
+</view>

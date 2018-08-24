@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "van-button": "/plugins/vant/button/index"
+    }
+}

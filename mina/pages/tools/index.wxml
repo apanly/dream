@@ -1,8 +1,10 @@
 <view class="container">
     <van-row>
-        <van-col span="8" wx:for="{{list}}">
-            <view class="icon_image  {{ item.icon_class }}"></view>
-            <text class="title">{{ item.title }}</text>
+        <van-col span="8" wx:for="{{list}}" >
+            <view data-type="{{item.type}}" data-route="{{item.route}}" bindtap="openTool">
+                <view class="icon_image  {{ item.icon_class }}"></view>
+                <text class="title">{{ item.title }}</text>
+            </view>
         </van-col>
     </van-row>
 </view>

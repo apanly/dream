@@ -1,10 +1,12 @@
 {
     "pages": [
+        "pages/tools/book/scan",
         "pages/index/index",
         "pages/info/index",
         "pages/tools/index",
         "pages/my/index",
-        "pages/webview/index"
+        "pages/webview/index",
+        "pages/tools/book/list"
     ],
     "window": {
         "backgroundTextStyle": "light",
