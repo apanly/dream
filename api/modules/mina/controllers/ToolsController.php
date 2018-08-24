@@ -14,7 +14,7 @@ class ToolsController extends BaseMinaController {
 
     	$list = [
     		[ "title" => "图书扫码", "icon_class" => "fa fa-5x fa-barcode","type" => "page","route" => "/pages/tools/book/scan" ],
-    		[ "title" => "图书馆", "icon_class" => "fa fa-5x fa-book","type" => "page","route" => "/pages/tools/book/list" ]
+//    		[ "title" => "图书馆", "icon_class" => "fa fa-5x fa-book","type" => "page","route" => "/pages/tools/book/list" ]
 		];
 
 		return $this->renderJSON([
