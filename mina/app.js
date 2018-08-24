@@ -6,7 +6,7 @@ App({
         version: "1.0",
         app_name: "编程浪子走四方+",
         domain:"http://api.dr.test/mina"
-        //domain:"https://api.54php.cn/"
+        //domain:"https://api.54php.cn/mina"
     },
     confirm:function( params ){
         var that = this;

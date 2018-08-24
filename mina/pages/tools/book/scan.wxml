@@ -1,5 +1,20 @@
 <view class="container">
     <view class="scan_wrap">
-        <van-button type="primary" plain>点我扫码</van-button>
+        <van-button size="large" type="primary" plain  bind:click="scanBar" custom-class="btn">{{ text }}</van-button>
+        <view class="result van-hairline--surround" wx:if="{{info}}">
+            <view class="header van-hairline--bottom">扫码结果</view>
+            <view class="item van-hairline--bottom">
+                ISBN：{{info.isbn}}
+            </view>
+            <view class="item van-hairline--bottom">
+                书籍名称：{{info.name}}
+            </view>
+            <view class="item van-hairline--bottom">
+                描述：{{info.summary}}
+                <image mode="aspectFit" src="{{info.origin_image_url}}"></image>
+            </view>
+        </view>
+
     </view>
+
 </view>
