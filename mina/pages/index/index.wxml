@@ -1,34 +1,33 @@
-<!--index.wxml-->
-<import src="/zanui-weapp/loadmore/index.wxml" />
-
-<view  class="container">
-  <block wx:for="{{list}}" wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
-    <view class="feed-item" data-id="{{item.id}}" bindtap="bindItemTap" >
-      <view class="zan-font-16" >
-        <text>{{item.title}}</text>
-      </view>
-      <view style='margin-top:10px;text-align: center'>
-        <image mode="widthFix" style="width: 100%;"  data-index="{{idx}}" binderror="errorloadImage" src="{{item.image_url}}"></image>
-      </view>
-      <view class="zan-font-12 zan-ellipsis--l3">
-        <text>{{item.content}}</text>
-      </view>
-      <view class="tag-body">
-        <view class="tag-actions">
-          <view class="comments">
-            <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
-            <view class="zan-pull-left zan-font-12">
-              <text>{{item.created_time}}</text>
-            </view>
-          </view>
-          <view class="like">
-          <view class="zan-icon zan-icon-contact zan-pull-left zan-font-12 "> </view>
-          <view class="zan-pull-left zan-font-12 ">{{ item.tags }}</view>
+<view class="container">
+    <van-tabbar active="{{active}}" fixed="{{false}}" bind:change="tabChange" custom-class="">
+        <van-tabbar-item data-type="1">文章</van-tabbar-item>
+        <van-tabbar-item data-type="2">热门</van-tabbar-item>
+        <van-tabbar-item data-type="3">原创</van-tabbar-item>
+    </van-tabbar>
+    <view class="list_wrap">
+        <view class="list_item van-hairline--bottom" wx:for="{{ list }}" wx:key="id" data-id="{{ item.id }}" bindtap="goToInfo">
+            <van-row>
+                <van-col span="16">
+                    <text class="title">{{ item.title }}</text>
+                    <text class="content van-multi-ellipsis--l5">{{ item.content }}</text>
+                </van-col>
+                <van-col span="8">
+                    <image class="thumbed" mode="aspectFit" src="{{item.image_url}}"></image>
+                </van-col>
+            </van-row>
         </view>
-        </view>
-      </view>
     </view>
-  </block>
-  <template is="zan-loadmore" data="{{ loading }}"/>
-  <template is="zan-loadmore" data="{{ nodata }}"/>
+    <view class="loadmore">
+        <view class="loadmore__wrap" wx:if="{{ !no_data }}">
+            <view class="loadmore__loading-icon"></view>
+            <text class="loadmore__loading-text">正在努力加载中...</text>
+        </view>
+
+        <block wx:if="{{ no_data }}">
+            <view class="loadmore__line"></view>
+            <view class="loadmore__text">哥也是有底裤的...</view>
+            <view class="loadmore__line"></view>
+        </block>
+
+    </view>
 </view>

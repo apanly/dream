@@ -5,7 +5,7 @@ App({
     globalData: {
         version: "1.0",
         app_name: "编程浪子走四方+",
-        domain:"http://api.dr.test/"
+        domain:"http://api.dr.test/mina"
         //domain:"https://api.54php.cn/"
     },
     confirm:function( params ){
@@ -81,5 +81,16 @@ App({
             key:key,
             data:value
         });
+    },
+    calPicWidth:function(){
+        var picWidth = 500;
+        try{
+            var sys_info = wx.getSystemInfoSync();
+            picWidth = sys_info['pixelRatio'] * sys_info['windowWidth'];
+        }catch (e) {
+
+        }
+        var tmp_int = Math.ceil( picWidth / 50 );
+        return tmp_int * 50;
     }
 });

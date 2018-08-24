@@ -46,3 +46,4 @@ admin/web/assets/*
 blog/web/assets/*
 awephp/web/assets/*
 weixin/web/assets/*
+mina_app/node_modules/*

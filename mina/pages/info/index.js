@@ -1,25 +1,17 @@
-// pages/info/index.js
 var app = getApp();
-var WxParse = require('../../wxParse/wxParse.js');
-var utils = require('../../utils/util.js');
-
+var WxParse = require('../../plugins/wxParse/wxParse.js');
 Page({
-    /**
-     * 页面的初始数据
-     */
     data: {
-
+        info:null
     },
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
         var that = this;
         that.setData({
             id: options.id
         });
     },
-    onShow: function(){
+    onShow: function ( options ) {
+
         this.getInfo();
     },
     //返回上一页
@@ -27,13 +19,16 @@ Page({
         wx.navigateBack();
     },
     //打赏
-    reward: function() {
-        app.alert( { "content":"您的分享与关注是对我最大的打赏~~" } );
+    reward: function(e) {
+        app.alert({ 'content':'您的分享与关注是对我最大的打赏~~' })
     },
-    /**
-     * 用户点击右上角分享
-     */
+    goToInfo:function( e ){
+        wx.navigateTo({
+            url: "/pages/info/index?id=" + e.currentTarget.dataset.id
+        });
+    },
     onShareAppMessage: function () {
+        var that = this;
         return {
             title: that.data.share_info.title,
             path: '/page/info/index?id=' + that.data.id,
@@ -45,10 +40,15 @@ Page({
             }
         };
     },
+    wxParseTagATap:function( e ){
+        wx.navigateTo({
+            url: "/pages/webview/index?href=" + e.currentTarget.dataset.src
+        });
+    },
     getInfo:function(){
         var that = this;
         wx.request({
-            url: app.buildUrl("/default/info"),
+            url: app.buildUrl("/post/info"),
             header: app.getRequestHeader(),
             method:'POST',
             data: {
@@ -63,7 +63,8 @@ Page({
 
                 that.setData({
                     info: resp.data.info,
-                    share_info: resp.data.share_info
+                    share_info: resp.data.share_info,
+                    recommend_blogs:resp.data.recommend_blogs
                 });
 
                 WxParse.wxParse('article', 'html', that.data.info.content, that, 5);

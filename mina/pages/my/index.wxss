@@ -1,1 +1,37 @@
-/* pages/my/index.wxss */
+page{
+
+}
+
+.logo_wrap {
+    display: block;
+    width: 100%;
+    height: 350rpx;
+    text-align: center;
+}
+
+.avatar {
+    display: inline-block;
+    width: 200rpx;
+    height: 200rpx;
+    margin: 15rpx;
+    border-radius:50%;
+}
+
+.title{
+    display: block;
+    line-height:70rpx;
+    margin:20rpx 40rpx;
+    font-size:32rpx;
+    font-weight:bold;
+    border-bottom:1rpx solid #d2d2d2;
+}
+
+.body{
+    font-size: 16px;
+    margin:20rpx 40rpx;
+}
+
+.body .p{
+    text-align:left;
+    margin: 10px 0;
+}

@@ -1,2 +1,21 @@
-<!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<view class="container">
+    <view class="logo_wrap">
+        <image class="avatar" mode="aspectFit" src="http://cdn.static.54php.cn/images/admin/my.jpg?imageView2/1/w/240/h/240/interlace/1"></image>
+        <view>编程浪子</view>
+    </view>
+
+    <view class="title">○ 关于我</view>
+    <view class="body">
+        互联网搬砖小王子，从事互联网web 开发6年，热爱搬砖行业，有代码洁癖，对PHP，Python，Java都有涉猎， 实践经验丰富，富有激情，热爱分享，乐观开朗，喜欢专研新技术
+    </view>
+    <view class="title">○ 联系方式</view>
+    <view class="body">
+        <view class="p">邮箱：apanly@163.com</view>
+        <view class="p">微信服务号：CodeRonin</view>
+        <view class="p">个人网站：http://www.54php.cn</view>
+        <view class="p">GitHub：https://github.com/apanly</view>
+        <view class="p" style="text-align: center;" wx:for="{{ image_list }}">
+            <image style="width: 200px; height: 200px; background-color: #eeeeee;" mode="aspectFit" data-src="{{item}}" src="{{ item }}" bindtap="previewImage"></image>
+        </view>
+    </view>
+</view>

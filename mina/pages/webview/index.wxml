@@ -1,0 +1,11 @@
+<!--<web-view src="{{href}}"></web-view>-->
+<view class="container">
+    <van-nav-bar title="编程浪子提示您" left-text="回去吧" left-arrow bind:click-left="navigateBack"/>
+    <view class="abnor">
+        <view class="abnor__box">
+            <image class="abnor__image"mode="widthFix"src="http://cdn.static.54php.cn/images/weixin/sorry.png" style="height: 189.088px;"></image>
+            <view class="abnor__text">很无奈，个人小程序没有webview的功能</view>
+            <view class="abnor__text_href">期望打开的网址是：{{ href }}</view>
+        </view>
+    </view>
+</view>

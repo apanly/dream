@@ -1,58 +1,41 @@
-<import src="/wxParse/wxParse.wxml" />
-<import src="/zanui-weapp/dialog/index.wxml" />
-<import src="/zanui-weapp/toast/index.wxml" />
-
-<view class="feed-item">
-  <view class="zan-font-16">
-    <text>{{info.title}}</text>
-  </view>
-  <view class="tag-body">
-    <view class="tag-actions" bindtap="bindItemTap">
-      <view class="like">
-        <view class="zan-icon zan-icon-contact zan-pull-left zan-font-12 "> </view>
-        <view class="zan-pull-left zan-font-12 ">
-          {{info.author}}
+<import src="/plugins/wxParse/wxParse.wxml"/>
+<view class="container">
+    <view class="post_wrap" wx:if="{{info}}">
+        <view class="title">{{ info.title }}</view>
+        <view class="meta">作者：{{ info.author }}</view>
+        <view class="meta">阅读量：195</view>
+        <view class="meta">创建时间：2018.08.08</view>
+        <view class="content hairline van-hairline--top">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
         </view>
-      </view>
-      <view class="comments">
-        <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
-        <view class="zan-pull-left zan-font-12">
-          <text>{{info.updated_time}}</text>
+        <view class="tags">
+            <view class="fa fa-tags"></view>
+            <van-tag plain type="primary" custom-class="item" wx:for="{{info.tags}}">{{item}}</van-tag>
         </view>
-      </view>
+        <view class="recommend van-hairline--surround">
+            <view class="header van-hairline--bottom">智能推荐</view>
+            <view class="item van-hairline--bottom" wx:for="{{ recommend_blogs }}" data-id="{{ item.id }}" bindtap="goToInfo">{{ item.title }}</view>
+        </view>
     </view>
-  </view>
-</view>
-<view class="wxParse" style='padding-bottom:100px'>
-  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
 
-  <view class="zan-panel detail-tab">
-    <view class="zan-col zan-col-6 item-body" bindtap="navigateBack">
-      <button class="btn">
-        <image class='iconimage' src="/images/icon/left.png"></image>
-        <view class='zan-font-12 zan-c-gray-dark'>返回</view>
-      </button>
-    </view>
-    <view class="zan-col zan-col-6 item-body" bindtap="collection">
-      <button class="btn">
-        <image class='iconimage' src="{{collected?'/images/icon/collected.png':'/images/icon/collect.png'}}"></image>
-        <view class='zan-font-12 zan-c-gray-dark'>收藏</view>
-      </button>
-    </view>
-    <view class="zan-col zan-col-6 item-body" bindtap="reward">
-      <button class="btn">
-        <image class='iconimage' src="/images/icon/money.png"></image>
-        <view class='zan-font-12 zan-c-gray-dark'>打赏</view>
-      </button>
-    </view>
-    <view class="zan-col zan-col-6 item-body">
-      <button class="btn" open-type="share">
-        <image class='iconimage' src="/images/icon/share.png"></image>
-        <view class='zan-font-12 zan-c-gray-dark'>分享</view>
-      </button>
-    </view>
-  </view>
+    <van-row class="btn_wrap van-hairline--top">
+        <van-col span="8">
+            <van-button type="default" custom-class="btn" bind:click="navigateBack">
+                <view class="icon fa fa-angle-left fa-2x"></view>
+                <text class="title">返回</text>
+            </van-button>
+        </van-col>
+        <van-col span="8">
+            <van-button type="default" custom-class="btn" bind:click="reward">
+                <view class="icon fa fa-jpy fa-2x"></view>
+                <text class="title">打赏</text>
+            </van-button>
+        </van-col>
+        <van-col span="8">
+            <van-button type="default" open-type="share" custom-class="btn" >
+                <view class="icon fa fa-share-square-o fa-2x"></view>
+                <text class="title">分享</text>
+            </van-button>
+        </van-col>
+    </van-row>
 </view>
-
-<template is="zan-dialog" data="{{ zanDialog }}"></template>
-<template is="zan-toast" data="{{ zanToast }}"></template>

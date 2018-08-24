@@ -1,1 +1,11 @@
-/* pages/tools/index.wxss */
+.container {
+    text-align: center;
+}
+.icon_image{
+    display: block;
+}
+
+.title{
+    font-size: 14px;
+    display: block;
+}

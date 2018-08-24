@@ -76,7 +76,7 @@ class DefaultController extends AuthController{
                     "tags" => $tmp_tags,
                     'image_url' => $tmp_image_url,
                     'id' => $_post['id'],
-                    'created_time' => date("Y-m-d H:i",strtotime( $_post['created_time'] ) )
+                    'created_time' => date("Y-m-d",strtotime( $_post['created_time'] ) )
                 ];
             }
         }

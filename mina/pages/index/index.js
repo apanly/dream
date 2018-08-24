@@ -1,39 +1,65 @@
-
 var app = getApp();
 Page({
     data: {
-        loading:false,
-        nodata:false,
-        p:1,
-        list:[]
+        active:0,
+        type:1
     },
-    onLoad: function () {
-        var that = this;
+    onLoad: function (options) {
     },
-    onShow:function(){
+    onShow: function () {
+        this.reset();
         this.search();
     },
     onReachBottom: function () {
         var that = this;
         setTimeout(function () {
             that.search();
-        }, 500);
+        }, 300);
     },
-    search:function(){
+    onShareAppMessage: function () {
+
+    },
+    tabChange: function ( e ) {
+        this.setData({
+            type: e.detail + 1,
+            active:e.detail
+        });
+        this.reset();
+        this.search();
+    },
+    goToInfo:function( e ){
+        wx.navigateTo({
+            url: "/pages/info/index?id=" + e.currentTarget.dataset.id
+        });
+    },
+    reset:function(){
+        this.setData({
+            p: 1,
+            list: [],
+            loading: false,
+            no_data: false
+        });
+    },
+    search: function () {
         var that = this;
-        if( that.data.loading ){
+        if (that.data.loading) {
+            return;
+        }
+
+        if (that.data.no_data) {
             return;
         }
 
         that.setData({
-            loading:true
+            loading: true
         });
 
         wx.request({
-            url: app.buildUrl("/default/blog"),
+            url: app.buildUrl("/post/index"),
             header: app.getRequestHeader(),
             data: {
-                p: that.data.p
+                p: that.data.p,
+                type:that.data.type
             },
             success: function (res) {
                 var resp = res.data;
@@ -41,25 +67,29 @@ Page({
                     app.alert({"content": resp.msg});
                     return;
                 }
-
+                var list = resp.data.list;
+                var data_list = [];
+                if (list) {
+                    var width = app.calPicWidth();
+                    var height = parseInt(9 * width / 16);
+                    for (var idx in list) {
+                        var tmp_data = list[idx];
+                        tmp_data['image_url'] += "?imageView2/0/w/" + width;
+                        data_list.push(list[idx]);
+                    }
+                }
                 that.setData({
-                    list: that.data.list.concat( resp.data.list ),
+                    list: that.data.list.concat(resp.data.list),
                     p: that.data.p + 1,
-                    loading:false
+                    loading: false
                 });
 
-                if( resp.data.has_more == 0 ){
+                if (resp.data.has_more == 0) {
                     that.setData({
-                        nodata: true
+                        no_data: true
                     });
                 }
-
             }
-        });
-    },
-    bindItemTap:function( e ){
-        wx.navigateTo({
-            url: "/pages/info/index?id=" + e.currentTarget.dataset.id
         });
     }
 });

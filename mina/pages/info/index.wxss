@@ -1,58 +1,78 @@
-/* pages/detail/detail.wxss */
-@import "/wxParse/wxParse.wxss";
-
-.feed-item {
-  padding: 30rpx 30rpx 20rpx;
-  margin: 0rpx 0 0 0;
-  background: #fff;
+@import "/plugins/wxParse/wxParse.wxss";
+.post_wrap {
+    padding-left: 5px;
 }
 
-.feed-item .tag-title {
-  margin-top: 10px;
-  text-align: center;
+.post_wrap .title {
+    font-size: 32px;
+    font-weight: 400;
 }
 
-.feed-item .tag-title image {
-  width: 100%;
+.post_wrap .meta {
+    font-size: 16px;
 }
 
-.feed-item .tag-body {
-  padding: 10rpx 0 0 0;
-  line-height: 28rpx;
-  color: #5b5b5b;
+.post_wrap .hairline {
+    margin:  10px 0;
 }
 
-.feed-item  .tag-actions {
-  color: #a0acac;
+.post_wrap .content {
+    display: block;
 }
 
-.feed-item  .tag-actions view {
-  display: inline-block;
-  vertical-align: text-bottom;
-  padding: 0 10rpx 0 0;
+.post_wrap .tags {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.detail-tab {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+.post_wrap .tags .fa,.post_wrap .tags .item{
+    margin-right: 5px;
 }
 
-.detail-tab .item-body {
-  margin: 10rpx 0 10rpx 0;
+.post_wrap .recommend {
+    display: block;
+    margin-right: 5px;
+    margin-bottom: 80px;
 }
 
-.detail-tab .item-body .btn {
-  line-height: 120%;
-  background-color: #fff;
+.post_wrap .recommend .header {
+    color: #444;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    padding: .6rem 1.25rem;
+    border-bottom: 1px solid transparent;
 }
 
-.detail-tab .item-body .btn::after {
-  border: none;
+.post_wrap .recommend .item {
+    padding: 1rem;
+    color: #0e90d2;
 }
 
-.detail-tab .item-body .iconimage {
-  width: 20px;
-  height: 20px;
+.btn_wrap {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    padding: 5px 0;
+    background-color: #FFFFFF;
+}
+
+.btn_wrap .btn {
+    font-size: 12px;
+    border: none;
+}
+
+.btn_wrap .btn .icon {
+    display: block;
+}
+
+.btn_wrap .btn .title {
+    display: block;
+    font-size: 12px;
+    line-height: 2.0;
+    font-weight: bold;
 }

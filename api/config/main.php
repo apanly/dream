@@ -18,7 +18,10 @@ return [
         ],
         'emoticon'=>[
             'class' =>'api\modules\emoticon\EmoticonModule'
-        ]
+        ],
+		'mina' => [
+			'class' => 'api\modules\mina\MinaModule',
+		]
     ],
     'components' => [
         'log' => [
