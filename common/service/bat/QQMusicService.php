@@ -66,30 +66,31 @@ class QQMusicService extends  BaseService{
                 }
             }
 
-
-            foreach( $rand_songs as $_item ){
-                $tmp_attr_f = explode("|",$_item['f']);
-                if( !isset($tmp_attr_f[4]) ){
-                    continue;
-                }
-                $tmp_song_id = $tmp_attr_f[0];
-                $tmp_img_id = $tmp_attr_f[4];
-                $tmp_mid = $tmp_attr_f[20];
-                $tmp_info = [
-                    'song_id' => $tmp_song_id,
-                    'type' => 2,
-                    'cover_image' => self::getCoverImageUrl($tmp_img_id),
-                    "lrc" => "",
-                    "song_url" => self::getSongUrl($tmp_song_id,".mp3"),
-                    "song_title" => $_item['fsong'],
-                    "song_author" => $_item['fsinger'],
-                    "text" => $_item,
-                    "format_data" => [ 'image_id' => $tmp_img_id,'mid' => $tmp_mid ],
-                    "status" => 1,
-                    "view_url" => UrlService::buildGameUrl("/music/info",['song_id' => $tmp_song_id])
-                ];
-                $ret[] = $tmp_info;
-            }
+            if( $rand_songs ){
+				foreach( $rand_songs as $_item ){
+					$tmp_attr_f = explode("|",$_item['f']);
+					if( !isset($tmp_attr_f[4]) ){
+						continue;
+					}
+					$tmp_song_id = $tmp_attr_f[0];
+					$tmp_img_id = $tmp_attr_f[4];
+					$tmp_mid = $tmp_attr_f[20];
+					$tmp_info = [
+						'song_id' => $tmp_song_id,
+						'type' => 2,
+						'cover_image' => self::getCoverImageUrl($tmp_img_id),
+						"lrc" => "",
+						"song_url" => self::getSongUrl($tmp_song_id,".mp3"),
+						"song_title" => $_item['fsong'],
+						"song_author" => $_item['fsinger'],
+						"text" => $_item,
+						"format_data" => [ 'image_id' => $tmp_img_id,'mid' => $tmp_mid ],
+						"status" => 1,
+						"view_url" => UrlService::buildGameUrl("/music/info",['song_id' => $tmp_song_id])
+					];
+					$ret[] = $tmp_info;
+				}
+			}
         }
         return $ret;
     }
