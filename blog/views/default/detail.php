@@ -19,8 +19,8 @@ StaticService::includeStaticJs("/prettify/prettify.js",\blog\assets\AppAsset::cl
 
 StaticService::includeAppCssStatic("/css/web/default/info.css",\blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/web/default/info.js", \blog\assets\AppAsset::className());
-StaticService::includeAppJsStatic("https://changyan.sohu.com/upload/changyan.js", \blog\assets\AppAsset::className());
-StaticService::includeAppJsStatic("/js/comment.js", \blog\assets\AppAsset::className());
+//StaticService::includeAppJsStatic("https://changyan.sohu.com/upload/changyan.js", \blog\assets\AppAsset::className());
+//StaticService::includeAppJsStatic("/js/comment.js", \blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("http://v3.jiathis.com/code/jia.js?uid=900964", \blog\assets\AppAsset::className());
 
 ?>
