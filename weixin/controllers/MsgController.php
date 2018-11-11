@@ -114,7 +114,7 @@ class MsgController extends BaseController{
 				return ['type' => "text" ,"data" => $this->wallTip() ];
 				break;
 			default:
-				if (preg_match('/(http:\/\/)|(https:\/\/)/i', $keyword)) {
+				if( filter_var($keyword, FILTER_VALIDATE_URL) !== FALSE ){
 					SpiderService::add( $keyword);
 					return ['type'=> "text",'data'=> $this->urlTips() ];
 				}
