@@ -53,10 +53,6 @@ class MessageService extends BaseService {
         $model_wx_history->created_time = $date_now;
         $model_wx_history->save(0);
 
-		if( filter_var($content, FILTER_VALIDATE_URL) !== FALSE ){
-			SpiderService::add($content);
-		}
-
 		//保证用户一定在加入到数据表队列
 		$member_info = OauthMember::findOne([ 'openid' => $from_openid ]);
 		if( !$member_info ){

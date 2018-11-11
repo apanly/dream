@@ -1,14 +1,13 @@
 <?php
 namespace weixin\controllers;
 
+use common\service\SpiderService;
 use common\service\weixin\MsgCryptService;
 use common\service\weixin\WechatConfigService;
 use common\service\weixin\MessageService;
 
 use common\components\DataHelper;
-use common\models\posts\Posts;
 use common\models\search\IndexSearch;
-use common\models\user\UserOpenidUnionid;
 use common\service\bat\QQMusicService;
 use common\service\GlobalUrlService;
 
@@ -111,6 +110,12 @@ class MsgController extends BaseController{
 					]
 				];
 				return ['type' => "rich" ,"data" => $this->getRichXml($data)];
+				break;
+			default:
+				if( filter_var( $keyword , FILTER_VALIDATE_URL) !== FALSE ){
+					SpiderService::add( $keyword);
+					return ['type' => "text" ,"data" => "已收到网址，系统判断是否采纳" ];
+				}
 				break;
 		}
 
