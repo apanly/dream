@@ -32,6 +32,7 @@ class SpiderService {
         $model_queue->url = $url;
         $model_queue->hash_url = md5($url);
         $model_queue->status = -2 ;
+        $model_queue->post_id = 0 ;
         $model_queue->updated_time = $date_now;
         $model_queue->created_time = $date_now;
         $model_queue->save(0);
