@@ -108,7 +108,7 @@ class MsgController extends BaseController{
 				return ['type' => "rich" ,"data" => $this->getRichXml($data)];
 				break;
 			default:
-				if( filter_var($keyword, FILTER_VALIDATE_URL) !== FALSE ){
+				if (preg_match('/(http:\/\/)|(https:\/\/)/i', $keyword)) {
 					SpiderService::add( $keyword);
 					return ['type'=> "text",'data'=> $this->urlTips() ];
 				}
