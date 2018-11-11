@@ -91,10 +91,6 @@ class MsgController extends BaseController{
 
 	private function parseText($dataObj){
 		$keyword = trim($dataObj->Content);
-		if( filter_var($keyword, FILTER_VALIDATE_URL) !== FALSE ){
-			return ['type'=> "text",'data'=> $this->urlTips() ];
-		}
-
 		$cmd_tip = substr($keyword,0,1);
 		switch ( $cmd_tip ){
 			case "@"://搜歌曲
@@ -112,9 +108,9 @@ class MsgController extends BaseController{
 				return ['type' => "rich" ,"data" => $this->getRichXml($data)];
 				break;
 			default:
-				if( filter_var( $keyword , FILTER_VALIDATE_URL) !== FALSE ){
+				if( filter_var($keyword, FILTER_VALIDATE_URL) !== FALSE ){
 					SpiderService::add( $keyword);
-					return ['type' => "text" ,"data" => "已收到网址，系统判断是否采纳" ];
+					return ['type'=> "text",'data'=> $this->urlTips() ];
 				}
 				break;
 		}
