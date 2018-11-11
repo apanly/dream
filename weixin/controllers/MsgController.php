@@ -107,17 +107,17 @@ class MsgController extends BaseController{
 				];
 				return ['type' => "rich" ,"data" => $this->getRichXml($data)];
 				break;
-			default:
-				if (preg_match('/(http:\/\/)|(https:\/\/)/i', $keyword)) {
-					SpiderService::add( $keyword);
-					return ['type'=> "text",'data'=> $this->urlTips() ];
-				}
-				break;
 		}
 
 		switch( $keyword ){
 			case "上墙" :
 				return ['type' => "text" ,"data" => $this->wallTip() ];
+				break;
+			default:
+				if (preg_match('/(http:\/\/)|(https:\/\/)/i', $keyword)) {
+					SpiderService::add( $keyword);
+					return ['type'=> "text",'data'=> $this->urlTips() ];
+				}
 				break;
 		}
 
