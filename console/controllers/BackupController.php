@@ -92,6 +92,12 @@ class BackupController extends  BaseController {
 		$config_path = [
 			'/common/config/main-local.php',
 			'/common/config/params-local.php',
+			'/console/config/main-local.php',
+			'/console/config/params-local.php',
+			'/mina/config/main-local.php',
+			'/mina/config/params-local.php',
+			'/weixin/config/main-local.php',
+			'/weixin/config/params-local.php',
 			'/blog/config/main-local.php',
 			'/blog/config/params-local.php',
 			'/awephp/config/main-local.php',
