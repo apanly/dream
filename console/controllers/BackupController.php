@@ -64,6 +64,14 @@ class BackupController extends  BaseController {
 				$tmp_model_sys_log->created_time = $tmp_model_sys_log->updated_time = date("Y-m-d H:i:s");
 				$tmp_model_sys_log->save(0);
 			}
+
+			//备份一份数据到家里
+			$path = "/data/www/backup/".date("Y-m-d");
+			foreach( $backup_files as $_back_file ){
+				$tmp_commmand = "scp {$_back_file} -P22222 vincent@nas.home.54php.cn:{$path}";
+				$this->echoLog( $tmp_commmand );
+				exec( $tmp_commmand );
+			}
 		}
 
 		//清理7天前修改过的工作
@@ -146,6 +154,14 @@ class BackupController extends  BaseController {
 				$tmp_model_sys_log->file_key = $_back_file['name'];
 				$tmp_model_sys_log->created_time = $tmp_model_sys_log->updated_time = date("Y-m-d H:i:s");
 				$tmp_model_sys_log->save(0);
+			}
+
+			//备份一份数据到家里
+			$path = "/data/www/backup/".date("Y-m-d");
+			foreach( $backup_files as $_back_file ){
+				$tmp_commmand = "scp {$_back_file} -P22222 vincent@nas.home.54php.cn:{$path}";
+				$this->echoLog( $tmp_commmand );
+				exec( $tmp_commmand );
 			}
 		}
 
