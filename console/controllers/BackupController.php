@@ -68,7 +68,7 @@ class BackupController extends  BaseController {
 			//备份一份数据到家里
 			$path = "/data/www/backup/".date("Y-m-d");
 			foreach( $backup_files as $_back_file ){
-				$tmp_commmand = "scp {$_back_file} -P22222 vincent@nas.home.54php.cn:{$path}";
+				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}";
 				$this->echoLog( $tmp_commmand );
 				exec( $tmp_commmand );
 			}
@@ -159,7 +159,7 @@ class BackupController extends  BaseController {
 			//备份一份数据到家里
 			$path = "/data/www/backup/".date("Y-m-d");
 			foreach( $backup_files as $_back_file ){
-				$tmp_commmand = "scp {$_back_file['path']} -P22222 vincent@nas.home.54php.cn:{$path}";
+				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}";
 				$this->echoLog( $tmp_commmand );
 				exec( $tmp_commmand );
 			}
