@@ -28,7 +28,8 @@ $wx_urls = [
                     <ul>
                         <li> 2010年10月 ~ 2012年03月 上海新浪 PHP开发</li>
                         <li> 2012年03月 ~ 2015年04月 上海安居客 PHP开发，python DevOps，主管</li>
-                        <li> 2015年04月 ~ 至今 小型创业公司 PHP技术主管</li>
+                        <li> 2015年04月 ~ 2017年03月 小型创业公司 PHP技术主管</li>
+                        <li> 2017年03月 ~ 至今 蘑菇租房 业务架构主管</li>
                     </ul>
                 </li>
                 <li>职业技能：
@@ -49,6 +50,7 @@ $wx_urls = [
                         <li>autohome:https://github.com/apanly/autohome</li>
                         <li>CMDB项目</li>
                         <li>Job调度管理平台</li>
+                        <li>iPublish发布流程管理系统</li>
                     </ul>
                 </li>
             </ul>
