@@ -2,7 +2,7 @@
 use \blog\components\StaticService;
 use \common\service\GlobalUrlService;
 
-StaticService::includeAppCssStatic("/css/web/user/user.css",\blog\assets\AppAsset::className());
+StaticService::includeAppCssStatic("/css/oauth/user.css",\blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/web/user/reg.js", \blog\assets\AppAsset::className());
 
 ?>

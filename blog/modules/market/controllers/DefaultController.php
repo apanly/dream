@@ -194,4 +194,8 @@ class DefaultController extends BaseController {
 			"page_info" => $page_info,
 		] );
 	}
+
+	public function actionAbout(){
+		return $this->render("about");
+	}
 }

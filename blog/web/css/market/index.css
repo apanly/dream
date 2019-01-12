@@ -2445,3 +2445,8 @@ a.www-index-image {
 a.www-index-image > img {
     width: 100%
 }
+
+
+.border_row{
+    padding: 0 20px;
+}
