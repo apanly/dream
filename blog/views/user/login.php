@@ -2,7 +2,7 @@
 use \blog\components\StaticService;
 use \common\service\GlobalUrlService;
 
-StaticService::includeAppCssStatic("/css/web/user/user.css",\blog\assets\AppAsset::className());
+StaticService::includeAppCssStatic("/css/oauth/user.css",\blog\assets\AppAsset::className());
 StaticService::includeAppJsStatic("/js/web/user/login.js", \blog\assets\AppAsset::className());
 ?>
 <div id="wrapper">
@@ -37,7 +37,7 @@ StaticService::includeAppJsStatic("/js/web/user/login.js", \blog\assets\AppAsset
             <span>还没有账号?</span>&nbsp;&nbsp;
             <a href="<?=GlobalUrlService::buildUrl( "/user/reg" );?>">立即注册</a>&nbsp;&nbsp;•&nbsp;&nbsp;
             <a href="<?=GlobalUrlService::buildUrl( "/" );?>">返回博客</a>&nbsp;&nbsp;•&nbsp;&nbsp;
-            <a href="<?=GlobalUrlService::buildSuperMarketUrl( "/" );?>">返回源码空间</a>
+            <a href="<?=GlobalUrlService::buildSuperMarketUrl( "/" );?>">返回浪子商城</a>
         </div>
     </div>
 </div>

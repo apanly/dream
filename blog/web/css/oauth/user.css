@@ -549,4 +549,7 @@ a:hover {
         margin: 10px 0 0;
     }
 }
+#register_form input.form-control,#login_form input.form-control {
+    -webkit-box-shadow: 0 0 0px 1000px white inset ;
+}
 

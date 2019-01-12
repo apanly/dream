@@ -3,14 +3,14 @@ use \blog\components\StaticService;
 use \common\service\GlobalUrlService;
 use  \common\components\DataHelper;
 
-StaticService::includeAppJsStatic("/js/web/user/profile/set_pwd.js", \blog\assets\AppAsset::className());
+StaticService::includeAppJsStatic("/js/web/user/profile/set_pwd.js", \blog\assets\OauthAsset::className());
 
 ?>
 <?php echo \Yii::$app->view->renderFile("@blog/views/user/profile/side.php",[  'current' => 'set_pwd' ]);?>
 
-<div class="col-sm-12 col-md-9 col-lg-9">
+<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3 main">
+    <h1 class="page-header">修改密码</h1>
 	<div class="panel panel-default">
-		<div class="panel-heading">修改密码</div>
 		<div class="panel-body">
 			<div class="wrap_set_pwd">
 				<div class="form-group">

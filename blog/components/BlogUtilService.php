@@ -16,7 +16,7 @@ class BlogUtilService {
 			],
 
 			'market'   => [
-				'title' => '源码空间',
+				'title' => '浪子商城',
 				'url'   => GlobalUrlService::buildSuperMarketUrl("/"),
 				'status' => 1
 			],

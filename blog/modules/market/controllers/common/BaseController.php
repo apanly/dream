@@ -2,6 +2,7 @@
 namespace blog\modules\market\controllers\common;
 
 use blog\components\BaseBlogController;
+use common\service\GlobalUrlService;
 
 
 class BaseController extends BaseBlogController{
@@ -12,6 +13,7 @@ class BaseController extends BaseBlogController{
 		"market/default/mina",
 		"market/default/site",
 		"market/default/soft",
+		"market/default/about",
 	];
 
 
@@ -37,6 +39,8 @@ class BaseController extends BaseBlogController{
 		if( !$login_status ){
 			if( \Yii::$app->request->isAjax ){
 				$this->renderJSON([],"未登录,系统将引导您重新登录~~",-302);
+			}else{
+				$this->redirect( GlobalUrlService::buildOauthUrl("/user/login") );
 			}
 			return false;
 		}
