@@ -26,6 +26,10 @@ var common_ops = {
             nav_name = "soft";
         }
 
+        if(  pathname.indexOf("/default/about") > -1  ){
+            nav_name = "about";
+        }
+
         $("#navbarCollapse li."+nav_name).addClass("active");
     },
     buildMarketUrl:function( path ,params){

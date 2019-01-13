@@ -35,13 +35,14 @@ use  \common\components\DataHelper;
                 <li class="hide">
                     <a href="<?= GlobalUrlService::buildSuperMarketUrl("/default/macapp"); ?>">Mac软件</a>
                 </li>
+
                 <li>
                     <a href="<?= GlobalUrlService::buildBlogUrl("/"); ?>">博客</a>
                 </li>
                 <li>
                     <a href="<?= GlobalUrlService::buildBlogUrl("/demo"); ?>">演示系统</a>
                 </li>
-                <li>
+                <li class="about">
                     <a href="<?= GlobalUrlService::buildSuperMarketUrl("/default/about"); ?>">联系浪子</a>
                 </li>
             </ul>
