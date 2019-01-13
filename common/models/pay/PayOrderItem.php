@@ -1,28 +1,33 @@
 <?php
 
-namespace common\models\soft;
+namespace common\models\pay;
 
 use Yii;
 
 /**
- * This is the model class for table "soft_queue".
+ * This is the model class for table "pay_order_item".
  *
  * @property integer $id
+ * @property integer $pay_order_id
  * @property integer $member_id
- * @property integer $pay_id
- * @property string $data
+ * @property integer $quantity
+ * @property string $price
+ * @property string $discount
+ * @property integer $target_type
+ * @property integer $target_id
+ * @property string $note
  * @property integer $status
  * @property string $updated_time
  * @property string $created_time
  */
-class SoftQueue extends \yii\db\ActiveRecord
+class PayOrderItem extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'soft_queue';
+        return 'pay_order_item';
     }
 
     /**
@@ -39,9 +44,10 @@ class SoftQueue extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['member_id', 'pay_id', 'status'], 'integer'],
+            [['pay_order_id', 'member_id', 'quantity', 'target_type', 'target_id', 'status'], 'integer'],
+            [['price', 'discount'], 'number'],
             [['updated_time', 'created_time'], 'safe'],
-            [['data'], 'string', 'max' => 500],
+            [['note'], 'string', 'max' => 500],
         ];
     }
 
@@ -52,9 +58,14 @@ class SoftQueue extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'pay_order_id' => 'Pay Order ID',
             'member_id' => 'Member ID',
-            'pay_id' => 'Pay ID',
-            'data' => 'Data',
+            'quantity' => 'Quantity',
+            'price' => 'Price',
+            'discount' => 'Discount',
+            'target_type' => 'Target Type',
+            'target_id' => 'Target ID',
+            'note' => 'Note',
             'status' => 'Status',
             'updated_time' => 'Updated Time',
             'created_time' => 'Created Time',

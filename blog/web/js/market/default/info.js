@@ -8,11 +8,10 @@ var default_info_ops = {
         $(".buy_soft").click( function(){
             var btn_target = $(this);
             if( btn_target.hasClass("disabled") ){
-                $.alert("正在保存，请不要重复提交~~");
+                common_ops.alert("正在保存，请不要重复提交~~");
                 return false;
             }
-
-
+            btn_target.addClass("disabled");
             $.ajax({
                 url:common_ops.buildMarketUrl("/order/buy"),
                 type:'POST',
@@ -21,7 +20,15 @@ var default_info_ops = {
                 },
                 dataType:'json',
                 success:function( res ){
-                    common_ops.alert( res.msg );
+                    btn_target.removeClass("disabled");
+                    var callback = null;
+
+                    if( res.code == 200 ){
+                        callback = function(){
+                            window.location.href = res.data['url'];
+                        };
+                    }
+                    common_ops.alert( res.msg,callback );
                 }
             });
         } );

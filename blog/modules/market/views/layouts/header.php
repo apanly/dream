@@ -46,14 +46,13 @@ use  \common\components\DataHelper;
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
 				<?php if (isset($this->params['current_member'])): ?>
-
                     <li class="dropdown">
                         <a href="<?= GlobalUrlService::buildOauthUrl("/user/profile/index"); ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"><?= DataHelper::encode($this->params['current_member']['email']); ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?= GlobalUrlService::buildOauthUrl("/user/profile/index"); ?>">用户中心</a></li>
+                            <li><a href="<?= GlobalUrlService::buildSuperMarketUrl("/order/my"); ?>">订单列表</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="<?= GlobalUrlService::buildOauthUrl("/user/logout"); ?>">退出</a></li>
                         </ul>
