@@ -5,6 +5,7 @@ namespace blog\modules\market\controllers;
 use blog\modules\market\controllers\common\BaseController;
 use common\components\DataHelper;
 use common\models\soft\Soft;
+use common\models\soft\SoftSaleChangeLog;
 use common\service\Constant;
 use common\service\GlobalUrlService;
 
@@ -54,10 +55,16 @@ class DefaultController extends BaseController {
 			return $this->redirect( GlobalUrlService::buildSuperMarketUrl("/") );
 		}
 
+		$has_buy = false;
+		if( $this->current_member ){
+			$has_buy = SoftSaleChangeLog::findOne([ "member_id" => $this->current_member['id'],"soft_id" => $id ]);
+		}
+
 		$this->setTitle( DataHelper::encode( $info['title'] ) );
 
     	return $this->render( "info",[
-    		'info' => $info
+    		'info' => $info,
+			'has_buy' => $has_buy
 		] );
 	}
 
