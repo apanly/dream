@@ -21,7 +21,7 @@ class SuperMarketAsset extends AssetBundle
         $this->css = [
 			GlobalUrlService::buildStaticUrl("/bootstrap/css/metro-bootstrap.min.css"),
 			GlobalUrlService::buildStaticUrl("/fontawesome/css/font-awesome.min.css"),
-			"css/market/index.css",
+			"css/market/index.css?version={$release_version}",
 		];
         $this->js = [
             GlobalUrlService::buildStaticUrl("/jquery/jquery.min.js"),
