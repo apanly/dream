@@ -59,4 +59,10 @@ class Constant {
 	public static $default_time_stamps = '0000-00-00 00:00:00';
 	public static $default_syserror = '系统繁忙，请稍后再试~~';
 
+	public static $pay_status_mapping = [
+		1 => '已支付',
+		-8 => '待支付',
+		0 => '已关闭'
+	];
+
 } 

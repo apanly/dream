@@ -4,6 +4,7 @@ use \common\service\GlobalUrlService;
 use  \common\components\DataHelper;
 SuperMarketAsset::register($this);
 ?>
+<!--参考http://www.shafa.com-->
 <!DOCTYPE html>
 <html>
 <head>

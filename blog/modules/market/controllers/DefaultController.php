@@ -92,7 +92,7 @@ class DefaultController extends BaseController {
 			}
 		}
 
-		$page_info = DataHelper::ipagination([
+		$pages = DataHelper::ipagination([
 			"total_count" => $total_count,
 			"page_size"    => $pagesize,
 			"page"        => $p,
@@ -101,7 +101,7 @@ class DefaultController extends BaseController {
 
 		return $this->render( "mina",[
 			"data"      => $data,
-			"page_info" => $page_info,
+			"pages" => $pages,
 		] );
 	}
 
@@ -137,7 +137,7 @@ class DefaultController extends BaseController {
 			}
 		}
 
-		$page_info = DataHelper::ipagination([
+		$pages = DataHelper::ipagination([
 			"total_count" => $total_count,
 			"page_size"    => $pagesize,
 			"page"        => $p,
@@ -146,7 +146,7 @@ class DefaultController extends BaseController {
 
 		return $this->render( "site",[
 			"data"      => $data,
-			"page_info" => $page_info,
+			"pages" => $pages,
 		] );
 	}
 
@@ -182,7 +182,7 @@ class DefaultController extends BaseController {
 			}
 		}
 
-		$page_info = DataHelper::ipagination([
+		$pages = DataHelper::ipagination([
 			"total_count" => $total_count,
 			"page_size"    => $pagesize,
 			"page"        => $p,
@@ -191,7 +191,7 @@ class DefaultController extends BaseController {
 
 		return $this->render( "soft",[
 			"data"      => $data,
-			"page_info" => $page_info,
+			"pages" => $pages,
 		] );
 	}
 
