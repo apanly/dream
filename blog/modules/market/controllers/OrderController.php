@@ -7,6 +7,7 @@ use common\components\DataHelper;
 use common\models\pay\PayOrder;
 use common\models\pay\PayOrderItem;
 use common\models\soft\Soft;
+use common\models\soft\SoftSaleChangeLog;
 use common\service\Constant;
 use common\service\GlobalUrlService;
 use common\service\PayOrderService;
@@ -28,6 +29,11 @@ class OrderController extends BaseController {
 			return $this->renderJSON( [],Constant::$default_syserror,-1 );
 		}
 
+		//如果已经购买了，就不能再买了
+		$has_buy = SoftSaleChangeLog::findOne([ "member_id" => $this->current_member['id'],"soft_id" => $id ]);
+		if( $has_buy ){
+			return $this->renderJSON( [],"您已经购买了一次，请不要在购买了~~",-1 );
+		}
 //		$down_url = $info['down_url'];
 //		$msg = "自动领取功能还没有实现，请先按照提示自行下载哦~~<br/>{$down_url}";
 		$target_type = 1;
