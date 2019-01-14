@@ -56,17 +56,17 @@ StaticService::includeAppJsStatic("/js/soft/set.js",\admin\assets\AdminAsset::cl
                                 <div class="columns-4">
                                     <select name="need_buy" class="select-1">
                                         <option value="0">不付费</option>
-                                        <option <?php if( $info['need_buy'] ):?> selected <?php endif;?>  value="1">付费</option>
+                                        <option <?php if( $info?$info['need_buy']:0 ):?> selected <?php endif;?>  value="1">付费</option>
                                     </select>
                                 </div>
                                 <div class="columns-10">
                                     <div class="input-wrap">
-                                        <input type="text" class="input-1"  name="price" placeholder="请输入购买价格~~" value="<?=( $info['price'] > 0 )? intval( $info['price'] ):'';?>">
+                                        <input type="text" class="input-1"  name="price" placeholder="请输入购买价格~~" value="<?=( $info && $info['price'] > 0 )? intval( $info['price'] ):'';?>">
                                     </div>
                                 </div>
                                 <div class="columns-10">
                                     <div class="input-wrap">
-                                        <input type="text" class="input-1" name="free_number" placeholder="请输入免费额度~~" value="<?=( $info['free_number'] > 0 ) ?$info['free_number']:'';?>">
+                                        <input type="text" class="input-1" name="free_number" placeholder="请输入免费额度~~" value="<?=( $info && $info['free_number'] > 0 ) ?$info['free_number']:'';?>">
                                     </div>
                                 </div>
                             </div>

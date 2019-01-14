@@ -43,7 +43,7 @@ $domain_blog = Yii::$app->params['domains']['blog'];
 				</li>
                 <li class="menu_soft">
                     <a href="<?=AdminUrlService::buildUrl("/soft/index");?>">
-                        <i class="fa fa-cart-plus fa-lg"></i><span>杂货铺</span>
+                        <i class="fa fa-cart-plus fa-lg"></i><span>浪子商城</span>
                     </a>
                 </li>
                 <li class="menu_wechat">
