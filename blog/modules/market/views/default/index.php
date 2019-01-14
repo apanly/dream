@@ -28,7 +28,7 @@ StaticService::includeAppCssStatic("/css/market/articles.css", \blog\assets\Supe
                 <li data-target="#banner_wrap" data-slide-to="0" class="active"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <a class="item active" href="<?= GlobalUrlService::buildNullUrl(); ?>">
+                <a class="item active" href="<?= $ngrok_url; ?>">
                     <img src="http://cdn.pic1.54php.cn/20190112/1a3242f0896446cafa283d2ab6d50a00.png" alt="...">
                     <div class="carousel-caption" style="text-align: left;">
                         <h3>

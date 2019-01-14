@@ -39,8 +39,11 @@ class DefaultController extends BaseController {
 			}
 		}
 
+		$config_market = \Yii::$app->params['market'];
+		$ngrok_url = GlobalUrlService::buildSuperMarketUrl("/default/info",[ "id" => $config_market['ngrok'] ]);
         return $this->render('index',[
-			"data" => $data
+			"data" => $data,
+			"ngrok_url" => $ngrok_url
 		]);
     }
 
