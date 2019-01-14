@@ -16,7 +16,8 @@ class Constant {
 		3 => "建站源码",
 		4 => "软件下载",
 		1 => "微信小程序",
-		2 => "MacApp"
+		2 => "MacApp",
+		5 => "商城商品"
 	];
 
 	public static $soft_status_desc = [
