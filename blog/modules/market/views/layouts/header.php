@@ -54,6 +54,7 @@ use  \common\components\DataHelper;
                         <ul class="dropdown-menu">
                             <li><a href="<?= GlobalUrlService::buildOauthUrl("/user/profile/index"); ?>">用户中心</a></li>
                             <li><a href="<?= GlobalUrlService::buildSuperMarketUrl("/order/my"); ?>">订单列表</a></li>
+                            <li><a href="<?= GlobalUrlService::buildSuperMarketUrl("/ngrok/index"); ?>">我的Ngrok</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="<?= GlobalUrlService::buildOauthUrl("/user/logout"); ?>">退出</a></li>
                         </ul>

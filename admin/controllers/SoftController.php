@@ -2,38 +2,27 @@
 
 namespace admin\controllers;
 
-use admin\components\AdminUrlService;
-use admin\components\BlogService;
+
 use admin\controllers\common\BaseController;
 use common\components\DataHelper;
-use common\components\phpanalysis\FenCiService;
-use common\models\metaweblog\BlogSyncMapping;
-use common\models\posts\Posts;
-use common\models\posts\PostsRecommend;
-use common\models\posts\PostsRecommendQueue;
-use common\models\posts\PostsTags;
+use common\models\pay\PayOrder;
+use common\models\pay\PayOrderItem;
 use common\models\soft\Soft;
-use common\service\CacheHelperService;
 use common\service\Constant;
-use common\service\GlobalUrlService;
-use common\service\RecommendService;
-use common\service\SyncBlogService;
+use common\service\PayOrderService;
 use Yii;
 use yii\helpers\Url;
 
-class SoftController extends BaseController
-{
+class SoftController extends BaseController{
 	public function actionIndex(){
-		$p        = intval($this->get("p", 1));
-		$status   = intval($this->get("status", -99));
+		$p  = intval($this->get("p", 1));
+		$status  = intval($this->get("status", -99));
 		$order_by = $this->get("order_by", '');
-		$kw       = trim($this->get("kw", ''));
+		$kw   = trim($this->get("kw", ''));
 		if (!$p) {
 			$p = 1;
 		}
-
 		$data = [];
-
 		$query = Soft::find();
 		if ($status >= -2) {
 			$query->andWhere(['status' => $status]);
@@ -195,9 +184,7 @@ class SoftController extends BaseController
 		return $this->renderJSON([ 'id' => $id ], "发布成功~~");
 	}
 
-
-	public function actionOps($id)
-	{
+	public function actionOps($id){
 		$id  = intval($id);
 		$act = trim($this->post("act"));
 		if (!$id) {
@@ -231,6 +218,31 @@ class SoftController extends BaseController
 		}
 
 		return $this->renderJSON([], "操作成功!!");
+	}
+
+	public function actionNgrok(){
+		$pay_order_id = intval( $this->get("pay_order_id",0) );
+		if( !$pay_order_id ){
+			return $this->renderJSON( [] ,"非法的pay_order_id",-1);
+		}
+
+		$pay_order_info = PayOrder::findOne([ 'id' => $pay_order_id,"status" => -8 ]);
+		if( !$pay_order_info ){
+			return $this->renderJSON( [] ,"没找到对应的支付单",-1);
+		}
+
+		$config_market = \Yii::$app->params['market'];
+		$has_ngrok = PayOrderItem::find()->where([ 'pay_order_id' => $pay_order_info,'target_id' =>  $config_market['ngrok'] ])->count();
+		if( !$has_ngrok ){
+			return $this->renderJSON( [] ,"非ngrok支付单",-1);
+		}
+
+		$ret = PayOrderService::orderSuccess( $pay_order_info['id'] );
+		$msg = "支付成功，请前去设置~~";
+		if( !$ret ){
+			$msg = PayOrderService::getLastErrorMsg();
+		}
+		return $this->renderJSON([],$msg );
 	}
 
 }

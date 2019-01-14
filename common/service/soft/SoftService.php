@@ -5,6 +5,7 @@ namespace common\service\soft;
 use common\models\pay\PayOrder;
 use common\models\pay\PayOrderItem;
 use common\models\soft\Soft;
+use common\models\soft\SoftNgrok;
 use common\models\soft\SoftQueue;
 use common\models\soft\SoftSaleChangeLog;
 use common\models\user\Member;
@@ -22,15 +23,27 @@ class SoftService extends BaseService {
 		if( !$order_info ){
 			return false;
 		}
-
+		$date_now = date("Y-m-d H:i:s");
 		$model_sale_change_log = new SoftSaleChangeLog();
 		$model_sale_change_log->soft_id = $order_item_info['target_id'];
 		$model_sale_change_log->quantity = $order_item_info['quantity'];
 		$model_sale_change_log->price = $order_item_info['price'];
 		$model_sale_change_log->member_id = $order_item_info['member_id'];
-		$model_sale_change_log->created_time = date("Y-m-d H:i:s");
+		$model_sale_change_log->created_time = $date_now;
 		if( $model_sale_change_log->save( 0 ) ){
 			self::updateApplyNumber( $order_item_info['target_id'] );
+		}
+
+		//如果是ngrok的购买，需要生成对应的软件记录
+		$config_market = \Yii::$app->params['market'];
+		if( $order_item_info['target_id'] == $config_market['ngrok'] ){
+			$model_ngrok = new SoftNgrok();
+			$model_ngrok->member_id = $order_item_info['member_id'];
+			$model_ngrok->pay_order_id = $order_info['id'];
+			$model_ngrok->start_time = date("Y-m-d");
+			$model_ngrok->end_time = date("Y-m-d",strtotime('+30 day') );
+			$model_ngrok->created_time = $model_ngrok->updated_time = $date_now;
+			$model_ngrok->save( 0 );
 		}
 
 		return true;
