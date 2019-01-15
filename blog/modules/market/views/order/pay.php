@@ -26,7 +26,7 @@ StaticService::includeAppJsStatic("/js/market/order/pay.js", \blog\assets\AppAss
                     <?php if( $info['status'] == 1):?>
                         支付时间：<?=$info['pay_time'];?>
                     <?php else:?>
-                        创建时间：<?=$info['pay_time'];?>
+                        创建时间：<?=$info['created_time'];?>
                     <?php endif;?>
                 </td>
             </tr>
