@@ -14,7 +14,7 @@ class JssdkController extends BaseController {
 
     public function actionToken(){
 		$this->setWeixinConfig();
-		return $this->renderJSON( [ 'data' => RequestService::getAccessToken() ] );
+		return $this->renderJSON( [ 'tk' => RequestService::getAccessToken() ] );
 	}
 
     private function getSignPackage() {
