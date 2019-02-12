@@ -1,7 +1,7 @@
 <?php
 namespace weixin\controllers;
 
-use app\common\services\weixin\RequestService;
+use \common\service\weixin\RequestService;
 use Yii;
 
 class JssdkController extends BaseController {
@@ -10,6 +10,11 @@ class JssdkController extends BaseController {
         $this->setWeixinConfig();
         return $this->renderJSON($this->getSignPackage());
     }
+
+    public function actionToken(){
+		$this->setWeixinConfig();
+		return $this->renderJSON( [ 'data' => RequestService::getAccessToken() ] );
+	}
 
     private function getSignPackage() {
         $jsapiTicket = $this->getJsApiTicket();
