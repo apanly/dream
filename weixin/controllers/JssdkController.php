@@ -2,6 +2,7 @@
 namespace weixin\controllers;
 
 use \common\service\weixin\RequestService;
+use common\service\weixin\WechatConfigService;
 use Yii;
 
 class JssdkController extends BaseController {
@@ -76,8 +77,8 @@ class JssdkController extends BaseController {
     }
 
     private function setWeixinConfig(){
-		$config = \Yii::$app->params['weixin'];
-		RequestService::setConfig( $config['appid'],$config['token'],$config['sk'] );
+		$config = WechatConfigService::getConfig();
+		RequestService::setConfig( $config['appid'],$config['apptoken'],$config['appsecret'] );
     }
 
     protected function renderJSON($data=[], $msg ="ok", $code = 200){
