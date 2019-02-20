@@ -28,7 +28,7 @@ class SyncBlogService extends BaseService {
             case "51cto":
                 $catlog = [
                     "*创作类型:原创",
-                    "开发技术"
+                    "软件研发-其他"
                 ];
                 $charset = "gb2312";
                 break;
