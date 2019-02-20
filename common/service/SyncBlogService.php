@@ -30,7 +30,6 @@ class SyncBlogService extends BaseService {
                     "*创作类型:原创",
                     "软件研发-&gt;其他"
                 ];
-                $charset = "gb2312";
                 break;
             case "csdn":
                 $catlog = [];
