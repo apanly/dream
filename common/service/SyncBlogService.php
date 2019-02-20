@@ -27,7 +27,7 @@ class SyncBlogService extends BaseService {
         switch( $type ){
             case "51cto":
                 $catlog = [
-                    "【创作类型:原创】",
+                    "*创作类型:原创",
                     "开发技术"
                 ];
                 $charset = "gb2312";
@@ -121,6 +121,7 @@ class SyncBlogService extends BaseService {
 
         if( $sync_info && $sync_info[ self::$type_mapping[ $type] ] ){
             if( !$target->editPost(  $sync_info[ self::$type_mapping[ $type] ], $params ) ){
+
                 return self::_err( $target->getErrorCode()."：".$target->getErrorMessage()." xml data:".$target->getResponse() );
             }
             $model_blog_sync_mapping = $sync_info;
