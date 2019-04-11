@@ -237,10 +237,12 @@ class UtilHelper {
 			'*.itc.cn',
 			'*.jiathis.com',
 			'*.qnssl.com',
-			"*.wx.qq.com"
+			"*.wx.qq.com",
+			"*.360zhishu.cn"
 		];
     	if( $env != "prod" ){
 			$domains[] = '*.dr.test';
+			$domains[] = '*.stkf.test';
 		}
 
 		$domain_list = implode(" ",$domains);
