@@ -41,7 +41,7 @@ DemoAsset::register($this);
     <div class="container">
         <ul class="bc-social-buttons">
             <li class="social-forum">
-                <p>QQ群：325264502 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=d7ed56eea3e6e0047db0420404dd0874c5c3d37e30ee40ab7bb6a5a2fb77dc72"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="编程浪子小天地" title="编程浪子小天地"></a> </p>
+                <p>QQ群1：325264502 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=d7ed56eea3e6e0047db0420404dd0874c5c3d37e30ee40ab7bb6a5a2fb77dc72"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="编程浪子小天地" title="编程浪子小天地"></a>  QQ群2：730089859 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=1f483d7a9e52d737599508fb3961435748982d2acf1f210ca8f42013fbef41f6"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="编程浪子小天地-群2" title="编程浪子小天地-群2"></a> </p>
             </li>
             <li class="social-weibo">
                 微信公众号：<a  href="<?=\common\service\GlobalUrlService::buildNullUrl();?>" data-toggle="modal" data-target="#wechat_service_qrcode">CodeRonin（点我扫码）</a>
