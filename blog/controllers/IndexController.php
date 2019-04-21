@@ -24,7 +24,7 @@ class IndexController extends BaseController{
     public function actionIndex(){
 		$banner_list = Posts::find()->where([ 'status' => 1 ])
 			->andWhere([ "!=",'image_url',"" ])
-			->orderBy( [ 'view_count' => SORT_DESC ] )
+			->orderBy( [ 'id' => SORT_DESC ] )
 			->limit(5 )
 			->all();
 		$banner_data = [];
