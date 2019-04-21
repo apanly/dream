@@ -68,8 +68,6 @@ $menu_list = \blog\components\BlogUtilService::blogMenu();
             <p><?=\Yii::$app->params['Copyright'];?>
         </div>
     </div>
-    <a href="<?=GlobalUrlService::buildNullUrl();?>"><div class="top"></div>
-    </a>
 </footer>
 <?php $this->endBody() ?>
 <?php echo \Yii::$app->view->renderFile("@blog/views/public/stat.php");?>

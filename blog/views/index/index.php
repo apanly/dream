@@ -91,7 +91,8 @@ $wx_urls = [
 				<li><b>网站程序</b>：Nginx + Yii2 + Mysql</li>
 				<li><b>微信公众号</b>：扫描二维码，关注我们</li>
 				<img src="<?=$wx_urls['coderonin'];?>" class="tongji_gzh"></ul>
-				<img src="<?=$wx_urls['my'];?>" class="tongji_gzh"></ul>
+				<img src="<?=$wx_urls['my'];?>" class="tongji_gzh">
+            </ul>
 		</div>
 	</div>
 </article>
