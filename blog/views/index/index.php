@@ -39,7 +39,7 @@ $wx_urls = [
 			</ul>
 		</div>
 		<div class="whitebg bloglist">
-            <h2 class="htitle"><span class="hnav"><a href="<?=GlobalUrlService::buildBlogUrl("/");?>" >更多</a></span>最新博文</h2>
+            <h2 class="htitle"><span class="hnav"><a href="<?=GlobalUrlService::buildBlogUrl("/default/index");?>" >更多</a></span>最新博文</h2>
 			<ul><!--多图模式 置顶设计-->
                 <?php foreach ( $blog_list as $_blog_info ):?>
 				<li>
