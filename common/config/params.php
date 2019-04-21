@@ -2,7 +2,8 @@
 return [
     "author" => [
         "nickname" => "编程浪子",
-        "link" => "/default/about"
+        "link" => "/default/about",
+		"email" => "apanly@163.com"
     ],
     'seo' => [
         'title' => '编程浪子的梦博客',
@@ -10,5 +11,5 @@ return [
         'keywords' => 'php教程，python教程，php开发，编程浪子的博客'
     ],
     'Copyright' => "<a href='http://m.54php.cn'>移动版</a>
-    <br/>Copyright © 2017.编程浪子 All rights reserved | 备案号：沪ICP备13003569号-2"
+    <br/>Copyright © 2015.编程浪子 All rights reserved | 备案号：沪ICP备13003569号-2"
 ];

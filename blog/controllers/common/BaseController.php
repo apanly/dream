@@ -29,6 +29,7 @@ class BaseController extends BaseBlogController{
 		'oauth/github',
 		'oauth/weibo',
 		'user/login',
+		"index/index"
     ];
 
 

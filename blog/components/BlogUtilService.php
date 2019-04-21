@@ -10,6 +10,10 @@ class BlogUtilService {
 	{
 
 		$menu = [
+			'home'      => [
+				'title' => '主页',
+				'url'   => GlobalUrlService::buildBlogUrl("/index/index")
+			],
 			'blog'      => [
 				'title' => '文章',
 				'url'   => GlobalUrlService::buildBlogUrl("/")
