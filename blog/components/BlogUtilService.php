@@ -16,7 +16,7 @@ class BlogUtilService {
 			],
 			'blog'      => [
 				'title' => '文章',
-				'url'   => GlobalUrlService::buildBlogUrl("/")
+				'url'   => GlobalUrlService::buildBlogUrl("/default/index")
 			],
 
 			'market'   => [
