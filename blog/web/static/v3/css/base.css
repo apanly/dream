@@ -1351,6 +1351,14 @@ a.iconfont.icon-weixin {
     content: "8";
 }
 
+.paihang ul li:nth-child(9) i::before {
+    content: "9";
+}
+
+.paihang ul li:nth-child(10) i::before {
+    content: "10";
+}
+
 .paihang ul li:hover {
     -moz-transition: all .2s ease;
     -webkit-transition: all .2s ease;
