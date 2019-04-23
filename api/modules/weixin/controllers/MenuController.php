@@ -15,7 +15,7 @@ class MenuController extends BaseController{
     public  function actionCreate( )
     {
         if (!$this->checkSignature()) {
-            return false;
+            return "error";
         }
 
         $from  = $this->getSource();
