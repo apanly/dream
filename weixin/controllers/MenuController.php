@@ -84,7 +84,7 @@ class MenuController extends BaseController{
 		];
 
 
-		RequestService::setConfig( $config['appid'],$config['token'],$config['sk'] );
+		RequestService::setConfig( $config['appid'],$config['apptoken'],$config['appsecret'] );
 		$access_token = RequestService::getAccessToken();
 		if( $access_token ){
 			$url = "menu/create?access_token={$access_token}";
