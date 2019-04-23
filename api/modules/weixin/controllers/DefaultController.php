@@ -18,8 +18,7 @@ class DefaultController extends  BaseController {
             echo $_GET['echostr'];exit();
         }
         if(!$this->checkSignature()){
-            die("error");
-            return false;
+            return "success";
         }
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
         if($postStr){

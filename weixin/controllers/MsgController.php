@@ -17,7 +17,7 @@ class MsgController extends BaseController{
     public function actionIndex( ){
 		if( !$this->checkSignature() ){
 			$this->record_log( "校验错误" );
-			return 'error signature ~~';
+			return 'success';
 		}
 
 		if( array_key_exists('echostr',$_GET) && $_GET['echostr']){//用于微信第一次认证的
@@ -28,7 +28,7 @@ class MsgController extends BaseController{
 		$xml_data = file_get_contents("php://input");
 		$this->record_log( "[xml_data]:". $xml_data );
 		if( !$xml_data ){
-			return 'error xml ~~';
+			return 'success';
 		}
 
 		$msg_signature = trim( $this->get("msg_signature","") );
@@ -39,7 +39,7 @@ class MsgController extends BaseController{
 		$target = new MsgCryptService( $config['apptoken'], $config['aeskey'], $config['appid']);
 		$err_code = $target->decryptMsg($msg_signature, $timestamp, $nonce, $xml_data, $decode_xml);
 		if ( $err_code != 0) {
-			return 'error decode ~~';
+			return 'success';
 		}
 
 		$this->record_log( '[decode_xml]:'.$decode_xml );

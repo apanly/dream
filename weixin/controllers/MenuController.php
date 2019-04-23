@@ -52,6 +52,11 @@ class MenuController extends BaseController{
 							"type" => "view",
 							"name" => "图书馆",
 							"url"  => GlobalUrlService::buildWapUrl("/library/index",[ "from" => $source ])
+						],
+						[
+							"type" => "view",
+							"name" => "机器学习",
+							"url"  => "https://git.home.54php.cn:4443/fork/100-Days-Of-ML-Code"
 						]
 					]
 				],
