@@ -37,8 +37,8 @@ page{
 }
 
 .img-plus-style {
-    height: 70rpx;
-    width: 70rpx;
+    height: 90rpx;
+    width: 90rpx;
     position: fixed;
     bottom: 220rpx;
     right: 30rpx;

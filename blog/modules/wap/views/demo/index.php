@@ -44,6 +44,11 @@ use \common\service\GlobalUrlService;
                         <i  class="am-icon-mobile am-icon-fw"></i> 手机归属地查询
                     </a>
                 </li>
+                <li>
+                    <a href="<?= GlobalUrlService::buildWapUrl("/demo/lvb"); ?>">
+                        <i  class="am-icon-video-camera am-icon-fw"></i> 直播
+                    </a>
+                </li>
 			</ul>
 		</div>
 	</div>

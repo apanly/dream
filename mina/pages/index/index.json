@@ -3,7 +3,9 @@
         "van-tabbar": "/plugins/vant/tabbar/index",
         "van-tabbar-item": "/plugins/vant/tabbar-item/index",
         "van-row": "/plugins/vant/row/index",
-        "van-col": "/plugins/vant/col/index"
+        "van-col": "/plugins/vant/col/index",
+        "kefu": "/pages/components/kefu/index"
     },
-    "onReachBottomDistance":50
+    "onReachBottomDistance":50,
+    "enablePullDownRefresh":true
 }

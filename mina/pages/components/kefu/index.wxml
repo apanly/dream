@@ -1,0 +1,4 @@
+<view>
+    <button class="img-plus-style zindex100 yc" open-type="contact" bindcontact="handleContact"></button>
+    <image src="/images/kefu/kf_avatar.png" class="img-plus-style"></image>
+</view>

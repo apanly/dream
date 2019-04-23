@@ -5,16 +5,24 @@ Page({
         type:1
     },
     onLoad: function (options) {
-    },
-    onShow: function () {
         this.reset();
         this.search();
+    },
+    onShow: function () {
+
     },
     onReachBottom: function () {
         var that = this;
         setTimeout(function () {
             that.search();
         }, 300);
+    },
+    onPullDownRefresh:function(){
+        //wx.showNavigationBarLoading();
+        this.reset();
+        this.search();
+        //wx.hideNavigationBarLoading(); //完成停止加载
+        wx.stopPullDownRefresh(); //停止下拉刷新
     },
     onShareAppMessage: function () {
 

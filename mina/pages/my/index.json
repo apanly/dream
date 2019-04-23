@@ -1,1 +1,5 @@
-{}
+{
+    "usingComponents": {
+        "kefu": "/pages/components/kefu/index"
+    }
+}

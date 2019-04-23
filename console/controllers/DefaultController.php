@@ -4,6 +4,8 @@
 namespace console\controllers;
 
 
+use common\services\lvb\LVBTecentService;
+
 class DefaultController extends  BaseController {
 	public function actionIndex(){
 		$_post_url = 'https://api.netease.im/sms/sendcode.action';
@@ -48,5 +50,16 @@ class DefaultController extends  BaseController {
 
 		return $r;
 
+	}
+
+	public function actionLvb(){
+		$lvb_push_key = "576381887f29f22d7dc3228623d201da";
+		$domain = "44159.livepush.myqcloud.com";
+		$stream_id = "54php";
+		$time = date("Y-m-d H:i:s",strtotime("+1 day") );
+		$push_url = LVBTecentService::getPushUrl( $domain,$stream_id,$lvb_push_key,$time );
+		$this->echoLog( "推送流Url：".$push_url );
+		$play_url = LVBTecentService::getPlayUrl( "lvb.54php.cn",$stream_id );
+		$this->echoLog( "播放流Url：".$play_url );
 	}
 }

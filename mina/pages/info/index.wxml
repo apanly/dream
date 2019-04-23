@@ -38,4 +38,5 @@
             </van-button>
         </van-col>
     </van-row>
+    <kefu id="kefu"></kefu>
 </view>

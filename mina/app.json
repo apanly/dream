@@ -6,7 +6,8 @@
         "pages/my/index",
         "pages/webview/index",
         "pages/tools/book/scan",
-        "pages/tools/book/list"
+        "pages/tools/book/list",
+        "pages/components/kefu/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
