@@ -57,6 +57,11 @@ class MenuController extends BaseController{
 							"type" => "view",
 							"name" => "机器学习",
 							"url"  => "https://git.home.54php.cn:4443/fork/100-Days-Of-ML-Code"
+						],
+						[
+							"type" => "view",
+							"name" => "浪子云客服",
+							"url"  => "https://git.home.54php.cn:4443/apanly/open_kf_v1"
 						]
 					]
 				],
