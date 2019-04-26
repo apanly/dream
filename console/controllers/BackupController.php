@@ -145,7 +145,11 @@ class BackupController extends  BaseController {
 
 		if( $backup_files ){
 			//备份一份数据到家里
-			$path = $backup_dir.date("Y-m-d");
+			$path =$backup_dir.date("Y-m-d");
+			$tmp_commmand = "ssh -p 22222  vincent@nas.home.54php.cn -t 'mkdir -p {$path}'";
+			$this->echoLog( $tmp_commmand );
+			exec( $tmp_commmand );
+			
 			foreach( $backup_files as $_back_file ){
 				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}/{$_back_file['sname']}";
 				$this->echoLog( $tmp_commmand );
