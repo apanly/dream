@@ -1,3 +1,8 @@
+## 2019-04-26
+```
+ALTER TABLE `music` CHANGE `type` `type` TINYINT(1)  NOT NULL  DEFAULT '1'  COMMENT '类型 1：百度  2：qq  3:网易';
+```
+
 ## 20170925
 
     ALTER TABLE `soft` ADD `need_buy` TINYINT(1)  NOT NULL  DEFAULT '0'  COMMENT '是否需要购买 1：需要 0：不需要'  AFTER `origin_info_url`;

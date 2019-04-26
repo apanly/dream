@@ -12,9 +12,14 @@ class HttpClient  extends  BaseService{
 
     private static $gzip_flag = false;
 
+    private static $encode = false;
+
+    private static $curl_opts = [];
 
     public static function get($url, $param =[]) {
-
+    	if( $param ){
+			$url .= "?".http_build_query( $param );
+		}
         return self::curl($url, $param,"get");
     }
 
@@ -35,11 +40,17 @@ class HttpClient  extends  BaseService{
         curl_setopt($curl, CURLOPT_CERTINFO , true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_VERBOSE, true);
-
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);//函数中加入下面这条语句
+		if( self::$curl_opts ){
+			foreach ( self::$curl_opts as $_curl_type => $_curl_val ){
+				if( $_curl_type == "OPT_REFERER" ){
+					curl_setopt($curl, CURLOPT_REFERER, $_curl_val );
+				}
+			}
+		}
 
-		if( self::$gzip_flag ){
-			curl_setopt($curl, CURLOPT_ENCODING, "gzip"); // 关键在这里
+		if( self::$encode ){
+			curl_setopt($curl, CURLOPT_ENCODING, self::$encode );
 		}
 
 		if( isset( Yii::$app->params['curl'] ) && isset(Yii::$app->params['curl']['timeout']) ){
@@ -109,68 +120,20 @@ class HttpClient  extends  BaseService{
     }
 
     public static function setGzip(  ){
-		self::$gzip_flag = true;
+		self::setEncode( "gzip" );
 	}
 
+	public static function setEncode( $encode = false ){
+		self::$encode = $encode;
+	}
 
-    protected static function getProxy() {
-        $proxy = array(
-            '0' => '60.16.210.118:80',
-            '1' => '183.62.60.100:80',
-            '2' => '58.215.185.46:82',
-            '3' => '223.4.21.184:80',
-            '4' => '61.53.143.179:80',
-            '5' => '42.121.105.155:8888',
-            '6' => '115.29.184.17:82',
-            '7' => '183.131.144.204:443',
-            '8' => '121.199.30.110:82',
-            '9' => '113.207.130.166:80',
-            '10' => '124.202.181.226:8118',
-            '11' => '116.236.216.116:8080',
-            '12' => '114.255.183.173:8080',
-            '13' => '202.108.50.75:80',
-            '14' => '122.96.59.106:82',
-            '15' => '122.96.59.106:83',
-            '16' => '1.202.74.121:8118',
-            '17' => '114.255.183.164:8080',
-            '18' => '111.13.136.59:843',
-            '19' => '122.96.59.106:843',
-            '20' => '101.71.27.120:80',
-            '21' => '122.96.59.106:81',
-            '22' => '111.1.36.6:80',
-            '23' => '114.255.183.174:8080',
-            '24' => '120.198.243.111:80',
-            '25' => '218.240.156.82:80',
-            '26' => '61.184.192.42:80',
-            '27' => '119.6.144.74:83',
-            '28' => '119.6.144.74:843',
-            '29' => '124.202.217.134:8118',
-            '30' => '221.10.102.203:83',
-            '31' => '119.6.144.74:82',
-            '32' => '119.6.144.74:80',
-            '33' => '58.252.72.179:3128',
-            '34' => '60.24.122.236:8118',
-            '35' => '203.192.10.66:80',
-            '36' => '221.10.102.203:81',
-            '37' => '211.141.130.96:8118',
-            '38' => '124.88.67.13:843',
-            '39' => '119.6.144.74:81',
-            '40' => '222.33.41.228:80',
-            '41' => '221.10.102.203:843',
-            '42' => '111.7.129.133:80',
-            '43' => '124.88.67.13:83',
-            '44' => '61.156.3.166:80',
-            '45' => '218.204.140.212:8001',
-            '46' => '116.236.203.238:8080',
-            '47' => '122.96.59.106:80',
-            '48' => '182.118.23.7:8081',
-            '49' => '222.45.194.122:8118',
-            '50' => '123.171.119.52:80'
-        );
-
-        $rand = rand(0,50);
-        return $proxy[$rand];
-    }
+	/**
+	 * @param array $curl_opt
+	 */
+	public static function setCurlOpts( $curl_opts = [])
+	{
+		self::$curl_opts = $curl_opts;
+	}
 
 
 }

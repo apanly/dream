@@ -2,29 +2,30 @@
 
 namespace blog\modules\game\controllers;
 
-use blog\components\UrlService;
 use blog\modules\game\controllers\common\BaseController;
 use common\components\DataHelper;
-use common\components\HttpClient;
 use common\models\games\Music;
-use common\service\bat\QQMusicService;
+use common\service\bat\NeteaseMusicService;
+use common\service\bat\MusicService;
+use common\service\GlobalUrlService;
 
-class MusicController extends BaseController
-{
+class MusicController extends BaseController{
+
     public function actionIndex(){
         $kw = trim( $this->get("kw","") );
         $music_list = [];
         if( $kw ){
-            $songs = QQMusicService::search($kw,false,[ 'page_size' => 20 ]);
+			$api = new NeteaseMusicService();
+			$songs = $api->search( $kw,10 );
             if( $songs ){
                 foreach($songs as $_song ){
                     $music_list[] = $_song;
                 }
             }
         }
-
         $this->setTitle("QQ音乐资源获取");
         $this->setSubTitle("QQ音乐资源获取");
+
         return $this->render("index",[
             "music_list" => $music_list,
             "kw" => $kw
@@ -32,17 +33,18 @@ class MusicController extends BaseController
     }
 
     public function actionInfo(){
-        $song_id = $this->get("song_id",1237792);
-        $reback_url = UrlService::buildWapUrl("/default/index");
-        $type = intval( $this->get("type",2) );
+        $song_id = $this->get("song_id",0 );
+        $reback_url = GlobalUrlService::buildWapUrl("/default/index");
+        $type = intval( $this->get("type",3) );
         if( !$song_id ){
             return $this->redirect( $reback_url );
         }
 
         $info = Music::findOne(['song_id' => $song_id,'type' => $type,'status' => 1]);
         if( !$info ){
-            $info = QQMusicService::getSongInfo($song_id);
-            QQMusicService::saveMusic($info);
+			$api = new NeteaseMusicService();
+			$info = $api->getSongInfo( $song_id );
+			MusicService::saveMusic($info);
         }
 
         $data = [
@@ -73,25 +75,11 @@ class MusicController extends BaseController
         }
 
         /*获取歌词*/
-        $lrc_url = QQMusicService::getSongLrcUrl( $song_id );
-        $lrc_data = HttpClient::get($lrc_url);
-        $lrc = '';
-
-        if(substr($lrc_data,0,5) == "<?xml" ){
-            if( stripos( strtolower( $lrc_data ),'encoding="GB2312"' ) !==false ){
-                $lrc_data = mb_convert_encoding($lrc_data,"utf-8","gb2312");
-                $lrc_data = str_replace('encoding="GB2312"','encoding="utf-8"',$lrc_data);
-            }
-            //var_dump($lrc_data);exit();
-            $parser = xml_parser_create();
-            xml_parse_into_struct($parser, $lrc_data, $values, $index);    //解析到数组
-            xml_parser_free($parser);
-            $lrc = isset($values[0]['value'])?$values[0]['value']:'';
-        }
-
+		$api = new NeteaseMusicService();
+		$lrc = $api->getSongLrcUrl( $song_id );
         $data = [
             'lrc' => $lrc,
-            'song_url' => QQMusicService::getSongUrl($song_id)
+            'song_url' => $info['song_url']
         ];
 
         return $this->renderJSON( $data );

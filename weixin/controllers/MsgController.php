@@ -1,6 +1,7 @@
 <?php
 namespace weixin\controllers;
 
+use common\service\bat\NeteaseMusicService;
 use common\service\SpiderService;
 use common\service\weixin\MsgCryptService;
 use common\service\weixin\WechatConfigService;
@@ -225,7 +226,8 @@ EOT;
 
 
 	private function searchMusicByKw($kw){
-		$songs = QQMusicService::search($kw);
+		$api = new NeteaseMusicService();
+		$songs = $api->search( $kw,10 );
 		$list = [];
 		if( $songs ){
 			foreach( $songs as $_song_info ){
@@ -239,6 +241,17 @@ EOT;
 		}
 		$data = $list?$this->getRichXml($list):"抱歉没有搜索到关于 {$kw} 的歌曲";
 		$type = $list?"rich":"text";
+		/*由于微信更改了规则，图文消息只显示一条*/
+		if( $list && count( $list ) > 1 ){
+			$type = "text";
+			$tmp_data = [];
+			foreach ($list as $_item ){
+				$tmp_data[] = $_item['title']."：".$_item['url']."\n";
+			}
+			$tmp_data[] = "---------------";
+			$tmp_data[] = "这么丑？无赖呀，微信调整了图文条数限制";
+			$data = $tmp_data;
+		}
 		return ['type' => $type ,"data" => $data];
 	}
 
