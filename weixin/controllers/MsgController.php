@@ -217,7 +217,7 @@ EOT;
 				$tmp_data[] = $_item['title']."：".$_item['url'];
 			}
 			$tmp_data[] = "---------------";
-			$tmp_data[] = "这么丑？无赖呀，微信调整了图文调试显示";
+			$tmp_data[] = "这么丑？无赖呀，微信调整了图文条数限制";
 			$data = $tmp_data;
 		}
 		return ['type' => $type ,"data" => $data];
