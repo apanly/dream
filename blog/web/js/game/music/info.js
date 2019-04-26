@@ -90,10 +90,10 @@ var music__info_ops = {
                     }
                     that.counter = $("#lrc_box")[0].getBoundingClientRect().top;
                     that.player.src = res.data.song_url;
-                    that.player.play();
+                    //that.player.play();
                     $("#music-pic").addClass("active");
                     that.setBtn(1);
-                    that.interval_id = setInterval(that.timer, 1000);
+                    that.interval_id = setInterval( that.timer, 1000);
                 }
             }
         });
