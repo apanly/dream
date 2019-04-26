@@ -83,7 +83,7 @@ class BackupController extends  BaseController {
      * */
     public function actionConfig(){
     	$dir = "/data/www/dream";
-		$backup_dir = "/data/www/backup/";
+		$backup_dir = $this->backup_dir;
 		$date = date("Ymd");
 		$config_path = [
 			'/common/config/main-local.php',
@@ -139,10 +139,19 @@ class BackupController extends  BaseController {
 
 		$backup_files[] = [
 			'path' => "{$backup_dir}{$file_name}",
-			'name' => "{$date}/{$file_name}"
+			'name' => "{$date}/{$file_name}",
+			"sname" => "{$file_name}.tar.gz"
 		];
 
 		if( $backup_files ){
+			//备份一份数据到家里
+			$path = $backup_dir.date("Y-m-d");
+			foreach( $backup_files as $_back_file ){
+				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}/{$_back_file['sname']}";
+				$this->echoLog( $tmp_commmand );
+				exec( $tmp_commmand );
+			}
+
 			//直接放到七牛网站上去
 			foreach( $backup_files as $_back_file ){
 				$ret = QiniuService::uploadFile( $_back_file['path'],$_back_file['name'],'backup' );
@@ -156,14 +165,6 @@ class BackupController extends  BaseController {
 				$tmp_model_sys_log->file_key = $_back_file['name'];
 				$tmp_model_sys_log->created_time = $tmp_model_sys_log->updated_time = date("Y-m-d H:i:s");
 				$tmp_model_sys_log->save(0);
-			}
-
-			//备份一份数据到家里
-			$path = "/data/www/backup/".date("Y-m-d");
-			foreach( $backup_files as $_back_file ){
-				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}";
-				$this->echoLog( $tmp_commmand );
-				exec( $tmp_commmand );
 			}
 		}
 
