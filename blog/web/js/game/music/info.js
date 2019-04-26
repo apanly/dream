@@ -129,9 +129,16 @@ var music_info_ops = {
 
 $(document).ready(function(){
     music_info_ops.init();
-    ////--创建页面监听，等待微信端页面加载完毕 触发音频播放
-    document.addEventListener('WeixinJSBridgeReady', function() {
-        $(".btn_play").click();
+    
+    //--创建页面监听，等待微信端页面加载完毕 触发音频播放
+    document.addEventListener('DOMContentLoaded', function () {
+        function audioAutoPlay() {
+            $(".btn_play").click();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                $(".btn_play").click();
+            }, false);
+        }
+        audioAutoPlay();
     });
 });
 
