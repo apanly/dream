@@ -14,6 +14,7 @@ class BackupController extends  BaseController {
 	 * dream_blog dream_log
 	 * php yii backup/mysql
      */
+    private $backup_dir = "/data/www/backup/blog/";
     public function actionMysql(){
 		$this->echoLog("=======start======");
 		$config_mysql = \Yii::$app->components['blog'];
@@ -21,33 +22,22 @@ class BackupController extends  BaseController {
 		$mysql_passwd = $config_mysql['password'];
 		$db_names = [ "dream_blog","dream_log","dream_wechat" ];
 		$backup_files = [];
-		$backup_dir = "/data/www/backup/";
+		$backup_dir = $this->backup_dir;
 		$date = date("Ymd");
 		foreach( $db_names as $db_name){
 			$filename = $db_name."_".date("Y-m-d").".sql";
 			$command = "cd {$backup_dir} && /usr/bin/mysqldump -u{$mysql_user}".($mysql_passwd?"  -p{$mysql_passwd}":" ").  " {$db_name} --skip-lock-tables > {$filename}";
 			exec($command);
-			//有密码不要输出
-			//$this->echoLog("backp mysql:".$command);
 
 			$command = "cd {$backup_dir} && tar -zcf {$filename}.tar.gz {$filename} && rm {$filename}";
 			exec($command);
 			$this->echoLog("tar backup_mysql:".$command);
 			$backup_files[] = [
 				'path' => "{$backup_dir}{$filename}.tar.gz",
-				'name' => "{$date}/{$filename}.tar.gz"
+				'name' => "{$date}/{$filename}.tar.gz",
+				"sname" => "{$filename}.tar.gz"
 			];
 		}
-
-		//先不备份整个网站
-//		$filename = "www_{$date}.tar.gz";
-//		$command = "cd {$code_dir} && git archive --format tar.gz --output {$backup_dir}{$filename} master";
-//		$this->echoLog("backup www:".$command);
-//		exec($command);
-//		$backup_files[] = [
-//			'path' => "{$backup_dir}{$filename}",
-//			'name' => "{$date}/{$filename}"
-//		];
 
 		if( $backup_files ){
 			//直接放到七牛网站上去
@@ -66,9 +56,13 @@ class BackupController extends  BaseController {
 			}
 
 			//备份一份数据到家里
-			$path = "/data/www/backup/".date("Y-m-d");
+			$path =$backup_dir.date("Y-m-d");
+			$tmp_commmand = "ssh -p 22222  vincent@nas.home.54php.cn -t 'mkdir -p {$path}'";
+			$this->echoLog( $tmp_commmand );
+			exec( $tmp_commmand );
+
 			foreach( $backup_files as $_back_file ){
-				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}";
+				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}/{$_back_file['sname']}";
 				$this->echoLog( $tmp_commmand );
 				exec( $tmp_commmand );
 			}
