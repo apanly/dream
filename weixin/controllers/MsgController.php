@@ -210,7 +210,7 @@ EOT;
 		/*由于微信更改了规则，图文消息只显示一条*/
 		$data = $list?$this->getRichXml($list):$this->help();
 		$type = $list?"rich":"text";
-		if( $list && count( $list ) == 1 ){
+		if( $list && count( $list ) > 1 ){
 			$type = "text";
 			$tmp_data = [];
 			foreach ($list as $_item ){
