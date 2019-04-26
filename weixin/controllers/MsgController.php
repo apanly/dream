@@ -214,7 +214,7 @@ EOT;
 			$type = "text";
 			$tmp_data = [];
 			foreach ($list as $_item ){
-				$tmp_data[] = $_item['title']."：".$_item['url'];
+				$tmp_data[] = $_item['title']."：".$_item['url']."\n";
 			}
 			$tmp_data[] = "---------------";
 			$tmp_data[] = "这么丑？无赖呀，微信调整了图文条数限制";
