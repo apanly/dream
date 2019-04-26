@@ -61,7 +61,7 @@ class MsgController extends BaseController{
 				if( in_array($kw ,["商城账号","商城帐号","账号","帐号","订餐小程序","小程序"] ) ){
 					$data = [
 						"课程账号用户名：54php.cn，密码：123456",
-						"交流QQ群：325264502、730089859",
+						$this->getBusiContact(),
 						"Python Flask微信小程序：food.54php.cn/user/login",
 						"编程浪子图书商城：book.54php.cn/web/user/login",
 						"浪子开源客服系统：m.54php.cn/default/253.html"
@@ -207,9 +207,19 @@ EOT;
 				];
 			}
 		}
-
+		/*由于微信更改了规则，图文消息只显示一条*/
 		$data = $list?$this->getRichXml($list):$this->help();
 		$type = $list?"rich":"text";
+		if( $list && count( $list ) == 1 ){
+			$type = "text";
+			$tmp_data = [];
+			foreach ($list as $_item ){
+				$tmp_data[] = $_item['title']."：".$_item['url'];
+			}
+			$tmp_data[] = "---------------";
+			$tmp_data[] = "这么丑？无赖呀，微信调整了图文调试显示";
+			$data = $tmp_data;
+		}
 		return ['type' => $type ,"data" => $data];
 	}
 
@@ -271,13 +281,14 @@ EOT;
 	 * 关注默认提示
 	 */
 	private function subscribeTips(){
-		$resData = <<<EOT
-感谢您关注编程浪子的公众号
-QQ群：325264502\n
-回复“上墙” 演示微信墙\n
-回复“@关键字” 搜索歌曲
-EOT;
-		return $resData;
+		$data = [
+			"感谢您关注编程浪子的公众号",
+			$this->getBusiContact(),
+			"回复“上墙” 演示微信墙",
+			"回复“@关键字” 搜索歌曲",
+			"回复 任意内容进行搜索"
+		];
+		return $data;
 	}
 
 	private function richMediaTips(){
@@ -310,6 +321,10 @@ EOT;
 	private function wallTip(){
 		$resData = "欢迎使用". \Yii::$app->params['author']['nickname']."微信墙，操作指引如下\r\n回复 # + 你想说的话\r\n 微信墙列表:".GlobalUrlService::buildWapUrl("/wechat_wall/index");
 		return $resData;
+	}
+
+	private function getBusiContact(){
+		return "交流QQ群：325264502、730089859";
 	}
 
 
