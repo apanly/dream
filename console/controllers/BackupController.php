@@ -40,6 +40,20 @@ class BackupController extends  BaseController {
 		}
 
 		if( $backup_files ){
+
+
+			//备份一份数据到家里
+			$path =$backup_dir.date("Y-m-d");
+			$tmp_commmand = "ssh -p 22222  vincent@nas.home.54php.cn -t 'mkdir -p {$path}'";
+			$this->echoLog( $tmp_commmand );
+			exec( $tmp_commmand );
+
+			foreach( $backup_files as $_back_file ){
+				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}/{$_back_file['sname']}";
+				$this->echoLog( $tmp_commmand );
+				exec( $tmp_commmand );
+			}
+
 			//直接放到七牛网站上去
 			foreach( $backup_files as $_back_file ){
 				$ret = QiniuService::uploadFile( $_back_file['path'],$_back_file['name'],'backup' );
@@ -53,18 +67,6 @@ class BackupController extends  BaseController {
 				$tmp_model_sys_log->file_key = $_back_file['name'];
 				$tmp_model_sys_log->created_time = $tmp_model_sys_log->updated_time = date("Y-m-d H:i:s");
 				$tmp_model_sys_log->save(0);
-			}
-
-			//备份一份数据到家里
-			$path =$backup_dir.date("Y-m-d");
-			$tmp_commmand = "ssh -p 22222  vincent@nas.home.54php.cn -t 'mkdir -p {$path}'";
-			$this->echoLog( $tmp_commmand );
-			exec( $tmp_commmand );
-
-			foreach( $backup_files as $_back_file ){
-				$tmp_commmand = "scp -P22222 {$_back_file['path']}  vincent@nas.home.54php.cn:{$path}/{$_back_file['sname']}";
-				$this->echoLog( $tmp_commmand );
-				exec( $tmp_commmand );
 			}
 		}
 
