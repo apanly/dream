@@ -60,11 +60,11 @@ class MsgController extends BaseController{
 				$kw = trim( $xml_obj->Content );
 				if( in_array($kw ,["商城账号","商城帐号","账号","帐号","订餐小程序","小程序"] ) ){
 					$data = [
-						"用户名：54php.cn，密码：123456",
-						"个人QQ群1：325264502、群2：730089859",
-						"Python Flask微信小程序：https://food.54php.cn/user/login",
-						"编程浪子图书商城：http://book.54php.cn/web/user/login",
-						"浪子开源客服系统：http://m.54php.cn/default/253.html"
+						"课程账号用户名：54php.cn，密码：123456",
+						"交流QQ群：325264502、730089859",
+						"Python Flask微信小程序：food.54php.cn/user/login",
+						"编程浪子图书商城：book.54php.cn/web/user/login",
+						"浪子开源客服系统：m.54php.cn/default/253.html"
 					];
 					$res = [
 						'type'=>'text',
