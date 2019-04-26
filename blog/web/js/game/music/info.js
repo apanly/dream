@@ -1,6 +1,6 @@
 ;
 
-var music__info_ops = {
+var music_info_ops = {
     init:function(){
         this.player = null;
         this.counter = 0;
@@ -33,12 +33,12 @@ var music__info_ops = {
         player = document.createElement('audio');
         $(player).attr({
             autoplay: 'autoplay',
-            preload: 'preload'
+            preload: 'auto'
         });
         this.player = player;
     },
     timer:function(){
-        var that = music__info_ops;
+        var that = this;
         if (this.player.ended) {
             window.clearTimeout(this.interval_id);
             $("#music-pic").removeClass("active");
@@ -94,7 +94,6 @@ var music__info_ops = {
                     $("#music-pic").addClass("active");
                     that.setBtn( 0 );
                     that.interval_id = setInterval( that.timer, 1000);
-                    setTimeout( " $('.btn_play' ).click(); ",1000);
                 }
             }
         });
@@ -129,6 +128,10 @@ var music__info_ops = {
 };
 
 $(document).ready(function(){
-    music__info_ops.init();
+    music_info_ops.init();
+    ////--创建页面监听，等待微信端页面加载完毕 触发音频播放
+    document.addEventListener('WeixinJSBridgeReady', function() {
+        music_info_ops.player.play()
+    })
 });
 
