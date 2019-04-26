@@ -23,8 +23,8 @@ class MusicController extends BaseController{
                 }
             }
         }
-        $this->setTitle("QQ音乐资源获取");
-        $this->setSubTitle("QQ音乐资源获取");
+        $this->setTitle("音乐资源获取");
+        $this->setSubTitle("音乐资源获取");
 
         return $this->render("index",[
             "music_list" => $music_list,

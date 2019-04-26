@@ -4,7 +4,7 @@ use \common\service\GlobalUrlService;
 StaticService::includeAppJsStatic("/js/game/music/index.js",blog\assets\GameAsset::className());
 ?>
 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 am-text-center">
-    <img src="<?=GlobalUrlService::buildStaticUrl("/images/game/music/logo.png");?>" style="height: 150px;width: 150px;">
+    <img src="<?=GlobalUrlService::buildStaticUrl("/images/game/music/netease.png");?>" style="height: 150px;width: 150px;">
 </div>
 <div class="am-u-sm-12 am-u-md-12  am-u-lg-12">
     <form method="get" id="search">
