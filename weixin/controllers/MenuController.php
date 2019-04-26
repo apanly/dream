@@ -61,7 +61,7 @@ class MenuController extends BaseController{
 						[
 							"type" => "view",
 							"name" => "浪子云客服",
-							"url"  => "https://git.home.54php.cn:4443/apanly/open_kf_v1"
+							"url"  => "http://m.54php.cn/default/253.html"
 						]
 					]
 				],
