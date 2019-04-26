@@ -24,9 +24,16 @@ class MenuController extends BaseController{
 							"url"  => GlobalUrlService::buildBookUrl("/default/index",[ 'from' => $source ])
 						],
 						[
-							"name" => "博客系统",
+							"name" => "客服系统",
 							"type" => "view",
-							"url"  => GlobalUrlService::buildWapUrl("/default/index",[ "from" => $source ])
+							"url"  => GlobalUrlService::buildWapUrl("/default/info",[ "from" => $source,"id" => 253 ])
+						],
+						[
+							"name" => "小程序",
+							"type" => "miniprogram",
+							"pagepath"  =>  "pages/index/index",
+							"url"  =>  GlobalUrlService::buildWapUrl("/default/index",[ "from" => $source ]),
+							"appid" => "wxa4fd6980eb9e311f"
 						],
 						[
 							"name" => "小工具",
@@ -87,8 +94,6 @@ class MenuController extends BaseController{
 				]
 			]
 		];
-
-
 		RequestService::setConfig( $config['appid'],$config['apptoken'],$config['appsecret'] );
 		$access_token = RequestService::getAccessToken();
 		if( $access_token ){
