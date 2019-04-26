@@ -356,6 +356,12 @@ class BlogUtilService {
 	public static function getProjectList(){
 		$menu = [
 			[
+				'title' => '编程浪子客服系统开源啦',
+				'url'   => GlobalUrlService::buildBlogUrl("/default/info", [ 'id' => 253 ]),
+				"cover" => "http://cdn.pic1.54php.cn/20190425/3754f438b3780315bdc5da40e1462596.png?imageView/2/w/300",
+				'desc'  => 'Yii2 + GatewayWorker + Mysql + Redis搭建高并发客服系统'
+			],
+			[
 				'title' => 'Python3 + Flask构建微信小程序订餐系统',
 				'url'   => "https://food.54php.cn",
 				"cover" => "http://cdn.pic1.54php.cn/20180808/4963e02a1be66875be0e4d067d5bf5c8.jpg?imageView/2/w/300",
@@ -424,10 +430,10 @@ class BlogUtilService {
 				"desc" => "如果你严肃对待编程，就必定会使用\"版本管理系统\"（Version Control System）。眼下最流行的\"版本管理系统\"，非Git莫属"
 			],
 			[
-				'title' => 'QQ音乐',
+				'title' => '网易音乐',
 				'url'   => GlobalUrlService::buildBlogUrl("/default/info", ['id' => 80]),
 				'cover' => 'http://cdn.pic1.54php.cn/20151226/b1c2429a76041a67a476f02000b58e07.jpg?imageView/2/w/300',
-				"desc" => "不会爬虫，怎么敢说自己是程序员了，要爬就爬BAT，以腾讯QQ微源，打造自己的QQ音乐平台"
+				"desc" => "不会爬虫，怎么敢说自己是程序员了，要爬就爬BAT，以网易云音乐为源，打造自己的音乐平台"
 			],
 			[
 				'title' => 'metaweblog',
