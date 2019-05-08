@@ -18,6 +18,13 @@ use \blog\components\UrlService;
             </thead>
             <tbody>
             <tr>
+                <td>*勇</td>
+                <td>30.00</td>
+                <td>2019-05-08</td>
+                <td>支付宝</td>
+                <td class="text-left">感谢浪子老师</td>
+            </tr>
+            <tr>
                 <td>匿名</td>
                 <td>50.00</td>
                 <td>2019-04-25</td>
