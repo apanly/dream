@@ -1,6 +1,6 @@
 后台定时任务
 ============
-
+```
 10 */1 * * * php /data/www/dream/yii blog/search/build >> /data/logs/jobs/build.log
 10 3 * * * php /data/www/dream/yii blog/dbmz/run >> /data/logs/jobs/douban.log
 */5 * * * * php /data/www/dream/yii blog/spider/robot >> /data/logs/jobs/robot.log
@@ -29,3 +29,4 @@
 57 * * * * php  /data/www/dream/yii  report/stat_daily/os >> /data/logs/jobs/report_stat_daily_os.log 2>&1
 58 * * * * php  /data/www/dream/yii  report/stat_daily/browser >> /data/logs/jobs/report_stat_daily_browser.log 2>&1
 59 * * * * php  /data/www/dream/yii  report/stat_daily/device >> /data/logs/jobs/report_stat_daily_device.log 2>&1
+```
