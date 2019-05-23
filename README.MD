@@ -9,7 +9,7 @@
 * [域名规划](/docs/domain.md)
 * [数据库](/docs/mysql.md)
 
-### 源码
+### 源码存放位置
 * [自建git](https://git.home.54php.cn:4443/my/dream)
 * [github](https://github.com/apanly/dream)
 * [oschina](https://gitee.com/apanly/dream)
