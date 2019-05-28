@@ -65,7 +65,8 @@ class MsgController extends BaseController{
 						$this->getBusiContact(),
 						"Python Flask微信小程序：food.54php.cn/user/login",
 						"编程浪子图书商城：book.54php.cn/web/user/login",
-						"浪子开源客服系统：m.54php.cn/default/253.html"
+						"浪子开源客服系统：m.54php.cn/default/253.html",
+						$this->getAdTips()
 					];
 					$res = [
 						'type'=>'text',
