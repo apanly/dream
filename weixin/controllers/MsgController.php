@@ -299,7 +299,9 @@ EOT;
 			$this->getBusiContact(),
 			"回复“上墙” 演示微信墙",
 			"回复“@关键字” 搜索歌曲",
-			"回复 任意内容进行搜索"
+			"回复 任意内容进行搜索",
+			"希望大家多多支持浪子，多看公众号文章，点击公众号最底部的广告",
+			"支持浪子点击广告传送门：https://mp.weixin.qq.com/s/hqam0IQcOKG8XK5NvdWY-Q"
 		];
 		return $data;
 	}
