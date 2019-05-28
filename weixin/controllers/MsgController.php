@@ -337,7 +337,7 @@ EOT;
 		$data = [
 			"欢迎使用". \Yii::$app->params['author']['nickname']."微信墙，操作指引如下",
 			"回复 # + 你想说的话",
-			"微信墙列表:\".GlobalUrlService::buildWapUrl(\"/wechat_wall/index\")",
+			"微信墙列表:".GlobalUrlService::buildWapUrl("/wechat_wall/index"),
 			$this->getAdTips()
 		];
 		return implode("\n",$data);
