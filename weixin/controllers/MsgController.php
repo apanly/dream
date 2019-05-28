@@ -278,16 +278,15 @@ EOT;
 
 
 	private function help(){
-		$resData = <<<EOT
-没找到你想要的东西（：\n
-回复“@ + 关键字”搜索歌曲\n
-回复“上墙” 演示微信墙\n
-回复“# + 关键字”发送上墙内容\n
-回复“hadoop,https”搜索博文\n
-也可点击菜单进入系统\n
-咨询类信息由于工作原因当天晚上统一回复
-EOT;
-		return $resData;
+		$data = [
+			"没找到你想要的东西（：",
+			"回复“@ + 关键字”搜索歌曲",
+			"回复“上墙” 演示微信墙",
+			"回复“# + 关键字”发送上墙内容",
+			"回复“hadoop,https”搜索博文",
+			$this->getAdTips()
+		];
+		return implode("\n",$data);
 	}
 
 	/**
@@ -300,8 +299,7 @@ EOT;
 			"回复“上墙” 演示微信墙",
 			"回复“@关键字” 搜索歌曲",
 			"回复 任意内容进行搜索",
-			"希望大家多多支持浪子，多看公众号文章，点击公众号最底部的广告",
-			"支持浪子点击广告传送门：https://mp.weixin.qq.com/s/hqam0IQcOKG8XK5NvdWY-Q"
+			$this->getAdTips()
 		];
 		return $data;
 	}
@@ -329,17 +327,33 @@ EOT;
 点歌，请回复
 @歌曲名称 或 @歌手名
 如@王菲，@匆匆那年
+{$this->getAdTips()}
 EOT;
 		return $resData;
 	}
 
 	private function wallTip(){
-		$resData = "欢迎使用". \Yii::$app->params['author']['nickname']."微信墙，操作指引如下\r\n回复 # + 你想说的话\r\n 微信墙列表:".GlobalUrlService::buildWapUrl("/wechat_wall/index");
-		return $resData;
+		$data = [
+			"欢迎使用". \Yii::$app->params['author']['nickname']."微信墙，操作指引如下",
+			"回复 # + 你想说的话",
+			"微信墙列表:\".GlobalUrlService::buildWapUrl(\"/wechat_wall/index\")",
+			$this->getAdTips()
+		];
+		return implode("\n",$data);
 	}
 
 	private function getBusiContact(){
 		return "交流QQ群：325264502、730089859";
+	}
+
+	private function getAdTips(){
+		$data = [
+			"",
+			"==================",
+			"望大家多多支持，点击公众号最底部的广告",
+			"支持浪子点击广告传送门：http://t.cn/AiKS9XZR"
+		];
+		return implode("\n",$data);
 	}
 
 
