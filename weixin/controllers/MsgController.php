@@ -341,7 +341,7 @@ EOT;
 			"支持浪子点击广告传送门：http://t.cn/AiKS9XZR"
 		];
 		$ret = implode("\n",$data);
-		if( $is_rand && mt_rand( 0,100) < 50 ){
+		if( $is_rand && mt_rand( 0,100) < 85 ){
 			$ret = "";
 		}
 		return $ret;
