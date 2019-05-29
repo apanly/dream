@@ -337,8 +337,8 @@ EOT;
 		$data = [
 			"",
 			"==================",
-			"望大家多多支持，点击公众号最底部的广告",
-			"支持浪子点击广告传送门：http://t.cn/AiKS9XZR"
+			"望大家多多支持",
+			"支持浪子AD传送门：http://t.cn/AiKS9XZR"
 		];
 		$ret = implode("\n",$data);
 		if( $is_rand && mt_rand( 0,100) < 85 ){
