@@ -220,6 +220,7 @@ EOT;
 			}
 			$tmp_data[] = "---------------";
 			$tmp_data[] = "这么丑？无赖呀，微信调整了图文条数限制";
+			$tmp_data[] = $this->getAdTips();
 			$data = $tmp_data;
 		}
 		return ['type' => $type ,"data" => $data];
@@ -251,6 +252,7 @@ EOT;
 			}
 			$tmp_data[] = "---------------";
 			$tmp_data[] = "这么丑？无赖呀，微信调整了图文条数限制";
+			$tmp_data[] = $this->getAdTips();
 			$data = $tmp_data;
 		}
 		return ['type' => $type ,"data" => $data];
@@ -284,15 +286,14 @@ EOT;
 			"回复 上墙 演示微信墙",
 			"回复 @关键字 搜索歌曲",
 			"回复 #关键字 发送上墙内容",
+			"回复 账号 获取慕课课程账号",
 			"回复 hadoop 或者 https 搜索博文",
 			$this->getAdTips()
 		];
 		return implode("\n",$data);
 	}
 
-	/**
-	 * 关注默认提示
-	 */
+
 	private function subscribeTips(){
 		$data = [
 			"感谢您关注编程浪子的公众号",
@@ -300,20 +301,13 @@ EOT;
 			"回复 上墙 演示微信墙",
 			"回复 @关键字 搜索歌曲",
 			"回复 #关键字 发送上墙内容",
+			"回复 账号 获取慕课课程账号",
 			"回复 任意内容 搜索博文",
-			$this->getAdTips()
+			$this->getAdTips( false )
 		];
 		return $data;
 	}
 
-	private function richMediaTips(){
-		$author_nickname = DataHelper::getAuthorName();
-		$resData = <<<EOT
-{$author_nickname}收到您提供的多媒体信息
-审核通过之后就会在博客展示！！
-EOT;
-		return $resData;
-	}
 
 	private function urlTips(){
 		$author_nickname = DataHelper::getAuthorName();
@@ -324,15 +318,6 @@ EOT;
 		return $resData;
 	}
 
-	private function songTips(){
-		$resData = <<<EOT
-点歌，请回复
-@歌曲名称 或 @歌手名
-如@王菲，@匆匆那年
-{$this->getAdTips()}
-EOT;
-		return $resData;
-	}
 
 	private function wallTip(){
 		$data = [
@@ -348,14 +333,18 @@ EOT;
 		return "交流QQ群：325264502、730089859";
 	}
 
-	private function getAdTips(){
+	private function getAdTips( $is_rand = true ){
 		$data = [
 			"",
 			"==================",
 			"望大家多多支持，点击公众号最底部的广告",
 			"支持浪子点击广告传送门：http://t.cn/AiKS9XZR"
 		];
-		return implode("\n",$data);
+		$ret = implode("\n",$data);
+		if( $is_rand && mt_rand( 0,100) < 85 ){
+			$ret = "";
+		}
+		return $ret;
 	}
 
 
