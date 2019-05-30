@@ -334,11 +334,28 @@ EOT;
 	}
 
 	private function getAdTips( $is_rand = true ){
+
+    	$urls = [
+    		"http://t.cn/AiK3JhDK",
+    		"http://t.cn/AiK3JLD5",
+    		"http://t.cn/AiK3JqKX",
+    		"http://t.cn/AiK3JfqQ",
+    		"http://t.cn/AiK3JXWa",
+    		"http://t.cn/AiK3JNvY",
+    		"http://t.cn/AiKS9XZR",
+    		"http://t.cn/AiK3JQe3",
+    		"http://t.cn/AiK3JuJi",
+    		"http://t.cn/AiK3JeOC",
+    		"http://t.cn/AiK3ivyk",
+    		"http://t.cn/AiK3izxl",
+    		"http://t.cn/AiK3iLVH"
+		];
+
 		$data = [
 			"",
 			"==================",
 			"望大家多多支持",
-			"支持浪子AD传送门：http://t.cn/AiKS9XZR"
+			"支持浪子AD传送门：".$urls[ mt_rand(1,count($urls) ) - 1 ]
 		];
 		$ret = implode("\n",$data);
 		if( $is_rand && mt_rand( 0,100) < 85 ){
