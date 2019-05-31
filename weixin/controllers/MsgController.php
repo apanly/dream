@@ -358,7 +358,7 @@ EOT;
 			"支持浪子AD传送门：".$urls[ mt_rand(1,count($urls) ) - 1 ]
 		];
 		$ret = implode("\n",$data);
-		if( $is_rand && mt_rand( 0,100) < 85 ){
+		if( $is_rand && mt_rand( 0,100) < 90 ){
 			$ret = "";
 		}
 		return $ret;
