@@ -330,7 +330,7 @@ EOT;
 	}
 
 	private function getBusiContact(){
-		return "交流QQ群：325264502、730089859";
+		return "交流QQ群：730089859、325264502（已满）";
 	}
 
 	private function getAdTips( $is_rand = true ){
@@ -355,7 +355,8 @@ EOT;
 			"",
 			"==================",
 			"望大家多多支持",
-			"支持浪子AD传送门：".$urls[ mt_rand(1,count($urls) ) - 1 ]
+			"支持浪子AD传送门：".$urls[ mt_rand(1,count($urls) ) - 1 ],
+			"记得点击AD哦"
 		];
 		$ret = implode("\n",$data);
 		if( $is_rand && mt_rand( 0,100) < 90 ){
