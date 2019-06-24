@@ -230,7 +230,7 @@ class UtilHelper {
     	$domains = [
     		'http://v3.jiathis.com',
     		'*.54php.cn',
-    		'*.home.54php.cn',
+    		'*.home.54php.cn:4443',
 			'*.yunetidc.com',
 			'*.baidu.com',
 			'*.cnzz.com',
