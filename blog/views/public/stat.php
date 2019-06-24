@@ -7,7 +7,7 @@
     <!--ST客服代码-->
     (function () {
         var _stkf_code = document.createElement("script");
-        _stkf_code.src = "//kf.home.54php.cn:4443/code/index/4df5dbb5/1";
+        _stkf_code.src = "https://kf.home.54php.cn:4443/code/index/4df5dbb5/1";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(_stkf_code, s);
     })();
